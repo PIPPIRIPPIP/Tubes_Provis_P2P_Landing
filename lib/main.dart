@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
@@ -20,6 +21,9 @@ import 'package:myapp/page-1/daftar-investor.dart';
 // import 'package:myapp/page-1/pilih-akun.dart';
 //import 'package:myapp/page-1/halaman-awal.dart';
 
+import 'package:myapp/bloc/user_bloc.dart';
+import 'package:myapp/ui/pages/first_page.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -32,14 +36,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Scaffold(
-        // appBar: AppBar(),
-        body: SingleChildScrollView(
-          child: Scene(),
-        ),
-        // bottomNavigationBar: SingleChildScrollView(
-        //   child: Navbar(),
-        // ),
+      // home: Scaffold(
+      //   // appBar: AppBar(),
+      //   body: SingleChildScrollView(
+      //     child: Scene(),
+      //   ),
+      //   // bottomNavigationBar: SingleChildScrollView(
+      //   //   child: Navbar(),
+      //   // ),
+      // ),
+      home: BlocProvider<UserBloc>(
+        create: (context) => UserBloc()..add(FetchDataEvent()),
+        child: FirstPage(),
       ),
     );
   }

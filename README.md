@@ -1,16 +1,9 @@
-# test
+# Kelompok 5
 
-A new Flutter project.
+- Ayesha Ali Firdaus (2101990)
+- Azzahra Alika Putri Yudha (2105899)
+- Dicki Fathurohman (2103842)
+- Muhammad Fadillah Nursyawal (2107135)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Deskripsi Projek
+Membuat aplikasi P2P Landing berbasis mobile
