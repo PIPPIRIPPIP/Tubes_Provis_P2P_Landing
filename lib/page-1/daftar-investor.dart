@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 //Bagian Dicki
-//this is change 2
+//dibawah bagian text login ada yang buat ngelink cuman masih dikomen
 
 class DaftarInvestor extends StatefulWidget {
   @override
