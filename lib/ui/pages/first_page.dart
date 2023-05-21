@@ -6,9 +6,22 @@ import 'package:myapp/custom_widgets/custom_button.dart';
 import 'package:myapp/ui/pages/detail_mitra.dart';
 import '../widgets/user_card.dart';
 import 'package:myapp/bloc/user_bloc.dart';
+
 import 'package:myapp/page-1/pilih-akun.dart';
+import 'package:myapp/page-1/daftar-investor.dart';
+// import 'package:myapp/page-1/login.dart';
+import 'login_ex.dart';
+
+import 'package:myapp/auth/login_auth.dart';
+import 'package:myapp/bloc/login_bloc.dart';
 
 class FirstPage extends StatelessWidget {
+  
+  final userRepository = UserRepository(
+    url: 'https://example.com/users',
+    filePath: 'data/user.json',
+  );
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -43,13 +56,22 @@ class FirstPage extends StatelessWidget {
                   fontStyle: ButtonFontStyle.PoppinsSemiBold16,
                   onTap: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => PilihAkun()));
+                        // MaterialPageRoute(builder: (context) => PilihAkun()));
+                        MaterialPageRoute(builder: (context) => DaftarInvestor()));
                   },
                 ),
                 SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
-                    // onTapTxtMasuk(context);
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                          create: (context) => LoginBloc(
+                            userRepository:userRepository
+                            ),
+                          child: LoginPage(),
+                        ),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: getPadding(top: 7),

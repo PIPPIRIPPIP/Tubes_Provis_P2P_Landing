@@ -4,7 +4,10 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/page-1/daftar-investor.dart';
+
 class Scene extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -59,7 +62,11 @@ class Scene extends StatelessWidget {
                     margin: EdgeInsets.fromLTRB(
                         77 * fem, 0 * fem, 96 * fem, 11 * fem),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                        // MaterialPageRoute(builder: (context) => PilihAkun()));
+                        MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                      },
                       style: TextButton.styleFrom(
                         padding: EdgeInsets.zero,
                       ),

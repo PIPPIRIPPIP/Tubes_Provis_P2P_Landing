@@ -4,7 +4,13 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/models/user_model.dart';
+
 class Scene extends StatelessWidget {
+  final User user;
+
+  Scene({required this.user});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
