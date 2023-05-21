@@ -6,4 +6,4 @@
 - Muhammad Fadillah Nursyawal (2107135)
 
 ## Deskripsi Projek
-Membuat aplikasi P2P Landing berbasih mobile
+Membuat aplikasi P2P Landing berbasis mobile
