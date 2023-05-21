@@ -13,9 +13,12 @@ class DaftarInvestor extends StatefulWidget {
 }
 
 class DaftarInvestorPage extends State<DaftarInvestor> {
+
+  String nama = "";
   String email = "";
   String no_telp = "";
   String password = "";
+  final inputnama = TextEditingController();
   final inputemail = TextEditingController();
   final inputtelp = TextEditingController();
   final inputpass = TextEditingController();
@@ -38,13 +41,13 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
           Padding(
             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Image.asset(
-              'page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1-4FG.png',
+              'images/Logo-Investa.png',
               height: 200,
             ),
           ),
           Container(
             width: 350,
-            height: 480,
+            height: 520,
             decoration: BoxDecoration(
               color: Colors.white,
               border: Border.all(
@@ -80,6 +83,35 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: 16.0),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: SizedBox(
+                        width: 250,
+                        child: TextField(
+                          controller: inputnama,
+                          onChanged: (text) {
+                            setState(() {
+                              nama = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Nama',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 8.0,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 16.0),
                     Container(
                       decoration: BoxDecoration(
@@ -188,7 +220,12 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child: ElevatedButton(
                     onPressed: isAgreed ? () {
-                      setState(() {});
+                      setState(() {
+                        nama = inputnama.text;
+                        email = inputemail.text;
+                        no_telp = inputtelp.text;
+                        password = inputpass.text;
+                      });
                     } : null,
                     style: ElevatedButton.styleFrom(
                       primary: Color.fromARGB(255, 54, 133, 255),
@@ -198,18 +235,20 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Navigator.push(
-                      //   // context,
-                      //   // MaterialPageRoute(builder: (context) => LoginPage()),
-                      // );
-                    },
-                    child: Text('Login',
-                      style: TextStyle(
-                        decoration: TextDecoration.underline,
-                        color: Colors.blue,
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(
+                      'Login',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff3584ff),
                       ),
                     ),
                   ),
