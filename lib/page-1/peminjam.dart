@@ -9,12 +9,15 @@ import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'profile.dart';
 
 class Peminjam extends StatelessWidget {
-  // final User user;
+  final User user;
+
+  Peminjam({required this.user});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Scene(),
+        child: Scene(user: user),
       ),
       bottomNavigationBar: Navbar(),
     );
@@ -22,9 +25,9 @@ class Peminjam extends StatelessWidget {
 }
 
 class Scene extends StatelessWidget {
-  // final User user;
+  final User user;
 
-  // Scene({required this.user});
+  Scene({required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +88,7 @@ class Scene extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Profil()));
+                                    builder: (context) => Profil(user: user)));
                           },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,

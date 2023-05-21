@@ -26,7 +26,7 @@ class LoginPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 // builder: (context) => ProfilePage(user: state.user),
-                builder: (context) => Peminjam(),
+                builder: (context) => Peminjam(user: state.user),
               ),
             );
           }

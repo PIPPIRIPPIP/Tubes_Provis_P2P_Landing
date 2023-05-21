@@ -115,7 +115,7 @@ class FirstPage extends StatelessWidget {
                                 return SizedBox(height: getVerticalSize(29));
                               },
                               // itemCount: state.users.length,
-                              itemCount: 2,
+                              itemCount: 5,
                               itemBuilder: (context, index) {
                                 final user = state.users[index];
                                 return InkWell(
