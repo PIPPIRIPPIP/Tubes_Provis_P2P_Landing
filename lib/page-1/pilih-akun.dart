@@ -13,6 +13,7 @@ class PilihAkun extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Container(
+        // pilihakunTRG (1:5)
         padding: EdgeInsets.fromLTRB(62 * fem, 25 * fem, 61 * fem, 61 * fem),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -22,6 +23,8 @@ class PilihAkun extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              // moneylogodesignstemplatevector (7:190)
+              // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
               width: 50,
               height: 30,
               child: Image.asset(
@@ -29,10 +32,12 @@ class PilihAkun extends StatelessWidget {
               ),
             ),
             Container(
+              // pilihjenisakunynv (1:9)
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 2 * fem, 21 * fem),
               child: Text(
                 'Pilih Jenis Akun',
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFont(
+                  'Poppins',
                   fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
                   height: 1.5 * ffem / fem,
@@ -41,6 +46,7 @@ class PilihAkun extends StatelessWidget {
               ),
             ),
             Container(
+              // mohonpilihjenisakunyangtepatpe (1:26)
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 31 * fem),
               constraints: BoxConstraints(
                 maxWidth: 273 * fem,
@@ -48,7 +54,8 @@ class PilihAkun extends StatelessWidget {
               child: Text(
                 'Mohon pilih jenis akun yang tepat. Pengguna hanya bisa memiliki satu jenis akun.',
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(
+                style: SafeGoogleFont(
+                  'Poppins',
                   fontSize: 12 * ffem,
                   fontWeight: FontWeight.w400,
                   height: 1.5 * ffem / fem,
@@ -57,6 +64,7 @@ class PilihAkun extends StatelessWidget {
               ),
             ),
             Container(
+              // daftarinvestorWwG (1:18)
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 46 * fem),
               padding:
                   EdgeInsets.fromLTRB(28 * fem, 18 * fem, 29 * fem, 20 * fem),
@@ -76,11 +84,13 @@ class PilihAkun extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    // pendaftaraninvestor9US (1:14)
                     margin: EdgeInsets.fromLTRB(
                         0 * fem, 0 * fem, 0 * fem, 22 * fem),
                     child: Text(
                       'Pendaftaran Investor',
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFont(
+                        'Poppins',
                         fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.5 * ffem / fem,
@@ -89,6 +99,7 @@ class PilihAkun extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    // sebagaiinvestorandaakandapatme (1:15)
                     margin: EdgeInsets.fromLTRB(
                         0 * fem, 0 * fem, 0 * fem, 18 * fem),
                     constraints: BoxConstraints(
@@ -97,7 +108,8 @@ class PilihAkun extends StatelessWidget {
                     child: Text(
                       'Sebagai Investor, Anda akan dapat memberikan pinjaman dan meraih imbal hasil hingga 18% per tahun.',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFont(
+                        'Poppins',
                         fontSize: 12 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.5 * ffem / fem,
@@ -106,6 +118,7 @@ class PilihAkun extends StatelessWidget {
                     ),
                   ),
                   TextButton(
+                    // group1Xjt (1:17)
                     onPressed: () {},
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -120,7 +133,8 @@ class PilihAkun extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'Daftar Sebagai Investor',
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFont(
+                            'Poppins',
                             fontSize: 16 * ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.5 * ffem / fem,
@@ -134,6 +148,7 @@ class PilihAkun extends StatelessWidget {
               ),
             ),
             Container(
+              // daftarpeminjamz7g (1:19)
               padding:
                   EdgeInsets.fromLTRB(28 * fem, 18 * fem, 29 * fem, 20 * fem),
               width: double.infinity,
@@ -152,11 +167,13 @@ class PilihAkun extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
+                    // pendaftaranpeminjamrQn (1:24)
                     margin: EdgeInsets.fromLTRB(
                         0 * fem, 0 * fem, 0 * fem, 22 * fem),
                     child: Text(
                       'Pendaftaran Peminjam',
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFont(
+                        'Poppins',
                         fontSize: 16 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.5 * ffem / fem,
@@ -165,6 +182,7 @@ class PilihAkun extends StatelessWidget {
                     ),
                   ),
                   Container(
+                    // sebagaipeminjamandaakandapatme (1:25)
                     margin: EdgeInsets.fromLTRB(
                         0 * fem, 0 * fem, 0 * fem, 18 * fem),
                     constraints: BoxConstraints(
@@ -173,7 +191,8 @@ class PilihAkun extends StatelessWidget {
                     child: Text(
                       'Sebagai peminjam, Anda akan dapat mengajukan pinjaman bisnis dengan bunga yang ringan.',
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
+                      style: SafeGoogleFont(
+                        'Poppins',
                         fontSize: 12 * ffem,
                         fontWeight: FontWeight.w400,
                         height: 1.5 * ffem / fem,
@@ -182,6 +201,7 @@ class PilihAkun extends StatelessWidget {
                     ),
                   ),
                   TextButton(
+                    // group13kA (1:21)
                     onPressed: () {},
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -197,7 +217,8 @@ class PilihAkun extends StatelessWidget {
                         child: Text(
                           'Daftar Sebagai Peminjam',
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
+                          style: SafeGoogleFont(
+                            'Poppins',
                             fontSize: 16 * ffem,
                             fontWeight: FontWeight.w400,
                             height: 1.5 * ffem / fem,
