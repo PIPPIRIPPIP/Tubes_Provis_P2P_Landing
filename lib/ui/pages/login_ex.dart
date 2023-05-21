@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'profile_ex.dart';
+// import 'profile_ex.dart';
 import 'package:myapp/bloc/login_bloc.dart';
 import 'package:myapp/page-1/peminjam.dart';
 
@@ -15,7 +15,6 @@ class LoginPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('Login')),
-      
       body: BlocListener<LoginBloc, LoginState>(
         listener: (context, state) {
           if (state is LoginFailure) {
@@ -27,12 +26,11 @@ class LoginPage extends StatelessWidget {
               context,
               MaterialPageRoute(
                 // builder: (context) => ProfilePage(user: state.user),
-                builder: (context) => Scene(user: state.user),
+                builder: (context) => Peminjam(),
               ),
             );
           }
         },
-
         child: BlocBuilder<LoginBloc, LoginState>(
           builder: (context, state) {
             if (state is LoginLoading) {
@@ -62,7 +60,6 @@ class LoginPage extends StatelessWidget {
             );
           },
         ),
-
       ),
     );
   }

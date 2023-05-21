@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatelessWidget {
+class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -12,6 +12,7 @@ class Scene extends StatelessWidget {
     double ffem = fem * 0.97;
     return Container(
       width: double.infinity,
+      height: 65 * fem,
       child: Container(
         // navbarLKx (63:556)
         padding: EdgeInsets.fromLTRB(25 * fem, 7 * fem, 10 * fem, 8 * fem),
