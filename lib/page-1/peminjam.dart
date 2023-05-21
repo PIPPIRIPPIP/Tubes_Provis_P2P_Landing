@@ -6,6 +6,7 @@ import 'package:myapp/utils.dart';
 
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
+import 'profile.dart';
 
 class Peminjam extends StatelessWidget {
   // final User user;
@@ -80,7 +81,12 @@ class Scene extends StatelessWidget {
                         ),
                         TextButton(
                           // profile1YYE (9:285)
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Profil()));
+                          },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                           ),
