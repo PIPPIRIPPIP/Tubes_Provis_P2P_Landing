@@ -6,291 +6,203 @@ import 'package:myapp/utils.dart';
 
 //Bagian Dicki
 
-class Scene extends StatelessWidget {
+class Scene extends StatefulWidget {
   @override
+  DaftarInvestor createState() => DaftarInvestor();
+}
+
+class DaftarInvestor extends State<Scene> {
+  String email = "";
+  String no_telp = "";
+  String password = "";
+  final inputemail = TextEditingController();
+  final inputtelp = TextEditingController();
+  final inputpass = TextEditingController();
+  bool isAgreed = false;
+
+  @override
+  void dispose() {
+    inputemail.dispose();
+    inputtelp.dispose();
+    inputpass.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
-    double baseWidth = 414;
-    double fem = MediaQuery.of(context).size.width / baseWidth;
-    double ffem = fem * 0.97;
     return Container(
       width: double.infinity,
-      child: Container(
-        // daftarinvestorGwY (1:28)
-        padding: EdgeInsets.fromLTRB(51 * fem, 26 * fem, 51 * fem, 90 * fem),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xffffffff),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              // moneylogodesignstemplatevector (7:192)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
-              width: 224 * fem,
-              height: 76 * fem,
-              child: Image.asset(
-                'assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1.png',
-              ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            child: Image.asset(
+              'page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1-4FG.png',
+              height: 200,
             ),
-            Container(
-              // group26mfL (1:57)
-              padding:
-                  EdgeInsets.fromLTRB(23 * fem, 25 * fem, 23 * fem, 30 * fem),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xffffffff),
-                borderRadius: BorderRadius.circular(10 * fem),
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x3f000000),
-                    offset: Offset(0 * fem, 4 * fem),
-                    blurRadius: 2 * fem,
-                  ),
-                ],
+          ),
+          Container(
+            width: 400,
+            height: 480,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: Colors.grey,
+                width: 1.0,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // daftarsebagaiinvestorvge (1:30)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 12 * fem),
-                    child: Text(
-                      'Daftar Sebagai Investor',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 20 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff343434),
+              borderRadius: BorderRadius.circular(15.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Daftar Sebagai Investor',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Helvetica',
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                  child: Text('Harap lengkapi form dibawah ini'),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 16.0),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: SizedBox(
+                        width: 250,
+                        child: TextField(
+                          controller: inputemail,
+                          onChanged: (text) {
+                            setState(() {
+                              email = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Email',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 8.0,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    // haraplengkapiformdibawahiniLVU (1:31)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 1 * fem, 28 * fem),
-                    child: Text(
-                      'Harap lengkapi form dibawah ini',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff343434),
+                    SizedBox(height: 16.0),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: SizedBox(
+                        width: 250,
+                        child: TextField(
+                          controller: inputtelp,
+                          onChanged: (text) {
+                            setState(() {
+                              no_telp = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'No Telepon',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 8.0,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    // group2BFC (1:34)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 28 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        22 * fem, 12 * fem, 22 * fem, 14 * fem),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffbcbcbc)),
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(3 * fem),
-                    ),
-                    child: Text(
-                      'Email',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 15 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
+                    SizedBox(height: 16.0),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: SizedBox(
+                        width: 250,
+                        child: TextField(
+                          controller: inputpass,
+                          onChanged: (text) {
+                            setState(() {
+                              password = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            border: InputBorder.none,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 8.0,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  Container(
-                    // group3Naa (1:35)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 25 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        22 * fem, 12 * fem, 22 * fem, 14 * fem),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffbcbcbc)),
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(3 * fem),
-                    ),
-                    child: Text(
-                      'Nomor Ponsel',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 15 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // group4cUv (1:38)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 25 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        22 * fem, 12 * fem, 22 * fem, 14 * fem),
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffbcbcbc)),
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(3 * fem),
-                    ),
-                    child: Text(
-                      'Kata Sandi',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 15 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    // autogroupyg3hreA (3w9cVVjczyYiQez1nGYg3h)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 5 * fem, 29 * fem),
-                    width: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          // group24N6i (1:42)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 9 * fem, 16 * fem),
-                          padding: EdgeInsets.fromLTRB(
-                              1.25 * fem, 1.88 * fem, 1.88 * fem, 1.25 * fem),
-                          decoration: BoxDecoration(
-                            color: Color(0xff3584ff),
-                          ),
-                          child: Center(
-                            // image6JuU (1:44)
-                            child: SizedBox(
-                              width: 21.88 * fem,
-                              height: 21.88 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/image-6-JwY.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
+                        Checkbox(
+                          value: isAgreed,
+                          onChanged: (value) {
+                            setState(() {
+                              isAgreed = value ?? false;
+                            });
+                          },
                         ),
-                        Container(
-                          // dengankliklanjutkanandatelahme (1:41)
-                          constraints: BoxConstraints(
-                            maxWidth: 227 * fem,
-                          ),
-                          child: Text(
-                            'Dengan klik Lanjutkan, Anda telah membaca dan menyetujui Syarat & Ketentuan serta Kebikajakn Provasi yang berlaku.',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 10 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff343434),
-                            ),
-                          ),
-                        ),
+                        Text("I agree to the terms and conditions"),
                       ],
                     ),
-                  ),
-                  Container(
-                    // group1HmQ (1:45)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 26 * fem),
-                    width: double.infinity,
-                    height: 37 * fem,
-                    decoration: BoxDecoration(
-                      color: Color(0xff3584ff),
-                      borderRadius: BorderRadius.circular(3 * fem),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: ElevatedButton(
+                    onPressed: isAgreed ? () {
+                      setState(() {});
+                    } : null,
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 54, 133, 255),
+                      fixedSize: Size(250, 40),
                     ),
-                    child: Center(
-                      child: Text(
-                        'Lanjutkan',
-                        textAlign: TextAlign.center,
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 16 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xffffffff),
-                        ),
-                      ),
-                    ),
+                    child: const Text('Lanjutkan'),
                   ),
-                  Container(
-                    // group25v3g (1:50)
-                    margin: EdgeInsets.fromLTRB(
-                        56 * fem, 0 * fem, 55 * fem, 0 * fem),
-                    width: double.infinity,
-                    height: 18 * fem,
-                    child: Stack(
-                      children: [
-                        Positioned(
-                          // sudahpunyaakunloginEq4 (1:48)
-                          left: -17 * fem,
-                          top: 0 * fem,
-                          child: Align(
-                            child: SizedBox(
-                              width: 155 * fem,
-                              height: 18 * fem,
-                              child: Text(
-                                'Sudah punya akun?',
-                                textAlign: TextAlign.center,
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff343434),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          // login78A (1:49)
-                          left: 122.75 * fem,
-                          top: 0 * fem,
-                          child: Align(
-                            child: SizedBox(
-                              width: 32 * fem,
-                              height: 18 * fem,
-                              child: TextButton(
-                                onPressed: () {},
-                                style: TextButton.styleFrom(
-                                  padding: EdgeInsets.zero,
-                                ),
-                                child: Text(
-                                  'Login',
-                                  textAlign: TextAlign.center,
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 12 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff3584ff),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  child: Text('Sudah punya akun? Login'),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
