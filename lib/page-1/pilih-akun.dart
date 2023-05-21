@@ -4,7 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatelessWidget {
+class PilihAkun extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -25,8 +25,8 @@ class Scene extends StatelessWidget {
             Container(
               // moneylogodesignstemplatevector (7:190)
               // margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 0 * fem),
-              width: 200,
-              height: 200,
+              width: 50,
+              height: 30,
               child: Image.asset(
                 'assets/page-1/images/logo.png',
               ),
@@ -38,7 +38,7 @@ class Scene extends StatelessWidget {
                 'Pilih Jenis Akun',
                 style: SafeGoogleFont(
                   'Poppins',
-                  fontSize: 24 * ffem,
+                  fontSize: 16 * ffem,
                   fontWeight: FontWeight.w400,
                   height: 1.5 * ffem / fem,
                   color: Color(0xff000000),

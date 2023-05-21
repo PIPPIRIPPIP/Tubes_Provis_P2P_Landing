@@ -6,9 +6,9 @@ import 'package:myapp/custom_widgets/custom_button.dart';
 import 'package:myapp/ui/pages/detail_mitra.dart';
 import '../widgets/user_card.dart';
 import 'package:myapp/bloc/user_bloc.dart';
+import 'package:myapp/page-1/pilih-akun.dart';
 
 class FirstPage extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,7 +42,8 @@ class FirstPage extends StatelessWidget {
                   margin: getMargin(top: 20),
                   fontStyle: ButtonFontStyle.PoppinsSemiBold16,
                   onTap: () {
-                    // onTapDaftarsekarang(context);
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => PilihAkun()));
                   },
                 ),
                 SizedBox(height: 10),
@@ -101,7 +102,8 @@ class FirstPage extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => DetailMitra(user: user),
+                                        builder: (context) =>
+                                            DetailMitra(user: user),
                                       ),
                                     );
                                   },
