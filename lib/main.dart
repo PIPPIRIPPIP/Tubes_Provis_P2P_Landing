@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
-// import 'package:myapp/page-1/daftar-investor.dart';
+import 'package:myapp/page-1/daftar-investor.dart';
 // import 'package:myapp/page-1/login.dart';
 // import 'package:myapp/page-1/daftar-peminjam-perorangan.dart';
 // import 'package:myapp/page-1/daftar-peminjam-perusahaan.dart';
@@ -18,7 +18,7 @@ import 'package:myapp/utils.dart';
 // import 'package:myapp/page-1/navbar-peminjam.dart';
 // import 'package:myapp/page-1/frame-2.dart';
 // import 'package:myapp/page-1/pilih-akun.dart';
-import 'package:myapp/page-1/halaman-awal.dart';
+//import 'package:myapp/page-1/halaman-awal.dart';
 
 void main() => runApp(MyApp());
 
