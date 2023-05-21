@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 //Bagian Dicki
-//this is change
+//this is change 2
 
-class Scene extends StatefulWidget {
+class DaftarInvestor extends StatefulWidget {
   @override
-  DaftarInvestor createState() => DaftarInvestor();
+  DaftarInvestorPage createState() => DaftarInvestorPage();
 }
 
-class DaftarInvestor extends State<Scene> {
+class DaftarInvestorPage extends State<DaftarInvestor> {
   String email = "";
   String no_telp = "";
   String password = "";
@@ -36,14 +36,14 @@ class DaftarInvestor extends State<Scene> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
             child: Image.asset(
               'page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1-4FG.png',
               height: 200,
             ),
           ),
           Container(
-            width: 400,
+            width: 350,
             height: 480,
             decoration: BoxDecoration(
               color: Colors.white,
@@ -66,14 +66,15 @@ class DaftarInvestor extends State<Scene> {
               children: [
                 Text(
                   'Daftar Sebagai Investor',
-                  style: TextStyle(
+                  style: SafeGoogleFont(
+                    'Poppins',
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
-                    fontFamily: 'Helvetica',
+                    color: Color(0xff343434),
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                  padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Text('Harap lengkapi form dibawah ini'),
                 ),
                 Column(
@@ -178,7 +179,7 @@ class DaftarInvestor extends State<Scene> {
                             });
                           },
                         ),
-                        Text("I agree to the terms and conditions"),
+                        Text("Saya menyetujui syarat & ketentuan"),
                       ],
                     ),
                   ],
@@ -198,7 +199,20 @@ class DaftarInvestor extends State<Scene> {
                 ),
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: Text('Sudah punya akun? Login'),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Navigator.push(
+                      //   // context,
+                      //   // MaterialPageRoute(builder: (context) => LoginPage()),
+                      // );
+                    },
+                    child: Text('Login',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
