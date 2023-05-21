@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'daftar-peminjam-perorangan.dart';
+
 class DaftarPerusahaan extends StatefulWidget {
   @override
   DaftarPerusahaanPage createState() => DaftarPerusahaanPage();
@@ -208,7 +210,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                         ),
                         TextButton(
                           // perorangan7dY (7:196)
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => DaftarPerorangan()));
+                          },
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
                           ),

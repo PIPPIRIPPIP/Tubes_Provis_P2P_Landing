@@ -4,6 +4,10 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'daftar-investor.dart';
+import 'daftar-peminjam-perorangan.dart';
+import 'daftar-peminjam-perusahaan.dart';
+
 class PilihAkun extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -119,7 +123,10 @@ class PilihAkun extends StatelessWidget {
                   ),
                   TextButton(
                     // group1Xjt (1:17)
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),
@@ -202,7 +209,10 @@ class PilihAkun extends StatelessWidget {
                   ),
                   TextButton(
                     // group13kA (1:21)
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DaftarPerorangan()));
+                    },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
                     ),

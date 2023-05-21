@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'daftar-peminjam-perusahaan.dart';
+
 class DaftarPerorangan extends StatefulWidget {
   @override
   DaftarPeroranganPage createState() => DaftarPeroranganPage();
@@ -131,7 +133,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 29 * fem, 0 * fem),
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => DaftarPerusahaan()));
+                            },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
                             ),

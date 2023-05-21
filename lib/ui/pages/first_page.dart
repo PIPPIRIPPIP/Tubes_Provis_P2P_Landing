@@ -56,8 +56,8 @@ class FirstPage extends StatelessWidget {
                   fontStyle: ButtonFontStyle.PoppinsSemiBold16,
                   onTap: () {
                     Navigator.push(context,
-                        // MaterialPageRoute(builder: (context) => PilihAkun()));
-                        MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                        MaterialPageRoute(builder: (context) => PilihAkun()));
+                        // MaterialPageRoute(builder: (context) => DaftarInvestor()));
                   },
                 ),
                 SizedBox(height: 10),
