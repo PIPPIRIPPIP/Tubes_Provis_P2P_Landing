@@ -66,7 +66,7 @@ class Scene extends StatelessWidget {
                   Container(
                     // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
                     padding: EdgeInsets.fromLTRB(
-                        210 * fem, 2 * fem, 0 * fem, 3 * fem),
+                        200 * fem, 2 * fem, 0 * fem, 3 * fem),
                     height: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -74,7 +74,7 @@ class Scene extends StatelessWidget {
                         Container(
                           // notif1DF4 (12:298)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 10 * fem, 0 * fem),
+                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
                           width: 25 * fem,
                           height: 32 * fem,
                           child: Image.asset(

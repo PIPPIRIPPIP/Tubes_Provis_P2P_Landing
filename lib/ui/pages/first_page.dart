@@ -9,8 +9,7 @@ import 'package:myapp/bloc/user_bloc.dart';
 
 import 'package:myapp/page-1/pilih-akun.dart';
 import 'package:myapp/page-1/daftar-investor.dart';
-// import 'package:myapp/page-1/login.dart';
-import 'login_ex.dart';
+import 'login.dart';
 
 import 'package:myapp/auth/login_auth.dart';
 import 'package:myapp/bloc/login_bloc.dart';
@@ -68,7 +67,7 @@ class FirstPage extends StatelessWidget {
                           create: (context) => LoginBloc(
                             userRepository:userRepository
                             ),
-                          child: LoginPage(),
+                          child: Login(),
                         ),
                       ),
                     );
