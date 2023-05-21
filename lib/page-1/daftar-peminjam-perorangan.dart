@@ -4,7 +4,32 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Scene extends StatelessWidget {
+class DaftarPerorangan extends StatefulWidget {
+  @override
+  DaftarPeroranganPage createState() => DaftarPeroranganPage();
+}
+
+class DaftarPeroranganPage extends State<DaftarPerorangan> {
+
+  List<DropdownMenuItem<String>> provinsi = [];
+  
+  String nama = "";
+  String email = "";
+  String telp = "";
+  String nik = "";
+  String password = "";
+  int pendapatan = 0;
+  final inputnama = TextEditingController();
+  final inputemail = TextEditingController();
+  final inputtelp = TextEditingController();
+  final inputnik = TextEditingController();
+  final inputpassword = TextEditingController();
+  final inputpendapatan = TextEditingController();
+  String pilihanProv = "Jawa";
+  String pilihanKota = "Jakarta";
+  String pilihanUsaha = "Kuliner";
+  bool isAgreed = false;
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -28,7 +53,7 @@ class Scene extends StatelessWidget {
               width: 224 * fem,
               height: 76 * fem,
               child: Image.asset(
-                'assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-2-vkW.png',
+                '/images/Logo-Investa.png',
               ),
             ),
             Container(
@@ -279,19 +304,15 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // namak6S (3:132)
+              // NAMA
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7 * fem),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // namalengkapsesuaiktpH6N (3:135)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    // BUAT NAMA (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
                       'Nama Lengkap Sesuai KTP',
                       style: SafeGoogleFont(
@@ -304,23 +325,31 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupyirsnYv (3w9egbkW3ENRpfUtYayirs)
-                    padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 17 * fem, 11 * fem),
+                    // BUAT NAMA (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Text(
-                      'Nama Lengkap Sesuai KTP',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
+                    child: TextField(
+                      controller: inputnama,
+                      onChanged: (text) {
+                        setState(() {
+                          nama = text;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'contoh: Dicki Fathurohman',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
                       ),
                     ),
                   ),
@@ -328,19 +357,15 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // emailfci (3:136)
+              // EMAIL
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7 * fem),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // emailbWN (3:139)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    // BUAT EMAIL (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
                       'Email',
                       style: SafeGoogleFont(
@@ -353,23 +378,31 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupaxwzX98 (3w9fupCqfaP67ehLroaxwZ)
-                    padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 17 * fem, 11 * fem),
+                    // BUAT EMAIL (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Text(
-                      'contoh@gmail.com',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
+                    child: TextField(
+                      controller: inputemail,
+                      onChanged: (text) {
+                        setState(() {
+                          email = text;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'contoh@gmail.com',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
                       ),
                     ),
                   ),
@@ -377,19 +410,15 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // nohpben (3:140)
+              // NO TELEPON
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7 * fem),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // nomorponselvwx (3:143)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    // BUAT TELP (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
                       'Nomor Ponsel',
                       style: SafeGoogleFont(
@@ -402,23 +431,31 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupfeejEhk (3w9ep6Y1aXjsDpZFdZFeEj)
-                    padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 17 * fem, 11 * fem),
+                    // BUAT TELP (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Text(
-                      '+6281234567890',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
+                    child: TextField(
+                      controller: inputtelp,
+                      onChanged: (text) {
+                        setState(() {
+                          telp = text;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: '08123456789',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
                       ),
                     ),
                   ),
@@ -426,19 +463,15 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // nikXB4 (3:144)
+              // NIK
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7 * fem),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // nikFcr (3:147)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    // BUAT NIK (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
                       'NIK',
                       style: SafeGoogleFont(
@@ -451,38 +484,48 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupxzcby34 (3w9ewbKX7q7JcydciXXZcb)
-                    padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 17 * fem, 11 * fem),
+                    // BUAT NAMA (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Text(
-                      '32014123889060003',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 12 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff727272),
+                    child: TextField(
+                      controller: inputnik,
+                      onChanged: (text) {
+                        setState(() {
+                          nik = text;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: '32041212070509876',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
                       ),
                     ),
                   ),
                 ],
               ),
             ),
+
+            //=====================DROPDOWN=========================
             Container(
-              // provinsidtJ (4:149)
+              //PROVINSI
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // provinsitempatusahamzW (4:152)
+                    // TITLE
                     margin:
                         EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
@@ -497,55 +540,43 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroup5hsdhNN (3w9fMq88hN8xH7i4Ms5hsD)
+                    // DROPDOWN
                     padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 26 * fem, 11 * fem),
+                        17 * fem, 10 * fem, 26 * fem, 10 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // pilihprovinsiQna (4:151)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 235 * fem, 0 * fem),
-                          child: Text(
-                            'Pilih Provinsi',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff727272),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 15 * fem,
-                          height: 15 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/chevronleft-5jL.png',
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: DropdownButton<String>(
+                      value: pilihanProv,
+                      items: <String>['Jawa', 'Sumatera', 'Sulawesi']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          pilihanProv = newValue!;
+                        });
+                      },
+                    )
                   ),
                 ],
               ),
             ),
             Container(
-              // provinsij4A (4:159)
+              // KOTA
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // kotatempatusahaTkr (4:162)
+                    // TITLE
                     margin:
                         EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
@@ -560,59 +591,47 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupdyzqPPc (3w9fZzSY8MxcuPih9JdyZq)
+                    // DROPDOWN
                     padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 26 * fem, 11 * fem),
+                        17 * fem, 10 * fem, 26 * fem, 10 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // pilihkota6op (4:161)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 253 * fem, 0 * fem),
-                          child: Text(
-                            'Pilih Kota',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff727272),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 15 * fem,
-                          height: 15 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/chevronleft-5jL.png',
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: DropdownButton<String>(
+                      value: pilihanKota,
+                      items: <String>['Jakarta', 'Bandung', 'Bekasi']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          pilihanKota = newValue!;
+                        });
+                      },
+                    )
                   ),
                 ],
               ),
             ),
             Container(
-              // provinsiDNe (4:164)
+              // JENIS USAHA
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // pilihjenisusahakdU (4:167)
+                    // TITLE
                     margin:
                         EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
-                      'Pilih Jenis Usaha',
+                      'Jenis Usaha',
                       style: SafeGoogleFont(
                         'Poppins',
                         fontSize: 12 * ffem,
@@ -623,62 +642,46 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupts9rsCJ (3w9fkQJrbirx4zsyYKTs9R)
+                    // DROPDOWN
                     padding: EdgeInsets.fromLTRB(
-                        17 * fem, 12 * fem, 26 * fem, 11 * fem),
+                        17 * fem, 10 * fem, 26 * fem, 10 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // pilihjenisusahaAhC (4:166)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 209 * fem, 0 * fem),
-                          child: Text(
-                            'Pilih Jenis Usaha',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff727272),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: 15 * fem,
-                          height: 15 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/chevronleft-5jL.png',
-                          ),
-                        ),
-                      ],
-                    ),
+                    child: DropdownButton<String>(
+                      value: pilihanUsaha,
+                      items: <String>['Kuliner', 'Fashion', 'Jasa']
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          pilihanUsaha = newValue!;
+                        });
+                      },
+                    )
                   ),
                 ],
               ),
             ),
             Container(
-              // nikVUa (4:169)
-              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
+              // PENDAPATAN PER TAHUN
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
               width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(7 * fem),
-              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // pendapatanpertahunpmk (4:172)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    // BUAT PENDAPATAN (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
                     child: Text(
-                      'Pendapatan per Tahun',
+                      'Pendapatan per tahun (Rp)',
                       style: SafeGoogleFont(
                         'Poppins',
                         fontSize: 12 * ffem,
@@ -689,66 +692,93 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroupd559MFt (3w9f6FjkdZ6JKuwYj7d559)
-                    padding: EdgeInsets.fromLTRB(
-                        9 * fem, 11 * fem, 247 * fem, 10.97 * fem),
+                    // BUAT NAMA (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       border: Border.all(color: Color(0xffbcbcbc)),
                       color: Color(0xffffffff),
                       borderRadius: BorderRadius.circular(7 * fem),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // rp3uQ (4:173)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0.97 * fem, 6.5 * fem, 0 * fem),
-                          child: Text(
-                            'Rp',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff3584ff),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          // line2yYA (4:174)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 7.5 * fem, 0 * fem),
-                          width: 1 * fem,
-                          height: 19.03 * fem,
-                          decoration: BoxDecoration(
-                            color: Color(0xffbcbcbc),
-                          ),
-                        ),
-                        Container(
-                          // ugi (4:171)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0.97 * fem, 0 * fem, 0 * fem),
-                          child: Text(
-                            '1.000.000.000',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff727272),
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: TextField(
+                      controller: inputpendapatan,
+                      onChanged: (text) {
+                        setState(() {
+                          pendapatan = int.tryParse(text) ?? 0;
+                        });
+                      },
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        hintText: '10.000.000',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
             Container(
-              // autogroupxlxoziA (3w9dzsPhgLuoojamC3XLxo)
+              // Password
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    // BUAT password (TITLE)
+                    margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                    child: Text(
+                      'Kata Sandi',
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 12 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5 * ffem / fem,
+                        color: Color(0xff343434),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // BUAT NAMA (BOX FORM)
+                    padding: EdgeInsets.fromLTRB(17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xffbcbcbc)),
+                      color: Color(0xffffffff),
+                      borderRadius: BorderRadius.circular(7 * fem),
+                    ),
+                    child: TextField(
+                      controller: inputpassword,
+                      onChanged: (text) {
+                        setState(() {
+                          password = text;
+                        });
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'password',
+                        border: InputBorder.none,
+                        hintStyle: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff727272),
+                        )
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              // PERSETUJUAN
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 27 * fem, 21 * fem),
               width: double.infinity,
               height: 30 * fem,
@@ -756,29 +786,29 @@ class Scene extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    // group263gS (4:176)
+                    //checkbox
                     margin:
                         EdgeInsets.fromLTRB(0 * fem, 2 * fem, 9 * fem, 3 * fem),
                     padding: EdgeInsets.fromLTRB(
                         1.25 * fem, 1.88 * fem, 1.88 * fem, 1.25 * fem),
                     height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color(0xff3584ff),
-                    ),
                     child: Center(
-                      // image6X5p (4:178)
                       child: SizedBox(
                         width: 21.88 * fem,
                         height: 21.88 * fem,
-                        child: Image.asset(
-                          'assets/page-1/images/image-6-jnn.png',
-                          fit: BoxFit.cover,
+                        child: Checkbox(
+                          value: isAgreed,
+                          onChanged: (value) {
+                            setState(() {
+                              isAgreed = value ?? false;
+                            });
+                          },
                         ),
                       ),
                     ),
                   ),
                   Container(
-                    // dengankliklanjutkanandatelahme (4:175)
+                    // Teks
                     constraints: BoxConstraints(
                       maxWidth: 306 * fem,
                     ),
@@ -796,16 +826,24 @@ class Scene extends StatelessWidget {
                 ],
               ),
             ),
+            //BUTTON LANJUTKAN
             Container(
-              // group1iRC (4:179)
               margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
               width: double.infinity,
               height: 37 * fem,
               decoration: BoxDecoration(
-                color: Color(0xff3584ff),
                 borderRadius: BorderRadius.circular(3 * fem),
               ),
-              child: Center(
+              child: ElevatedButton(
+                onPressed: isAgreed ? () {
+                  setState(() {
+                    email = inputemail.text;
+                  });
+                } : null,
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 54, 133, 255),
+                  //fixedSize: Size(250, 40),
+                ),
                 child: Text(
                   'Lanjutkan',
                   textAlign: TextAlign.center,
