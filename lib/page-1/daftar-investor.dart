@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+//Bagian Dicki
+
 class Scene extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
