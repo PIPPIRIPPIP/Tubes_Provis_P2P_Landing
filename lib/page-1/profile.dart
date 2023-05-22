@@ -4,7 +4,13 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/models/user_model.dart';
+
 class Profil extends StatelessWidget {
+  final User user;
+
+  Profil({required this.user});
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -50,8 +56,13 @@ class Profil extends StatelessWidget {
                 ),
                 Container(
                   // autogroupe2n3F98 (3w9xzVQnsXnT85ru6Ve2n3)
+<<<<<<< HEAD
                   padding: EdgeInsets.fromLTRB(
                       15 * fem, 22 * fem, 17 * fem, 7 * fem),
+=======
+                  padding:
+                      EdgeInsets.fromLTRB(15 * fem, 22 * fem, 17 * fem, 7 * fem),
+>>>>>>> 8def8763f5850879eb8494ed3746d9f8eb9a14a9
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +124,11 @@ class Profil extends StatelessWidget {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
+<<<<<<< HEAD
                                                 'AYESHA ALI FIRDAUS',
+=======
+                                                user.nama,
+>>>>>>> 8def8763f5850879eb8494ed3746d9f8eb9a14a9
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -134,7 +149,11 @@ class Profil extends StatelessWidget {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
+<<<<<<< HEAD
                                                 '+6281234567890',
+=======
+                                                user.nomorPonsel,
+>>>>>>> 8def8763f5850879eb8494ed3746d9f8eb9a14a9
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -151,7 +170,11 @@ class Profil extends StatelessWidget {
                                   ),
                                   Text(
                                     // ayeshaliexamplecomAhL (24:125)
+<<<<<<< HEAD
                                     'ayeshali@example.com',
+=======
+                                    user.email,
+>>>>>>> 8def8763f5850879eb8494ed3746d9f8eb9a14a9
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -289,7 +312,11 @@ class Profil extends StatelessWidget {
                                 maxWidth: 88 * fem,
                               ),
                               child: Text(
+<<<<<<< HEAD
                                 'Kuliner\nJawa Barat\nBandung\nRp 100.000.000',
+=======
+                                '${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\nRp ${user.pendapatan}',
+>>>>>>> 8def8763f5850879eb8494ed3746d9f8eb9a14a9
                                 textAlign: TextAlign.right,
                                 style: SafeGoogleFont(
                                   'Poppins',
