@@ -29,8 +29,8 @@ class Login extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Pendana(user: state.user),
-                // builder: (context) => Peminjam(user: state.user),
+                // builder: (context) => Pendana(user: state.user),
+                builder: (context) => Peminjam(user: state.user),
               ),
             );
           }

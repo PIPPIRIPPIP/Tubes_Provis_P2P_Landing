@@ -7,6 +7,10 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'profile.dart';
+import 'notifikasi.dart';
+import 'isi-saldo.dart';
+import 'tarik-saldo.dart';
+import 'riwayat-transaksi.dart';
 
 class Peminjam extends StatelessWidget {
   final User user;
@@ -71,15 +75,20 @@ class Scene extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          // notif1DF4 (12:298)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                          width: 25 * fem,
-                          height: 32 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/notif-1.png',
-                            fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () {Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) => Notifikasi()));
+                          },
+                          child: Container(
+                            // notif1DF4 (12:298)
+                            margin: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                            width: 25 * fem,
+                            height: 32 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/notif-1.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         TextButton(
@@ -116,7 +125,7 @@ class Scene extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xff3584ff),
-                borderRadius: BorderRadius.circular(10 * fem),
+                // borderRadius: BorderRadius.circular(10 * fem),
                 boxShadow: [
                   BoxShadow(
                     color: Color(0x3f000000),
@@ -166,7 +175,7 @@ class Scene extends StatelessWidget {
                               width: 119 * fem,
                               height: 23 * fem,
                               child: Text(
-                                'Rp. 100.000.000',
+                                'Rp. ${user.saldo}',
                                 style: SafeGoogleFont(
                                   'Poppins',
                                   fontSize: 15 * ffem,
@@ -248,38 +257,44 @@ class Scene extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Container(
-                                  // autogroupyy8wQeJ (3w9ojqfKWwwBL6RJ5mYY8w)
-                                  height: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        // autogroupeuypMJe (3w9oqfpwP4zxrzb8hreUYP)
-                                        margin: EdgeInsets.fromLTRB(
-                                            1 * fem, 0 * fem, 0 * fem, 6 * fem),
-                                        width: 40 * fem,
-                                        height: 40 * fem,
-                                        child: Image.asset(
-                                          'assets/page-1/images/auto-group-euyp.png',
+                                InkWell(
+                                  onTap: () {Navigator.push(context,
+                                        MaterialPageRoute(
+                                            builder: (context) => IsiSaldo()));
+                                  },
+                                  child: Container(
+                                    // autogroupyy8wQeJ (3w9ojqfKWwwBL6RJ5mYY8w)
+                                    height: double.infinity,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Container(
+                                          // autogroupeuypMJe (3w9oqfpwP4zxrzb8hreUYP)
+                                          margin: EdgeInsets.fromLTRB(
+                                              1 * fem, 0 * fem, 0 * fem, 6 * fem),
                                           width: 40 * fem,
                                           height: 40 * fem,
+                                          child: Image.asset(
+                                            'assets/page-1/images/auto-group-euyp.png',
+                                            width: 40 * fem,
+                                            height: 40 * fem,
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        // isisaldo4ir (66:358)
-                                        'Isi Saldo',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xffffffff),
+                                        Text(
+                                          // isisaldo4ir (66:358)
+                                          'Isi Saldo',
+                                          textAlign: TextAlign.center,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 12 * ffem,
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.5 * ffem / fem,
+                                            color: Color(0xffffffff),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Container(
@@ -291,26 +306,38 @@ class Scene extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        // autogroupwpmmk5t (3w9owAfn7Mc22EyfdmWpMM)
-                                        margin: EdgeInsets.fromLTRB(0 * fem,
-                                            0 * fem, 81 * fem, 0 * fem),
-                                        width: 40 * fem,
-                                        height: 40 * fem,
-                                        child: Image.asset(
-                                          'assets/page-1/images/auto-group-wpmm.png',
+                                      InkWell(
+                                        onTap: () {Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => TarikSaldo()));
+                                        },
+                                        child: Container(
+                                          // autogroupwpmmk5t (3w9owAfn7Mc22EyfdmWpMM)
+                                          margin: EdgeInsets.fromLTRB(0 * fem,
+                                              0 * fem, 81 * fem, 0 * fem),
                                           width: 40 * fem,
                                           height: 40 * fem,
+                                          child: Image.asset(
+                                            'assets/page-1/images/auto-group-wpmm.png',
+                                            width: 40 * fem,
+                                            height: 40 * fem,
+                                          ),
                                         ),
                                       ),
-                                      Container(
-                                        // autogroupen3hrPp (3w9ozv4Xt1HjipWrBFen3H)
-                                        width: 40 * fem,
-                                        height: 40 * fem,
-                                        child: Image.asset(
-                                          'assets/page-1/images/auto-group-en3h.png',
+                                      InkWell(
+                                        onTap: () {Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => RiwayatTransaksiPage()));
+                                        },
+                                        child: Container(
+                                          // autogroupen3hrPp (3w9ozv4Xt1HjipWrBFen3H)
                                           width: 40 * fem,
                                           height: 40 * fem,
+                                          child: Image.asset(
+                                            'assets/page-1/images/auto-group-en3h.png',
+                                            width: 40 * fem,
+                                            height: 40 * fem,
+                                          ),
                                         ),
                                       ),
                                     ],

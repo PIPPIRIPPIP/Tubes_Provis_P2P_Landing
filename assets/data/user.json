@@ -1,285 +1,304 @@
 {
-    "users":
-    [
-      {
-        "nama": "Andi",
-        "nik": "1234567890",
-        "nomor_ponsel": "081234567890",
-        "alamat": "Jl. Contoh Alamat No. 1",
-        "email": "a",
-        "password": "a",
-        "jenis_usaha": "Pertanian",
-        "provinsi_usaha": "Jawa Barat",
-        "kota_usaha": "Bandung",
-        "pendapatan": 100000000,
-        "riwayat_transaksi": [
-          {
-            "id": 1,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 50000000,
-            "tanggal": "2023-05-01"
-          },
-          {
-            "id": 2,
-            "jenis": "Pencairan Pinjaman",
-            "jumlah": -30000000,
-            "tanggal": "2023-05-10"
-          }
-        ],
-       "pinjaman": {
-          "kode": "P001",
-          "tanggal_pinjaman": "2023-05-20",
-          "jumlah_pinjaman": 50000000,
-          "tenor": 12,
-          "bunga": 10,
-          "jenis_angsuran": "Bulanan",
-          "jumlah_angsuran": 5000000,
-          "tujuan_pinjaman": "Pembelian peralatan baru"
+  "users": [
+    {
+      "nama": "Andi",
+      "nik": "1234567890",
+      "nomor_ponsel": "081234567890",
+      "alamat": "Jl. Contoh Alamat No. 1",
+      "email": "a",
+      "password": "a",
+      "jenis_akun": "peminjam",
+      "jenis_usaha": "Pertanian",
+      "provinsi_usaha": "Jawa Barat",
+      "kota_usaha": "Bandung",
+      "pendapatan": 100000000,
+      "saldo": 50000000,
+      "riwayat_transaksi": [
+        {
+          "id": 1,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 50000000,
+          "tanggal": "2023-05-01"
         },
-        "riwayat_pinjaman": [
-          {
-            "id": 1,
-            "tanggal_pinjaman": "2023-05-20",
-            "jumlah_pinjaman": 30000000,
-            "tenor": 6,
-            "bunga": 5,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Lunas"
-          },
-          {
-            "id": 2,
-            "tanggal_pinjaman": "2023-03-15",
-            "jumlah_pinjaman": 20000000,
-            "tenor": 12,
-            "bunga": 8,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Belum Lunas"
-          }
-        ]
+        {
+          "id": 2,
+          "jenis": "Pencairan Pinjaman",
+          "metode_pembayaran": "Transfer",
+          "jumlah": -30000000,
+          "tanggal": "2023-05-10"
+        }
+      ],
+      "pinjaman": {
+        "kode": "P001",
+        "tanggal_pinjaman": "2023-05-20",
+        "jumlah_pinjaman": 50000000,
+        "tenor": 12,
+        "bunga": 10,
+        "jenis_angsuran": "Bulanan",
+        "jumlah_angsuran": 5000000,
+        "tujuan_pinjaman": "Pembelian peralatan baru"
       },
-      {
-        "nama": "Budi",
-        "nik": "0987654321",
-        "nomor_ponsel": "082345678901",
-        "alamat": "Jl. Contoh Alamat No. 2",
-        "email": "budi@example.com",
-        "password": "hashed_password",
-        "jenis_usaha": "Perdagangan",
-        "provinsi_usaha": "Jawa Timur",
-        "kota_usaha": "Surabaya",
-        "pendapatan": 80000000,
-        "riwayat_transaksi": [
-          {
-            "id": 1,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 40000000,
-            "tanggal": "2023-05-02"
-          },
-          {
-            "id": 2,
-            "jenis": "Penarikan Saldo",
-            "jumlah": -20000000,
-            "tanggal": "2023-05-12"
-          }
-        ],
-       "pinjaman": {
-          "kode": "P001",
+      "riwayat_pinjaman": [
+        {
+          "id": 1,
           "tanggal_pinjaman": "2023-05-20",
-          "jumlah_pinjaman": 50000000,
-          "tenor": 12,
-          "bunga": 10,
-          "jenis_angsuran": "Bulanan",
-          "jumlah_angsuran": 5000000,
-          "tujuan_pinjaman": "Pembelian peralatan baru"
+          "jumlah_pinjaman": 30000000,
+          "tenor": 6,
+          "bunga": 5,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Lunas"
         },
-        "riwayat_pinjaman": [
-          {
-            "id": 1,
-            "tanggal_pinjaman": "2023-05-20",
-            "jumlah_pinjaman": 30000000,
-            "tenor": 6,
-            "bunga": 5,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Lunas"
-          },
-          {
-            "id": 2,
-            "tanggal_pinjaman": "2023-03-15",
-            "jumlah_pinjaman": 20000000,
-            "tenor": 12,
-            "bunga": 8,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Belum Lunas"
-          }
-        ]
+        {
+          "id": 2,
+          "tanggal_pinjaman": "2023-03-15",
+          "jumlah_pinjaman": 20000000,
+          "tenor": 12,
+          "bunga": 8,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Belum Lunas"
+        }
+      ]
+    },
+    {
+      "nama": "Budi",
+      "nik": "0987654321",
+      "nomor_ponsel": "082345678901",
+      "alamat": "Jl. Contoh Alamat No. 2",
+      "email": "s",
+      "password": "s",
+      "jenis_akun": "pendana",
+      "jenis_usaha": "Perdagangan",
+      "provinsi_usaha": "Jawa Timur",
+      "kota_usaha": "Surabaya",
+      "pendapatan": 80000000,
+      "saldo": 40000000,
+      "riwayat_transaksi": [
+        {
+          "id": 1,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 40000000,
+          "tanggal": "2023-05-02"
+        },
+        {
+          "id": 2,
+          "jenis": "Penarikan Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": -20000000,
+          "tanggal": "2023-05-12"
+        }
+      ],
+      "pinjaman": {
+        "kode": "P001",
+        "tanggal_pinjaman": "2023-05-20",
+        "jumlah_pinjaman": 50000000,
+        "tenor": 12,
+        "bunga": 10,
+        "jenis_angsuran": "Bulanan",
+        "jumlah_angsuran": 5000000,
+        "tujuan_pinjaman": "Pembelian peralatan baru"
       },
-      {
-        "nama": "Cindy",
-        "nik": "5678901234",
-        "nomor_ponsel": "083456789012",
-        "alamat": "Jl. Contoh Alamat No. 3",
-        "email": "cindy@example.com",
-        "password": "hashed_password",
-        "jenis_usaha": "Industri",
-        "provinsi_usaha": "Jakarta",
-        "kota_usaha": "Jakarta Selatan",
-        "pendapatan": 120000000,
-        "riwayat_transaksi": [
-          {
-            "id": 1,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 60000000,
-            "tanggal": "2023-05-03"
-          },
-          {
-            "id": 2,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 5000000,
-            "tanggal": "2023-05-15"
-          }
-        ],
-       "pinjaman": {
-          "kode": "P001",
+      "riwayat_pinjaman": [
+        {
+          "id": 1,
           "tanggal_pinjaman": "2023-05-20",
-          "jumlah_pinjaman": 50000000,
-          "tenor": 12,
-          "bunga": 10,
-          "jenis_angsuran": "Bulanan",
-          "jumlah_angsuran": 5000000,
-          "tujuan_pinjaman": "Pembelian peralatan baru"
+          "jumlah_pinjaman": 30000000,
+          "tenor": 6,
+          "bunga": 5,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Lunas"
         },
-        "riwayat_pinjaman": [
-          {
-            "id": 1,
-            "tanggal_pinjaman": "2023-05-20",
-            "jumlah_pinjaman": 30000000,
-            "tenor": 6,
-            "bunga": 5,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Lunas"
-          },
-          {
-            "id": 2,
-            "tanggal_pinjaman": "2023-03-15",
-            "jumlah_pinjaman": 20000000,
-            "tenor": 12,
-            "bunga": 8,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Belum Lunas"
-          }
-        ]
+        {
+          "id": 2,
+          "tanggal_pinjaman": "2023-03-15",
+          "jumlah_pinjaman": 20000000,
+          "tenor": 12,
+          "bunga": 8,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Belum Lunas"
+        }
+      ]
+    },
+    {
+      "nama": "Cindy",
+      "nik": "5678901234",
+      "nomor_ponsel": "083456789012",
+      "alamat": "Jl. Contoh Alamat No. 3",
+      "email": "cindy@example.com",
+      "password": "hashed_password",
+      "jenis_akun": "peminjam",
+      "jenis_usaha": "Industri",
+      "provinsi_usaha": "Jakarta",
+      "kota_usaha": "Jakarta Selatan",
+      "pendapatan": 120000000,
+      "saldo": 65000000,
+      "riwayat_transaksi": [
+        {
+          "id": 1,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 60000000,
+          "tanggal": "2023-05-03"
+        },
+        {
+          "id": 2,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 5000000,
+          "tanggal": "2023-05-15"
+        }
+      ],
+      "pinjaman": {
+        "kode": "P001",
+        "tanggal_pinjaman": "2023-05-20",
+        "jumlah_pinjaman": 50000000,
+        "tenor": 12,
+        "bunga": 10,
+        "jenis_angsuran": "Bulanan",
+        "jumlah_angsuran": 5000000,
+        "tujuan_pinjaman": "Pembelian peralatan baru"
       },
-      {
-        "nama": "Dian",
-        "nik": "4321098765",
-        "nomor_ponsel": "084567890123",
-        "alamat": "Jl. Contoh Alamat No. 4",
-        "email": "dian@example.com",
-        "password": "hashed_password",
-        "jenis_usaha": "Fashion",
-        "provinsi_usaha": "Bali",
-        "kota_usaha": "Denpasar",
-        "pendapatan": 60000000,
-        "riwayat_transaksi": [
-          {
-            "id": 1,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 30000000,
-            "tanggal": "2023-05-04"
-          },
-          {
-            "id": 2,
-            "jenis": "Penarikan Saldo",
-            "jumlah": -10000000,
-            "tanggal": "2023-05-18"
-          }
-        ],
-       "pinjaman": {
-          "kode": "P001",
+      "riwayat_pinjaman": [
+        {
+          "id": 1,
           "tanggal_pinjaman": "2023-05-20",
-          "jumlah_pinjaman": 50000000,
-          "tenor": 12,
-          "bunga": 10,
-          "jenis_angsuran": "Bulanan",
-          "jumlah_angsuran": 5000000,
-          "tujuan_pinjaman": "Pembelian peralatan baru"
+          "jumlah_pinjaman": 30000000,
+          "tenor": 6,
+          "bunga": 5,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Lunas"
         },
-        "riwayat_pinjaman": [
-          {
-            "id": 1,
-            "tanggal_pinjaman": "2023-05-20",
-            "jumlah_pinjaman": 30000000,
-            "tenor": 6,
-            "bunga": 5,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Lunas"
-          },
-          {
-            "id": 2,
-            "tanggal_pinjaman": "2023-03-15",
-            "jumlah_pinjaman": 20000000,
-            "tenor": 12,
-            "bunga": 8,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Belum Lunas"
-          }
-        ]
+        {
+          "id": 2,
+          "tanggal_pinjaman": "2023-03-15",
+          "jumlah_pinjaman": 20000000,
+          "tenor": 12,
+          "bunga": 8,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Belum Lunas"
+        }
+      ]
+    },
+    {
+      "nama": "Dian",
+      "nik": "4321098765",
+      "nomor_ponsel": "084567890123",
+      "alamat": "Jl. Contoh Alamat No. 4",
+      "email": "dian@example.com",
+      "password": "hashed_password",
+      "jenis_akun": "pendana",
+      "jenis_usaha": "Fashion",
+      "provinsi_usaha": "Bali",
+      "kota_usaha": "Denpasar",
+      "pendapatan": 60000000,
+      "saldo": 20000000,
+      "riwayat_transaksi": [
+        {
+          "id": 1,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 30000000,
+          "tanggal": "2023-05-04"
+        },
+        {
+          "id": 2,
+          "jenis": "Penarikan Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": -10000000,
+          "tanggal": "2023-05-18"
+        }
+      ],
+      "pinjaman": {
+        "kode": "P001",
+        "tanggal_pinjaman": "2023-05-20",
+        "jumlah_pinjaman": 50000000,
+        "tenor": 12,
+        "bunga": 10,
+        "jenis_angsuran": "Bulanan",
+        "jumlah_angsuran": 5000000,
+        "tujuan_pinjaman": "Pembelian peralatan baru"
       },
-      {
-        "nama": "Eva",
-        "nik": "9012345678",
-        "nomor_ponsel": "085678901234",
-        "alamat": "Jl. Contoh Alamat No. 5",
-        "email": "eva@example.com",
-        "password": "hashed_password",
-        "jenis_usaha": "Kuliner",
-        "provinsi_usaha": "Yogyakarta",
-        "kota_usaha": "Yogyakarta",
-        "pendapatan": 150000000,
-        "riwayat_transaksi": [
-          {
-            "id": 1,
-            "jenis": "Pengisian Saldo",
-            "jumlah": 75000000,
-            "tanggal": "2023-05-05"
-          },
-          {
-            "id": 2,
-            "jenis": "Pencairan Pinjaman",
-            "jumlah": -50000000,
-            "tanggal": "2023-05-20"
-          }
-        ],
-       "pinjaman": {
-          "kode": "P001",
+      "riwayat_pinjaman": [
+        {
+          "id": 1,
           "tanggal_pinjaman": "2023-05-20",
-          "jumlah_pinjaman": 50000000,
-          "tenor": 12,
-          "bunga": 10,
-          "jenis_angsuran": "Bulanan",
-          "jumlah_angsuran": 5000000,
-          "tujuan_pinjaman": "Pembelian peralatan baru"
+          "jumlah_pinjaman": 30000000,
+          "tenor": 6,
+          "bunga": 5,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Lunas"
         },
-        "riwayat_pinjaman": [
-          {
-            "id": 1,
-            "tanggal_pinjaman": "2023-05-20",
-            "jumlah_pinjaman": 30000000,
-            "tenor": 6,
-            "bunga": 5,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Lunas"
-          },
-          {
-            "id": 2,
-            "tanggal_pinjaman": "2023-03-15",
-            "jumlah_pinjaman": 20000000,
-            "tenor": 12,
-            "bunga": 8,
-            "tanggal_selesai": "2023-11-20",
-            "status": "Belum Lunas"
-          }
-        ]
-      }
-    ]
+        {
+          "id": 2,
+          "tanggal_pinjaman": "2023-03-15",
+          "jumlah_pinjaman": 20000000,
+          "tenor": 12,
+          "bunga": 8,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Belum Lunas"
+        }
+      ]
+    },
+    {
+      "nama": "Eva",
+      "nik": "9012345678",
+      "nomor_ponsel": "085678901234",
+      "alamat": "Jl. Contoh Alamat No. 5",
+      "email": "eva@example.com",
+      "password": "hashed_password",
+      "jenis_akun": "peminjam",
+      "jenis_usaha": "Kuliner",
+      "provinsi_usaha": "Yogyakarta",
+      "kota_usaha": "Yogyakarta",
+      "pendapatan": 150000000,
+      "saldo": 25000000,
+      "riwayat_transaksi": [
+        {
+          "id": 1,
+          "jenis": "Pengisian Saldo",
+          "metode_pembayaran": "Transfer",
+          "jumlah": 75000000,
+          "tanggal": "2023-05-05"
+        },
+        {
+          "id": 2,
+          "jenis": "Pencairan Pinjaman",
+          "metode_pembayaran": "Transfer",
+          "jumlah": -50000000,
+          "tanggal": "2023-05-20"
+        }
+      ],
+      "pinjaman": {
+        "kode": "P001",
+        "tanggal_pinjaman": "2023-05-20",
+        "jumlah_pinjaman": 50000000,
+        "tenor": 12,
+        "bunga": 10,
+        "jenis_angsuran": "Bulanan",
+        "jumlah_angsuran": 5000000,
+        "tujuan_pinjaman": "Pembelian peralatan baru"
+      },
+      "riwayat_pinjaman": [
+        {
+          "id": 1,
+          "tanggal_pinjaman": "2023-05-20",
+          "jumlah_pinjaman": 30000000,
+          "tenor": 6,
+          "bunga": 5,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Lunas"
+        },
+        {
+          "id": 2,
+          "tanggal_pinjaman": "2023-03-15",
+          "jumlah_pinjaman": 20000000,
+          "tenor": 12,
+          "bunga": 8,
+          "tanggal_selesai": "2023-11-20",
+          "status": "Belum Lunas"
+        }
+      ]
+    }
+  ]
 }
