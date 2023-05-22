@@ -3,6 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/user_model.dart';
+import 'package:myapp/page-1/marketplace.dart';
+import 'package:myapp/page-1/pendana.dart';
+import 'package:myapp/page-1/portofolio.dart';
 import 'package:myapp/utils.dart';
 
 class Navbar extends StatelessWidget {
@@ -28,10 +31,10 @@ class Navbar extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => Peminjam(user: user)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Pendana(user: user)));
               },
               child: Container(
                 // group623NE (63:372)
@@ -73,10 +76,10 @@ class Navbar extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => Peminjam(user: user)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MarketPlace(user: user)));
               },
               child: Container(
                 // group606zi (63:370)
@@ -115,10 +118,10 @@ class Navbar extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (context) => Peminjam(user: user)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Portofolio(user: user)));
               },
               child: Container(
                 // group618K8 (63:371)
