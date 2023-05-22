@@ -11,157 +11,147 @@ class Profil extends StatelessWidget {
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
     return Scaffold(
-      body: Container(
-        width: double.infinity,
+      body: SingleChildScrollView(
         child: Container(
-          // profileTyx (20:2)
           width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color(0xffffffff),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                // group27zyt (58:122)
-                padding: EdgeInsets.fromLTRB(
-                    17 * fem, 13 * fem, 315 * fem, 12 * fem),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xff3584ff),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      // profil7Yi (58:124)
-                      'Profil',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 14 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xffffffff),
+          child: Container(
+            // profileTyx (20:2)
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Color(0xffffffff),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  // group27zyt (58:122)
+                  padding: EdgeInsets.fromLTRB(
+                      17 * fem, 13 * fem, 315 * fem, 12 * fem),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xff3584ff),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        // profil7Yi (58:124)
+                        'Profil',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xffffffff),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                // autogroupe2n3F98 (3w9xzVQnsXnT85ru6Ve2n3)
-                padding:
-                    EdgeInsets.fromLTRB(15 * fem, 22 * fem, 17 * fem, 7 * fem),
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Container(
-                      // autogroupzfqbZQi (3w9w1xsHgZrpJR6njLZFQb)
-                      margin: EdgeInsets.fromLTRB(
-                          1 * fem, 0 * fem, 0 * fem, 28 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          17 * fem, 14 * fem, 16 * fem, 20 * fem),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xff3584ff),
-                        borderRadius: BorderRadius.circular(10 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3f000000),
-                            offset: Offset(0 * fem, 4 * fem),
-                            blurRadius: 2 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            // profile21RC2 (63:547)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 2 * fem, 17 * fem, 0 * fem),
-                            width: 74 * fem,
-                            height: 74 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/profile2-1.png',
-                              fit: BoxFit.cover,
+                Container(
+                  // autogroupe2n3F98 (3w9xzVQnsXnT85ru6Ve2n3)
+                  padding: EdgeInsets.fromLTRB(
+                      15 * fem, 22 * fem, 17 * fem, 7 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        // autogroupzfqbZQi (3w9w1xsHgZrpJR6njLZFQb)
+                        margin: EdgeInsets.fromLTRB(
+                            1 * fem, 0 * fem, 0 * fem, 28 * fem),
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 14 * fem, 16 * fem, 20 * fem),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xff3584ff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
                             ),
-                          ),
-                          Container(
-                            // autogroupwfjdwRG (3w9wJxNyaBN5LdwM4LWfjD)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 2 * fem, 59 * fem, 0 * fem),
-                            width: 181 * fem,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  // autogrouppcpzrHL (3w9wQNPd21MSuUP44hpcPZ)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 0 * fem, 1 * fem),
-                                  width: double.infinity,
-                                  height: 43 * fem,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        // ayeshaalifirdausysk (24:79)
-                                        left: 0 * fem,
-                                        top: 0 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 181 * fem,
-                                            height: 27 * fem,
-                                            child: Text(
-                                              'AYESHA ALI FIRDAUS',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 18 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xffffffff),
+                          ],
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              // profile21RC2 (63:547)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 2 * fem, 17 * fem, 0 * fem),
+                              width: 74 * fem,
+                              height: 74 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/profile2-1.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Container(
+                              // autogroupwfjdwRG (3w9wJxNyaBN5LdwM4LWfjD)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 2 * fem, 59 * fem, 0 * fem),
+                              width: 181 * fem,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    // autogrouppcpzrHL (3w9wQNPd21MSuUP44hpcPZ)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 0 * fem, 1 * fem),
+                                    width: double.infinity,
+                                    height: 43 * fem,
+                                    child: Stack(
+                                      children: [
+                                        Positioned(
+                                          // ayeshaalifirdausysk (24:79)
+                                          left: 0 * fem,
+                                          top: 0 * fem,
+                                          child: Align(
+                                            child: SizedBox(
+                                              width: 181 * fem,
+                                              height: 27 * fem,
+                                              child: Text(
+                                                'AYESHA ALI FIRDAUS',
+                                                style: SafeGoogleFont(
+                                                  'Poppins',
+                                                  fontSize: 18 * ffem,
+                                                  fontWeight: FontWeight.w600,
+                                                  height: 1.5 * ffem / fem,
+                                                  color: Color(0xffffffff),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Positioned(
-                                        // rwY (24:93)
-                                        left: 0 * fem,
-                                        top: 26 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 94 * fem,
-                                            height: 17 * fem,
-                                            child: Text(
-                                              '+6281234567890',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 11 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xffffffff),
+                                        Positioned(
+                                          // rwY (24:93)
+                                          left: 0 * fem,
+                                          top: 26 * fem,
+                                          child: Align(
+                                            child: SizedBox(
+                                              width: 94 * fem,
+                                              height: 17 * fem,
+                                              child: Text(
+                                                '+6281234567890',
+                                                style: SafeGoogleFont(
+                                                  'Poppins',
+                                                  fontSize: 11 * ffem,
+                                                  fontWeight: FontWeight.w600,
+                                                  height: 1.5 * ffem / fem,
+                                                  color: Color(0xffffffff),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  // ayeshaliexamplecomAhL (24:125)
-                                  'ayeshali@example.com',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 11 * ffem,
-                                    fontWeight: FontWeight.w600,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xffffffff),
-                                  ),
-                                ),
-                                RichText(
-                                  // gradeaWFQ (63:548)
-                                  text: TextSpan(
+                                  Text(
+                                    // ayeshaliexamplecomAhL (24:125)
+                                    'ayeshali@example.com',
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -169,332 +159,344 @@ class Profil extends StatelessWidget {
                                       height: 1.5 * ffem / fem,
                                       color: Color(0xffffffff),
                                     ),
-                                    children: [
-                                      TextSpan(
-                                        text: 'Grade ',
-                                      ),
-                                      TextSpan(
-                                        text: 'A+',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 11 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xffffe500),
-                                        ),
-                                      ),
-                                    ],
                                   ),
+                                  RichText(
+                                    // gradeaWFQ (63:548)
+                                    text: TextSpan(
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 11 * ffem,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xffffffff),
+                                      ),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Grade ',
+                                        ),
+                                        TextSpan(
+                                          text: 'A+',
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 11 * ffem,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.5 * ffem / fem,
+                                            color: Color(0xffffe500),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              // edit1KMG (24:129)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 0 * fem, 63 * fem),
+                              width: 13 * fem,
+                              height: 13 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/edit-1.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        // autogroupkgu7dsk (3w9wds18zM232MWucrKGU7)
+                        margin: EdgeInsets.fromLTRB(
+                            1 * fem, 0 * fem, 8 * fem, 7 * fem),
+                        width: double.infinity,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Container(
+                              // profileumkmZWW (27:2)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 175 * fem, 0 * fem),
+                              child: Text(
+                                'Profile UMKM',
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 14 * ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff000000),
                                 ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            // edit1KMG (24:129)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 0 * fem, 63 * fem),
-                            width: 13 * fem,
-                            height: 13 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/edit-1.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogroupkgu7dsk (3w9wds18zM232MWucrKGU7)
-                      margin: EdgeInsets.fromLTRB(
-                          1 * fem, 0 * fem, 8 * fem, 7 * fem),
-                      width: double.infinity,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Container(
-                            // profileumkmZWW (27:2)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 175 * fem, 0 * fem),
-                            child: Text(
-                              'Profile UMKM',
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 14 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
                               ),
                             ),
-                          ),
-                          Text(
-                            // editprofileumkmgLE (63:555)
-                            'edit profile umkm',
-                            textAlign: TextAlign.right,
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff343434),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // autogrouppbb5Db4 (3w9wmmwcwwTtPaKQKYPBb5)
-                      margin: EdgeInsets.fromLTRB(
-                          1 * fem, 0 * fem, 0 * fem, 26 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          14 * fem, 6 * fem, 16 * fem, 6 * fem),
-                      width: double.infinity,
-                      height: 116 * fem,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(10 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3f000000),
-                            offset: Offset(0 * fem, 4 * fem),
-                            blurRadius: 2 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            // jenisusahaprovinisusahakotausa (63:549)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 129 * fem, 0 * fem),
-                            constraints: BoxConstraints(
-                              maxWidth: 134 * fem,
-                            ),
-                            child: Text(
-                              'Jenis Usaha\nProvinis Usaha\nKota Usaha\nPendapatan Pertahun',
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w500,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            // kulinerjawabaratbandungrp10000 (63:554)
-                            constraints: BoxConstraints(
-                              maxWidth: 88 * fem,
-                            ),
-                            child: Text(
-                              'Kuliner\nJawa Barat\nBandung\nRp 100.000.000',
+                            Text(
+                              // editprofileumkmgLE (63:555)
+                              'edit profile umkm',
                               textAlign: TextAlign.right,
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 12 * ffem,
                                 fontWeight: FontWeight.w400,
                                 height: 1.5 * ffem / fem,
-                                color: Color(0xff000000),
+                                color: Color(0xff343434),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // tentang2gv (69:427)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 320 * fem, 5 * fem),
-                      child: Text(
-                        'Tentang',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
+                          ],
                         ),
                       ),
-                    ),
-                    Container(
-                      // autogroup4fawYfG (3w9wz6vQwrWvCgDgx54Faw)
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 1 * fem, 188 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          0 * fem, 10 * fem, 0 * fem, 8 * fem),
-                      width: 381 * fem,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(10 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3f000000),
-                            offset: Offset(0 * fem, 4 * fem),
-                            blurRadius: 2 * fem,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
-                            margin: EdgeInsets.fromLTRB(
-                                31 * fem, 0 * fem, 20 * fem, 3 * fem),
-                            width: double.infinity,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  // kebijakanprivasiXXC (69:429)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 228 * fem, 0 * fem),
-                                  child: Text(
-                                    'Kebijakan Privasi',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
+                      Container(
+                        // autogrouppbb5Db4 (3w9wmmwcwwTtPaKQKYPBb5)
+                        margin: EdgeInsets.fromLTRB(
+                            1 * fem, 0 * fem, 0 * fem, 26 * fem),
+                        padding: EdgeInsets.fromLTRB(
+                            14 * fem, 6 * fem, 16 * fem, 6 * fem),
+                        width: double.infinity,
+                        height: 116 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              // jenisusahaprovinisusahakotausa (63:549)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 129 * fem, 0 * fem),
+                              constraints: BoxConstraints(
+                                maxWidth: 134 * fem,
+                              ),
+                              child: Text(
+                                'Jenis Usaha\nProvinis Usaha\nKota Usaha\nPendapatan Pertahun',
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff000000),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            // line222Tx (69:428)
-                            margin: EdgeInsets.fromLTRB(
-                                1 * fem, 0 * fem, 0 * fem, 3 * fem),
-                            width: 380 * fem,
-                            height: 1 * fem,
-                            decoration: BoxDecoration(
-                              color: Color(0xffa9a9a9),
-                            ),
-                          ),
-                          Container(
-                            // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
-                            margin: EdgeInsets.fromLTRB(
-                                31 * fem, 0 * fem, 20 * fem, 5 * fem),
-                            width: double.infinity,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  // syaratdanketentuantFG (69:433)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 197 * fem, 0 * fem),
-                                  child: Text(
-                                    'Syarat dan Ketentuan',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
+                            Container(
+                              // kulinerjawabaratbandungrp10000 (63:554)
+                              constraints: BoxConstraints(
+                                maxWidth: 88 * fem,
+                              ),
+                              child: Text(
+                                'Kuliner\nJawa Barat\nBandung\nRp 100.000.000',
+                                textAlign: TextAlign.right,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff000000),
                                 ),
-                              ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            // line23od8 (69:431)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 1 * fem, 4 * fem),
-                            width: 380 * fem,
-                            height: 1 * fem,
-                            decoration: BoxDecoration(
-                              color: Color(0xffa9a9a9),
-                            ),
-                          ),
-                          Container(
-                            // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
-                            margin: EdgeInsets.fromLTRB(
-                                31 * fem, 0 * fem, 20 * fem, 6 * fem),
-                            width: double.infinity,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  // pusatbantuanGWi (69:434)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 241 * fem, 0 * fem),
-                                  child: Text(
-                                    'Pusat Bantuan',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            // line24Bta (69:432)
-                            margin: EdgeInsets.fromLTRB(
-                                1 * fem, 0 * fem, 0 * fem, 3 * fem),
-                            width: 380 * fem,
-                            height: 1 * fem,
-                            decoration: BoxDecoration(
-                              color: Color(0xffa9a9a9),
-                            ),
-                          ),
-                          Container(
-                            // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
-                            margin: EdgeInsets.fromLTRB(
-                                31 * fem, 0 * fem, 20 * fem, 0 * fem),
-                            width: double.infinity,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  // tentangkami4Bg (69:437)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 245 * fem, 0 * fem),
-                                  child: Text(
-                                    'Tentang Kami',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w400,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff000000),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Container(
-                      // version10NTG (69:447)
-                      margin: EdgeInsets.fromLTRB(
-                          1 * fem, 0 * fem, 0 * fem, 0 * fem),
-                      child: Text(
-                        'version 1.0',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 12 * ffem,
-                          fontWeight: FontWeight.w400,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff8e8c8c),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
+                      Container(
+                        // tentang2gv (69:427)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 320 * fem, 5 * fem),
+                        child: Text(
+                          'Tentang',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 14 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff000000),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        // autogroup4fawYfG (3w9wz6vQwrWvCgDgx54Faw)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 1 * fem, 188 * fem),
+                        padding: EdgeInsets.fromLTRB(
+                            0 * fem, 10 * fem, 0 * fem, 8 * fem),
+                        width: 381 * fem,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
+                              margin: EdgeInsets.fromLTRB(
+                                  31 * fem, 0 * fem, 20 * fem, 3 * fem),
+                              width: double.infinity,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    // kebijakanprivasiXXC (69:429)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 228 * fem, 0 * fem),
+                                    child: Text(
+                                      'Kebijakan Privasi',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff000000),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              // line222Tx (69:428)
+                              margin: EdgeInsets.fromLTRB(
+                                  1 * fem, 0 * fem, 0 * fem, 3 * fem),
+                              width: 380 * fem,
+                              height: 1 * fem,
+                              decoration: BoxDecoration(
+                                color: Color(0xffa9a9a9),
+                              ),
+                            ),
+                            Container(
+                              // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
+                              margin: EdgeInsets.fromLTRB(
+                                  31 * fem, 0 * fem, 20 * fem, 5 * fem),
+                              width: double.infinity,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    // syaratdanketentuantFG (69:433)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 197 * fem, 0 * fem),
+                                    child: Text(
+                                      'Syarat dan Ketentuan',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff000000),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              // line23od8 (69:431)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 1 * fem, 4 * fem),
+                              width: 380 * fem,
+                              height: 1 * fem,
+                              decoration: BoxDecoration(
+                                color: Color(0xffa9a9a9),
+                              ),
+                            ),
+                            Container(
+                              // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
+                              margin: EdgeInsets.fromLTRB(
+                                  31 * fem, 0 * fem, 20 * fem, 6 * fem),
+                              width: double.infinity,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    // pusatbantuanGWi (69:434)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 241 * fem, 0 * fem),
+                                    child: Text(
+                                      'Pusat Bantuan',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff000000),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              // line24Bta (69:432)
+                              margin: EdgeInsets.fromLTRB(
+                                  1 * fem, 0 * fem, 0 * fem, 3 * fem),
+                              width: 380 * fem,
+                              height: 1 * fem,
+                              decoration: BoxDecoration(
+                                color: Color(0xffa9a9a9),
+                              ),
+                            ),
+                            Container(
+                              // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
+                              margin: EdgeInsets.fromLTRB(
+                                  31 * fem, 0 * fem, 20 * fem, 0 * fem),
+                              width: double.infinity,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    // tentangkami4Bg (69:437)
+                                    margin: EdgeInsets.fromLTRB(
+                                        0 * fem, 0 * fem, 245 * fem, 0 * fem),
+                                    child: Text(
+                                      'Tentang Kami',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff000000),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        // version10NTG (69:447)
+                        margin: EdgeInsets.fromLTRB(
+                            1 * fem, 0 * fem, 0 * fem, 0 * fem),
+                        child: Text(
+                          'version 1.0',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff8e8c8c),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

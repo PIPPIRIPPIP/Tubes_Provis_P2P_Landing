@@ -2,7 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
+
+class FormPeminjaman extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Scene(),
+      ),
+      bottomNavigationBar: Navbar(),
+    );
+  }
+}
 
 class Scene extends StatelessWidget {
   @override
@@ -66,9 +79,9 @@ class Scene extends StatelessWidget {
                           child: Align(
                             child: SizedBox(
                               width: 224 * fem,
-                              height: 76 * fem,
+                              height: 106 * fem,
                               child: Image.asset(
-                                'assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-2.png',
+                                'assets/page-1/images/logo.png',
                               ),
                             ),
                           ),
@@ -449,130 +462,6 @@ class Scene extends StatelessWidget {
                           color: Color(0xffffffff),
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // navbarKXt (63:599)
-              padding:
-                  EdgeInsets.fromLTRB(25 * fem, 7 * fem, 10 * fem, 8 * fem),
-              width: double.infinity,
-              height: 62 * fem,
-              decoration: BoxDecoration(
-                color: Color(0xff3584ff),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // group62dYa (63:601)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 120 * fem, 0 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        0 * fem, 5.41 * fem, 0 * fem, 0 * fem),
-                    height: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // igaminghouseMDg (63:602)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 1 * fem, 3.07 * fem),
-                          width: 26.87 * fem,
-                          height: 23.52 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/i-gaming-house.png',
-                            width: 26.87 * fem,
-                            height: 23.52 * fem,
-                          ),
-                        ),
-                        Text(
-                          // berandargE (63:604)
-                          'Beranda',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 10 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // autogroup3vy1oLa (3wA53QARQohRoRKwRr3Vy1)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 2.25 * fem, 75 * fem, 0 * fem),
-                    width: 36 * fem,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Container(
-                          // receiveuuQ (63:609)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 1 * fem, 2.25 * fem),
-                          width: 29.77 * fem,
-                          height: 27.5 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/receive-SL6.png',
-                            width: 29.77 * fem,
-                            height: 27.5 * fem,
-                          ),
-                        ),
-                        Container(
-                          // pinjamS8e (63:606)
-                          width: double.infinity,
-                          child: Text(
-                            'Pinjam',
-                            textAlign: TextAlign.center,
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 10 * ffem,
-                              fontWeight: FontWeight.w600,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xffffffff),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // autogroupvqgby8a (3wA59jKCygTJtoAjbCVqGB)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 7 * fem, 0 * fem, 0 * fem),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // iconi6A (63:610)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 2.17 * fem, 1.17 * fem),
-                          width: 23.83 * fem,
-                          height: 23.83 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/icon-CiJ.png',
-                            width: 23.83 * fem,
-                            height: 23.83 * fem,
-                          ),
-                        ),
-                        Text(
-                          // tagihanpinjamanEaJ (63:608)
-                          'Tagihan & Pinjaman',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 10 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                 ],
