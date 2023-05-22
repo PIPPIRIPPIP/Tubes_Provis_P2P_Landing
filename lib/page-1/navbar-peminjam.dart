@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/form-pengajuan-peminjaman.dart';
 import 'package:myapp/page-1/peminjam.dart';
 import 'package:myapp/page-1/riwayat-pinjaman.dart';
 import 'package:myapp/utils.dart';
 
 class Navbar extends StatelessWidget {
+  final User user;
+  Navbar(this.user);
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -28,8 +31,10 @@ class Navbar extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Peminjam()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Peminjam(user: user)));
               },
               child: Container(
                 // group62T9g (63:558)
@@ -71,8 +76,10 @@ class Navbar extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => FormPeminjaman()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => FormPeminjaman(user: user)));
               },
               child: Container(
                 // autogroup9vwmzop (3wAQW1QYYfuFMXsnSb9VwM)
@@ -118,7 +125,7 @@ class Navbar extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RiwayatPeminjaman()));
+                        builder: (context) => RiwayatPeminjaman(user: user)));
               },
               child: Container(
                 // autogroupvdnfmCJ (3wAQc64kGAp5fft6qJvdnf)

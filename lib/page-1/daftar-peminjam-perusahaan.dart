@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 import 'daftar-peminjam-perorangan.dart';
-import 'package:myapp/ui/pages/login_ex.dart';
+// import 'package:myapp/ui/pages/login_ex.dart';
 
 class DaftarPerusahaan extends StatefulWidget {
   @override

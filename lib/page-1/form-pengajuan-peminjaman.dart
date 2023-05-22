@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
 
 class FormPeminjaman extends StatelessWidget {
+  final User user;
+
+  FormPeminjaman({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: Navbar(user),
     );
   }
 }

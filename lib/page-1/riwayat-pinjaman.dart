@@ -5,15 +5,19 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
 
+import '../models/user_model.dart';
+
 class RiwayatPeminjaman extends StatelessWidget {
-  // final User user;
+  final User user;
+
+  RiwayatPeminjaman({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: Navbar(user),
     );
   }
 }

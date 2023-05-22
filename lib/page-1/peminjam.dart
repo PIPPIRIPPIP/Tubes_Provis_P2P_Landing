@@ -19,7 +19,7 @@ class Peminjam extends StatelessWidget {
       body: SingleChildScrollView(
         child: Scene(user: user),
       ),
-      bottomNavigationBar: Navbar(),
+      bottomNavigationBar: Navbar(user),
     );
   }
 }
