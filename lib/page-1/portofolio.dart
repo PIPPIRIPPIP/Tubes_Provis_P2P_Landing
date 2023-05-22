@@ -322,7 +322,7 @@ class Scene extends StatelessWidget {
                                 width: 26 * fem,
                                 height: 26 * fem,
                                 child: Image.asset(
-                                  'assets/page-1/images/image-7-oev.png',
+                                  'assets/page-1/images/image-7-hvn.png',
                                 ),
                               ),
                               Text(
@@ -361,7 +361,7 @@ class Scene extends StatelessWidget {
                               Container(
                                 // autogroupk11pvNi (NsxsftDhpEkJzGL1VSK11p)
                                 margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                    0 * fem, 0 * fem, 55 * fem, 1 * fem),
                                 width: 136 * fem,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -577,7 +577,7 @@ class Scene extends StatelessWidget {
                                 width: 26 * fem,
                                 height: 26 * fem,
                                 child: Image.asset(
-                                  'assets/page-1/images/image-7-u2v.png',
+                                  'assets/page-1/images/image-7-hvn.png',
                                 ),
                               ),
                               Text(
@@ -616,7 +616,7 @@ class Scene extends StatelessWidget {
                               Container(
                                 // autogroupbs2afaW (NsxtvBUa8YkqzcqCojBS2a)
                                 margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                    0 * fem, 0 * fem, 55 * fem, 1 * fem),
                                 width: 136 * fem,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -859,7 +859,7 @@ class Scene extends StatelessWidget {
                                 width: 26 * fem,
                                 height: 26 * fem,
                                 child: Image.asset(
-                                  'assets/page-1/images/image-7-4NA.png',
+                                  'assets/page-1/images/image-7-hvn.png',
                                 ),
                               ),
                               Text(
@@ -898,7 +898,7 @@ class Scene extends StatelessWidget {
                               Container(
                                 // autogroup9nvtPPL (NsxvK99fxakNhueL8c9NVt)
                                 margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                    0 * fem, 0 * fem, 55 * fem, 1 * fem),
                                 width: 136 * fem,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -1036,7 +1036,7 @@ class Scene extends StatelessWidget {
                           width: 380 * fem,
                           height: 5 * fem,
                           child: Image.asset(
-                            'assets/page-1/images/auto-group-dage.png',
+                            'assets/page-1/images/auto-group-wgmd.png',
                             width: 380 * fem,
                             height: 5 * fem,
                           ),
@@ -1131,7 +1131,7 @@ class Scene extends StatelessWidget {
                                   width: 26 * fem,
                                   height: 26 * fem,
                                   child: Image.asset(
-                                    'assets/page-1/images/image-7-s1Y.png',
+                                    'assets/page-1/images/image-7-hvn.png',
                                   ),
                                 ),
                                 Text(
@@ -1170,7 +1170,7 @@ class Scene extends StatelessWidget {
                                 Container(
                                   // autogroupyldcxaA (NsxqqX7GSF7aK4CsbbyLDC)
                                   margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                      0 * fem, 0 * fem, 55 * fem, 1 * fem),
                                   width: 136 * fem,
                                   child: Column(
                                     crossAxisAlignment:
@@ -1310,7 +1310,7 @@ class Scene extends StatelessWidget {
                             width: 380 * fem,
                             height: 5 * fem,
                             child: Image.asset(
-                              'assets/page-1/images/auto-group-q7dg.png',
+                              'assets/page-1/images/auto-group-wgmd.png',
                               width: 380 * fem,
                               height: 5 * fem,
                             ),

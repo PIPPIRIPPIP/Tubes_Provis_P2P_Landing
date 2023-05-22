@@ -144,7 +144,7 @@ class Scene extends StatelessWidget {
                           width: 13.36 * fem,
                           height: 7.69 * fem,
                           child: Image.asset(
-                            'assets/page-1/images/chevronleft-MoU.png',
+                            'assets/page-1/images/chevronleft-LNS.png',
                             width: 13.36 * fem,
                             height: 7.69 * fem,
                           ),
@@ -236,7 +236,7 @@ class Scene extends StatelessWidget {
                               width: 26 * fem,
                               height: 26 * fem,
                               child: Image.asset(
-                                'assets/page-1/images/image-7-UfQ.png',
+                                'assets/page-1/images/image-7-hvn.png',
                               ),
                             ),
                             Text(
@@ -279,7 +279,7 @@ class Scene extends StatelessWidget {
                               width: 50 * fem,
                               height: 50 * fem,
                               child: Image.asset(
-                                'assets/page-1/images/profile-2-PwC.png',
+                                'assets/page-1/images/profile-2.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -637,7 +637,7 @@ class Scene extends StatelessWidget {
                               width: 26 * fem,
                               height: 26 * fem,
                               child: Image.asset(
-                                'assets/page-1/images/image-7-1XU.png',
+                                'assets/page-1/images/image-7-hvn.png',
                               ),
                             ),
                             Text(
@@ -680,7 +680,7 @@ class Scene extends StatelessWidget {
                               width: 50 * fem,
                               height: 50 * fem,
                               child: Image.asset(
-                                'assets/page-1/images/profile-2-uHx.png',
+                                'assets/page-1/images/profile-2.png',
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -1186,7 +1186,7 @@ class Scene extends StatelessWidget {
                           width: 26 * fem,
                           height: 26 * fem,
                           child: Image.asset(
-                            'assets/page-1/images/image-7-JN2.png',
+                            'assets/page-1/images/image-7-hvn.png',
                           ),
                         ),
                       ),

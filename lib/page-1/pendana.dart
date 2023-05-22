@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-pendana.dart';
+import 'package:myapp/page-1/profile-pendana.dart';
 import 'package:myapp/utils.dart';
 
 class Pendana extends StatelessWidget {
@@ -76,13 +77,21 @@ class Scene extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          // profile1M4S (30:155)
-                          width: 40 * fem,
-                          height: 40 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/profile-1.png',
-                            fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilPendana()));
+                          },
+                          child: Container(
+                            // profile1M4S (30:155)
+                            width: 40 * fem,
+                            height: 40 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/profile-1.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ],
@@ -362,7 +371,7 @@ class Scene extends StatelessWidget {
                   Container(
                     // group28WKx (38:9)
                     margin: EdgeInsets.fromLTRB(
-                        1 * fem, 0 * fem, 0 * fem, 146 * fem),
+                        1 * fem, 0 * fem, 0 * fem, 120 * fem),
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
