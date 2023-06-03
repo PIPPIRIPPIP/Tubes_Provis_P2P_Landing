@@ -1,94 +1,233 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginForm extends StatelessWidget {
+import 'package:myapp/bloc/login_bloc.dart';
+import 'package:myapp/page-1/peminjam.dart';
+import 'package:myapp/page-1/pendana.dart';
+import 'package:myapp/utils.dart';
+
+class Login extends StatelessWidget {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-          body: Column(
-            children: [
-            SizedBox(height: 150),
-            Image.asset(
-              "images/Logo-Investa.png", //pastikan file ada di [project]/assets/images
-              height: 200,
-              ),
+    double baseWidth = 414;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
 
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Container(
-            //     width: 200,
-            //     height: 200,
-            //     child: Image.asset('assets/Logo-Investa.png'), 
-            //   ),
-            // ),
-            //Container
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color.fromARGB(255, 46, 44, 44), width: 2.0),
-                    borderRadius: BorderRadius.circular(50.0),
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
+
+    return Scaffold(
+      body: BlocListener<LoginBloc, LoginState>(
+        listener: (context, state) {
+          if (state is LoginFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error)),
+            );
+          } else if (state is LoginSuccess) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                // builder: (context) => Pendana(user: state.user),
+                builder: (context) => Peminjam(user: state.user),
+              ),
+            );
+          }
+        },
+        child: BlocBuilder<LoginBloc, LoginState>(
+          builder: (context, state) {
+            if (state is LoginLoading) {
+              return Center(child: CircularProgressIndicator());
+            }
+
+            return SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                child: Container(
+                  padding: EdgeInsets.fromLTRB(
+                      50 * fem, 80 * fem, 50 * fem, 100 * fem),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xffffffff),
                   ),
-                  contentPadding:
-                  EdgeInsets.only(left: 30.0, top: 20.0, bottom: 20.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    const BorderSide(color: Color.fromARGB(255, 46, 44, 44), width: 2.0),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  labelText: ('Email'),
-                  labelStyle:TextStyle(
-                      color: Color.fromARGB(255, 46, 44, 44)
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 30 * fem),
+                        width: 200,
+                        height: 100,
+                        child: Image.asset('assets/page-1/images/logo.png'),
+                      ),
+                      Container(
+                        padding: EdgeInsets.fromLTRB(
+                            23 * fem, 36 * fem, 23 * fem, 29 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 5 * fem,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 0 * fem, 28 * fem),
+                              padding: EdgeInsets.fromLTRB(
+                                  10 * fem, 0 * fem, 0 * fem, 0 * fem),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xffbcbcbc)),
+                                color: Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(3 * fem),
+                              ),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Email',
+                                  border: InputBorder.none,
+                                ),
+                                controller: _emailController,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 0 * fem, 28 * fem),
+                              padding: EdgeInsets.fromLTRB(
+                                  10 * fem, 0 * fem, 0 * fem, 0 * fem),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Color(0xffbcbcbc)),
+                                color: Color(0xffffffff),
+                                borderRadius: BorderRadius.circular(3 * fem),
+                              ),
+                              child: TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Kata Sandi',
+                                  border: InputBorder.none,
+                                ),
+                                controller: _passwordController,
+                                obscureText: true,
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 0 * fem, 21 * fem),
+                              child: TextButton(
+                                onPressed: () {
+                                  _onLoginButtonPressed(loginBloc);
+                                },
+                                style: TextButton.styleFrom(
+                                    padding: EdgeInsets.zero),
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 37 * fem,
+                                  decoration: BoxDecoration(
+                                    color: Color(0xff3584ff),
+                                    borderRadius:
+                                        BorderRadius.circular(3 * fem),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Masuk',
+                                      textAlign: TextAlign.center,
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 16 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xffffffff),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.fromLTRB(
+                                  53 * fem, 0 * fem, 53 * fem, 0 * fem),
+                              width: double.infinity,
+                              height: 18 * fem,
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    left: -17 * fem,
+                                    top: 0 * fem,
+                                    child: Align(
+                                      child: SizedBox(
+                                        width: 160 * fem,
+                                        height: 18 * fem,
+                                        child: Text(
+                                          'Belum punya akun?',
+                                          textAlign: TextAlign.center,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 12 * ffem,
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.5 * ffem / fem,
+                                            color: Color(0xff343434),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    left: 121.75 * fem,
+                                    top: 0 * fem,
+                                    child: Align(
+                                      child: SizedBox(
+                                        width: 38 * fem,
+                                        height: 18 * fem,
+                                        child: TextButton(
+                                          onPressed: () {
+                                            // Navigation logic for registration page
+                                          },
+                                          style: TextButton.styleFrom(
+                                              padding: EdgeInsets.zero),
+                                          child: Text(
+                                            'Daftar',
+                                            textAlign: TextAlign.center,
+                                            style: SafeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 12 * ffem,
+                                              fontWeight: FontWeight.w400,
+                                              height: 1.5 * ffem / fem,
+                                              color: Color(0xff3584ff),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color.fromARGB(255, 46, 44, 44), width: 2.0),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  contentPadding:
-                      EdgeInsets.only(left: 30.0, top: 20.0, bottom: 20.0),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                        const BorderSide(color: Color.fromARGB(255, 46, 44, 44), width: 2.0),
-                    borderRadius: BorderRadius.circular(50.0),
-                  ),
-                  labelText: ('Kata Sandi'),
-                  labelStyle:TextStyle(
-                      color: Color.fromARGB(255, 46, 44, 44)
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Padding(
-                padding: const EdgeInsets.all(20),
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(' Masuk '),
-                  style: ElevatedButton.styleFrom(
-                  textStyle: const TextStyle(fontSize: 20),
-                  padding:
-                  const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                  shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  )),
-                )
-                ) 
-              ],
-            )
-            ],
-          ),
+            );
+          },
+        ),
       ),
     );
+  }
+
+  void _onLoginButtonPressed(LoginBloc loginBloc) {
+    loginBloc.add(LoginButtonPressed(
+      email: _emailController.text,
+      password: _passwordController.text,
+    ));
   }
 }

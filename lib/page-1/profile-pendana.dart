@@ -4,13 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-import 'package:myapp/models/user_model.dart';
-
-class Profil extends StatelessWidget {
-  final User user;
-
-  Profil({required this.user});
-
+class ProfilPendana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -21,7 +15,7 @@ class Profil extends StatelessWidget {
         child: Container(
           width: double.infinity,
           child: Container(
-            // profileTyx (20:2)
+            // profile62A (70:78)
             width: double.infinity,
             decoration: BoxDecoration(
               color: Color(0xffffffff),
@@ -30,7 +24,7 @@ class Profil extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  // group27zyt (58:122)
+                  // group27cWJ (70:93)
                   padding: EdgeInsets.fromLTRB(
                       17 * fem, 13 * fem, 315 * fem, 12 * fem),
                   width: double.infinity,
@@ -41,7 +35,7 @@ class Profil extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        // profil7Yi (58:124)
+                        // profilvG6 (70:95)
                         'Profil',
                         style: SafeGoogleFont(
                           'Poppins',
@@ -55,19 +49,20 @@ class Profil extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  // autogroupe2n3F98 (3w9xzVQnsXnT85ru6Ve2n3)
+                  // autogroupcbt2F3U (NsxhwVmSxr2ico7G4XCbt2)
                   padding: EdgeInsets.fromLTRB(
-                      15 * fem, 22 * fem, 17 * fem, 7 * fem),
+                      16 * fem, 22 * fem, 17 * fem, 7 * fem),
                   width: double.infinity,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        // autogroupzfqbZQi (3w9w1xsHgZrpJR6njLZFQb)
+                        // autogroupyc54kW2 (Nsxgdx6zae2ZULjqk1Yc54)
                         margin: EdgeInsets.fromLTRB(
-                            1 * fem, 0 * fem, 0 * fem, 28 * fem),
+                            0 * fem, 0 * fem, 0 * fem, 18 * fem),
                         padding: EdgeInsets.fromLTRB(
-                            17 * fem, 14 * fem, 16 * fem, 20 * fem),
+                            17 * fem, 14 * fem, 16 * fem, 22 * fem),
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
                           color: Color(0xff3584ff),
@@ -84,9 +79,9 @@ class Profil extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              // profile21RC2 (63:547)
+                              // profile21cHL (70:105)
                               margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 2 * fem, 17 * fem, 0 * fem),
+                                  0 * fem, 4 * fem, 17 * fem, 0 * fem),
                               width: 74 * fem,
                               height: 74 * fem,
                               child: Image.asset(
@@ -95,15 +90,15 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // autogroupwfjdwRG (3w9wJxNyaBN5LdwM4LWfjD)
+                              // autogroupavuyXfC (NsxgowpLdhrUftAzXJaVuY)
                               margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 2 * fem, 59 * fem, 0 * fem),
+                                  0 * fem, 0 * fem, 55 * fem, 13 * fem),
                               width: 181 * fem,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    // autogrouppcpzrHL (3w9wQNPd21MSuUP44hpcPZ)
+                                    // autogroupdfdpEpW (NsxgtH2TPZqyXMKxXbdFdp)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 0 * fem, 1 * fem),
                                     width: double.infinity,
@@ -111,7 +106,7 @@ class Profil extends StatelessWidget {
                                     child: Stack(
                                       children: [
                                         Positioned(
-                                          // ayeshaalifirdausysk (24:79)
+                                          // ayeshaalifirdausNQv (70:81)
                                           left: 0 * fem,
                                           top: 0 * fem,
                                           child: Align(
@@ -119,7 +114,7 @@ class Profil extends StatelessWidget {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
-                                                user.nama,
+                                                'AYESHA ALI FIRDAUS',
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -132,7 +127,7 @@ class Profil extends StatelessWidget {
                                           ),
                                         ),
                                         Positioned(
-                                          // rwY (24:93)
+                                          // FzW (70:82)
                                           left: 0 * fem,
                                           top: 26 * fem,
                                           child: Align(
@@ -140,7 +135,7 @@ class Profil extends StatelessWidget {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
-                                                user.nomorPonsel,
+                                                '+6281234567890',
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -156,8 +151,8 @@ class Profil extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    // ayeshaliexamplecomAhL (24:125)
-                                    user.email,
+                                    // ayeshaliexamplecomZVQ (70:83)
+                                    'ayeshali@example.com',
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -166,42 +161,15 @@ class Profil extends StatelessWidget {
                                       color: Color(0xffffffff),
                                     ),
                                   ),
-                                  RichText(
-                                    // gradeaWFQ (63:548)
-                                    text: TextSpan(
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 11 * ffem,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xffffffff),
-                                      ),
-                                      children: [
-                                        TextSpan(
-                                          text: 'Grade ',
-                                        ),
-                                        TextSpan(
-                                          text: 'A+',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 11 * ffem,
-                                            fontWeight: FontWeight.w600,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xffffe500),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
                                 ],
                               ),
                             ),
                             Container(
-                              // edit1KMG (24:129)
+                              // edit16VL (70:87)
                               margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 63 * fem),
-                              width: 13 * fem,
-                              height: 13 * fem,
+                                  0 * fem, 0 * fem, 0 * fem, 61 * fem),
+                              width: 15 * fem,
+                              height: 15 * fem,
                               child: Image.asset(
                                 'assets/page-1/images/edit-1.png',
                                 fit: BoxFit.cover,
@@ -211,108 +179,9 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        // autogroupkgu7dsk (3w9wds18zM232MWucrKGU7)
+                        // tentangcTg (70:86)
                         margin: EdgeInsets.fromLTRB(
-                            1 * fem, 0 * fem, 8 * fem, 7 * fem),
-                        width: double.infinity,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Container(
-                              // profileumkmZWW (27:2)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 175 * fem, 0 * fem),
-                              child: Text(
-                                'Profile UMKM',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 14 * ffem,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // editprofileumkmgLE (63:555)
-                              'edit profile umkm',
-                              textAlign: TextAlign.right,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff343434),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        // autogrouppbb5Db4 (3w9wmmwcwwTtPaKQKYPBb5)
-                        margin: EdgeInsets.fromLTRB(
-                            1 * fem, 0 * fem, 0 * fem, 26 * fem),
-                        padding: EdgeInsets.fromLTRB(
-                            14 * fem, 6 * fem, 16 * fem, 6 * fem),
-                        width: double.infinity,
-                        height: 116 * fem,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(10 * fem),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              offset: Offset(0 * fem, 4 * fem),
-                              blurRadius: 2 * fem,
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              // jenisusahaprovinisusahakotausa (63:549)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 129 * fem, 0 * fem),
-                              constraints: BoxConstraints(
-                                maxWidth: 134 * fem,
-                              ),
-                              child: Text(
-                                'Jenis Usaha\nProvinis Usaha\nKota Usaha\nPendapatan Pertahun',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // kulinerjawabaratbandungrp10000 (63:554)
-                              constraints: BoxConstraints(
-                                maxWidth: 88 * fem,
-                              ),
-                              child: Text(
-                                '${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\nRp ${user.pendapatan}',
-                                textAlign: TextAlign.right,
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w400,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff000000),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        // tentang2gv (69:427)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 320 * fem, 5 * fem),
+                            0 * fem, 0 * fem, 319 * fem, 5 * fem),
                         child: Text(
                           'Tentang',
                           style: SafeGoogleFont(
@@ -325,12 +194,12 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        // autogroup4fawYfG (3w9wz6vQwrWvCgDgx54Faw)
+                        // autogroupkuygvUN (Nsxh7MUzwcS9gAjgU2KuyG)
                         margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 1 * fem, 188 * fem),
+                            0 * fem, 0 * fem, 0 * fem, 368 * fem),
                         padding: EdgeInsets.fromLTRB(
                             0 * fem, 10 * fem, 0 * fem, 8 * fem),
-                        width: 381 * fem,
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
                           color: Color(0xffffffff),
@@ -347,7 +216,7 @@ class Profil extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Container(
-                              // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
+                              // autogroupuba6aYv (NsxhLM7MDCQeEaCaUuUBA6)
                               margin: EdgeInsets.fromLTRB(
                                   31 * fem, 0 * fem, 20 * fem, 3 * fem),
                               width: double.infinity,
@@ -355,7 +224,7 @@ class Profil extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    // kebijakanprivasiXXC (69:429)
+                                    // kebijakanprivasihtS (70:100)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 228 * fem, 0 * fem),
                                     child: Text(
@@ -373,7 +242,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // line222Tx (69:428)
+                              // line221u8 (70:97)
                               margin: EdgeInsets.fromLTRB(
                                   1 * fem, 0 * fem, 0 * fem, 3 * fem),
                               width: 380 * fem,
@@ -383,7 +252,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
+                              // autogrouplwy49kS (NsxhRqxBwV1hPpb7QpLWy4)
                               margin: EdgeInsets.fromLTRB(
                                   31 * fem, 0 * fem, 20 * fem, 5 * fem),
                               width: double.infinity,
@@ -391,7 +260,7 @@ class Profil extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    // syaratdanketentuantFG (69:433)
+                                    // syaratdanketentuanGq4 (70:90)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 197 * fem, 0 * fem),
                                     child: Text(
@@ -409,7 +278,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // line23od8 (69:431)
+                              // line23zFG (70:98)
                               margin: EdgeInsets.fromLTRB(
                                   0 * fem, 0 * fem, 1 * fem, 4 * fem),
                               width: 380 * fem,
@@ -419,7 +288,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
+                              // autogroupzffk86a (NsxhXqnCNXJr7YebszZFfk)
                               margin: EdgeInsets.fromLTRB(
                                   31 * fem, 0 * fem, 20 * fem, 6 * fem),
                               width: double.infinity,
@@ -427,7 +296,7 @@ class Profil extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    // pusatbantuanGWi (69:434)
+                                    // pusatbantuanroG (70:91)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 241 * fem, 0 * fem),
                                     child: Text(
@@ -445,7 +314,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // line24Bta (69:432)
+                              // line24y7C (70:99)
                               margin: EdgeInsets.fromLTRB(
                                   1 * fem, 0 * fem, 0 * fem, 3 * fem),
                               width: 380 * fem,
@@ -455,7 +324,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
+                              // autogroupjobuVbL (NsxhdAxeXtgY5y9UxpJoBU)
                               margin: EdgeInsets.fromLTRB(
                                   31 * fem, 0 * fem, 20 * fem, 0 * fem),
                               width: double.infinity,
@@ -463,7 +332,7 @@ class Profil extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
-                                    // tentangkami4Bg (69:437)
+                                    // tentangkamiRzn (70:92)
                                     margin: EdgeInsets.fromLTRB(
                                         0 * fem, 0 * fem, 245 * fem, 0 * fem),
                                     child: Text(
@@ -483,19 +352,15 @@ class Profil extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        // version10NTG (69:447)
-                        margin: EdgeInsets.fromLTRB(
-                            1 * fem, 0 * fem, 0 * fem, 0 * fem),
-                        child: Text(
-                          'version 1.0',
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w400,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xff8e8c8c),
-                          ),
+                      Text(
+                        // version10jka (70:108)
+                        'version 1.0',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 12 * ffem,
+                          fontWeight: FontWeight.w400,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff8e8c8c),
                         ),
                       ),
                     ],

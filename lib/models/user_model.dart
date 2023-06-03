@@ -1,4 +1,3 @@
-//** MODEL */
 class User {
   String nama;
   String nik;
@@ -6,10 +5,12 @@ class User {
   String alamat;
   String email;
   String password;
+  String jenisAkun;
   String jenisUsaha;
   String provinsiUsaha;
   String kotaUsaha;
   int pendapatan;
+  int saldo;
   List<RiwayatTransaksi> riwayatTransaksi;
   Pinjaman? pinjaman;
   List<RiwayatPinjaman> riwayatPinjaman;
@@ -21,10 +22,12 @@ class User {
     required this.alamat,
     required this.email,
     required this.password,
+    required this.jenisAkun,
     required this.jenisUsaha,
     required this.provinsiUsaha,
     required this.kotaUsaha,
     required this.pendapatan,
+    required this.saldo,
     required this.riwayatTransaksi,
     this.pinjaman,
     required this.riwayatPinjaman,
@@ -38,10 +41,12 @@ class User {
       alamat: json['alamat'],
       email: json['email'],
       password: json['password'],
+      jenisAkun: json['jenis_akun'],
       jenisUsaha: json['jenis_usaha'],
       provinsiUsaha: json['provinsi_usaha'],
       kotaUsaha: json['kota_usaha'],
       pendapatan: json['pendapatan'],
+      saldo: json['saldo'],
       riwayatTransaksi: List<RiwayatTransaksi>.from(json['riwayat_transaksi']
           .map((transaksiJson) => RiwayatTransaksi.fromJson(transaksiJson))),
       pinjaman: json['pinjaman'] != null ? Pinjaman.fromJson(json['pinjaman']) : null,
@@ -58,10 +63,12 @@ class User {
       'alamat': alamat,
       'email': email,
       'password': password,
+      'jenis_akun': jenisAkun,
       'jenis_usaha': jenisUsaha,
       'provinsi_usaha': provinsiUsaha,
       'kota_usaha': kotaUsaha,
       'pendapatan': pendapatan,
+      'saldo': saldo,
       'riwayat_transaksi': riwayatTransaksi.map((transaksi) => transaksi.toJson()).toList(),
       'pinjaman': pinjaman?.toJson(),
       'riwayat_pinjaman': riwayatPinjaman.map((pinjaman) => pinjaman.toJson()).toList(),
@@ -74,12 +81,14 @@ class RiwayatTransaksi {
   String jenis;
   int jumlah;
   String tanggal;
+  String metodePembayaran;
 
   RiwayatTransaksi({
     required this.id,
     required this.jenis,
     required this.jumlah,
     required this.tanggal,
+    required this.metodePembayaran,
   });
 
   factory RiwayatTransaksi.fromJson(Map<String, dynamic> json) {
@@ -88,6 +97,7 @@ class RiwayatTransaksi {
       jenis: json['jenis'],
       jumlah: json['jumlah'],
       tanggal: json['tanggal'],
+      metodePembayaran: json['metode_pembayaran'],
     );
   }
 
@@ -97,6 +107,7 @@ class RiwayatTransaksi {
       'jenis': jenis,
       'jumlah': jumlah,
       'tanggal': tanggal,
+      'metode_pembayaran': metodePembayaran,
     };
   }
 }
