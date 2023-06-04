@@ -1,0 +1,13 @@
+python -m venv venv
+
+.\venv\Scripts\activate
+
+uvicorn main:app --reload
+
+venv\Scripts\deactivate.bat
+
+pip install fastapi uvicorn SQLAlchemy pydantic
+
+pip install email-validator passlib PyJWT
+
+pip install bcrypt
