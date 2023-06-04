@@ -1,0 +1,105 @@
+# PEMINJAM
+
+Peminjam
+email: String
+password: String
+tanggal_dibuat: DateTime
+nama: String
+nik: String
+nomor_ponsel: String
+alamat: String
+saldo: int
+grade: int
+jenis_usaha: String
+provinsi_usaha: String
+kota_usaha: String
+pendapatan: int
+riwayat_transaksi: List<RiwayatTransaksi>
+pinjaman: Pinjaman
+riwayat_pinjaman: List<RiwayatPinjaman>
+notifikasi: List<Notifikasi>
+
+RiwayatTransaksi
+id: int
+peminjam_id: int
+jenis: String
+metode_pembayaran: String
+jumlah: int
+tanggal_transaksi: DateTime
+
+Pinjaman
+id: int
+peminjam_id: int
+kode: String
+tanggal_pinjaman: String
+jumlah_pinjaman: int
+tenor: int
+bunga: int
+jenis_angsuran: String
+jumlah_angsuran: int
+tujuan_pinjaman: String
+jumlah_didanai: int
+
+RiwayatPinjaman
+id: int
+peminjam_id: int
+tanggal_pinjaman: String
+jumlah_pinjaman: int
+tenor: int
+bunga: int
+tanggal_selesai: String
+status: String
+
+Notifikasi
+id: int
+peminjam_id: int
+judul: String
+pesan: String
+timestamp: DateTime
+
+# PENDANA
+
+Pendana
+email: String
+password: String
+timestamp: DateTime
+nama: String
+nik: String
+nomor_ponsel: String
+saldo: int
+riwayat_transaksi: List<RiwayatTransaksi>
+investasi: List<Investasi>
+riwayat_investasi: List<RiwayatPinjaman>
+notifikasi: List<Notifikasi>
+
+RiwayatTransaksi
+id: int
+pendana_id: int
+jenis: String
+metode_pembayaran: String
+jumlah: int
+tanggal_notifikasi: DateTime
+
+Investasi
+id: int
+pendana_id: int
+pinjaman_id: int
+jumlah_investasi: int
+keuntungan: int
+tanggal_investasi: DateTime
+
+RiwayatInvestasi
+id: int
+pendana_id: int
+pinjaman_id: int
+jumlah_investasi: int
+keuntungan: int
+tanggal_investasi: DateTime
+status: String
+
+Notifikasi
+id: int
+pendana_id: int
+judul: String
+pesan: String
+timestamp: DateTime
