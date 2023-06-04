@@ -14,14 +14,15 @@ class EditInvestor extends StatefulWidget {
 
 class PageEdit extends State<EditInvestor> {
   String nama = "";
+  String nik = "";
   String email = "";
   String no_telp = "";
   String password = "";
   final inputnama = TextEditingController(text: "Dicki Investor");
+  final inputnik = TextEditingController(text: "32041399872");
   final inputemail = TextEditingController(text: "dicki@example.com");
   final inputtelp = TextEditingController(text: "08881237779");
   final inputpass = TextEditingController(text: "password");
-  bool isAgreed = false;
 
   @override
   void dispose() {
@@ -125,7 +126,7 @@ class PageEdit extends State<EditInvestor> {
                 ),
               ),
               Container(
-                // namanQd (321:197)
+                // NAMA
                 margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 306*fem, 0*fem),
                 child: Text(
                   'Nama',
@@ -139,14 +140,13 @@ class PageEdit extends State<EditInvestor> {
                 ),
               ),
               Container(
-                // autogroupsnds7C1 (P5eyQqXyoFRt7UDLmjsNds)
                 padding:  EdgeInsets.fromLTRB(32*fem, 9*fem, 31*fem, 12*fem),
                 width:  double.infinity,
                 child: Column(
                   crossAxisAlignment:  CrossAxisAlignment.start,
                   children:  [
                     Container(
-                    // group26Dkq (321:194)
+                    // INPUT NAMA
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -165,7 +165,40 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // emailViM (321:209)
+                      // NIK
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'NIK',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      // INPUT NIK
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputnik,
+                        onChanged: (text) {
+                          setState(() {
+                            nik = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      // EMAIL
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Email',
@@ -179,7 +212,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // group28cHB (321:206)
+                      // INPUT EMAIL
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -198,7 +231,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // nomorteleponHeD (321:201)
+                      // NO TELP
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Nomor Telepon',
@@ -212,7 +245,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // group29cAh (321:198)
+                      // input telp
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 27*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -231,7 +264,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // password5Tb (321:205)
+                      // PASSWORD
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Password',
@@ -245,7 +278,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // group30D41 (321:202)
+                      // Input pass
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 33*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -264,14 +297,7 @@ class PageEdit extends State<EditInvestor> {
                       ),
                     ),
                     Container(
-                      // group1Gny (321:210)
                       margin:  EdgeInsets.fromLTRB(42*fem, 0*fem, 43*fem, 18*fem),
-                      // width:  double.infinity,
-                      // height:  37*fem,
-                      // decoration:  BoxDecoration (
-                      //   color:  Color(0xff3584ff),
-                      //   borderRadius:  BorderRadius.circular(20*fem),
-                      // ),
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () {

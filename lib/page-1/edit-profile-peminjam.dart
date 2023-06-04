@@ -17,11 +17,19 @@ class PageEdit extends State<EditPeminjam> {
   String email = "";
   String no_telp = "";
   String nik = "";
+  String jenis = "";
+  String prov = "";
+  String kota = "";
+  int pendapatan = 0;
   String password = "";
   final inputnama = TextEditingController(text: "Dicki");
   final inputemail = TextEditingController(text: "dicki@example.com");
   final inputtelp = TextEditingController(text: "08881237779");
   final inputnik = TextEditingController(text: "32041220072220031");
+  final inputjenis = TextEditingController(text: "Kuliner");
+  final inputprov = TextEditingController(text: "Jawa Barat");
+  final inputkota = TextEditingController(text: "Bandung");
+  final inputpendapatan = TextEditingController(text: "100.000.000");
   final inputpass = TextEditingController(text: "password");
   bool isAgreed = false;
 
@@ -42,7 +50,7 @@ class PageEdit extends State<EditPeminjam> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          // editprofilepeminjamCfP (321:187)
+          
           width:  double.infinity,
           decoration:  BoxDecoration (
             color:  Color(0xffffffff),
@@ -51,7 +59,7 @@ class PageEdit extends State<EditPeminjam> {
             crossAxisAlignment:  CrossAxisAlignment.center,
             children:  [
               Container(
-                // autogroupxy93HRw (P5ey9RozJMcbM6LUz5XY93)
+                
                 margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 12*fem),
                 width:  double.infinity,
                 height:  192*fem,
@@ -59,7 +67,6 @@ class PageEdit extends State<EditPeminjam> {
                 Stack(
                   children:  [
                     Positioned(
-                      // group27o9P (321:188)
                       left:  0*fem,
                       top:  0*fem,
                       child:  
@@ -74,7 +81,7 @@ class PageEdit extends State<EditPeminjam> {
                           crossAxisAlignment:  CrossAxisAlignment.start,
                           children:  [
                             Text(
-                              // editprofileV2D (321:190)
+                              // EDIT PROFILE
                               'Edit Profile',
                               textAlign:  TextAlign.center,
                               style:  SafeGoogleFont (
@@ -90,7 +97,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Positioned(
-                      // c930b442dc8d9c331ca823962709b4 (321:192)
+                      // FOTO PROFIL
                       left:  148*fem,
                       top:  72*fem,
                       child:  Align(
@@ -111,7 +118,7 @@ class PageEdit extends State<EditPeminjam> {
                 ),
               ),
               Container(
-                // uploadfotoGhB (321:213)
+                // BUTTON UPLOAD
                 margin:  EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 25*fem),
                 child: Text(
                   'Upload Foto',
@@ -128,7 +135,7 @@ class PageEdit extends State<EditPeminjam> {
                 ),
               ),
               Container(
-                // namanQd (321:197)
+                
                 margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 306*fem, 0*fem),
                 child: Text(
                   'Nama',
@@ -142,14 +149,14 @@ class PageEdit extends State<EditPeminjam> {
                 ),
               ),
               Container(
-                // autogroupsnds7C1 (P5eyQqXyoFRt7UDLmjsNds)
+                
                 padding:  EdgeInsets.fromLTRB(32*fem, 9*fem, 31*fem, 12*fem),
                 width:  double.infinity,
                 child: Column(
                   crossAxisAlignment:  CrossAxisAlignment.start,
                   children:  [
                     Container(
-                    // group26Dkq (321:194)
+                    
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 20*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -168,7 +175,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // emailViM (321:209)
+                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Email',
@@ -182,7 +189,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // group28cHB (321:206)
+                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -201,7 +208,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // nomorteleponHeD (321:201)
+                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Nomor Telepon',
@@ -215,7 +222,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // group29cAh (321:198)
+                     
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 27*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -234,7 +241,6 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // niknpwpgRT (321:217)
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'NIK / NPWP',
@@ -248,7 +254,6 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // group31C8u (321:214)
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -266,8 +271,133 @@ class PageEdit extends State<EditPeminjam> {
                         },
                       ),
                     ),
+                    // UMKM
                     Container(
-                      // password5Tb (321:205)
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Jenis Usaha',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputjenis,
+                        onChanged: (text) {
+                          setState(() {
+                            jenis = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Provinsi Usaha',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputprov,
+                        onChanged: (text) {
+                          setState(() {
+                            prov = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Kota Usaha',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputkota,
+                        onChanged: (text) {
+                          setState(() {
+                            kota = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Pendapatan Pertahun',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputpendapatan,
+                        onChanged: (text) {
+                          setState(() {
+                            pendapatan = int.tryParse(text) ?? 0;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
                         'Password',
@@ -281,7 +411,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // group30D41 (321:202)
+                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 33*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
@@ -300,14 +430,8 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // group1Gny (321:210)
+                      
                       margin:  EdgeInsets.fromLTRB(42*fem, 0*fem, 43*fem, 18*fem),
-                      // width:  double.infinity,
-                      // height:  37*fem,
-                      // decoration:  BoxDecoration (
-                      //   color:  Color(0xff3584ff),
-                      //   borderRadius:  BorderRadius.circular(20*fem),
-                      // ),
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -316,6 +440,10 @@ class PageEdit extends State<EditPeminjam> {
                                     email = inputemail.text;
                                     no_telp = inputtelp.text;
                                     nik = inputnik.text;
+                                    jenis = inputjenis.text;
+                                    prov = inputprov.text;
+                                    kota = inputkota.text;
+                                    // pendapatan = inputpendapatan.text;
                                     password = inputpass.text;
                                   });
                                 },
@@ -339,7 +467,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      // version10xfo (321:193)
+                      
                       margin:  EdgeInsets.fromLTRB(144*fem, 0*fem, 0*fem, 0*fem),
                       child: Text(
                         'version 1.0',
