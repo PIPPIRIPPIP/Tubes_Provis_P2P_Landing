@@ -25,7 +25,7 @@ D:\Fadhil\Computer Science\semester-4\provis\code>python -m venv venv-fastapi
 ```shell
 D:\Fadhil\Computer Science\semester-4\provis\code>.\venv-fastapi\Scripts\activate
 ```
-- instal package [Requirements](requirements.txt) pake pip di terminal:
+- instal package [Requirements](server/guide/requirements.txt) pake pip di terminal:
 ```
 pip install fastapi uvicorn SQLAlchemy pydantic
 pip install email-validator passlib PyJWT bcrypt
