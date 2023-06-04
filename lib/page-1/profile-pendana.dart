@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/edit-profile-investor.dart';
 import 'package:myapp/utils.dart';
 
 class ProfilPendana extends StatelessWidget {
@@ -164,17 +165,24 @@ class ProfilPendana extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              // edit16VL (70:87)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 61 * fem),
-                              width: 15 * fem,
-                              height: 15 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/edit-1.png',
-                                fit: BoxFit.cover,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => EditInvestor()));
+                              },
+                              child: Container(
+                                // edit16VL (70:87)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 61 * fem),
+                                width: 15 * fem,
+                                height: 15 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/edit-1.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
+                            
                           ],
                         ),
                       ),
