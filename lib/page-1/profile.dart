@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/edit-profile-peminjam.dart';
 
 import 'package:myapp/models/user_model.dart';
 
@@ -196,15 +197,22 @@ class Profil extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              // edit1KMG (24:129)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 0 * fem, 63 * fem),
-                              width: 13 * fem,
-                              height: 13 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/edit-1.png',
-                                fit: BoxFit.cover,
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => EditPeminjam()));
+                                    // MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                              },
+                              child: Container(
+                                // edit1KMG (24:129)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 0 * fem, 63 * fem),
+                                width: 13 * fem,
+                                height: 13 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/edit-1.png',
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           ],
