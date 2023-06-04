@@ -7,6 +7,8 @@ import 'package:myapp/page-1/edit-profile-peminjam.dart';
 
 import 'package:myapp/models/user_model.dart';
 
+//nambahin on tap link ke edit profile
+
 class Profil extends StatelessWidget {
   final User user;
 

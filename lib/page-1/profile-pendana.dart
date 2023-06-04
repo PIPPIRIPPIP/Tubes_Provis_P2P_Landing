@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/edit-profile-investor.dart';
 import 'package:myapp/utils.dart';
 
+//nambahin on tap link ke edit profile
+
 class ProfilPendana extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
