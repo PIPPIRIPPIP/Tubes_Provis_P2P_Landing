@@ -6,6 +6,7 @@ import 'package:myapp/models/user_model.dart';
 import 'package:myapp/utils.dart';
 
 //edit investor
+//nambah atribut nik
 
 class EditInvestor extends StatefulWidget {
   @override

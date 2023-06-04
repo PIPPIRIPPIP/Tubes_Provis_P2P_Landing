@@ -6,6 +6,8 @@ import 'package:myapp/utils.dart';
 
 import 'daftar-peminjam-perusahaan.dart';
 
+// nambah atribut nik
+
 class DaftarPerorangan extends StatefulWidget {
   @override
   DaftarPeroranganPage createState() => DaftarPeroranganPage();
