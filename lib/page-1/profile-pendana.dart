@@ -169,8 +169,10 @@ class ProfilPendana extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => EditInvestor()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditInvestor()));
                               },
                               child: Container(
                                 // edit16VL (70:87)
@@ -184,7 +186,6 @@ class ProfilPendana extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            
                           ],
                         ),
                       ),
@@ -225,30 +226,38 @@ class ProfilPendana extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              // autogroupuba6aYv (NsxhLM7MDCQeEaCaUuUBA6)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 3 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // kebijakanprivasihtS (70:100)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 228 * fem, 0 * fem),
-                                    child: Text(
-                                      'Kebijakan Privasi',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditInvestor()));
+                              },
+                              child: Container(
+                                // autogroupuba6aYv (NsxhLM7MDCQeEaCaUuUBA6)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 3 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // kebijakanprivasihtS (70:100)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 228 * fem, 0 * fem),
+                                      child: Text(
+                                        'Kebijakan Privasi',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -261,30 +270,38 @@ class ProfilPendana extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogrouplwy49kS (NsxhRqxBwV1hPpb7QpLWy4)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 5 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // syaratdanketentuanGq4 (70:90)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 197 * fem, 0 * fem),
-                                    child: Text(
-                                      'Syarat dan Ketentuan',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditInvestor()));
+                              },
+                              child: Container(
+                                // autogrouplwy49kS (NsxhRqxBwV1hPpb7QpLWy4)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 5 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // syaratdanketentuanGq4 (70:90)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 197 * fem, 0 * fem),
+                                      child: Text(
+                                        'Syarat dan Ketentuan',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -297,30 +314,38 @@ class ProfilPendana extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogroupzffk86a (NsxhXqnCNXJr7YebszZFfk)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 6 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // pusatbantuanroG (70:91)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 241 * fem, 0 * fem),
-                                    child: Text(
-                                      'Pusat Bantuan',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditInvestor()));
+                              },
+                              child: Container(
+                                // autogroupzffk86a (NsxhXqnCNXJr7YebszZFfk)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 6 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // pusatbantuanroG (70:91)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 241 * fem, 0 * fem),
+                                      child: Text(
+                                        'Pusat Bantuan',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -333,30 +358,38 @@ class ProfilPendana extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogroupjobuVbL (NsxhdAxeXtgY5y9UxpJoBU)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 0 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // tentangkamiRzn (70:92)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 245 * fem, 0 * fem),
-                                    child: Text(
-                                      'Tentang Kami',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditInvestor()));
+                              },
+                              child: Container(
+                                // autogroupjobuVbL (NsxhdAxeXtgY5y9UxpJoBU)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 0 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // tentangkamiRzn (70:92)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 245 * fem, 0 * fem),
+                                      child: Text(
+                                        'Tentang Kami',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],

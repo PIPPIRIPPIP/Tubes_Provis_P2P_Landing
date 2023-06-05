@@ -357,18 +357,24 @@ class Scene extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              // avsQ (40:34)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                              child: Text(
-                                'A+',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 32 * ffem,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff3584ff),
+                            Positioned(
+                              // a5hY (51:145)
+                              left: 325 * fem,
+                              top: 42 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 45 * fem,
+                                  height: 48 * fem,
+                                  child: Text(
+                                    'A+',
+                                    style: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 32 * ffem,
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.5 * ffem / fem,
+                                      color: Color(0xff3584ff),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
@@ -758,18 +764,24 @@ class Scene extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Container(
-                              // aQar (51:121)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                              child: Text(
-                                'A+',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 32 * ffem,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff3584ff),
+                            Positioned(
+                              // a5hY (51:145)
+                              left: 325 * fem,
+                              top: 42 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 45 * fem,
+                                  height: 48 * fem,
+                                  child: Text(
+                                    'A+',
+                                    style: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 32 * ffem,
+                                      fontWeight: FontWeight.w600,
+                                      height: 1.5 * ffem / fem,
+                                      color: Color(0xff3584ff),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),

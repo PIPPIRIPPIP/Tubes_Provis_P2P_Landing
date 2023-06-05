@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/utils.dart';
+import 'package:myapp/page-1/navbar-pendana.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'dart:ui';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/isi-saldo.dart';
 import 'package:myapp/page-1/navbar-pendana.dart';
@@ -10,21 +16,21 @@ import 'package:myapp/page-1/riwayat-transaksi.dart';
 import 'package:myapp/page-1/tarik-saldo.dart';
 import 'package:myapp/utils.dart';
 
-class Pendana extends StatelessWidget {
-  final User user;
+// class Pendana extends StatelessWidget {
+//   // final User user;
 
-  Pendana({required this.user});
+//   // Pendana({required this.user});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Scene(),
-      ),
-      bottomNavigationBar: Navbar(user),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SingleChildScrollView(
+//         child: Scene(),
+//       ),
+//       // bottomNavigationBar: Navbar(user),
+//     );
+//   }
+// }
 
 class Scene extends StatelessWidget {
   @override
@@ -35,7 +41,7 @@ class Scene extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Container(
-        // pendanauAW (30:153)
+        // pendanaX3C (30:153)
         padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -45,9 +51,9 @@ class Scene extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // autogroupdruwmiW (Nsxj9suqkbtYyesT9JDrUW)
+              // autogroupidqqqJn (SiJ1WSPEfA6KqWRvFyiDqQ)
               margin:
-                  EdgeInsets.fromLTRB(15 * fem, 0 * fem, 10 * fem, 10 * fem),
+                  EdgeInsets.fromLTRB(15 * fem, 0 * fem, 18 * fem, 17 * fem),
               width: double.infinity,
               height: 45 * fem,
               child: Row(
@@ -55,24 +61,24 @@ class Scene extends StatelessWidget {
                 children: [
                   Container(
                     // moneylogodesignstemplatevector (30:154)
-                    width: 100 * fem,
-                    height: 100 * fem,
+                    width: 45 * fem,
+                    height: 45 * fem,
                     child: Image.asset(
-                      'assets/page-1/images/logo.png',
+                      'assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1-npv.png',
                     ),
                   ),
                   Container(
-                    // autogroupxnbxQFg (NsxjJ8B6r2o8iXTFYAXNBx)
+                    // autogroupgvzi5U2 (SiJ1ew95bxqxMcrCRUgvzi)
                     padding: EdgeInsets.fromLTRB(
-                        200 * fem, 2 * fem, 0 * fem, 3 * fem),
+                        252 * fem, 2 * fem, 0 * fem, 3 * fem),
                     height: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // notif1dPL (30:172)
+                          // notif1DaE (30:172)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                              0 * fem, 0 * fem, 19 * fem, 0 * fem),
                           width: 25 * fem,
                           height: 32 * fem,
                           child: Image.asset(
@@ -80,21 +86,13 @@ class Scene extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfilPendana()));
-                          },
-                          child: Container(
-                            // profile1M4S (30:155)
-                            width: 40 * fem,
-                            height: 40 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/profile-1.png',
-                              fit: BoxFit.cover,
-                            ),
+                        Container(
+                          // profile1YMc (30:155)
+                          width: 40 * fem,
+                          height: 40 * fem,
+                          child: Image.asset(
+                            'assets/page-1/images/profile-1-oTt.png',
+                            fit: BoxFit.cover,
                           ),
                         ),
                       ],
@@ -347,27 +345,27 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogroup3v6z1Vg (NsxjhcVxsSHe2x2Fsc3v6z)
+              // autogrouph6xpsEn (SiJ236Aq62VYBSHyzDH6Xp)
               padding:
-                  EdgeInsets.fromLTRB(15 * fem, 25 * fem, 17 * fem, 9 * fem),
+                  EdgeInsets.fromLTRB(15 * fem, 25 * fem, 16 * fem, 9 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // autogroupuv1gXiv (NsxjRsTCEi1ctvN6PmUV1g)
+                    // autogroupufhqo8S (SiJ1kvy631975LugteufhQ)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 13 * fem, 14 * fem),
+                        0 * fem, 0 * fem, 14 * fem, 17 * fem),
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // peluanginvestasifq8 (30:160)
+                          // investisakuY62 (30:160)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 156 * fem, 0 * fem),
+                              0 * fem, 0 * fem, 201 * fem, 0 * fem),
                           child: Text(
-                            'Peluang Investasi',
+                            'Investisaku',
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14 * ffem,
@@ -378,7 +376,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         TextButton(
-                          // lihatsemuaBYa (38:8)
+                          // lihatsemuaTTt (38:8)
                           onPressed: () {},
                           style: TextButton.styleFrom(
                             padding: EdgeInsets.zero,
@@ -398,306 +396,184 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // group28WKx (38:9)
+                    // group65Nqk (317:78)
                     margin: EdgeInsets.fromLTRB(
-                        1 * fem, 0 * fem, 0 * fem, 120 * fem),
-                    child: TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                      ),
-                      child: Container(
-                        padding: EdgeInsets.fromLTRB(
-                            1 * fem, 6 * fem, 0 * fem, 9 * fem),
-                        width: 381 * fem,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(10 * fem),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              offset: Offset(0 * fem, 4 * fem),
-                              blurRadius: 2 * fem,
-                            ),
-                          ],
+                        2 * fem, 0 * fem, 0 * fem, 32 * fem),
+                    padding: EdgeInsets.fromLTRB(
+                        1 * fem, 4 * fem, 1 * fem, 12 * fem),
+                    width: 381 * fem,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xffbcbcbc)),
+                      color: Color(0xffffffff),
+                      borderRadius: BorderRadius.circular(10 * fem),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x3f000000),
+                          offset: Offset(0 * fem, 4 * fem),
+                          blurRadius: 2 * fem,
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Container(
-                              // autogroupsfhgvea (Nsxk8w778wKAQTPSX1sFHg)
-                              margin: EdgeInsets.fromLTRB(
-                                  16 * fem, 0 * fem, 16 * fem, 0 * fem),
-                              width: double.infinity,
-                              height: 26 * fem,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // autogroup8jie3UJ (NsxkKG9EKqboyebtzV8jie)
-                                    padding: EdgeInsets.fromLTRB(
-                                        0 * fem, 4 * fem, 163 * fem, 4 * fem),
-                                    height: double.infinity,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // noAop (38:13)
-                                          margin: EdgeInsets.fromLTRB(0 * fem,
-                                              0 * fem, 6 * fem, 0 * fem),
-                                          child: Text(
-                                            'NO',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 12 * ffem,
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff020202),
-                                            ),
-                                          ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          // autogroup9bsnczz (SiJ2Yjz67PWZQQp8dv9BSn)
+                          margin: EdgeInsets.fromLTRB(
+                              16 * fem, 0 * fem, 15 * fem, 5 * fem),
+                          width: double.infinity,
+                          height: 26 * fem,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                // autogroupehr8LRC (SiJ2ga6NnXLjBDfoR4ehR8)
+                                padding: EdgeInsets.fromLTRB(
+                                    0 * fem, 4 * fem, 163 * fem, 4 * fem),
+                                height: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // no4rz (317:80)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 6 * fem, 0 * fem),
+                                      child: Text(
+                                        'NO',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff020202),
                                         ),
-                                        Text(
-                                          // p20072312345HtS (38:15)
-                                          'P20072312345',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 12 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff343434),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    // image7EYn (38:19)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 5 * fem, 0 * fem),
-                                    width: 26 * fem,
-                                    height: 26 * fem,
-                                    child: Image.asset(
-                                      'assets/page-1/images/image-7-hvn.png',
+                                    Text(
+                                      // p20072312345PeN (317:82)
+                                      'P20072312345',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 12 * ffem,
+                                        fontWeight: FontWeight.w400,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff343434),
+                                      ),
                                     ),
-                                  ),
-                                  Text(
-                                    // bulanABY (38:14)
-                                    '5 Bulan',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff020202),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            Container(
-                              // line7VzW (40:8)
-                              margin: EdgeInsets.fromLTRB(
-                                  1 * fem, 0 * fem, 0 * fem, 6 * fem),
-                              width: 379 * fem,
-                              height: 1 * fem,
-                              decoration: BoxDecoration(
-                                color: Color(0xffbcbcbc),
+                              Container(
+                                // image7jCS (317:84)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 5 * fem, 0 * fem),
+                                width: 26 * fem,
+                                height: 26 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/image-7-EUE.png',
+                                ),
                               ),
-                            ),
-                            Container(
-                              // autogroupvs4aqHg (NsxkSB7NsvfUDv4UceVs4A)
-                              margin: EdgeInsets.fromLTRB(
-                                  10 * fem, 0 * fem, 27 * fem, 11 * fem),
-                              width: double.infinity,
-                              height: 54 * fem,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // profile2Mmp (40:4)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 12 * fem, 0 * fem),
-                                    width: 46 * fem,
-                                    height: 46 * fem,
-                                    child: Image.asset(
-                                      'assets/page-1/images/profile-2.png',
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Container(
-                                    // autogroupqxbqsVG (Nsxkc1ALN5G2EdbyYrQxbQ)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 109 * fem, 0 * fem),
-                                    width: 131 * fem,
-                                    height: double.infinity,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Container(
-                                          // autogroupaw78oNv (NsxkhLLnXSdiD46rdgAW78)
-                                          width: double.infinity,
-                                          height: 37 * fem,
-                                          child: Stack(
-                                            children: [
-                                              Positioned(
-                                                // ayeshaalifirdausMQS (40:5)
-                                                left: 0 * fem,
-                                                top: 0 * fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 131 * fem,
-                                                    height: 21 * fem,
-                                                    child: Text(
-                                                      'Ayesha Ali Firdaus',
-                                                      style: SafeGoogleFont(
-                                                        'Poppins',
-                                                        fontSize: 14 * ffem,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        height:
-                                                            1.5 * ffem / fem,
-                                                        color:
-                                                            Color(0xff020202),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              Positioned(
-                                                // modalusahamakanan3o4 (40:6)
-                                                left: 0 * fem,
-                                                top: 20 * fem,
-                                                child: Align(
-                                                  child: SizedBox(
-                                                    width: 129 * fem,
-                                                    height: 17 * fem,
-                                                    child: Text(
-                                                      'Modal usaha makanan',
-                                                      style: SafeGoogleFont(
-                                                        'Poppins',
-                                                        fontSize: 11 * ffem,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        height:
-                                                            1.5 * ffem / fem,
-                                                        color:
-                                                            Color(0xff343434),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Text(
-                                          // bandungjawabaratx9L (40:7)
-                                          'Bandung, Jawa Barat',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 11 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff343434),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Text(
-                                    // agb8 (40:10)
-                                    'A+',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 32 * ffem,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xff3584ff),
-                                    ),
-                                  ),
-                                ],
+                              Text(
+                                // bulan4Ei (317:81)
+                                '5 Bulan',
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff020202),
+                                ),
                               ),
-                            ),
-                            Container(
-                              // line42Q6 (38:16)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 1 * fem, 8 * fem),
-                              width: 379 * fem,
-                              height: 1 * fem,
-                              decoration: BoxDecoration(
-                                color: Color(0xffbcbcbc),
-                              ),
-                            ),
-                            Container(
-                              // autogroupby3pkqt (NsxkxzZMsiJ3kfpCByBY3p)
-                              margin: EdgeInsets.fromLTRB(
-                                  16 * fem, 0 * fem, 9 * fem, 16 * fem),
-                              width: double.infinity,
-                              height: 57 * fem,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // autogrouppqoccNJ (Nsxm7pdyxMWQeS1n3ePqoc)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 49 * fem, 0 * fem),
-                                    width: 67 * fem,
-                                    height: double.infinity,
-                                    child: Stack(
-                                      children: [
-                                        Positioned(
-                                          // Y14 (38:20)
-                                          left: 1 * fem,
-                                          top: 0 * fem,
-                                          child: Align(
-                                            child: SizedBox(
-                                              width: 59 * fem,
-                                              height: 48 * fem,
-                                              child: Text(
-                                                '10%',
-                                                style: SafeGoogleFont(
-                                                  'Poppins',
-                                                  fontSize: 32 * ffem,
-                                                  fontWeight: FontWeight.w600,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: Color(0xff020202),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          // line41Qr (317:83)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                          width: double.infinity,
+                          height: 1 * fem,
+                          decoration: BoxDecoration(
+                            color: Color(0xffbcbcbc),
+                          ),
+                        ),
+                        Container(
+                          // autogroup1pkeLxv (SiJ2oV4XLcQPRV8P3E1pke)
+                          margin: EdgeInsets.fromLTRB(
+                              16 * fem, 0 * fem, 35 * fem, 16 * fem),
+                          width: double.infinity,
+                          height: 59 * fem,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                // autogroup49y2UZL (SiJ2veXFk5K6SzRSS249Y2)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                width: 136 * fem,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      // totalinvestasiorW (317:90)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 0 * fem, 4 * fem),
+                                      width: double.infinity,
+                                      child: Text(
+                                        'Total Investasi',
+                                        textAlign: TextAlign.center,
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 18 * ffem,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
                                         ),
-                                        Positioned(
-                                          // hasilimbale46 (38:23)
-                                          left: 0 * fem,
-                                          top: 39 * fem,
-                                          child: Align(
-                                            child: SizedBox(
-                                              width: 67 * fem,
-                                              height: 18 * fem,
-                                              child: Text(
-                                                'hasil imbal',
-                                                style: SafeGoogleFont(
-                                                  'Poppins',
-                                                  fontSize: 12 * ffem,
-                                                  fontWeight: FontWeight.w500,
-                                                  height: 1.5 * ffem / fem,
-                                                  color: Color(0xff727272),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    // rpYfG (38:22)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 7 * fem, 9 * fem, 0 * fem),
-                                    child: Text(
+                                    Container(
+                                      // keuntungan8dt (317:89)
+                                      width: double.infinity,
+                                      child: Text(
+                                        'Keuntungan',
+                                        textAlign: TextAlign.center,
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 18 * ffem,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                // autogroupoh3kf82 (SiJ31yhhuSgnRQvKWqoh3k)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 2 * fem, 4 * fem, 2 * fem),
+                                height: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // rpHfC (317:87)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                                      child: Text(
+                                        'Rp',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff727272),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      // rpcSa (317:88)
                                       'Rp',
                                       style: SafeGoogleFont(
                                         'Poppins',
@@ -707,104 +583,330 @@ class Scene extends StatelessWidget {
                                         color: Color(0xff727272),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    // GrA (38:21)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 9 * fem, 35 * fem, 0 * fem),
-                                    child: Text(
-                                      '10.000.000',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 16 * ffem,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff020202),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                // autogroupqqveZMp (SiJ36Pk1wmHxsJ27SgQqve)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                width: 109 * fem,
+                                height: 58 * fem,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      // 5qx (317:85)
+                                      left: 0 * fem,
+                                      top: 0 * fem,
+                                      child: Align(
+                                        child: SizedBox(
+                                          width: 109 * fem,
+                                          height: 30 * fem,
+                                          child: Text(
+                                            '10.000.000',
+                                            style: SafeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 20 * ffem,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.5 * ffem / fem,
+                                              color: Color(0xff020202),
+                                            ),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    // group33bNe (40:9)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 23 * fem, 0 * fem, 12 * fem),
-                                    width: 86 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Color(0xff3584ff),
-                                      borderRadius:
-                                          BorderRadius.circular(5 * fem),
+                                    Positioned(
+                                      // zT8 (317:86)
+                                      left: 0 * fem,
+                                      top: 28 * fem,
+                                      child: Align(
+                                        child: SizedBox(
+                                          width: 96 * fem,
+                                          height: 30 * fem,
+                                          child: Text(
+                                            '1.000.000',
+                                            style: SafeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 20 * ffem,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.5 * ffem / fem,
+                                              color: Color(0xff020202),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    child: Center(
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          // autogroupfttvJCv (SiJ3LPLhcreeYepvY6Fttv)
+                          width: double.infinity,
+                          height: 5 * fem,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    // group32TLi (317:141)
+                    margin: EdgeInsets.fromLTRB(
+                        2 * fem, 0 * fem, 0 * fem, 58 * fem),
+                    padding: EdgeInsets.fromLTRB(
+                        1 * fem, 4 * fem, 1 * fem, 12 * fem),
+                    width: 381 * fem,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Color(0xffbcbcbc)),
+                      color: Color(0xffffffff),
+                      borderRadius: BorderRadius.circular(10 * fem),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x3f000000),
+                          offset: Offset(0 * fem, 4 * fem),
+                          blurRadius: 2 * fem,
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          // autogroupf67p7AN (SiJ3zcjzsV2yt9iBGqf67p)
+                          margin: EdgeInsets.fromLTRB(
+                              16 * fem, 0 * fem, 16 * fem, 5 * fem),
+                          width: double.infinity,
+                          height: 26 * fem,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                // autogroupbmzeqcA (SiJ4BCGhumAgEam7Wwbmze)
+                                padding: EdgeInsets.fromLTRB(
+                                    0 * fem, 4 * fem, 163 * fem, 4 * fem),
+                                height: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // noZo4 (317:143)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 6 * fem, 0 * fem),
                                       child: Text(
-                                        'Danai',
+                                        'NO',
                                         style: SafeGoogleFont(
                                           'Poppins',
                                           fontSize: 12 * ffem,
                                           fontWeight: FontWeight.w600,
                                           height: 1.5 * ffem / fem,
-                                          color: Color(0xffffffff),
+                                          color: Color(0xff020202),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Container(
-                              // autogroupvx7y3VY (NsxmGQE2BcsikxNt8gvx7Y)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 1 * fem, 3 * fem),
-                              width: 379 * fem,
-                              height: 5 * fem,
-                            ),
-                            Container(
-                              // autogroupetmtmwL (NsxmMpEfdSs6Knpb94Etmt)
-                              margin: EdgeInsets.fromLTRB(
-                                  16 * fem, 0 * fem, 22 * fem, 0 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // terdanaiiLn (38:11)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 261 * fem, 2 * fem),
-                                    child: Text(
-                                      'Terdanai',
+                                    Text(
+                                      // p20072312346taS (317:145)
+                                      'P20072312346',
                                       style: SafeGoogleFont(
                                         'Poppins',
                                         fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w600,
+                                        fontWeight: FontWeight.w400,
                                         height: 1.5 * ffem / fem,
-                                        color: Color(0xff020202),
+                                        color: Color(0xff343434),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    // puc (38:12)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 2 * fem, 0 * fem, 0 * fem),
-                                    child: Text(
-                                      '50%',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff020202),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                              Container(
+                                // image7EeJ (317:147)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 5 * fem, 0 * fem),
+                                width: 26 * fem,
+                                height: 26 * fem,
+                                child: Image.asset(
+                                  'assets/page-1/images/image-7-rwG.png',
+                                ),
+                              ),
+                              Text(
+                                // bulanAnr (317:144)
+                                '7 Bulan',
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                        Container(
+                          // line4Kfk (317:146)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 0 * fem, 10 * fem),
+                          width: double.infinity,
+                          height: 1 * fem,
+                          decoration: BoxDecoration(
+                            color: Color(0xffbcbcbc),
+                          ),
+                        ),
+                        Container(
+                          // autogroup5hdqsBU (SiJ4JGuF2mThfg7LzC5hdQ)
+                          margin: EdgeInsets.fromLTRB(
+                              16 * fem, 0 * fem, 43 * fem, 16 * fem),
+                          width: double.infinity,
+                          height: 59 * fem,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                // autogroup1e7yaLn (SiJ4RGhasK93WMWkXu1E7Y)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
+                                width: 136 * fem,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      // totalinvestasihwC (317:153)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 0 * fem, 4 * fem),
+                                      width: double.infinity,
+                                      child: Text(
+                                        'Total Investasi',
+                                        textAlign: TextAlign.center,
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 18 * ffem,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      // keuntungancYN (317:152)
+                                      width: double.infinity,
+                                      child: Text(
+                                        'Keuntungan',
+                                        textAlign: TextAlign.center,
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 18 * ffem,
+                                          fontWeight: FontWeight.w700,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                // autogroupcnzsMF4 (SiJ4VgjtudkDxEcYTjcNzS)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 2 * fem, 4 * fem, 2 * fem),
+                                height: double.infinity,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // rpHeW (317:150)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                                      child: Text(
+                                        'Rp',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 16 * ffem,
+                                          fontWeight: FontWeight.w600,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff727272),
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      // rpp8e (317:151)
+                                      'Rp',
+                                      style: SafeGoogleFont(
+                                        'Poppins',
+                                        fontSize: 16 * ffem,
+                                        fontWeight: FontWeight.w600,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xff727272),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                // autogroup6ja6Zrv (SiJ4Zw7pP383DHpgYV6ja6)
+                                margin: EdgeInsets.fromLTRB(
+                                    0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                width: 101 * fem,
+                                height: 58 * fem,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      // 6M4 (317:148)
+                                      left: 0 * fem,
+                                      top: 0 * fem,
+                                      child: Align(
+                                        child: SizedBox(
+                                          width: 101 * fem,
+                                          height: 30 * fem,
+                                          child: Text(
+                                            '5.000.000',
+                                            style: SafeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 20 * ffem,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.5 * ffem / fem,
+                                              color: Color(0xff020202),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      // oFU (317:149)
+                                      left: 0 * fem,
+                                      top: 28 * fem,
+                                      child: Align(
+                                        child: SizedBox(
+                                          width: 83 * fem,
+                                          height: 30 * fem,
+                                          child: Text(
+                                            '500.000',
+                                            style: SafeGoogleFont(
+                                              'Poppins',
+                                              fontSize: 20 * ffem,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.5 * ffem / fem,
+                                              color: Color(0xff020202),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          // autogroupnewrJT8 (SiJ4jRqzjMFrrMasnWnEWr)
+                          width: double.infinity,
+                          height: 5 * fem,
+                        ),
+                      ],
                     ),
                   ),
                   Container(
-                    // panduanLNA (63:462)
+                    // panduan4SJ (63:462)
                     margin:
                         EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 9 * fem),
                     child: Text(
@@ -819,16 +921,16 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogroup22gwrbQ (NsxjXcncpNTiqQb76K22GW)
+                    // autogrouptcxePUa (SiJ1rgJWcfbD1q8hbCTCxE)
                     margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 2 * fem, 0 * fem),
+                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
                     width: double.infinity,
                     height: 90 * fem,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // group63Arz (63:463)
+                          // group63uxi (63:463)
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 20 * fem, 0 * fem),
                           width: 180 * fem,
@@ -860,7 +962,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // group64cDC (63:466)
+                          // group649s4 (63:466)
                           width: 180 * fem,
                           height: double.infinity,
                           decoration: BoxDecoration(
@@ -887,6 +989,127 @@ class Scene extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              // navbar1uG (63:414)
+              padding:
+                  EdgeInsets.fromLTRB(25 * fem, 7 * fem, 32 * fem, 8 * fem),
+              width: double.infinity,
+              height: 62 * fem,
+              decoration: BoxDecoration(
+                color: Color(0xff3584ff),
+              ),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    // group62X6v (63:416)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 0 * fem, 106 * fem, 0 * fem),
+                    padding: EdgeInsets.fromLTRB(
+                        0 * fem, 5.41 * fem, 0 * fem, 0 * fem),
+                    height: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          // igaminghouseSUn (63:417)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 1 * fem, 3.07 * fem),
+                          width: 26.87 * fem,
+                          height: 23.52 * fem,
+                          child: Image.asset(
+                            'assets/page-1/images/i-gaming-house-nv2.png',
+                            width: 26.87 * fem,
+                            height: 23.52 * fem,
+                          ),
+                        ),
+                        Text(
+                          // berandakEa (63:419)
+                          'Beranda',
+                          textAlign: TextAlign.center,
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 10 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    // group60tbg (63:420)
+                    margin: EdgeInsets.fromLTRB(
+                        0 * fem, 2 * fem, 93 * fem, 0 * fem),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          // componentqWv (63:421)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 1 * fem, 0 * fem),
+                          width: 30 * fem,
+                          height: 30 * fem,
+                          child: Image.asset(
+                            'assets/page-1/images/component.png',
+                            width: 30 * fem,
+                            height: 30 * fem,
+                          ),
+                        ),
+                        Text(
+                          // marketplacexLe (63:422)
+                          'Marketplace',
+                          textAlign: TextAlign.center,
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 10 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xffffffff),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    // group61tk6 (63:423)
+                    padding: EdgeInsets.fromLTRB(
+                        0 * fem, 6.11 * fem, 0 * fem, 0 * fem),
+                    height: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          // iobjecttoolsbriefcasedSn (63:424)
+                          margin: EdgeInsets.fromLTRB(
+                              0 * fem, 0 * fem, 0 * fem, 4.22 * fem),
+                          width: 24.98 * fem,
+                          height: 21.67 * fem,
+                          child: Image.asset(
+                            'assets/page-1/images/i-object-tools-briefcase.png',
+                            width: 24.98 * fem,
+                            height: 21.67 * fem,
+                          ),
+                        ),
+                        Text(
+                          // portofolioL6J (63:425)
+                          'Portofolio',
+                          textAlign: TextAlign.center,
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 10 * ffem,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xffffffff),
                           ),
                         ),
                       ],
