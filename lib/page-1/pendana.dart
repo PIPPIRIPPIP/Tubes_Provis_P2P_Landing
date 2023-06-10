@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/utils.dart';
-import 'package:myapp/page-1/navbar-pendana.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
-import 'dart:ui';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/isi-saldo.dart';
 import 'package:myapp/page-1/navbar-pendana.dart';
@@ -16,21 +10,21 @@ import 'package:myapp/page-1/riwayat-transaksi.dart';
 import 'package:myapp/page-1/tarik-saldo.dart';
 import 'package:myapp/utils.dart';
 
-// class Pendana extends StatelessWidget {
-//   // final User user;
+class Pendana extends StatelessWidget {
+  final User user;
 
-//   // Pendana({required this.user});
+  Pendana({required this.user});
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: SingleChildScrollView(
-//         child: Scene(),
-//       ),
-//       // bottomNavigationBar: Navbar(user),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Scene(),
+      ),
+      bottomNavigationBar: Navbar(user),
+    );
+  }
+}
 
 class Scene extends StatelessWidget {
   @override
@@ -41,7 +35,7 @@ class Scene extends StatelessWidget {
     return Container(
       width: double.infinity,
       child: Container(
-        // pendanaX3C (30:153)
+        // pendanauAW (30:153)
         padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
         width: double.infinity,
         decoration: BoxDecoration(
@@ -51,9 +45,9 @@ class Scene extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // autogroupidqqqJn (SiJ1WSPEfA6KqWRvFyiDqQ)
+              // autogroupdruwmiW (Nsxj9suqkbtYyesT9JDrUW)
               margin:
-                  EdgeInsets.fromLTRB(15 * fem, 0 * fem, 18 * fem, 17 * fem),
+                  EdgeInsets.fromLTRB(15 * fem, 0 * fem, 10 * fem, 10 * fem),
               width: double.infinity,
               height: 45 * fem,
               child: Row(
@@ -61,24 +55,24 @@ class Scene extends StatelessWidget {
                 children: [
                   Container(
                     // moneylogodesignstemplatevector (30:154)
-                    width: 45 * fem,
-                    height: 45 * fem,
+                    width: 100 * fem,
+                    height: 100 * fem,
                     child: Image.asset(
-                      'assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-1-npv.png',
+                      'assets/page-1/images/logo.png',
                     ),
                   ),
                   Container(
-                    // autogroupgvzi5U2 (SiJ1ew95bxqxMcrCRUgvzi)
+                    // autogroupxnbxQFg (NsxjJ8B6r2o8iXTFYAXNBx)
                     padding: EdgeInsets.fromLTRB(
-                        252 * fem, 2 * fem, 0 * fem, 3 * fem),
+                        200 * fem, 2 * fem, 0 * fem, 3 * fem),
                     height: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // notif1DaE (30:172)
+                          // notif1dPL (30:172)
                           margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 19 * fem, 0 * fem),
+                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
                           width: 25 * fem,
                           height: 32 * fem,
                           child: Image.asset(
@@ -86,13 +80,21 @@ class Scene extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          // profile1YMc (30:155)
-                          width: 40 * fem,
-                          height: 40 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/profile-1-oTt.png',
-                            fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProfilPendana()));
+                          },
+                          child: Container(
+                            // profile1M4S (30:155)
+                            width: 40 * fem,
+                            height: 40 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/profile-1.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ],
@@ -345,17 +347,17 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogrouph6xpsEn (SiJ236Aq62VYBSHyzDH6Xp)
+              // autogroup3v6z1Vg (NsxjhcVxsSHe2x2Fsc3v6z)
               padding:
-                  EdgeInsets.fromLTRB(15 * fem, 25 * fem, 16 * fem, 9 * fem),
+                  EdgeInsets.fromLTRB(15 * fem, 25 * fem, 17 * fem, 9 * fem),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    // autogroupufhqo8S (SiJ1kvy631975LugteufhQ)
+                    // autogroupuv1gXiv (NsxjRsTCEi1ctvN6PmUV1g)
                     margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 14 * fem, 17 * fem),
+                        0 * fem, 0 * fem, 13 * fem, 14 * fem),
                     width: double.infinity,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -470,7 +472,7 @@ class Scene extends StatelessWidget {
                                 width: 26 * fem,
                                 height: 26 * fem,
                                 child: Image.asset(
-                                  'assets/page-1/images/image-7-EUE.png',
+                                  'assets/page-1/images/image-7-hvn.png',
                                 ),
                               ),
                               Text(
@@ -586,57 +588,59 @@ class Scene extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                // autogroupqqveZMp (SiJ36Pk1wmHxsJ27SgQqve)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                                width: 109 * fem,
-                                height: 58 * fem,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      // 5qx (317:85)
-                                      left: 0 * fem,
-                                      top: 0 * fem,
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 109 * fem,
-                                          height: 30 * fem,
-                                          child: Text(
-                                            '10.000.000',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 20 * ffem,
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff020202),
+                              Expanded(
+                                child: Container(
+                                  // autogroupqqveZMp (SiJ36Pk1wmHxsJ27SgQqve)
+                                  margin: EdgeInsets.fromLTRB(
+                                      0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                  width: 109 * fem,
+                                  height: 58 * fem,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        // 5qx (317:85)
+                                        left: 0 * fem,
+                                        top: 0 * fem,
+                                        child: Align(
+                                          child: SizedBox(
+                                            width: 109 * fem,
+                                            height: 30 * fem,
+                                            child: Text(
+                                              '10.000.000',
+                                              style: SafeGoogleFont(
+                                                'Poppins',
+                                                fontSize: 20 * ffem,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.5 * ffem / fem,
+                                                color: Color(0xff020202),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      // zT8 (317:86)
-                                      left: 0 * fem,
-                                      top: 28 * fem,
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 96 * fem,
-                                          height: 30 * fem,
-                                          child: Text(
-                                            '1.000.000',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 20 * ffem,
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff020202),
+                                      Positioned(
+                                        // zT8 (317:86)
+                                        left: 0 * fem,
+                                        top: 28 * fem,
+                                        child: Align(
+                                          child: SizedBox(
+                                            width: 96 * fem,
+                                            height: 30 * fem,
+                                            child: Text(
+                                              '1.000.000',
+                                              style: SafeGoogleFont(
+                                                'Poppins',
+                                                fontSize: 20 * ffem,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.5 * ffem / fem,
+                                                color: Color(0xff020202),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -725,7 +729,7 @@ class Scene extends StatelessWidget {
                                 width: 26 * fem,
                                 height: 26 * fem,
                                 child: Image.asset(
-                                  'assets/page-1/images/image-7-rwG.png',
+                                  'assets/page-1/images/image-7-hvn.png',
                                 ),
                               ),
                               Text(
@@ -841,57 +845,59 @@ class Scene extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Container(
-                                // autogroup6ja6Zrv (SiJ4Zw7pP383DHpgYV6ja6)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                                width: 101 * fem,
-                                height: 58 * fem,
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      // 6M4 (317:148)
-                                      left: 0 * fem,
-                                      top: 0 * fem,
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 101 * fem,
-                                          height: 30 * fem,
-                                          child: Text(
-                                            '5.000.000',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 20 * ffem,
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff020202),
+                              Expanded(
+                                child: Container(
+                                  // autogroup6ja6Zrv (SiJ4Zw7pP383DHpgYV6ja6)
+                                  margin: EdgeInsets.fromLTRB(
+                                      0 * fem, 1 * fem, 0 * fem, 0 * fem),
+                                  width: 101 * fem,
+                                  height: 58 * fem,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        // 6M4 (317:148)
+                                        left: 0 * fem,
+                                        top: 0 * fem,
+                                        child: Align(
+                                          child: SizedBox(
+                                            width: 101 * fem,
+                                            height: 30 * fem,
+                                            child: Text(
+                                              '5.000.000',
+                                              style: SafeGoogleFont(
+                                                'Poppins',
+                                                fontSize: 20 * ffem,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.5 * ffem / fem,
+                                                color: Color(0xff020202),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Positioned(
-                                      // oFU (317:149)
-                                      left: 0 * fem,
-                                      top: 28 * fem,
-                                      child: Align(
-                                        child: SizedBox(
-                                          width: 83 * fem,
-                                          height: 30 * fem,
-                                          child: Text(
-                                            '500.000',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 20 * ffem,
-                                              fontWeight: FontWeight.w600,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff020202),
+                                      Positioned(
+                                        // oFU (317:149)
+                                        left: 0 * fem,
+                                        top: 28 * fem,
+                                        child: Align(
+                                          child: SizedBox(
+                                            width: 83 * fem,
+                                            height: 30 * fem,
+                                            child: Text(
+                                              '500.000',
+                                              style: SafeGoogleFont(
+                                                'Poppins',
+                                                fontSize: 20 * ffem,
+                                                fontWeight: FontWeight.w600,
+                                                height: 1.5 * ffem / fem,
+                                                color: Color(0xff020202),
+                                              ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -906,7 +912,7 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // panduan4SJ (63:462)
+                    // panduanLNA (63:462)
                     margin:
                         EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 9 * fem),
                     child: Text(
@@ -921,16 +927,16 @@ class Scene extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    // autogrouptcxePUa (SiJ1rgJWcfbD1q8hbCTCxE)
+                    // autogroup22gwrbQ (NsxjXcncpNTiqQb76K22GW)
                     margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 3 * fem, 0 * fem),
+                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 2 * fem, 0 * fem),
                     width: double.infinity,
                     height: 90 * fem,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          // group63uxi (63:463)
+                          // group63Arz (63:463)
                           margin: EdgeInsets.fromLTRB(
                               0 * fem, 0 * fem, 20 * fem, 0 * fem),
                           width: 180 * fem,
@@ -962,7 +968,7 @@ class Scene extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          // group649s4 (63:466)
+                          // group64cDC (63:466)
                           width: 180 * fem,
                           height: double.infinity,
                           decoration: BoxDecoration(
@@ -989,127 +995,6 @@ class Scene extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              // navbar1uG (63:414)
-              padding:
-                  EdgeInsets.fromLTRB(25 * fem, 7 * fem, 32 * fem, 8 * fem),
-              width: double.infinity,
-              height: 62 * fem,
-              decoration: BoxDecoration(
-                color: Color(0xff3584ff),
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // group62X6v (63:416)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 106 * fem, 0 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        0 * fem, 5.41 * fem, 0 * fem, 0 * fem),
-                    height: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // igaminghouseSUn (63:417)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 1 * fem, 3.07 * fem),
-                          width: 26.87 * fem,
-                          height: 23.52 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/i-gaming-house-nv2.png',
-                            width: 26.87 * fem,
-                            height: 23.52 * fem,
-                          ),
-                        ),
-                        Text(
-                          // berandakEa (63:419)
-                          'Beranda',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 10 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // group60tbg (63:420)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 2 * fem, 93 * fem, 0 * fem),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // componentqWv (63:421)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 1 * fem, 0 * fem),
-                          width: 30 * fem,
-                          height: 30 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/component.png',
-                            width: 30 * fem,
-                            height: 30 * fem,
-                          ),
-                        ),
-                        Text(
-                          // marketplacexLe (63:422)
-                          'Marketplace',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 10 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // group61tk6 (63:423)
-                    padding: EdgeInsets.fromLTRB(
-                        0 * fem, 6.11 * fem, 0 * fem, 0 * fem),
-                    height: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // iobjecttoolsbriefcasedSn (63:424)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 4.22 * fem),
-                          width: 24.98 * fem,
-                          height: 21.67 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/i-object-tools-briefcase.png',
-                            width: 24.98 * fem,
-                            height: 21.67 * fem,
-                          ),
-                        ),
-                        Text(
-                          // portofolioL6J (63:425)
-                          'Portofolio',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 10 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xffffffff),
                           ),
                         ),
                       ],
