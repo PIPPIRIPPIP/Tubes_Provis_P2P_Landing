@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/edit-profile-peminjam.dart';
+import 'package:myapp/page-1/edit-umkm.dart';
 
 import 'package:myapp/models/user_model.dart';
 
@@ -43,6 +44,19 @@ class Profil extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset(
+                            '../assets/page-1/images/panah.png',
+                            width: 20 * fem,
+                            height: 20 * fem,
+                          ),
+                        ),
+                      ),
                       Text(
                         // profil7Yi (58:124)
                         'Profil',
@@ -203,7 +217,6 @@ class Profil extends StatelessWidget {
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (context) => EditPeminjam()));
-                                    // MaterialPageRoute(builder: (context) => DaftarInvestor()));
                               },
                               child: Container(
                                 // edit1KMG (24:129)
@@ -243,16 +256,22 @@ class Profil extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Text(
-                              // editprofileumkmgLE (63:555)
-                              'edit profile umkm',
-                              textAlign: TextAlign.right,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w400,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff343434),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => EditUMKM()));
+                              },
+                              child : Text(
+                                // editprofileumkmgLE (63:555)
+                                'edit profile umkm',
+                                textAlign: TextAlign.right,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w400,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff343434),
+                                ),
                               ),
                             ),
                           ],

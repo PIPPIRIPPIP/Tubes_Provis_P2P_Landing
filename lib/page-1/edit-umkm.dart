@@ -5,33 +5,29 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/utils.dart';
 
-//Profile peminjam sama umkm disatuin di satu form edit
+//EDIT UMKM
 
-class EditPeminjam extends StatefulWidget {
+class EditUMKM extends StatefulWidget {
   @override
   PageEdit createState() => PageEdit();
 }
 
-class PageEdit extends State<EditPeminjam> {
-  String nama = "";
-  String email = "";
-  String no_telp = "";
-  String nik = "";
-  String password = "";
-  final inputnama = TextEditingController(text: "Dicki");
-  final inputemail = TextEditingController(text: "dicki@example.com");
-  final inputtelp = TextEditingController(text: "08881237779");
-  final inputnik = TextEditingController(text: "32041220072220031");
-  final inputpass = TextEditingController(text: "password");
-  bool isAgreed = false;
+class PageEdit extends State<EditUMKM> {
+  String jenis = "";
+  String prov = "";
+  String kota = "";
+  int pendapatan = 0;
+  final inputjenis = TextEditingController(text: "Kuliner");
+  final inputprov = TextEditingController(text: "Jawa Barat");
+  final inputkota = TextEditingController(text: "Bandung");
+  final inputpendapatan = TextEditingController(text: "100.000.000");
 
   @override
   void dispose() {
-    inputnama.dispose();
-    inputemail.dispose();
-    inputtelp.dispose();
-    inputnik.dispose();
-    inputpass.dispose();
+    inputjenis.dispose();
+    inputprov.dispose();
+    inputkota.dispose();
+    inputpendapatan.dispose();
     super.dispose();
   }
 
@@ -51,201 +47,55 @@ class PageEdit extends State<EditPeminjam> {
             crossAxisAlignment:  CrossAxisAlignment.center,
             children:  [
               Container(
-                
-                margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 12*fem),
-                width:  double.infinity,
-                height:  192*fem,
-                child:  
-                Stack(
-                  children:  [
-                    Positioned(
-                      left:  0*fem,
-                      top:  0*fem,
-                      child:  
-                      Container(
-                        padding:  EdgeInsets.fromLTRB(17*fem, 19*fem, 169.5*fem, 19*fem),
-                        width:  414*fem,
-                        height:  132*fem,
-                        decoration:  BoxDecoration (
-                          color:  Color(0xff3584ff),
-                        ),
-                        child: Row(
-                          crossAxisAlignment:  CrossAxisAlignment.start,
-                          children:  [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Image.asset(
-                                  '../assets/page-1/images/panah.png',
-                                  width: 20 * fem,
-                                  height: 20 * fem,
-                                ),
-                              ),
-                            ),
-                            Text(
-                              // EDIT PROFILE
-                              'Edit Profile',
-                              textAlign:  TextAlign.center,
-                              style:  SafeGoogleFont (
-                                'Poppins',
-                                fontSize:  14*ffem,
-                                fontWeight:  FontWeight.w600,
-                                height:  1.5*ffem/fem,
-                                color:  Color(0xffffffff),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      // FOTO PROFIL
-                      left:  148*fem,
-                      top:  72*fem,
-                      child:  Align(
-                        child: SizedBox(
-                          width:  120*fem,
-                          height:  120*fem,
-                          child: ClipRRect(
-                            borderRadius:  BorderRadius.circular(100*fem),
-                            child: Image.asset(
-                              'assets/page-1/images/profile2-1.png',
-                              fit:  BoxFit.cover,
-                            ),
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 14 * fem),
+                  padding: EdgeInsets.fromLTRB(
+                      17 * fem, 13 * fem, 280 * fem, 12 * fem),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xff3584ff),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset(
+                            '../assets/page-1/images/panah.png',
+                            width: 20 * fem,
+                            height: 20 * fem,
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                // BUTTON UPLOAD
-                margin:  EdgeInsets.fromLTRB(1*fem, 0*fem, 0*fem, 25*fem),
-                child: Text(
-                  'Upload Foto',
-                  textAlign:  TextAlign.center,
-                  style:  SafeGoogleFont (
-                    'Poppins',
-                    fontSize:  14*ffem,
-                    fontWeight:  FontWeight.w600,
-                    height:  1.5*ffem/fem,
-                    decoration:  TextDecoration.underline,
-                    color:  Color(0xff000000),
-                    decorationColor:  Color(0xff000000),
+                      Text(
+                        // isisaldofjk (63:245)
+                        'Edit UMKM',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xffffffff),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
               Container(
                 padding:  EdgeInsets.fromLTRB(32*fem, 9*fem, 31*fem, 12*fem),
                 width:  double.infinity,
                 child: Column(
                   crossAxisAlignment:  CrossAxisAlignment.start,
                   children:  [
+                    // UMKM
                     Container(
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
-                        'Nama',
-                        style:  SafeGoogleFont (
-                          'Poppins',
-                          fontSize:  14*ffem,
-                          fontWeight:  FontWeight.w600,
-                          height:  1.5*ffem/fem,
-                          color:  Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
-                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
-                      width:  double.infinity,
-                      decoration:  BoxDecoration (
-                        border:  Border.all(color: Color(0xffbcbcbc)),
-                        color:  Color(0xffffffff),
-                        borderRadius:  BorderRadius.circular(3*fem),
-                      ),
-                      child: TextField(
-                        controller: inputnama,
-                        onChanged: (text) {
-                          setState(() {
-                            nama = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
-                      child: Text(
-                        'Email',
-                        style:  SafeGoogleFont (
-                          'Poppins',
-                          fontSize:  14*ffem,
-                          fontWeight:  FontWeight.w600,
-                          height:  1.5*ffem/fem,
-                          color:  Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 23*fem),
-                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
-                      width:  double.infinity,
-                      decoration:  BoxDecoration (
-                        border:  Border.all(color: Color(0xffbcbcbc)),
-                        color:  Color(0xffffffff),
-                        borderRadius:  BorderRadius.circular(3*fem),
-                      ),
-                      child: TextField(
-                        controller: inputemail,
-                        onChanged: (text) {
-                          setState(() {
-                            email = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
-                      child: Text(
-                        'Nomor Telepon',
-                        style:  SafeGoogleFont (
-                          'Poppins',
-                          fontSize:  14*ffem,
-                          fontWeight:  FontWeight.w600,
-                          height:  1.5*ffem/fem,
-                          color:  Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                     
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 27*fem),
-                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
-                      width:  double.infinity,
-                      decoration:  BoxDecoration (
-                        border:  Border.all(color: Color(0xffbcbcbc)),
-                        color:  Color(0xffffffff),
-                        borderRadius:  BorderRadius.circular(3*fem),
-                      ),
-                      child: TextField(
-                        controller: inputtelp,
-                        onChanged: (text) {
-                          setState(() {
-                            no_telp = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
-                      child: Text(
-                        'NIK / NPWP',
+                        'Jenis Usaha',
                         style:  SafeGoogleFont (
                           'Poppins',
                           fontSize:  14*ffem,
@@ -265,19 +115,18 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius:  BorderRadius.circular(3*fem),
                       ),
                       child: TextField(
-                        controller: inputnik,
+                        controller: inputjenis,
                         onChanged: (text) {
                           setState(() {
-                            nik = text;
+                            jenis = text;
                           });
                         },
                       ),
                     ),
                     Container(
-                      
                       margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
                       child: Text(
-                        'Password',
+                        'Provinsi Usaha',
                         style:  SafeGoogleFont (
                           'Poppins',
                           fontSize:  14*ffem,
@@ -288,8 +137,7 @@ class PageEdit extends State<EditPeminjam> {
                       ),
                     ),
                     Container(
-                      
-                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 33*fem),
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
                       padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
                       width:  double.infinity,
                       decoration:  BoxDecoration (
@@ -298,10 +146,72 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius:  BorderRadius.circular(3*fem),
                       ),
                       child: TextField(
-                        controller: inputpass,
+                        controller: inputprov,
                         onChanged: (text) {
                           setState(() {
-                            password = text;
+                            prov = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Kota Usaha',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputkota,
+                        onChanged: (text) {
+                          setState(() {
+                            kota = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 9*fem),
+                      child: Text(
+                        'Pendapatan Pertahun',
+                        style:  SafeGoogleFont (
+                          'Poppins',
+                          fontSize:  14*ffem,
+                          fontWeight:  FontWeight.w600,
+                          height:  1.5*ffem/fem,
+                          color:  Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin:  EdgeInsets.fromLTRB(0*fem, 0*fem, 0*fem, 29*fem),
+                      padding:  EdgeInsets.fromLTRB(20*fem, 11*fem, 20*fem, 11*fem),
+                      width:  double.infinity,
+                      decoration:  BoxDecoration (
+                        border:  Border.all(color: Color(0xffbcbcbc)),
+                        color:  Color(0xffffffff),
+                        borderRadius:  BorderRadius.circular(3*fem),
+                      ),
+                      child: TextField(
+                        controller: inputpendapatan,
+                        onChanged: (text) {
+                          setState(() {
+                            pendapatan = int.tryParse(text) ?? 0;
                           });
                         },
                       ),
@@ -313,11 +223,10 @@ class PageEdit extends State<EditPeminjam> {
                         child: ElevatedButton(
                           onPressed: () {
                                   setState(() {
-                                    nama = inputnama.text;
-                                    email = inputemail.text;
-                                    no_telp = inputtelp.text;
-                                    nik = inputnik.text;
-                                    password = inputpass.text;
+                                    jenis = inputjenis.text;
+                                    prov = inputprov.text;
+                                    kota = inputkota.text;
+                                    pendapatan = int.parse(inputpendapatan.text);
                                   });
                                 },
                           style: ElevatedButton.styleFrom(
