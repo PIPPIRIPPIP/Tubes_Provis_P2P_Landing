@@ -20,19 +20,11 @@ class PageEdit extends State<EditPeminjam> {
   String email = "";
   String no_telp = "";
   String nik = "";
-  String jenis = "";
-  String prov = "";
-  String kota = "";
-  int pendapatan = 0;
   String password = "";
   final inputnama = TextEditingController(text: "Dicki");
   final inputemail = TextEditingController(text: "dicki@example.com");
   final inputtelp = TextEditingController(text: "08881237779");
   final inputnik = TextEditingController(text: "32041220072220031");
-  final inputjenis = TextEditingController(text: "Kuliner");
-  final inputprov = TextEditingController(text: "Jawa Barat");
-  final inputkota = TextEditingController(text: "Bandung");
-  final inputpendapatan = TextEditingController(text: "100.000.000");
   final inputpass = TextEditingController(text: "password");
   bool isAgreed = false;
   String _imageUrl = "assets/page-1/images/profile2-1.png";
@@ -83,19 +75,6 @@ class PageEdit extends State<EditPeminjam> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: InkWell(
-                                onTap: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Image.asset(
-                                  '../assets/page-1/images/panah.png',
-                                  width: 20 * fem,
-                                  height: 20 * fem,
-                                ),
-                              ),
-                            ),
                             Text(
                               // EDIT PROFILE
                               'Edit Profile',
@@ -180,20 +159,6 @@ class PageEdit extends State<EditPeminjam> {
                 ),
               ),
               Container(
-                margin:
-                    EdgeInsets.fromLTRB(0 * fem, 0 * fem, 306 * fem, 0 * fem),
-                child: Text(
-                  'Nama',
-                  style: SafeGoogleFont(
-                    'Poppins',
-                    fontSize: 14 * ffem,
-                    fontWeight: FontWeight.w600,
-                    height: 1.5 * ffem / fem,
-                    color: Color(0xff000000),
-                  ),
-                ),
-              ),
-              Container(
                 padding:
                     EdgeInsets.fromLTRB(32 * fem, 9 * fem, 31 * fem, 12 * fem),
                 width: double.infinity,
@@ -202,7 +167,21 @@ class PageEdit extends State<EditPeminjam> {
                   children: [
                     Container(
                       margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 20 * fem),
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Nama',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 23 * fem),
                       padding: EdgeInsets.fromLTRB(
                           20 * fem, 11 * fem, 20 * fem, 11 * fem),
                       width: double.infinity,
