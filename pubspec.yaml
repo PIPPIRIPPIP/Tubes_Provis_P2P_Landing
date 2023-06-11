@@ -208,6 +208,19 @@ flutter:
     - assets/page-1/images/dollar.png
     - assets/page-1/images/logo.png
     - assets/page-1/images/panah.png
+    - assets/page-1/images/mandiri.png
+    - assets/page-1/images/bca.png
+    - assets/page-1/images/permata.png
+    - assets/page-1/images/bri.png
+    - assets/page-1/images/bni.png
+    - assets/page-1/images/gopay.png
+    - assets/page-1/images/shopee.png
+    - assets/page-1/images/linkaja.png
+    - assets/page-1/images/dana.png
+    - assets/page-1/images/ovo.png
+    - assets/page-1/images/indomaret.png
+    - assets/page-1/images/alfa.png
+    - assets/page-1/images/alfamidi.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -43,6 +43,19 @@ class Profil extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 20),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Image.asset(
+                            '../assets/page-1/images/panah.png',
+                            width: 20 * fem,
+                            height: 20 * fem,
+                          ),
+                        ),
+                      ),
                       Text(
                         // profil7Yi (58:124)
                         'Profil',
@@ -201,9 +214,11 @@ class Profil extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => EditPeminjam()));
-                                    // MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditPeminjam()));
+                                // MaterialPageRoute(builder: (context) => DaftarInvestor()));
                               },
                               child: Container(
                                 // edit1KMG (24:129)
@@ -356,30 +371,38 @@ class Profil extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 3 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // kebijakanprivasiXXC (69:429)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 228 * fem, 0 * fem),
-                                    child: Text(
-                                      'Kebijakan Privasi',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditPeminjam()));
+                              },
+                              child: Container(
+                                // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 3 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // kebijakanprivasiXXC (69:429)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 228 * fem, 0 * fem),
+                                      child: Text(
+                                        'Kebijakan Privasi',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -392,30 +415,38 @@ class Profil extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 5 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // syaratdanketentuantFG (69:433)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 197 * fem, 0 * fem),
-                                    child: Text(
-                                      'Syarat dan Ketentuan',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditPeminjam()));
+                              },
+                              child: Container(
+                                // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 5 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // syaratdanketentuantFG (69:433)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 197 * fem, 0 * fem),
+                                      child: Text(
+                                        'Syarat dan Ketentuan',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -428,30 +459,38 @@ class Profil extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 6 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // pusatbantuanGWi (69:434)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 241 * fem, 0 * fem),
-                                    child: Text(
-                                      'Pusat Bantuan',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditPeminjam()));
+                              },
+                              child: Container(
+                                // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 6 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // pusatbantuanGWi (69:434)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 241 * fem, 0 * fem),
+                                      child: Text(
+                                        'Pusat Bantuan',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
@@ -464,30 +503,38 @@ class Profil extends StatelessWidget {
                                 color: Color(0xffa9a9a9),
                               ),
                             ),
-                            Container(
-                              // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
-                              margin: EdgeInsets.fromLTRB(
-                                  31 * fem, 0 * fem, 20 * fem, 0 * fem),
-                              width: double.infinity,
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    // tentangkami4Bg (69:437)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 245 * fem, 0 * fem),
-                                    child: Text(
-                                      'Tentang Kami',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff000000),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => EditPeminjam()));
+                              },
+                              child: Container(
+                                // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
+                                margin: EdgeInsets.fromLTRB(
+                                    31 * fem, 0 * fem, 20 * fem, 0 * fem),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      // tentangkami4Bg (69:437)
+                                      margin: EdgeInsets.fromLTRB(
+                                          0 * fem, 0 * fem, 245 * fem, 0 * fem),
+                                      child: Text(
+                                        'Tentang Kami',
+                                        style: SafeGoogleFont(
+                                          'Poppins',
+                                          fontSize: 12 * ffem,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.5 * ffem / fem,
+                                          color: Color(0xff000000),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],

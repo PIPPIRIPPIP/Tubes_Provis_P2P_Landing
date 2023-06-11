@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/utils.dart';
-import 'package:image_picker/image_picker.dart';
 
 //edit investor
 //nambah atribut nik
@@ -77,6 +77,19 @@ class PageEdit extends State<EditInvestor> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(
+                                  '../assets/page-1/images/panah.png',
+                                  width: 20 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
+                            ),
                             Text(
                               // editprofileV2D (321:190)
                               'Edit Profile',

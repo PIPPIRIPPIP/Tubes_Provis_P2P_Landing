@@ -2,11 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/sukses-topup.dart';
 import 'package:myapp/utils.dart';
 
 import '../models/user_model.dart';
 
-class IsiSaldo extends StatelessWidget {
+class IsiSaldo extends StatefulWidget {
+  @override
+  IsiSaldoState createState() => IsiSaldoState();
+}
+
+class IsiSaldoState extends State<IsiSaldo> {
+  final TextEditingController _controller = TextEditingController();
+  int _selectedButtonIndex = -1;
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -97,98 +106,41 @@ class IsiSaldo extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              // group56kPp (69:337)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xffbcbcbc)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '20.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff5f5f5f),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '20.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '20.000';
+                                  _selectedButtonIndex = 0;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 0,
                             ),
                             SizedBox(
                               width: 16 * fem,
                             ),
-                            Container(
-                              // group57NRC (69:338)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xff3584ff)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '50.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff3584ff),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '50.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '50.000';
+                                  _selectedButtonIndex = 1;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 1,
                             ),
                             SizedBox(
                               width: 16 * fem,
                             ),
-                            Container(
-                              // group58zxN (69:343)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xffbcbcbc)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '100.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff5f5f5f),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '100.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '100.000';
+                                  _selectedButtonIndex = 2;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 2,
                             ),
                           ],
                         ),
@@ -201,98 +153,41 @@ class IsiSaldo extends StatelessWidget {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Container(
-                              // autogroupqpwtAkN (NsxVx6FAjdaKwuxoUiQPwt)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xffbcbcbc)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '200.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff5f5f5f),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '200.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '200.000';
+                                  _selectedButtonIndex = 3;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 3,
                             ),
                             SizedBox(
                               width: 16 * fem,
                             ),
-                            Container(
-                              // autogroupf9w4pK8 (NsxW21JK5CVQqKPdsHf9w4)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xffbcbcbc)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '300.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff5f5f5f),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '300.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '300.000';
+                                  _selectedButtonIndex = 4;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 4,
                             ),
                             SizedBox(
                               width: 16 * fem,
                             ),
-                            Container(
-                              // autogroup9wwiSrJ (NsxW6FgEYbsE6Nbmx39WWi)
-                              width: 119 * fem,
-                              height: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Color(0xffbcbcbc)),
-                                color: Color(0xffffffff),
-                                borderRadius: BorderRadius.circular(10 * fem),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Color(0x3f000000),
-                                    offset: Offset(0 * fem, 4 * fem),
-                                    blurRadius: 2 * fem,
-                                  ),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '500.000',
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 24 * ffem,
-                                    fontWeight: FontWeight.w400,
-                                    height: 1.5 * ffem / fem,
-                                    color: Color(0xff5f5f5f),
-                                  ),
-                                ),
-                              ),
+                            PressableButton(
+                              text: '500.000',
+                              onPressed: () {
+                                setState(() {
+                                  _controller.text = '500.000';
+                                  _selectedButtonIndex = 5;
+                                });
+                              },
+                              isSelected: _selectedButtonIndex == 5,
                             ),
                           ],
                         ),
@@ -324,8 +219,19 @@ class IsiSaldo extends StatelessWidget {
                           color: Color(0xffffffff),
                           borderRadius: BorderRadius.circular(10 * fem),
                         ),
-                        child: Text(
-                          'Rp. 50.000',
+                        child: TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Rp. 50.000',
+                            hintStyle: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 24 * ffem,
+                              fontWeight: FontWeight.w400,
+                              height: 1.5 * ffem / fem,
+                              color: Color.fromARGB(255, 116, 115, 115),
+                            ),
+                          ),
                           style: SafeGoogleFont(
                             'Poppins',
                             fontSize: 24 * ffem,
@@ -333,6 +239,7 @@ class IsiSaldo extends StatelessWidget {
                             height: 1.5 * ffem / fem,
                             color: Color(0xff000000),
                           ),
+                          keyboardType: TextInputType.number,
                         ),
                       ),
                       Container(
@@ -359,7 +266,7 @@ class IsiSaldo extends StatelessWidget {
                         width: 389 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
+                          color: Color.fromARGB(255, 241, 241, 241),
                           borderRadius: BorderRadius.circular(10 * fem),
                         ),
                         child: Column(
@@ -402,209 +309,82 @@ class IsiSaldo extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    // group511Ca (69:282)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle46YCW (69:264)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Text(
-                                          // mandiri5y8 (69:281)
-                                          'Mandiri',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 8 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "MANDIRI",
+                                        imagePath:
+                                            "../assets/page-1/images/mandiri.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                   SizedBox(
                                     width: 37 * fem,
                                   ),
-                                  Container(
-                                    // group52DpS (69:284)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle47Lu4 (69:265)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Text(
-                                          // bri6NS (69:283)
-                                          'BRI',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 8 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "BRI",
+                                        imagePath:
+                                            "../assets/page-1/images/bri.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                   SizedBox(
                                     width: 37 * fem,
                                   ),
-                                  Container(
-                                    // group53pZL (69:286)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle48ZWv (69:266)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // bcaWSA (69:285)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'BCA',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "BCA",
+                                        imagePath:
+                                            "../assets/page-1/images/bca.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                   SizedBox(
                                     width: 37 * fem,
                                   ),
-                                  Container(
-                                    // group54cEJ (69:288)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle49MSn (69:267)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // bni2op (69:287)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'BNI',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "BNI",
+                                        imagePath:
+                                            "../assets/page-1/images/bni.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                   SizedBox(
                                     width: 37 * fem,
                                   ),
-                                  Container(
-                                    // group559dY (69:290)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle50Hze (69:268)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // permataEez (69:289)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'Permata',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "PERMATA",
+                                        imagePath:
+                                            "../assets/page-1/images/permata.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                 ],
                               ),
@@ -621,7 +401,7 @@ class IsiSaldo extends StatelessWidget {
                         width: 389 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
+                          color: Color.fromARGB(255, 241, 241, 241),
                           borderRadius: BorderRadius.circular(10 * fem),
                         ),
                         child: Column(
@@ -638,7 +418,7 @@ class IsiSaldo extends StatelessWidget {
                                   Container(
                                     // ewalletSuU (69:293)
                                     margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 298 * fem, 0 * fem),
+                                        0 * fem, 0 * fem, 290 * fem, 0 * fem),
                                     child: Text(
                                       'E-Wallet',
                                       style: SafeGoogleFont(
@@ -664,214 +444,82 @@ class IsiSaldo extends StatelessWidget {
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                    // group51Gdc (69:308)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 35 * fem, 0 * fem),
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        TextButton(
-                                          // rectangle46Bka (69:309)
-                                          onPressed: () {},
-                                          style: TextButton.styleFrom(
-                                            padding: EdgeInsets.zero,
-                                          ),
-                                          child: Container(
-                                            width: double.infinity,
-                                            height: 39 * fem,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      7 * fem),
-                                              color: Color(0xffd9d9d9),
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          // gopayKbt (69:310)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'Gopay',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "GOPAY",
+                                        imagePath:
+                                            "../assets/page-1/images/gopay.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
-                                  Container(
-                                    // group523Xt (69:305)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 34 * fem, 0 * fem),
-                                    width: 45 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle47NKG (69:306)
-                                          margin: EdgeInsets.fromLTRB(2 * fem,
-                                              0 * fem, 3 * fem, 0 * fem),
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Text(
-                                          // shopeepayJTp (69:307)
-                                          'ShopeePay',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 8 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  SizedBox(
+                                    width: 35 * fem,
                                   ),
-                                  Container(
-                                    // group53Sa2 (69:302)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 37 * fem, 0 * fem),
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle48m6W (69:303)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // linkajaK82 (69:304)
-                                          margin: EdgeInsets.fromLTRB(2 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'LinkAja ',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "ShopeePay",
+                                        imagePath:
+                                            "../assets/page-1/images/shopee.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
-                                  Container(
-                                    // group542HL (69:299)
-                                    margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 37 * fem, 0 * fem),
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle498bG (69:300)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // danaGhU (69:301)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'DANA',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  SizedBox(
+                                    width: 37 * fem,
                                   ),
-                                  Container(
-                                    // group55zdU (69:296)
-                                    width: 40 * fem,
-                                    height: double.infinity,
-                                    decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.circular(7 * fem),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                          // rectangle50XdQ (69:297)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Text(
-                                          // ovoUoY (69:298)
-                                          'OVO',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 8 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "LinkAja",
+                                        imagePath:
+                                            "../assets/page-1/images/linkaja.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
+                                  ),
+                                  SizedBox(
+                                    width: 37 * fem,
+                                  ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "DANA",
+                                        imagePath:
+                                            "../assets/page-1/images/dana.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
+                                  ),
+                                  SizedBox(
+                                    width: 37 * fem,
+                                  ),
+                                  Expanded(
+                                    child: ImageButton(
+                                        text: "OVO",
+                                        imagePath:
+                                            "../assets/page-1/images/ovo.png",
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      SuksesTopUp()));
+                                        }),
                                   ),
                                 ],
                               ),
@@ -886,7 +534,7 @@ class IsiSaldo extends StatelessWidget {
                         width: 389 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
+                          color: Color.fromARGB(255, 241, 241, 241),
                           borderRadius: BorderRadius.circular(10 * fem),
                         ),
                         child: Column(
@@ -903,7 +551,7 @@ class IsiSaldo extends StatelessWidget {
                                   Container(
                                     // minimarketf7L (69:313)
                                     margin: EdgeInsets.fromLTRB(
-                                        0 * fem, 0 * fem, 277 * fem, 0 * fem),
+                                        0 * fem, 0 * fem, 275 * fem, 0 * fem),
                                     child: Text(
                                       'Mini Market ',
                                       style: SafeGoogleFont(
@@ -943,28 +591,18 @@ class IsiSaldo extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          // rectangle46cwg (69:329)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 2 * fem, 0 * fem),
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Text(
-                                          // gopay9gi (69:330)
-                                          'Indomaret',
-                                          style: SafeGoogleFont(
-                                            'Poppins',
-                                            fontSize: 8 * ffem,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.5 * ffem / fem,
-                                            color: Color(0xff000000),
-                                          ),
+                                        Expanded(
+                                          child: ImageButton(
+                                              text: "Indomaret",
+                                              imagePath:
+                                                  "../assets/page-1/images/indomaret.png",
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SuksesTopUp()));
+                                              }),
                                         ),
                                       ],
                                     ),
@@ -983,30 +621,18 @@ class IsiSaldo extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          // rectangle47ECN (69:326)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // alfamartB7c (69:327)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'Alfamart',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
+                                        Expanded(
+                                          child: ImageButton(
+                                              text: "Alfamart",
+                                              imagePath:
+                                                  "../assets/page-1/images/alfa.png",
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SuksesTopUp()));
+                                              }),
                                         ),
                                       ],
                                     ),
@@ -1023,30 +649,18 @@ class IsiSaldo extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
-                                          // rectangle48qT4 (69:323)
-                                          width: double.infinity,
-                                          height: 39 * fem,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(7 * fem),
-                                            color: Color(0xffd9d9d9),
-                                          ),
-                                        ),
-                                        Container(
-                                          // alfamidiPUa (69:324)
-                                          margin: EdgeInsets.fromLTRB(1 * fem,
-                                              0 * fem, 0 * fem, 0 * fem),
-                                          child: Text(
-                                            'Alfamidi',
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 8 * ffem,
-                                              fontWeight: FontWeight.w400,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xff000000),
-                                            ),
-                                          ),
+                                        Expanded(
+                                          child: ImageButton(
+                                              text: "Alfamidi",
+                                              imagePath:
+                                                  "../assets/page-1/images/alfamidi.png",
+                                              onPressed: () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            SuksesTopUp()));
+                                              }),
                                         ),
                                       ],
                                     ),
@@ -1063,6 +677,142 @@ class IsiSaldo extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PressableButton extends StatefulWidget {
+  final String text;
+  final VoidCallback onPressed;
+  final bool isSelected;
+
+  const PressableButton({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+    this.isSelected = false,
+  }) : super(key: key);
+
+  @override
+  _PressableButtonState createState() => _PressableButtonState();
+}
+
+class _PressableButtonState extends State<PressableButton> {
+  bool _isPressed = false;
+  TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textEditingController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    double baseWidth = 414;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isPressed = !_isPressed;
+        });
+
+        widget.onPressed();
+      },
+      child: Container(
+        width: 119 * fem,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: widget.isSelected ? Color(0xff3584ff) : Color(0xffbcbcbc),
+          ),
+          color: Color(0xffffffff),
+          borderRadius: BorderRadius.circular(10 * fem),
+          boxShadow: [
+            BoxShadow(
+              color: Color(0x3f000000),
+              offset: Offset(0 * fem, 4 * fem),
+              blurRadius: 2 * fem,
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            widget.text,
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 24 * ffem,
+              fontWeight: FontWeight.w400,
+              height: 1.5 * ffem / fem,
+              color: widget.isSelected ? Color(0xff3584ff) : Color(0xff5f5f5f),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageButton extends StatelessWidget {
+  final String text;
+  final String imagePath;
+  final VoidCallback onPressed;
+
+  const ImageButton({
+    Key? key,
+    required this.text,
+    required this.imagePath,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    double baseWidth = 414;
+    double fem = MediaQuery.of(context).size.width / baseWidth;
+    double ffem = fem * 0.97;
+
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        width: 40 * fem,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(7 * fem),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 39 * fem,
+              decoration: BoxDecoration(
+                // borderRadius: BorderRadius.circular(7 * fem),
+                borderRadius: BorderRadius.circular(50),
+                color: Color(0xffd9d9d9),
+              ),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.fill,
+              ),
+            ),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                text,
+                style: SafeGoogleFont(
+                  'Poppins',
+                  fontSize: 8 * ffem,
+                  fontWeight: FontWeight.w400,
+                  height: 1.5 * ffem / fem,
+                  color: Color(0xff000000),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

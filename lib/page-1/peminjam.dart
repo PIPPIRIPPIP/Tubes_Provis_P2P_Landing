@@ -67,51 +67,57 @@ class Scene extends StatelessWidget {
                       'assets/page-1/images/logo.png',
                     ),
                   ),
-                  Container(
-                    // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
-                    padding: EdgeInsets.fromLTRB(
-                        200 * fem, 2 * fem, 0 * fem, 3 * fem),
-                    height: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) => Notifikasi()));
-                          },
-                          child: Container(
-                            // notif1DF4 (12:298)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                            width: 25 * fem,
-                            height: 32 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/notif-1.png',
-                              fit: BoxFit.cover,
+                  Expanded(
+                    child: Container(
+                      // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
+                      padding: EdgeInsets.fromLTRB(
+                          180 * fem, 2 * fem, 0 * fem, 3 * fem),
+                      height: double.infinity,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Notifikasi()));
+                            },
+                            child: Container(
+                              // notif1DF4 (12:298)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                              width: 25 * fem,
+                              height: 32 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/notif-1.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        TextButton(
-                          // profile1YYE (9:285)
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Profil(user: user)));
-                          },
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          child: Container(
-                            width: 40 * fem,
-                            height: 40 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/profile-1.png',
-                              fit: BoxFit.cover,
+                          TextButton(
+                            // profile1YYE (9:285)
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Profil(user: user)));
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: Container(
+                              width: 40 * fem,
+                              height: 40 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/profile-1.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -258,7 +264,9 @@ class Scene extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 InkWell(
-                                  onTap: () {Navigator.push(context,
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
                                         MaterialPageRoute(
                                             builder: (context) => IsiSaldo()));
                                   },
@@ -271,8 +279,8 @@ class Scene extends StatelessWidget {
                                       children: [
                                         Container(
                                           // autogroupeuypMJe (3w9oqfpwP4zxrzb8hreUYP)
-                                          margin: EdgeInsets.fromLTRB(
-                                              1 * fem, 0 * fem, 0 * fem, 6 * fem),
+                                          margin: EdgeInsets.fromLTRB(1 * fem,
+                                              0 * fem, 0 * fem, 6 * fem),
                                           width: 40 * fem,
                                           height: 40 * fem,
                                           child: Image.asset(
@@ -307,9 +315,12 @@ class Scene extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       InkWell(
-                                        onTap: () {Navigator.push(context,
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
                                               MaterialPageRoute(
-                                                  builder: (context) => TarikSaldo()));
+                                                  builder: (context) =>
+                                                      TarikSaldo()));
                                         },
                                         child: Container(
                                           // autogroupwpmmk5t (3w9owAfn7Mc22EyfdmWpMM)
@@ -325,9 +336,12 @@ class Scene extends StatelessWidget {
                                         ),
                                       ),
                                       InkWell(
-                                        onTap: () {Navigator.push(context,
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
                                               MaterialPageRoute(
-                                                  builder: (context) => RiwayatTransaksiPage()));
+                                                  builder: (context) =>
+                                                      RiwayatTransaksiPage()));
                                         },
                                         child: Container(
                                           // autogroupen3hrPp (3w9ozv4Xt1HjipWrBFen3H)
