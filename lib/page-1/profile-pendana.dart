@@ -3,6 +3,9 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/edit-profile-investor.dart';
+import 'package:myapp/page-1/kebijakan-privasi.dart';
+import 'package:myapp/page-1/syarat-dan-ketentuan.dart';
+import 'package:myapp/page-1/tentang-kami.dart';
 import 'package:myapp/utils.dart';
 
 //nambahin on tap link ke edit profile
@@ -244,7 +247,7 @@ class ProfilPendana extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditInvestor()));
+                                        builder: (context) => Kebijakan()));
                               },
                               child: Container(
                                 // autogroupuba6aYv (NsxhLM7MDCQeEaCaUuUBA6)
@@ -288,7 +291,8 @@ class ProfilPendana extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditInvestor()));
+                                        builder: (context) =>
+                                            SyaratKetentuan()));
                               },
                               child: Container(
                                 // autogrouplwy49kS (NsxhRqxBwV1hPpb7QpLWy4)
@@ -332,51 +336,7 @@ class ProfilPendana extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditInvestor()));
-                              },
-                              child: Container(
-                                // autogroupzffk86a (NsxhXqnCNXJr7YebszZFfk)
-                                margin: EdgeInsets.fromLTRB(
-                                    31 * fem, 0 * fem, 20 * fem, 6 * fem),
-                                width: double.infinity,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // pusatbantuanroG (70:91)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 241 * fem, 0 * fem),
-                                      child: Text(
-                                        'Pusat Bantuan',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // line24y7C (70:99)
-                              margin: EdgeInsets.fromLTRB(
-                                  1 * fem, 0 * fem, 0 * fem, 3 * fem),
-                              width: 380 * fem,
-                              height: 1 * fem,
-                              decoration: BoxDecoration(
-                                color: Color(0xffa9a9a9),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => EditInvestor()));
+                                        builder: (context) => TentangKami()));
                               },
                               child: Container(
                                 // autogroupjobuVbL (NsxhdAxeXtgY5y9UxpJoBU)
