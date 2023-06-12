@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from routes import router as _peminjam_routes, router2 as _pendana_routes
+from routes import router_peminjam as _peminjam_routes, router_pendana as _pendana_routes
 import database as _db
 import models as _models
 

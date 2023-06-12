@@ -30,6 +30,18 @@ class PageEdit extends State<EditPeminjam> {
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
+  TextEditingController inputjenis = TextEditingController();
+  String jenis = '';
+
+  TextEditingController inputprov = TextEditingController();
+  String prov = '';
+
+  TextEditingController inputkota = TextEditingController();
+  String kota = '';
+
+  TextEditingController inputpendapatan = TextEditingController();
+  int pendapatan = 0;
+
   @override
   void dispose() {
     inputnama.dispose();
@@ -37,6 +49,10 @@ class PageEdit extends State<EditPeminjam> {
     inputtelp.dispose();
     inputnik.dispose();
     inputpass.dispose();
+    inputjenis.dispose();
+    inputprov.dispose();
+    inputkota.dispose();
+    inputpendapatan.dispose();
     super.dispose();
   }
 
@@ -102,6 +118,7 @@ class PageEdit extends State<EditPeminjam> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100 * fem),
                             child: kIsWeb
+                                // ignore: unnecessary_null_comparison
                                 ? (_imageUrl != null
                                     ? Image.network(
                                         _imageUrl!,
