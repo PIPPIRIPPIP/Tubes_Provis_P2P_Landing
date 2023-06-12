@@ -50,7 +50,7 @@ class PageEdit extends State<EditUMKM> {
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 14 * fem),
                   padding: EdgeInsets.fromLTRB(
-                      17 * fem, 13 * fem, 280 * fem, 12 * fem),
+                      17 * fem, 13 * fem, 200 * fem, 12 * fem),
                   width: double.infinity,
                   decoration: BoxDecoration(
                     color: Color(0xff3584ff),
@@ -217,7 +217,6 @@ class PageEdit extends State<EditUMKM> {
                       ),
                     ),
                     Container(
-                      
                       margin:  EdgeInsets.fromLTRB(42*fem, 0*fem, 43*fem, 18*fem),
                       child: Center(
                         child: ElevatedButton(

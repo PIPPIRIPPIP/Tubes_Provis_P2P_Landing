@@ -75,6 +75,19 @@ class PageEdit extends State<EditPeminjam> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(
+                                  '../assets/page-1/images/panah.png',
+                                  width: 20 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
+                            ),
                             Text(
                               // EDIT PROFILE
                               'Edit Profile',
