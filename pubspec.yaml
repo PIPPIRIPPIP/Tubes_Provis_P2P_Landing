@@ -45,6 +45,8 @@ dependencies:
   intl: ^0.18.1
   equatable: ^2.0.5
   image_picker: ^0.8.7+5
+  flutter_masked_text2: ^0.9.1
+  # flutter_masked_text: ^0.8.0
 
 dev_dependencies:
   flutter_test:
@@ -130,7 +132,6 @@ flutter:
     - assets/page-1/images/component-swL.png
     - assets/page-1/images/moneylogodesignstemplatevectorfinancelogodesignsvector1-removebg-preview-2-vkW.png
     - assets/page-1/images/group-66.png
-    - assets/page-1/images/image-26.png
     - assets/page-1/images/receive-Qwp.png
     - assets/page-1/images/.png
     - assets/page-1/images/auto-group-ghef.png
