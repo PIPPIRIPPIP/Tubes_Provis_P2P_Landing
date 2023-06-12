@@ -328,10 +328,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputjenis,
+                        // controller: inputjenis,
                         onChanged: (text) {
                           setState(() {
-                            jenis = text;
+                            // jenis = text;
                           });
                         },
                       ),
@@ -362,10 +362,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputprov,
+                        // controller: inputprov,
                         onChanged: (text) {
                           setState(() {
-                            prov = text;
+                            // prov = text;
                           });
                         },
                       ),
@@ -396,10 +396,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputkota,
+                        // controller: inputkota,
                         onChanged: (text) {
                           setState(() {
-                            kota = text;
+                            // kota = text;
                           });
                         },
                       ),
@@ -430,10 +430,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputpendapatan,
+                        // controller: inputpendapatan,
                         onChanged: (text) {
                           setState(() {
-                            pendapatan = int.tryParse(text) ?? 0;
+                            // pendapatan = int.tryParse(text) ?? 0;
                           });
                         },
                       ),
@@ -483,9 +483,9 @@ class PageEdit extends State<EditPeminjam> {
                               email = inputemail.text;
                               no_telp = inputtelp.text;
                               nik = inputnik.text;
-                              jenis = inputjenis.text;
-                              prov = inputprov.text;
-                              kota = inputkota.text;
+                              // jenis = inputjenis.text;
+                              // prov = inputprov.text;
+                              // kota = inputkota.text;
                               // pendapatan = inputpendapatan.text;
                               password = inputpass.text;
                             });
