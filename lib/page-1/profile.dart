@@ -6,6 +6,8 @@ import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/edit-profile-peminjam.dart';
 import 'package:myapp/page-1/edit-umkm.dart';
 
+import 'package:myapp/page-1/bayar-pinjaman.dart';
+
 import 'package:myapp/models/user_model.dart';
 
 //nambahin on tap link ke edit profile
@@ -289,7 +291,7 @@ class Profil extends StatelessWidget {
                         padding: EdgeInsets.fromLTRB(
                             14 * fem, 6 * fem, 16 * fem, 6 * fem),
                         width: double.infinity,
-                        height: 116 * fem,
+                        height: 100 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
                           color: Color(0xffffffff),
@@ -306,9 +308,9 @@ class Profil extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              // jenisusahaprovinisusahakotausa (63:549)
+                              
                               margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 129 * fem, 0 * fem),
+                                  0 * fem, 8 * fem, 129 * fem, 0 * fem),
                               constraints: BoxConstraints(
                                 maxWidth: 134 * fem,
                               ),
@@ -324,7 +326,7 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              // kulinerjawabaratbandungrp10000 (63:554)
+                              margin: EdgeInsets.fromLTRB(0 * fem, 8 * fem, 0 * fem, 0 * fem),
                               constraints: BoxConstraints(
                                 maxWidth: 88 * fem,
                               ),
@@ -359,11 +361,8 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        // autogroup4fawYfG (3w9wz6vQwrWvCgDgx54Faw)
-                        margin: EdgeInsets.fromLTRB(
-                            0 * fem, 0 * fem, 1 * fem, 188 * fem),
-                        padding: EdgeInsets.fromLTRB(
-                            0 * fem, 10 * fem, 0 * fem, 8 * fem),
+                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 50 * fem),
+                        padding: EdgeInsets.fromLTRB(0 * fem, 10 * fem, 0 * fem, 8 * fem),
                         width: 381 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
@@ -473,7 +472,7 @@ class Profil extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditPeminjam()));
+                                        builder: (context) => BayarTagihan()));
                               },
                               child: Container(
                                 // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
@@ -550,9 +549,33 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
+                        margin:  EdgeInsets.fromLTRB(60*fem, 0*fem, 60*fem, 45*fem),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 255, 54, 54),
+                              fixedSize: Size(150, 30),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            child: Text('Log out',
+                              style:  SafeGoogleFont (
+                                'Poppins',
+                                fontSize:  15*ffem,
+                                fontWeight:  FontWeight.w500,
+                                height:  1.5*ffem/fem,
+                                color:  Color(0xffffffff),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
                         // version10NTG (69:447)
-                        margin: EdgeInsets.fromLTRB(
-                            1 * fem, 0 * fem, 0 * fem, 0 * fem),
+                        margin: EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 0 * fem),
                         child: Text(
                           'version 1.0',
                           style: SafeGoogleFont(

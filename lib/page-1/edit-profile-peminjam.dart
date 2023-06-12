@@ -30,6 +30,18 @@ class PageEdit extends State<EditPeminjam> {
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
+  TextEditingController inputjenis = TextEditingController();
+  String jenis = '';
+
+  TextEditingController inputprov = TextEditingController();
+  String prov = '';
+
+  TextEditingController inputkota = TextEditingController();
+  String kota = '';
+
+  TextEditingController inputpendapatan = TextEditingController();
+  int pendapatan = 0;
+
   @override
   void dispose() {
     inputnama.dispose();
@@ -37,6 +49,10 @@ class PageEdit extends State<EditPeminjam> {
     inputtelp.dispose();
     inputnik.dispose();
     inputpass.dispose();
+    inputjenis.dispose();
+    inputprov.dispose();
+    inputkota.dispose();
+    inputpendapatan.dispose();
     super.dispose();
   }
 
@@ -75,6 +91,19 @@ class PageEdit extends State<EditPeminjam> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(
+                                  '../assets/page-1/images/panah.png',
+                                  width: 20 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
+                            ),
                             Text(
                               // EDIT PROFILE
                               'Edit Profile',
@@ -102,6 +131,7 @@ class PageEdit extends State<EditPeminjam> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100 * fem),
                             child: kIsWeb
+                                // ignore: unnecessary_null_comparison
                                 ? (_imageUrl != null
                                     ? Image.network(
                                         _imageUrl!,
@@ -328,10 +358,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        // controller: inputjenis,
+                        controller: inputjenis,
                         onChanged: (text) {
                           setState(() {
-                            // jenis = text;
+                            jenis = text;
                           });
                         },
                       ),
@@ -362,10 +392,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        // controller: inputprov,
+                        controller: inputprov,
                         onChanged: (text) {
                           setState(() {
-                            // prov = text;
+                            prov = text;
                           });
                         },
                       ),
@@ -396,10 +426,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        // controller: inputkota,
+                        controller: inputkota,
                         onChanged: (text) {
                           setState(() {
-                            // kota = text;
+                            kota = text;
                           });
                         },
                       ),
@@ -430,10 +460,10 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        // controller: inputpendapatan,
+                        controller: inputpendapatan,
                         onChanged: (text) {
                           setState(() {
-                            // pendapatan = int.tryParse(text) ?? 0;
+                            pendapatan = int.tryParse(text) ?? 0;
                           });
                         },
                       ),
@@ -483,9 +513,9 @@ class PageEdit extends State<EditPeminjam> {
                               email = inputemail.text;
                               no_telp = inputtelp.text;
                               nik = inputnik.text;
-                              // jenis = inputjenis.text;
-                              // prov = inputprov.text;
-                              // kota = inputkota.text;
+                              jenis = inputjenis.text;
+                              prov = inputprov.text;
+                              kota = inputkota.text;
                               // pendapatan = inputpendapatan.text;
                               password = inputpass.text;
                             });

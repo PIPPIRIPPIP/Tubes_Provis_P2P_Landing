@@ -1,45 +1,73 @@
-from sqlalchemy import Column, String, Integer, DateTime, ForeignKey
+from sqlalchemy import Column, String, Integer, DateTime, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 import datetime as _dt
 import passlib.hash as _hash
 
 from database import Base
 
-
+# USER
 class User(Base):
     __tablename__ = "users"
-    id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, index=True)
-    username = Column(String)
-    password = Column(String)
-    date_created = Column(DateTime, default=_dt.datetime.utcnow)
-
-    def verify_password(self, password: str):
-        return _hash.bcrypt.verify(password, self.password)
-    
-# PEMINJAM
-class Peminjam(Base):
-    __tablename__ = 'peminjam'
     
     id = Column(Integer, primary_key=True, index=True)
     email = Column(String, unique=True, nullable=False, index=True)
     password = Column(String, nullable=False)
     tanggal_dibuat = Column(DateTime, default=_dt.datetime.utcnow)
     nama = Column(String)
-    nik = Column(String)
-    nomor_ponsel = Column(String)
-    alamat = Column(String)
+    nomor_ponsel = Column(String, unique=True)
     saldo = Column(Integer)
+    foto = Column(String)
+
+    peminjam = relationship('Peminjam', back_populates='user')
+    pendana = relationship('Pendana', back_populates='user')
+    transaksi_pembayaran = relationship('TransaksiPembayaran', back_populates='user')
+    notifikasi = relationship('Notifikasi', back_populates='user')
+    
+    def verify_password(self, password: str):
+        return _hash.bcrypt.verify(password, self.password)
+    
+class TransaksiPembayaran(Base):
+    __tablename__ = 'transaksi_pembayaran'
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    jenis = Column(String)
+    metode_pembayaran = Column(String)
+    jumlah = Column(Integer)
+    timestamp = Column(DateTime)
+    
+    user = relationship('User', back_populates='transaksi_pembayaran')
+    
+class Notifikasi(Base):
+    __tablename__ = 'notifikasi'
+    
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    jenis = Column(String)
+    judul = Column(String)
+    pesan = Column(String)
+    timestamp = Column(DateTime)
+    
+    user = relationship('User', back_populates='notifikasi')
+    
+# PEMINJAM
+class Peminjam(Base):
+    __tablename__ = 'peminjam'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    jenis = Column(String)
+    nik = Column(String)
+    alamat = Column(String)
     grade = Column(Integer)
     jenis_usaha = Column(String)
     provinsi_usaha = Column(String)
     kota_usaha = Column(String)
     pendapatan = Column(Integer)
-    
-    riwayat_transaksi = relationship('RiwayatTransaksi', back_populates='peminjam')
+
+    user = relationship('User', back_populates='peminjam')
     pinjaman = relationship('Pinjaman', back_populates='peminjam')
-    riwayat_pinjaman = relationship('RiwayatPinjaman', back_populates='peminjam')
-    notifikasi = relationship('Notifikasi', back_populates='peminjam')
+    pembayaran = relationship('Pembayaran', back_populates='peminjam')
 
 class Pinjaman(Base):
     __tablename__ = 'pinjaman'
@@ -55,64 +83,35 @@ class Pinjaman(Base):
     jumlah_angsuran = Column(Integer)
     tujuan_pinjaman = Column(String)
     jumlah_didanai = Column(Integer)
-    
-    peminjam = relationship('Peminjam', back_populates='pinjaman')
-    investasi = relationship('Investasi', back_populates='pinjaman')
-    
-class RiwayatPinjaman(Base):
-    __tablename__ = 'riwayat_pinjaman'
-    
-    id = Column(Integer, primary_key=True)
-    peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
-    tanggal_pinjaman = Column(String)
-    jumlah_pinjaman = Column(Integer)
-    tenor = Column(Integer)
-    bunga = Column(Integer)
+    jumlah_pembayaran = Column(Integer)
     tanggal_selesai = Column(String)
     status = Column(String)
     
-    peminjam = relationship('Peminjam', back_populates='riwayat_pinjaman')
+    peminjam = relationship('Peminjam', back_populates='pinjaman')
+    investasi = relationship('Investasi', back_populates='pinjaman')
+    pembayaran = relationship('Pembayaran', back_populates='pinjaman')
     
-class RiwayatTransaksi(Base):
-    __tablename__ = 'riwayat_transaksi'
-    
-    id = Column(Integer, primary_key=True)
-    peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
-    jenis = Column(String)
-    metode_pembayaran = Column(String)
-    jumlah = Column(Integer)
-    timestamp = Column(DateTime)
-    
-    peminjam = relationship('Peminjam', back_populates='riwayat_transaksi')
-
-class Notifikasi(Base):
-    __tablename__ = 'notifikasi'
+class Pembayaran(Base):
+    __tablename__ = 'pembayaran'
     
     id = Column(Integer, primary_key=True)
+    pinjaman_id = Column(Integer, ForeignKey('pinjaman.id'))
     peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
-    judul = Column(String)
-    pesan = Column(String)
-    timestamp = Column(DateTime)
+    tanggal_pembayaran = Column(DateTime, default=_dt.datetime.utcnow)
+    jumlah_pembayaran = Column(Integer)
     
-    peminjam = relationship('Peminjam', back_populates='notifikasi')
+    pinjaman = relationship('Pinjaman', back_populates='pembayaran')
+    peminjam = relationship('Peminjam', back_populates='pembayaran')
 
 # PENDANA 
 class Pendana(Base):
     __tablename__ = 'pendana'
     
     id = Column(Integer, primary_key=True, index=True)
-    email = Column(String, unique=True, nullable=False, index=True)
-    password = Column(String, nullable=False)
-    waktu_dibuat = Column(DateTime, default=_dt.datetime.utcnow)
-    nama = Column(String)
-    nik = Column(String)
-    nomor_ponsel = Column(String)
-    saldo = Column(Integer)
+    user_id = Column(Integer, ForeignKey('users.id'))
     
-    riwayat_transaksi = relationship('RiwayatTransaksi', back_populates='pendana')
+    user = relationship('User', back_populates='pendana')
     investasi = relationship('Investasi', back_populates='pendana')
-    riwayat_investasi = relationship('RiwayatInvestasi', back_populates='pendana')
-    notifikasi = relationship('Notifikasi', back_populates='pendana')
 
 class Investasi(Base):
     __tablename__ = 'investasi'
@@ -123,43 +122,35 @@ class Investasi(Base):
     jumlah_investasi = Column(Integer)
     keuntungan = Column(Integer)
     tanggal_investasi = Column(DateTime)
+    status = Column(Enum('Dalam Proses', 'Berhasil', 'Dibatalkan'))
     
     pinjaman = relationship('Pinjaman', back_populates='investasi')
     pendana = relationship('Pendana', back_populates='investasi')
 
-class RiwayatInvestasi(Base):
-    __tablename__ = 'riwayat_investasi'
+        
+'''
+# investasi
+def invest(self, jumlah_dana):
+        self.jumlah_investasi += jumlah_dana
+        self.pinjaman.jumlah_didanai += jumlah_dana
+        self.pendana.user.saldo -= jumlah_dana
+        self.pinjaman.peminjam.user.saldo += jumlah_dana
+        # tambahkan logika lain yang diperlukan
     
-    id = Column(Integer, primary_key=True)
-    pinjaman_id = Column(Integer, ForeignKey('pinjaman.id'))
-    pendana_id = Column(Integer, ForeignKey('pendana.id'))
-    jumlah_investasi = Column(Integer)
-    keuntungan = Column(Integer)
-    tanggal_investasi = Column(DateTime)
-    status = Column(String)
-    
-    pinjaman = relationship('Pinjaman', back_populates='riwayat_investasi')
-    pendana = relationship('Pendana', back_populates='riwayat_investasi')
-    
-class RiwayatTransaksiPendana(Base):
-    __tablename__ = 'riwayat_transaksi_pendana'
-    
-    id = Column(Integer, primary_key=True)
-    pendana_id = Column(Integer, ForeignKey('pendana.id'))
-    jenis = Column(String)
-    metode_pembayaran = Column(String)
-    jumlah = Column(Integer)
-    timestamp = Column(DateTime)
-    
-    pendana = relationship('pendana', back_populates='riwayat_transaksi_pendana')
+    def cancel_investment(self):
+        self.pendana.user.saldo += self.jumlah_investasi
+        self.pinjaman.jumlah_didanai -= self.jumlah_investasi
+        self.status = 'Dibatalkan'
+        # tambahkan logika lain yang diperlukan
 
-class NotifikasiPendana(Base):
-    __tablename__ = 'notifikasi_pendana'
-    
-    id = Column(Integer, primary_key=True)
-    pendana_id = Column(Integer, ForeignKey('pendana.id'))
-    judul = Column(String)
-    pesan = Column(String)
-    timestamp = Column(DateTime)
-    
-    pendana = relationship('pendana', back_populates='notifikasi_pendana')
+# pembayaran
+def bayar_angsuran(self, jumlah_angsuran):
+        if self.jumlah_pembayaran >= jumlah_angsuran:
+            self.peminjam.user.saldo -= jumlah_angsuran
+            self.pendana.user.saldo += jumlah_angsuran
+            self.jumlah_pembayaran -= jumlah_angsuran
+            # tambahkan logika lain yang diperlukan
+        else:
+            # tambahkan logika jika jumlah pembayaran tidak mencukupi
+            pass
+'''
