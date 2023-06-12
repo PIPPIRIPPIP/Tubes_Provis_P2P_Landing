@@ -12,6 +12,8 @@ import 'isi-saldo.dart';
 import 'tarik-saldo.dart';
 import 'riwayat-transaksi.dart';
 
+import 'package:myapp/page-1/bayar-pinjaman.dart';
+
 class Peminjam extends StatelessWidget {
   final User user;
 
@@ -860,19 +862,30 @@ class Scene extends StatelessWidget {
                                     0 * fem, 0 * fem, 220 * fem, 0 * fem),
                                 width: 86 * fem,
                                 height: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Color(0xff3584ff),
-                                  borderRadius: BorderRadius.circular(5 * fem),
-                                ),
                                 child: Center(
-                                  child: Text(
-                                    'Bayar',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 12 * ffem,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5 * ffem / fem,
-                                      color: Color(0xffffffff),
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => BayarTagihan()));
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Color(0xff3584ff),
+                                      //fixedSize: Size(150, 30),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(5 * fem),
+                                      ),
+                                    ),
+                                    child:
+                                      Text('Bayar',
+                                        style:  SafeGoogleFont (
+                                        'Poppins',
+                                        fontSize:  15*ffem,
+                                        fontWeight:  FontWeight.w500,
+                                        height:  1.5*ffem/fem,
+                                        color:  Color(0xffffffff),
+                                      ),
                                     ),
                                   ),
                                 ),

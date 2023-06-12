@@ -91,6 +91,19 @@ class PageEdit extends State<EditPeminjam> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Image.asset(
+                                  '../assets/page-1/images/panah.png',
+                                  width: 20 * fem,
+                                  height: 20 * fem,
+                                ),
+                              ),
+                            ),
                             Text(
                               // EDIT PROFILE
                               'Edit Profile',
@@ -318,143 +331,6 @@ class PageEdit extends State<EditPeminjam> {
                         },
                       ),
                     ),
-                    // UMKM
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Jenis Usaha',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputjenis,
-                        onChanged: (text) {
-                          setState(() {
-                            jenis = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Provinsi Usaha',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputprov,
-                        onChanged: (text) {
-                          setState(() {
-                            prov = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Kota Usaha',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputkota,
-                        onChanged: (text) {
-                          setState(() {
-                            kota = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Pendapatan Pertahun',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputpendapatan,
-                        onChanged: (text) {
-                          setState(() {
-                            pendapatan = int.tryParse(text) ?? 0;
-                          });
-                        },
-                      ),
-                    ),
                     Container(
                       margin: EdgeInsets.fromLTRB(
                           0 * fem, 0 * fem, 0 * fem, 9 * fem),
@@ -500,10 +376,6 @@ class PageEdit extends State<EditPeminjam> {
                               email = inputemail.text;
                               no_telp = inputtelp.text;
                               nik = inputnik.text;
-                              jenis = inputjenis.text;
-                              prov = inputprov.text;
-                              kota = inputkota.text;
-                              // pendapatan = inputpendapatan.text;
                               password = inputpass.text;
                             });
                           },
