@@ -59,100 +59,41 @@ class Scene extends StatelessWidget {
                   15 * fem, 0 * fem, 17.64 * fem, 17.85 * fem),
               width: double.infinity,
               height: 42.15 * fem,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    // seachaGW (45:54)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 75 * fem, 0 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        20 * fem, 13 * fem, 73 * fem, 13 * fem),
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xff6c6c70)),
-                      borderRadius: BorderRadius.circular(20 * fem),
+              child: Container(
+                // seachaGW (45:54)
+                margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 170 * fem,
+                    0 * fem), // Ubah nilai margin di sini
+                padding: EdgeInsets.fromLTRB(20 * fem, 13 * fem, 30 * fem,
+                    13 * fem), // Ubah nilai padding di sini
+                height: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xff6c6c70)),
+                  borderRadius: BorderRadius.circular(20 * fem),
+                ),
+                child: TextField(
+                  onSubmitted: (value) {
+                    // Tindakan yang akan diambil saat tombol "Submit" ditekan
+                    print('Nilai yang dicari: $value');
+                    // Tambahkan kode logika yang sesuai di sini
+                  },
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    icon: Image.asset(
+                      'assets/page-1/images/magnifyingglass.png',
+                      width: 16 * fem,
+                      height: 16.15 * fem,
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // magnifyingglassTr6 (I45:54;135:4110)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 20 * fem, 0 * fem),
-                          width: 16 * fem,
-                          height: 16.15 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/magnifyingglass.png',
-                            width: 16 * fem,
-                            height: 16.15 * fem,
-                          ),
-                        ),
-                        Container(
-                          // searchNiA (I45:54;135:4111)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 0.15 * fem),
-                          child: Text(
-                            'Search',
-                            style: SafeGoogleFont(
-                              'SF Pro Display',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1 * ffem / fem,
-                              letterSpacing: 0.32 * fem,
-                              color: Color(0xff6c6c70),
-                            ),
-                          ),
-                        ),
-                      ],
+                    hintText: 'Search',
+                    hintStyle: SafeGoogleFont(
+                      'SF Pro Display',
+                      fontSize: 16 * ffem,
+                      fontWeight: FontWeight.w400,
+                      height: 1 * ffem / fem,
+                      letterSpacing: 0.32 * fem,
+                      color: Color(0xff6c6c70),
                     ),
                   ),
-                  Container(
-                    // buttonsV26 (45:188)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 0 * fem, 0.15 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        29 * fem, 13 * fem, 29 * fem, 13 * fem),
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Color(0xfff2f2f7),
-                      borderRadius: BorderRadius.circular(30 * fem),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // labelBvW (I45:188;137:4014)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 16 * fem, 0 * fem),
-                          child: Text(
-                            'Filter',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 16 * ffem,
-                              fontWeight: FontWeight.w500,
-                              height: 1 * ffem / fem,
-                              letterSpacing: 0.32 * fem,
-                              color: Color(0xff252525),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          // chevronleft6na (I45:188;137:4015)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 0 * fem),
-                          width: 13.36 * fem,
-                          height: 7.69 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/chevronleft-LNS.png',
-                            width: 13.36 * fem,
-                            height: 7.69 * fem,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Container(
@@ -266,7 +207,7 @@ class Scene extends StatelessWidget {
                       Container(
                         // autogroup7bstggE (NsxyrTRETjG6Fam4kr7Bst)
                         margin: EdgeInsets.fromLTRB(
-                            9 * fem, 0 * fem, 27 * fem, 8 * fem),
+                            9 * fem, 0 * fem, 25 * fem, 8 * fem),
                         width: double.infinity,
                         height: 61 * fem,
                         child: Row(
@@ -673,7 +614,7 @@ class Scene extends StatelessWidget {
                       Container(
                         // autogroupdh2vig6 (Nsy1dexH4HWtP6xoa1Dh2v)
                         margin: EdgeInsets.fromLTRB(
-                            10 * fem, 0 * fem, 27 * fem, 10 * fem),
+                            10 * fem, 0 * fem, 25 * fem, 10 * fem),
                         width: double.infinity,
                         height: 57 * fem,
                         child: Row(
