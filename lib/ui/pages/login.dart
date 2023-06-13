@@ -6,6 +6,8 @@ import 'package:myapp/page-1/peminjam.dart';
 import 'package:myapp/page-1/pendana.dart';
 import 'package:myapp/utils.dart';
 
+import 'package:myapp/page-1/pilih-akun.dart';
+
 class Login extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -189,6 +191,10 @@ class Login extends StatelessWidget {
                                         child: TextButton(
                                           onPressed: () {
                                             // Navigation logic for registration page
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => PilihAkun()));
                                           },
                                           style: TextButton.styleFrom(
                                               padding: EdgeInsets.zero),
