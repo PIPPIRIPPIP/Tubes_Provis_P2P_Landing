@@ -30,6 +30,18 @@ class PageEdit extends State<EditPeminjam> {
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
+  TextEditingController inputjenis = TextEditingController();
+  String jenis = '';
+
+  TextEditingController inputprov = TextEditingController();
+  String prov = '';
+
+  TextEditingController inputkota = TextEditingController();
+  String kota = '';
+
+  TextEditingController inputpendapatan = TextEditingController();
+  int pendapatan = 0;
+
   @override
   void dispose() {
     inputnama.dispose();
@@ -37,6 +49,10 @@ class PageEdit extends State<EditPeminjam> {
     inputtelp.dispose();
     inputnik.dispose();
     inputpass.dispose();
+    inputjenis.dispose();
+    inputprov.dispose();
+    inputkota.dispose();
+    inputpendapatan.dispose();
     super.dispose();
   }
 
@@ -115,6 +131,7 @@ class PageEdit extends State<EditPeminjam> {
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100 * fem),
                             child: kIsWeb
+                                // ignore: unnecessary_null_comparison
                                 ? (_imageUrl != null
                                     ? Image.network(
                                         _imageUrl!,
@@ -314,6 +331,143 @@ class PageEdit extends State<EditPeminjam> {
                         },
                       ),
                     ),
+                    // UMKM
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Jenis Usaha',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffbcbcbc)),
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(3 * fem),
+                      ),
+                      child: TextField(
+                        controller: inputjenis,
+                        onChanged: (text) {
+                          setState(() {
+                            jenis = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Provinsi Usaha',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffbcbcbc)),
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(3 * fem),
+                      ),
+                      child: TextField(
+                        controller: inputprov,
+                        onChanged: (text) {
+                          setState(() {
+                            prov = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Kota Usaha',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffbcbcbc)),
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(3 * fem),
+                      ),
+                      child: TextField(
+                        controller: inputkota,
+                        onChanged: (text) {
+                          setState(() {
+                            kota = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Pendapatan Pertahun',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffbcbcbc)),
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(3 * fem),
+                      ),
+                      child: TextField(
+                        controller: inputpendapatan,
+                        onChanged: (text) {
+                          setState(() {
+                            pendapatan = int.tryParse(text) ?? 0;
+                          });
+                        },
+                      ),
+                    ),
                     Container(
                       margin: EdgeInsets.fromLTRB(
                           0 * fem, 0 * fem, 0 * fem, 9 * fem),
@@ -359,6 +513,10 @@ class PageEdit extends State<EditPeminjam> {
                               email = inputemail.text;
                               no_telp = inputtelp.text;
                               nik = inputnik.text;
+                              jenis = inputjenis.text;
+                              prov = inputprov.text;
+                              kota = inputkota.text;
+                              // pendapatan = inputpendapatan.text;
                               password = inputpass.text;
                             });
                           },

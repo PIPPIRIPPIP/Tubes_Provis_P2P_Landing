@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/kebijakan-privasi.dart';
+import 'package:myapp/page-1/syarat-dan-ketentuan.dart';
+import 'package:myapp/page-1/tentang-kami.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/page-1/edit-profile-peminjam.dart';
 import 'package:myapp/page-1/edit-umkm.dart';
@@ -308,7 +311,6 @@ class Profil extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              
                               margin: EdgeInsets.fromLTRB(
                                   0 * fem, 8 * fem, 129 * fem, 0 * fem),
                               constraints: BoxConstraints(
@@ -326,7 +328,8 @@ class Profil extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              margin: EdgeInsets.fromLTRB(0 * fem, 8 * fem, 0 * fem, 0 * fem),
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 8 * fem, 0 * fem, 0 * fem),
                               constraints: BoxConstraints(
                                 maxWidth: 88 * fem,
                               ),
@@ -361,8 +364,10 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 1 * fem, 50 * fem),
-                        padding: EdgeInsets.fromLTRB(0 * fem, 10 * fem, 0 * fem, 8 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 1 * fem, 50 * fem),
+                        padding: EdgeInsets.fromLTRB(
+                            0 * fem, 10 * fem, 0 * fem, 8 * fem),
                         width: 381 * fem,
                         decoration: BoxDecoration(
                           border: Border.all(color: Color(0xffbcbcbc)),
@@ -384,7 +389,7 @@ class Profil extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditPeminjam()));
+                                        builder: (context) => Kebijakan()));
                               },
                               child: Container(
                                 // autogrouprfutCE2 (3w9xK6NmeUnZUok5S8RFUT)
@@ -428,7 +433,8 @@ class Profil extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => EditPeminjam()));
+                                        builder: (context) =>
+                                            SyaratKetentuan()));
                               },
                               child: Container(
                                 // autogroupryvfkPx (3w9xRWMkVpA8AbXhX2RyvF)
@@ -472,51 +478,7 @@ class Profil extends StatelessWidget {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => BayarTagihan()));
-                              },
-                              child: Container(
-                                // autogroupgjxxLd4 (3w9xYFfWUyzRE36dJ6gJxX)
-                                margin: EdgeInsets.fromLTRB(
-                                    31 * fem, 0 * fem, 20 * fem, 6 * fem),
-                                width: double.infinity,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // pusatbantuanGWi (69:434)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 241 * fem, 0 * fem),
-                                      child: Text(
-                                        'Pusat Bantuan',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              // line24Bta (69:432)
-                              margin: EdgeInsets.fromLTRB(
-                                  1 * fem, 0 * fem, 0 * fem, 3 * fem),
-                              width: 380 * fem,
-                              height: 1 * fem,
-                              decoration: BoxDecoration(
-                                color: Color(0xffa9a9a9),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => EditPeminjam()));
+                                        builder: (context) => TentangKami()));
                               },
                               child: Container(
                                 // autogroup73v7idc (3w9xdqLYVjD9yhRz9Z73v7)
@@ -549,11 +511,11 @@ class Profil extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin:  EdgeInsets.fromLTRB(60*fem, 0*fem, 60*fem, 45*fem),
+                        margin: EdgeInsets.fromLTRB(
+                            60 * fem, 0 * fem, 60 * fem, 45 * fem),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () {
-                                  },
+                            onPressed: () {},
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 255, 54, 54),
                               fixedSize: Size(150, 30),
@@ -561,13 +523,14 @@ class Profil extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(100),
                               ),
                             ),
-                            child: Text('Log out',
-                              style:  SafeGoogleFont (
+                            child: Text(
+                              'Log out',
+                              style: SafeGoogleFont(
                                 'Poppins',
-                                fontSize:  15*ffem,
-                                fontWeight:  FontWeight.w500,
-                                height:  1.5*ffem/fem,
-                                color:  Color(0xffffffff),
+                                fontSize: 15 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xffffffff),
                               ),
                             ),
                           ),
@@ -575,7 +538,8 @@ class Profil extends StatelessWidget {
                       ),
                       Container(
                         // version10NTG (69:447)
-                        margin: EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 0 * fem),
+                        margin: EdgeInsets.fromLTRB(
+                            1 * fem, 0 * fem, 0 * fem, 0 * fem),
                         child: Text(
                           'version 1.0',
                           style: SafeGoogleFont(

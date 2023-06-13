@@ -10,8 +10,9 @@ import services as _services
 oauth2schema = OAuth2PasswordBearer("/email-password-signin")
 
 # Router
-router = APIRouter()
-router2 = APIRouter()
+router = APIRouter() # peminjam
+router_peminjam = APIRouter()
+router_pendana = APIRouter()
 
 # Create session
 def get_db():
@@ -20,15 +21,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-# test
-# @router.get("/test")
-# def testCreate():
-#     return {"Test": "Testing Peminjam routes"}
-
-# @router2.get("/test")
-# def testCreate():
-#     return {"Test": "Testing Pendana routes"}
 
 # PEMINJAM
 # get data with schema peminjam
@@ -64,7 +56,7 @@ def get_peminjam_return(_peminjam, _token, db):
     )
 
 # signup
-@router.post("/signup")
+@router_peminjam.post("/signup")
 async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(get_db)):
     _existed_peminjam = await _services.get_peminjam_by_email(datas.email, db)
     if _existed_peminjam:
@@ -76,7 +68,7 @@ async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(g
     return get_peminjam_return(_peminjam, _token, db)
 
 # signin
-@router.post("/signin")
+@router_peminjam.post("/signin")
 async def signInPeminjam(datas: _schemas.SignInPeminjam, db: Session = Depends(get_db)):
     _existed_peminjam = await _services.get_peminjam_by_email(datas.email, db)
     if not _existed_peminjam:
@@ -90,7 +82,7 @@ async def signInPeminjam(datas: _schemas.SignInPeminjam, db: Session = Depends(g
     return get_peminjam_return(_existed_peminjam, _token, db)
 
 # get with auth
-@router.get("/me")
+@router_peminjam.get("/me")
 async def getPeminjamViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
     _peminjam_model = await _services.get_peminjam_via_token(token=token, db=db)
     return get_peminjam_return(_peminjam_model, token, db)
@@ -123,7 +115,7 @@ def get_pendana_return(_pendana, _token, db):
     )
 
 # signup
-@router2.post("/signup")
+@router_pendana.post("/signup")
 async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get_db)):
     _existed_pendana = await _services.get_pendana_by_email(datas.email, db)
     if _existed_pendana:
@@ -135,7 +127,7 @@ async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get
     return get_pendana_return(_pendana, _token, db)
 
 # signin
-@router2.post("/signin")
+@router_pendana.post("/signin")
 async def signInPendana(datas: _schemas.SignInPendana, db: Session = Depends(get_db)):
     _existed_pendana = await _services.get_pendana_by_email(datas.email, db)
     if not _existed_pendana:
@@ -149,7 +141,7 @@ async def signInPendana(datas: _schemas.SignInPendana, db: Session = Depends(get
     return get_pendana_return(_existed_pendana, _token, db)
 
 # get with auth
-@router2.get("/me")
+@router_pendana.get("/me")
 async def getPendanaViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
     _pendana_model = await _services.get_pendana_via_token(token=token, db=db)
     return get_pendana_return(_pendana_model, token, db)
