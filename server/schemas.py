@@ -22,6 +22,9 @@ class User(UserBase):
     nomor_ponsel: str
     saldo: int
     foto: str
+    
+    transaksi_pembayaran: List['TransaksiPembayaran']
+    notifikasi: List['Notifikasi']
 
 class UserConfig(User):
     class Config:
@@ -57,9 +60,19 @@ class NotifikasiConfig(Notifikasi):
         orm_mode = True
 
 # Skema untuk Peminjam
-class Peminjam(BaseModel):
-    id: int
+class SignUpPeminjam(SignUpUser):
     user_id: int
+    jenis: str
+    nik: str
+    alamat: str
+    grade: int
+    jenis_usaha: str
+    provinsi_usaha: str
+    kota_usaha: str
+    pendapatan: int
+
+class Peminjam(ReturnUser):
+    peminjam_id: int
     jenis: str
     nik: str
     alamat: str
@@ -112,9 +125,11 @@ class PembayaranConfig(Pembayaran):
         orm_mode = True
 
 # Skema untuk Pendana
-class Pendana(BaseModel):
-    id: int
+class SignUpPendana(SignUpUser):
     user_id: int
+
+class Pendana(BaseModel):
+    pendana_id: int
 
     investasi: List['Investasi']
 
