@@ -65,7 +65,7 @@ async def get_transaksi_pembayaran(user_id: int, db: Session) -> List[_models.Tr
 
 # Token
 async def genereate_token_user(user: _models.User) -> str:
-    _schema_user = _schemas.User.from_orm(user)
+    _schema_user = _schemas.UserConfig.from_orm(user)
     _user_dict = _schema_user.dict(include={'id', 'email'})
 
     # NOTE : Combine [email] & [id] with [_JWT_SECRET] to generate JWT key

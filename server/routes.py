@@ -180,7 +180,7 @@ async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get
     datas.user_id = _user.id
 
     _pendana = await _services.create_pendana(datas=datas, db=db)
-    _token = await _services.genereate_token_pendana(pendana=_pendana)
+    _token = await _services.genereate_token_user(user=_user)
 
     return get_pendana_return(_user, _pendana, _token, db)
 
