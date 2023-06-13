@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 //import 'package:myapp/page-1/login.dart';
+import 'package:myapp/page-1/syarat-dan-ketentuan.dart';
 
 //Bagian Dicki
 //dibawah bagian text login ada yang buat ngelink cuman masih dikomen
@@ -248,7 +249,20 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                                   });
                                 },
                               ),
-                              Text("Saya menyetujui syarat & ketentuan"),
+                              Text("Saya menyetujui "),
+                              InkWell(
+                                onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SyaratKetentuan()));
+                                },
+                                child: Text("syarat & ketentuan",
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ],
