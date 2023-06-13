@@ -38,8 +38,20 @@ class Scene extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20),
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Image.asset(
+                                '../assets/page-1/images/panah.png',
+                                width: 20 * fem,
+                                height: 20 * fem,
+                              ),
+                            ),
+                          ),
                           Text(
-                            // editumkmuy8 (321:221)
                             'Edit UMKM',
                             textAlign: TextAlign.center,
                             style: SafeGoogleFont (
