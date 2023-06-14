@@ -17,7 +17,6 @@ class User(Base):
     nomor_ponsel = Column(String, unique=True)
     saldo = Column(Integer)
     foto = Column(String)
-    jenis_user = Column(String)
 
     peminjam = relationship('Peminjam', back_populates='user')
     pendana = relationship('Pendana', back_populates='user')
@@ -128,8 +127,8 @@ class Investasi(Base):
     pinjaman = relationship('Pinjaman', back_populates='investasi')
     pendana = relationship('Pendana', back_populates='investasi')
 
+        
 '''
-    
 # investasi
 def invest(self, jumlah_dana):
         self.jumlah_investasi += jumlah_dana
