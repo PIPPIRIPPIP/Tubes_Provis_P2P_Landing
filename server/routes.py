@@ -187,6 +187,33 @@ async def signInPendana(datas: _schemas.SignInUser, db: Session = Depends(get_db
         investasi=_pendana.investasi
     )
 
+# get with auth
+@router_pendana.get("/me")
+async def getPendanaViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
+    # get user and peminjam
+    _user = await _services.get_user_via_token(token=token, db=db)
+    _pendana = await _services.get_pendana_by_user_id(user_id=_user.id, db=db)
+    
+    return _schemas.ReturnPendana(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran,
+        
+        pendana_id=_pendana.id,
+        
+        investasi=_pendana.investasi
+    )
+
 # ===========================================================================================
 # PEMINJAM
 # signup
@@ -239,6 +266,42 @@ async def signInPeminjam(datas: _schemas.SignInUser, db: Session = Depends(get_d
         email=_user.email,
         password=_user.password,
         token=_user.token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran,
+        
+        peminjam_id=_peminjam.id,
+        jenis=_peminjam.jenis,
+        nik=_peminjam.nik,
+        alamat=_peminjam.alamat,
+        grade=_peminjam.grade,
+        jenis_usaha=_peminjam.jenis_usaha,
+        provinsi_usaha=_peminjam.provinsi_usaha,
+        kota_usaha=_peminjam.kota_usaha,
+        pendapatan=_peminjam.pendapatan,
+
+        pinjaman=_peminjam.pinjaman,
+        pembayaran=_peminjam.pembayaran
+    )
+
+# get with auth
+@router_peminjam.get("/me")
+async def getUserPeminjamViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
+    # get user and peminjam
+    _user = await _services.get_user_via_token(token=token, db=db)
+    _peminjam = await _services.get_peminjam_by_user_id(user_id=_user.id, db=db)
+    
+    return _schemas.ReturnPeminjam(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=token,
         tanggal_dibuat=_user.tanggal_dibuat,
         nama=_user.nama,
         nomor_ponsel=_user.nomor_ponsel,
