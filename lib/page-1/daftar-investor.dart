@@ -2,38 +2,99 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/ui/pages/login.dart';
 import 'package:myapp/utils.dart';
 //import 'package:myapp/page-1/login.dart';
 import 'package:myapp/page-1/syarat-dan-ketentuan.dart';
+import 'package:provider/provider.dart';
+
+import '../models/models.dart';
+import '../providers/providers.dart';
+import '../services/services.dart';
+import '../utils/utils.dart';
 
 //Bagian Dicki
 //dibawah bagian text login ada yang buat ngelink cuman masih dikomen
 
 class DaftarInvestor extends StatefulWidget {
+  const DaftarInvestor({super.key});
   @override
-  DaftarInvestorPage createState() => DaftarInvestorPage();
+  State<DaftarInvestor> createState() => DaftarInvestorPage();
 }
 
 class DaftarInvestorPage extends State<DaftarInvestor> {
-  String nama = "";
-  String nik = "";
-  String email = "";
-  String no_telp = "";
-  String password = "";
-  final inputnama = TextEditingController();
-  final inputnik = TextEditingController();
-  final inputemail = TextEditingController();
-  final inputtelp = TextEditingController();
-  final inputpass = TextEditingController();
+  late TextEditingController _emailController;
+  late TextEditingController _passwordController;
+  late TextEditingController _confirmPasswordController;
+  late TextEditingController _namaController;
+  late TextEditingController _nomorPonselController;
   bool isAgreed = false;
+
+  /// Call this if Sign-Up via backend-API successfully
+  // Future<void> _signUpSuccess(User userData) async {
+  //   bool isSaveSuccess =
+  //       await LocalStoreServices.saveInLocal(context, userData);
+  //   if (isSaveSuccess) {
+  //     if (!mounted) return;
+  //     // NOTE : Update UserProvider
+  //     UserProvider userProvider =
+  //         Provider.of<UserProvider>(context, listen: false);
+  //     userProvider.setUserFromModel(userData);
+  //   }
+  // }
+
+  /// Trigger this when "Sign Up" button is clicked
+  void _signUp() async {
+    if (_passwordController.text != _confirmPasswordController.text) {
+      Utils.showSnackBar(
+          context, 'Password and Confirm-Passord does not match!');
+      return;
+    }
+
+    // NOTE : If signing-up failed, return null
+    Pendana? userAccount = await AuthService.signUpPendana(
+      context: context,
+      email: _emailController.text,
+      password: _passwordController.text,
+      nama: _namaController.text,
+      nomorPonsel: _nomorPonselController.text,
+      jenisUser: "pendana",
+    );
+
+    if (userAccount != null) {
+      // NOTE : Process, if Sign-Up via API successfully
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Login()),
+      );
+    }
+  }
+
+  /// Change to SignIn Page
+  void _changeToSignIn() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const Login()),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _emailController = TextEditingController();
+    _passwordController = TextEditingController();
+    _confirmPasswordController = TextEditingController();
+    _namaController = TextEditingController();
+    _nomorPonselController = TextEditingController();
+  }
 
   @override
   void dispose() {
-    inputnama.dispose();
-    inputnik.dispose();
-    inputemail.dispose();
-    inputtelp.dispose();
-    inputpass.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    _namaController.dispose();
+    _nomorPonselController.dispose();
     super.dispose();
   }
 
@@ -104,10 +165,10 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                             child: SizedBox(
                               width: 250,
                               child: TextField(
-                                controller: inputnama,
+                                controller: _namaController,
                                 onChanged: (text) {
                                   setState(() {
-                                    nama = text;
+                                    // _namaController.text = text;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -133,39 +194,10 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                             child: SizedBox(
                               width: 250,
                               child: TextField(
-                                controller: inputnik,
+                                controller: _emailController,
                                 onChanged: (text) {
                                   setState(() {
-                                    nik = text;
-                                  });
-                                },
-                                decoration: InputDecoration(
-                                  hintText: 'NIK',
-                                  border: InputBorder.none,
-                                  contentPadding: EdgeInsets.symmetric(
-                                    vertical: 8.0,
-                                    horizontal: 8.0,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 16.0),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(4.0),
-                            ),
-                            child: SizedBox(
-                              width: 250,
-                              child: TextField(
-                                controller: inputemail,
-                                onChanged: (text) {
-                                  setState(() {
-                                    email = text;
+                                    // _emailController.text = text;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -191,10 +223,10 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                             child: SizedBox(
                               width: 250,
                               child: TextField(
-                                controller: inputtelp,
+                                controller: _nomorPonselController,
                                 onChanged: (text) {
                                   setState(() {
-                                    no_telp = text;
+                                    // _nomorPonselController.text = text;
                                   });
                                 },
                                 decoration: InputDecoration(
@@ -220,14 +252,43 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                             child: SizedBox(
                               width: 250,
                               child: TextField(
-                                controller: inputpass,
+                                controller: _passwordController,
                                 onChanged: (text) {
                                   setState(() {
-                                    password = text;
+                                    // _passwordController.text = text;
                                   });
                                 },
                                 decoration: InputDecoration(
                                   hintText: 'Password',
+                                  border: InputBorder.none,
+                                  contentPadding: EdgeInsets.symmetric(
+                                    vertical: 8.0,
+                                    horizontal: 8.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 16.0),
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(4.0),
+                            ),
+                            child: SizedBox(
+                              width: 250,
+                              child: TextField(
+                                controller: _confirmPasswordController,
+                                onChanged: (text) {
+                                  setState(() {
+                                    // _confirmPasswordController.text = text;
+                                  });
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Konfirmasi Password',
                                   border: InputBorder.none,
                                   contentPadding: EdgeInsets.symmetric(
                                     vertical: 8.0,
@@ -252,12 +313,14 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                               Text("Saya menyetujui "),
                               InkWell(
                                 onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SyaratKetentuan()));
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SyaratKetentuan()));
                                 },
-                                child: Text("syarat & ketentuan",
+                                child: Text(
+                                  "syarat & ketentuan",
                                   style: TextStyle(
                                     color: Colors.blue,
                                   ),
@@ -270,17 +333,7 @@ class DaftarInvestorPage extends State<DaftarInvestor> {
                       Padding(
                         padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                         child: ElevatedButton(
-                          onPressed: isAgreed
-                              ? () {
-                                  setState(() {
-                                    nama = inputnama.text;
-                                    nik = inputnik.text;
-                                    email = inputemail.text;
-                                    no_telp = inputtelp.text;
-                                    password = inputpass.text;
-                                  });
-                                }
-                              : null,
+                          onPressed: isAgreed ? _signUp : null,
                           style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 54, 133, 255),
                             fixedSize: Size(250, 40),

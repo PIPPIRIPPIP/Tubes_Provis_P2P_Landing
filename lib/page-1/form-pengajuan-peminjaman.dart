@@ -7,16 +7,13 @@ import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
 
 class FormPeminjaman extends StatelessWidget {
-  final User user;
-
-  FormPeminjaman({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }

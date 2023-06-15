@@ -156,7 +156,6 @@ async def getTransaksiPembayaran(user_id: int, db: Session = Depends(get_db)):
 @router_pendana.post("/signup")
 async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get_db)):
     # check user
-    datas.jenis_user = "pendana"
     _user = await signUpUser(datas, db)
 
     datas.user_id = _user.id
@@ -240,6 +239,15 @@ async def getPendanaViaToken(token: str = Depends(oauth2schema), db: Session = D
         
         investasi=_pendana.investasi
     )
+    
+# ===========================================================================================
+# INVESTASI
+# set investasi
+@router_pendana.post("/setInvestasi/{pendana_id}/{pinjaman_id}")
+async def setInvestasi(datas: _schemas.Investasi, pendana_id: int, pinjaman_id: int, db: Session = Depends(get_db)):
+    _investasi = await _services.set_investasi(datas=datas, pendana_id=pendana_id, pinjaman_id=pinjaman_id, db=db)
+    
+    return {"investasi": _investasi}
 
 # ===========================================================================================
 # PEMINJAM
@@ -247,7 +255,7 @@ async def getPendanaViaToken(token: str = Depends(oauth2schema), db: Session = D
 @router_peminjam.post("/signup")
 async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(get_db)):
     # check user
-    datas.jenis_user = "peminjam"
+    # datas.jenis_user = "peminjam"
     _user = await signUpUser(datas, db)
 
     datas.user_id = _user.id

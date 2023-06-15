@@ -25,11 +25,13 @@ class _SignUpPageState extends State<SignUpPage> {
 
   /// Call this if Sign-Up via backend-API successfully
   Future<void> _signUpSuccess(User userData) async {
-    bool isSaveSuccess = await LocalStoreServices.saveInLocal(context, userData);
+    bool isSaveSuccess =
+        await LocalStoreServices.saveInLocal(context, userData);
     if (isSaveSuccess) {
       if (!mounted) return;
       // NOTE : Update UserProvider
-      UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);
+      UserProvider userProvider =
+          Provider.of<UserProvider>(context, listen: false);
       userProvider.setUserFromModel(userData);
     }
   }
@@ -37,14 +39,15 @@ class _SignUpPageState extends State<SignUpPage> {
   /// Trigger this when "Sign Up" button is clicked
   void _signUp() async {
     if (_passwordController.text != _confirmPasswordController.text) {
-      Utils.showSnackBar(context, 'Password and Confirm-Passord does not match!');
+      Utils.showSnackBar(
+          context, 'Password and Confirm-Passord does not match!');
       return;
     }
 
     // NOTE : If signing-up failed, return null
     User? userAccount = await AuthService.signUpUser(
-      context: context, 
-      email: _emailController.text, 
+      context: context,
+      email: _emailController.text,
       password: _passwordController.text,
       nama: _namaController.text,
       nomorPonsel: _nomorPonselController.text,
@@ -54,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (userAccount != null) {
       // NOTE : Process, if Sign-Up via API successfully
       await _signUpSuccess(userAccount);
-    } 
+    }
   }
 
   /// Change to SignIn Page
@@ -73,7 +76,6 @@ class _SignUpPageState extends State<SignUpPage> {
     _confirmPasswordController = TextEditingController();
     _namaController = TextEditingController();
     _nomorPonselController = TextEditingController();
-    // _jenisUserController = TextEditingController();
   }
 
   @override
@@ -96,25 +98,24 @@ class _SignUpPageState extends State<SignUpPage> {
           children: [
             const Text("Sign-up an account", style: TextStyle(fontSize: 28)),
             const SizedBox(height: 30),
-
-            CustomTextField(controller: _emailController, hintText: "Type Email"),
+            CustomTextField(
+                controller: _emailController, hintText: "Type Email"),
             const SizedBox(height: 15),
-
-            CustomTextField(controller: _passwordController, hintText: "Type Password"),
+            CustomTextField(
+                controller: _passwordController, hintText: "Type Password"),
             const SizedBox(height: 15),
-
             CustomTextField(controller: _namaController, hintText: "Type Nama"),
             const SizedBox(height: 15),
-
-            CustomTextField(controller: _nomorPonselController, hintText: "Type nomorPonsel"),
+            CustomTextField(
+                controller: _nomorPonselController,
+                hintText: "Type nomorPonsel"),
             const SizedBox(height: 15),
-
-            CustomTextField(controller: _confirmPasswordController, hintText: "Confirm Password"),
+            CustomTextField(
+                controller: _confirmPasswordController,
+                hintText: "Confirm Password"),
             const SizedBox(height: 30),
-
             CustomElevatedButton(onPressfunc: _signUp, buttonText: 'Sign Up'),
             const SizedBox(height: 10),
-
             TextButton(
               onPressed: _changeToSignIn,
               child: const Text(

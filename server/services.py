@@ -134,6 +134,29 @@ async def get_pendana_by_user_id(user_id: str, db: Session) -> _models.Pendana:
 # Update
 # Delete
 
+# NOTIFIKASI
+# get
+async def set_investasi(datas: _schemas.Investasi, pendana_id: int, pinjaman_id: int, db: Session) -> List[_models.Investasi]:
+    # make model
+    _investasi = _models.Investasi(
+        pinjaman_id=pinjaman_id,
+        pendana_id=pendana_id,
+        jumlah_investasi=datas.jumlah_investasi,
+        keuntungan=datas.keuntungan,
+        tanggal_investasi=datas.tanggal_investasi,
+        status=datas.status,
+    )
+    
+    Session.add(_investasi)
+    Session.commit()
+    Session.refresh(_investasi)
+    return _investasi
+
+# set
+async def get_investasi(user_id: int, db: Session) -> List[_models.Investasi]:
+    investasi = db.query(_models.Investasi).filter(_models.Investasi.user_id == user_id).all()
+    return investasi
+
 # ===========================================================================================
 # PEMINJAM
 # Create

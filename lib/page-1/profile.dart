@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/kebijakan-privasi.dart';
@@ -13,12 +14,25 @@ import 'package:myapp/page-1/bayar-pinjaman.dart';
 
 import 'package:myapp/models/user_model.dart';
 
-//nambahin on tap link ke edit profile
+import '../providers/providers.dart';
+import '../services/services.dart';
 
-class Profil extends StatelessWidget {
-  final User user;
+class Profil extends StatefulWidget {
+  const Profil({super.key});
 
-  Profil({required this.user});
+  @override
+  State<Profil> createState() => ProfilPage();
+}
+
+class ProfilPage extends State<Profil> {
+  void _logOut() async {
+    bool removeSuccess = await LocalStoreServices.removeFromLocal(context);
+    if (removeSuccess) {
+      if (!mounted) return;
+      Provider.of<UserProvider>(context, listen: false).setUserNull();
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +155,7 @@ class Profil extends StatelessWidget {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
-                                                user.nama,
+                                                "Nanti",
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -162,7 +176,7 @@ class Profil extends StatelessWidget {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
-                                                user.nomorPonsel,
+                                                "nanti",
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -179,7 +193,7 @@ class Profil extends StatelessWidget {
                                   ),
                                   Text(
                                     // ayeshaliexamplecomAhL (24:125)
-                                    user.email,
+                                    "Nanti",
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -334,7 +348,7 @@ class Profil extends StatelessWidget {
                                 maxWidth: 88 * fem,
                               ),
                               child: Text(
-                                '${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\nRp ${user.pendapatan}',
+                                'Nanti',
                                 textAlign: TextAlign.right,
                                 style: SafeGoogleFont(
                                   'Poppins',
@@ -515,7 +529,7 @@ class Profil extends StatelessWidget {
                             60 * fem, 0 * fem, 60 * fem, 45 * fem),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: _logOut,
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 255, 54, 54),
                               fixedSize: Size(150, 30),

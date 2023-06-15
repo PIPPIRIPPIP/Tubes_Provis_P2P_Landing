@@ -14,27 +14,19 @@ import 'riwayat-transaksi.dart';
 
 import 'package:myapp/page-1/bayar-pinjaman.dart';
 
-class Peminjam extends StatelessWidget {
-  final User user;
-
-  Peminjam({required this.user});
-
+class PeminjamPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Scene(user: user),
+        child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }
 
 class Scene extends StatelessWidget {
-  final User user;
-
-  Scene({required this.user});
-
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -103,8 +95,7 @@ class Scene extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          Profil(user: user)));
+                                      builder: (context) => Profil()));
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -183,7 +174,7 @@ class Scene extends StatelessWidget {
                               width: 119 * fem,
                               height: 23 * fem,
                               child: Text(
-                                'Rp. ${user.saldo}',
+                                'Rp. ',
                                 style: SafeGoogleFont(
                                   'Poppins',
                                   fontSize: 15 * ffem,
@@ -866,25 +857,27 @@ class Scene extends StatelessWidget {
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => BayarTagihan()));
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BayarTagihan()));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       primary: Color(0xff3584ff),
                                       //fixedSize: Size(150, 30),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5 * fem),
+                                        borderRadius:
+                                            BorderRadius.circular(5 * fem),
                                       ),
                                     ),
-                                    child:
-                                      Text('Bayar',
-                                        style:  SafeGoogleFont (
+                                    child: Text(
+                                      'Bayar',
+                                      style: SafeGoogleFont(
                                         'Poppins',
-                                        fontSize:  15*ffem,
-                                        fontWeight:  FontWeight.w500,
-                                        height:  1.5*ffem/fem,
-                                        color:  Color(0xffffffff),
+                                        fontSize: 15 * ffem,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xffffffff),
                                       ),
                                     ),
                                   ),

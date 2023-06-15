@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:myapp/page-1/peminjam.dart';
+import 'package:myapp/page-1/pendana.dart';
 import 'package:myapp/providers/user_provider.dart';
 import 'package:myapp/screens/home_screen.dart';
 import 'package:myapp/screens/signup_screen.dart';
 import 'package:myapp/services/auth_services.dart';
 import 'package:myapp/services/local_store_services.dart';
+import 'package:myapp/ui/pages/login.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:ui';
@@ -49,15 +52,16 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   /// get User data from backend, then notify UserProvider
   void _getUserData() async {
     String? existedToken = await LocalStoreServices.getFromLocal(context);
     if (existedToken != null) {
-      User? user = await AuthService.getUser(context: context, token: existedToken);
+      User? user =
+          await AuthService.getUser(context: context, token: existedToken);
       if (user != null) {
         if (!mounted) return null;
-        Provider.of<UserProvider>(context, listen: false).setUserFromModel(user);
+        Provider.of<UserProvider>(context, listen: false)
+            .setUserFromModel(user);
       }
     }
   }
@@ -77,22 +81,22 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // home: Scaffold(
-      //   // appBar: AppBar(),
-      //   body: SingleChildScrollView(
-      //     child: Scene(),
-      //   ),
-      //   // bottomNavigationBar: SingleChildScrollView(
-      //   //   child: Navbar(),
-      //   // ),
-      // ),
       home: Consumer<UserProvider>(
         builder: (context, userProvider, child) {
           if (userProvider.user != null) {
-            return const HomePage();
+            if (userProvider.user?.jenisUser == "pendana") {
+              return PendanaPage();
+            } else if (userProvider.user?.jenisUser == "peminjam") {
+              return PeminjamPage();
+            }
           }
+          // if (userProvider.user != null) {
+          //   return const HomePage();
+          // }
 
-          return const SignUpPage();
+          // return const Login();
+          return FirstPage();
+          // return SignUpPage();
         },
       ),
       // home: BlocProvider<UserBloc>(

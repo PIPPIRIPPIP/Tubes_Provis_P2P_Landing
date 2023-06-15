@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/models/user_model.dart';
+import 'package:myapp/models/models.dart';
 import 'package:myapp/page-1/isi-saldo.dart';
 import 'package:myapp/page-1/navbar-pendana.dart';
 import 'package:myapp/page-1/profile-pendana.dart';
@@ -10,18 +10,15 @@ import 'package:myapp/page-1/riwayat-transaksi.dart';
 import 'package:myapp/page-1/tarik-saldo.dart';
 import 'package:myapp/utils.dart';
 
-class Pendana extends StatelessWidget {
-  final User user;
-
-  Pendana({required this.user});
-
+class PendanaPage extends StatelessWidget {
+  const PendanaPage({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }

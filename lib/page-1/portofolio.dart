@@ -2,22 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:myapp/models/user_model.dart';
+import 'package:myapp/models/models.dart';
 import 'package:myapp/page-1/navbar-pendana.dart';
 import 'package:myapp/utils.dart';
 
 class Portofolio extends StatelessWidget {
-  final User user;
-
-  Portofolio({required this.user});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }

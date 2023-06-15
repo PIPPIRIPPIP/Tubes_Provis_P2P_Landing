@@ -15,7 +15,6 @@ import 'package:myapp/auth/login_auth.dart';
 import 'package:myapp/bloc/login_bloc.dart';
 
 class FirstPage extends StatelessWidget {
-  
   final userRepository = UserRepository(
     url: 'https://example.com/users',
     filePath: 'data/user.json',
@@ -56,21 +55,23 @@ class FirstPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => PilihAkun()));
-                        // MaterialPageRoute(builder: (context) => DaftarInvestor()));
+                    // MaterialPageRoute(builder: (context) => DaftarInvestor()));
                   },
                 ),
                 SizedBox(height: 10),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(context, MaterialPageRoute(
-                        builder: (context) => BlocProvider(
-                          create: (context) => LoginBloc(
-                            userRepository:userRepository
-                            ),
-                          child: Login(),
-                        ),
-                      ),
-                    );
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const Login()));
+                    // Navigator.push(context, MaterialPageRoute(
+                    //     builder: (context) => BlocProvider(
+                    //       create: (context) => LoginBloc(
+                    //         userRepository:userRepository
+                    //         ),
+                    //       child: Login(),
+                    //     ),
+                    //   ),
+                    // );
                   },
                   child: Padding(
                     padding: getPadding(top: 7),
@@ -102,39 +103,39 @@ class FirstPage extends StatelessWidget {
                         style: AppStyle.txtPoppinsSemiBold16WhiteA700,
                       ),
                       SizedBox(height: 20),
-                      BlocBuilder<UserBloc, UserState>(
-                        builder: (context, state) {
-                          if (state.users.isEmpty) {
-                            return CircularProgressIndicator();
-                          } else {
-                            return ListView.separated(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              separatorBuilder: (context, index) {
-                                return SizedBox(height: getVerticalSize(29));
-                              },
-                              // itemCount: state.users.length,
-                              itemCount: 5,
-                              itemBuilder: (context, index) {
-                                final user = state.users[index];
-                                return InkWell(
-                                  onTap: () {
-                                    // Mengarahkan pengguna ke halaman profil user dengan mengirimkan data pengguna yang dipilih
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetailMitra(user: user),
-                                      ),
-                                    );
-                                  },
-                                  child: UserCard(user: user),
-                                );
-                              },
-                            );
-                          }
-                        },
-                      ),
+                      // BlocBuilder<UserBloc, UserState>(
+                      //   builder: (context, state) {
+                      //     if (state.users.isEmpty) {
+                      //       return CircularProgressIndicator();
+                      //     } else {
+                      //       return ListView.separated(
+                      //         physics: NeverScrollableScrollPhysics(),
+                      //         shrinkWrap: true,
+                      //         separatorBuilder: (context, index) {
+                      //           return SizedBox(height: getVerticalSize(29));
+                      //         },
+                      //         // itemCount: state.users.length,
+                      //         itemCount: 5,
+                      //         itemBuilder: (context, index) {
+                      //           final user = state.users[index];
+                      //           return InkWell(
+                      //             onTap: () {
+                      //               // Mengarahkan pengguna ke halaman profil user dengan mengirimkan data pengguna yang dipilih
+                      //               Navigator.push(
+                      //                 context,
+                      //                 MaterialPageRoute(
+                      //                   builder: (context) =>
+                      //                       DetailMitra(user: user),
+                      //                 ),
+                      //               );
+                      //             },
+                      //             child: UserCard(user: user),
+                      //           );
+                      //         },
+                      //       );
+                      //     }
+                      //   },
+                      // ),
                       SizedBox(height: 20),
                     ],
                   ),
