@@ -67,6 +67,11 @@ async def signUpUser(datas: _schemas.SignUpUser, db: Session = Depends(get_db)) 
 async def signInUser(datas: _schemas.SignInUser, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
     # check in database
     _user = await _services.get_user_by_email(datas.email, db)
+    if _user.jenis_user == "pendana":
+        pass
+    else:
+        pass
+    
     if not _user:
         raise HTTPException(status_code=404, detail="user with this email is not found")
 
@@ -82,6 +87,28 @@ async def signInUser(datas: _schemas.SignInUser, db: Session = Depends(get_db)) 
         email=_user.email,
         password=_user.password,
         token=_token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran
+    )
+    
+# get with auth
+@router.get("/me")
+async def getUserUserViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
+    # get user and user
+    _user = await _services.get_user_via_token(token=token, db=db)
+    
+    return _schemas.ReturnUser(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=token,
         tanggal_dibuat=_user.tanggal_dibuat,
         nama=_user.nama,
         nomor_ponsel=_user.nomor_ponsel,

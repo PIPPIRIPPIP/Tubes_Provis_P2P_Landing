@@ -27,7 +27,6 @@ class UserBase(BaseModel):
 
 class SignInUser(UserBase):
     password: str
-    jenis_user: str
 
 class SignUpUser(UserBase):
     password: str

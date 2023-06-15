@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:myapp/providers/user_provider.dart';
+import 'package:myapp/screens/home_screen.dart';
+import 'package:myapp/screens/signup_screen.dart';
+import 'package:myapp/services/auth_services.dart';
+import 'package:myapp/services/local_store_services.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,9 +30,44 @@ import 'package:myapp/page-1/daftar-investor.dart';
 import 'package:myapp/bloc/user_bloc.dart';
 import 'package:myapp/ui/pages/first_page.dart';
 
-void main() => runApp(MyApp());
+import 'models/user.dart';
 
-class MyApp extends StatelessWidget {
+void main() {
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => UserProvider(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  /// get User data from backend, then notify UserProvider
+  void _getUserData() async {
+    String? existedToken = await LocalStoreServices.getFromLocal(context);
+    if (existedToken != null) {
+      User? user = await AuthService.getUser(context: context, token: existedToken);
+      if (user != null) {
+        if (!mounted) return null;
+        Provider.of<UserProvider>(context, listen: false).setUserFromModel(user);
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,10 +86,19 @@ class MyApp extends StatelessWidget {
       //   //   child: Navbar(),
       //   // ),
       // ),
-      home: BlocProvider<UserBloc>(
-        create: (context) => UserBloc()..add(FetchDataEvent()),
-        child: FirstPage(),
+      home: Consumer<UserProvider>(
+        builder: (context, userProvider, child) {
+          if (userProvider.user != null) {
+            return const HomePage();
+          }
+
+          return const SignUpPage();
+        },
       ),
+      // home: BlocProvider<UserBloc>(
+      //   create: (context) => UserBloc()..add(FetchDataEvent()),
+      //   child: FirstPage(),
+      // ),
     );
   }
 }
