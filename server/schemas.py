@@ -62,6 +62,9 @@ class Investasi(BaseModel):
     pendana_id: int
     pinjaman_id: int
     jumlah_investasi: int
+    keuntungan: int
+    tanggal_investasi: dt.datetime
+    status: str
 
 # Skema untuk Pendana
 class SignUpPendana(SignUpUser):

@@ -136,11 +136,11 @@ async def get_pendana_by_user_id(user_id: str, db: Session) -> _models.Pendana:
 
 # NOTIFIKASI
 # get
-async def set_investasi(datas: _schemas.Investasi, pendana_id: int, pinjaman_id: int, db: Session) -> List[_models.Investasi]:
+async def set_investasi(datas: _schemas.Investasi, pinjaman_id: int, db: Session) -> List[_models.Investasi]:
     # make model
     _investasi = _models.Investasi(
         pinjaman_id=pinjaman_id,
-        pendana_id=pendana_id,
+        pendana_id=datas.pendana_id,
         jumlah_investasi=datas.jumlah_investasi,
         keuntungan=datas.keuntungan,
         tanggal_investasi=datas.tanggal_investasi,

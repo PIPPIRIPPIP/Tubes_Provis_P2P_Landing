@@ -26,6 +26,24 @@ def get_db():
         
 # ===========================================================================================
 # USER
+# method get user
+async def get_return_user(_user: _models.User, _token: str) -> _schemas.ReturnUser:
+    return _schemas.ReturnUser(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=_token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran
+    )
+    
 # signup
 @router.post("/signup")
 async def signUpUser(datas: _schemas.SignUpUser, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
@@ -49,76 +67,48 @@ async def signUpUser(datas: _schemas.SignUpUser, db: Session = Depends(get_db)) 
 
     _token = await _services.genereate_token_user(user=_user)
 
-    return _schemas.ReturnUser(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user
-    )
+    return await get_return_user(_user=_user, _token=_token)
 
 # signin
 @router.post("/signin")
-async def signInUser(datas: _schemas.SignInUser, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
+async def signInUser(datas: _schemas.SignInUser, db: Session = Depends(get_db)):
     # check in database
-    _user = await _services.get_user_by_email(datas.email, db)
-    if _user.jenis_user == "pendana":
-        pass
-    else:
-        pass
-    
-    if not _user:
+    _user_model = await _services.get_user_by_email(datas.email, db)
+    if not _user_model:
         raise HTTPException(status_code=404, detail="user with this email is not found")
 
     # verify password
-    if not _user.verify_password(datas.password):
+    if not _user_model.verify_password(datas.password):
         raise HTTPException(status_code=401, detail="Password not matched")
     
     # generate token
-    _token = await _services.genereate_token_user(user=_user)
-
-    return _schemas.ReturnUser(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran
-    )
+    _token = await _services.genereate_token_user(user=_user_model)
+    
+    _user = await get_return_user(_user=_user_model, _token=_token)
+    
+    # check pendana atau peminjam
+    if _user.jenis_user == "pendana":
+        return await signInPendana(_user=_user, db=db)
+    elif _user.jenis_user == "peminjam":
+        return await signInPeminjam(_user=_user, db=db)
+    else:
+        return _user
     
 # get with auth
 @router.get("/me")
 async def getUserUserViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
     # get user and user
-    _user = await _services.get_user_via_token(token=token, db=db)
+    _user_model = await _services.get_user_via_token(token=token, db=db)
     
-    return _schemas.ReturnUser(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran
-    )
+    _user = await get_return_user(_user=_user_model, _token=token)
+    
+    # check pendana atau peminjam
+    if _user.jenis_user == "pendana":
+        return await signInPendana(_user=_user, db=db)
+    elif _user.jenis_user == "peminjam":
+        return await signInPeminjam(_user=_user, db=db)
+    else:
+        return _user
 
 # ===========================================================================================
 # NOTIFIKASI
@@ -152,6 +142,28 @@ async def getTransaksiPembayaran(user_id: int, db: Session = Depends(get_db)):
 
 # ===========================================================================================
 # PENDANA
+# get data
+async def get_return_pendana(_user: _schemas.ReturnUser, _pendana: _models.Pendana) -> _schemas.ReturnPendana:
+    return _schemas.ReturnPendana(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=_user.token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran,
+        
+        pendana_id=_pendana.id,
+        
+        investasi=_pendana.investasi
+    )
+
 # signup
 @router_pendana.post("/signup")
 async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get_db)):
@@ -163,94 +175,68 @@ async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get
     # create pendana
     _pendana = await _services.create_pendana(datas=datas, db=db)
 
-    return _schemas.ReturnPendana(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_user.token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran,
-        
-        pendana_id=_pendana.id,
-        
-        investasi=_pendana.investasi
-    )
+    return await get_return_pendana(_user=_user, _pendana=_pendana)
 
 # signin
 @router_pendana.post("/signin")
-async def signInPendana(datas: _schemas.SignInUser, db: Session = Depends(get_db)):
-    
-    _user = await signInUser(datas=datas, db=db)
-    
+async def signInPendana(_user: _schemas.ReturnUser, db: Session = Depends(get_db)) -> _schemas.ReturnPendana:
+    # get data
     _pendana = await _services.get_pendana_by_user_id(user_id=_user.id, db=db)
     if not _pendana:
         raise HTTPException(status_code=404, detail="Pendana with this email is not found")
 
-    return _schemas.ReturnPendana(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_user.token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran,
-        
-        pendana_id=_pendana.id,
-        
-        investasi=_pendana.investasi
-    )
+    return await get_return_pendana(_user=_user, _pendana=_pendana)
 
 # get with auth
-@router_pendana.get("/me")
-async def getPendanaViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
-    # get user and peminjam
-    _user = await _services.get_user_via_token(token=token, db=db)
-    _pendana = await _services.get_pendana_by_user_id(user_id=_user.id, db=db)
+# @router_pendana.get("/me")
+# async def getPendanaViaToken(_user: _schemas.ReturnUser, db: Session = Depends(get_db)):
+#     # get peminjam
+#     _pendana = await _services.get_pendana_by_user_id(user_id=_user.id, db=db)
     
-    return _schemas.ReturnPendana(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran,
-        
-        pendana_id=_pendana.id,
-        
-        investasi=_pendana.investasi
-    )
+#     return get_return_pendana(_user=_user, _pendana=_pendana)
     
 # ===========================================================================================
 # INVESTASI
 # set investasi
 @router_pendana.post("/setInvestasi/{pendana_id}/{pinjaman_id}")
-async def setInvestasi(datas: _schemas.Investasi, pendana_id: int, pinjaman_id: int, db: Session = Depends(get_db)):
-    _investasi = await _services.set_investasi(datas=datas, pendana_id=pendana_id, pinjaman_id=pinjaman_id, db=db)
+async def setInvestasi(datas: _schemas.Investasi, pinjaman_id: int, db: Session = Depends(get_db)):
+    _investasi = await _services.set_investasi(datas=datas, pinjaman_id=pinjaman_id, db=db)
     
     return {"investasi": _investasi}
 
 # ===========================================================================================
 # PEMINJAM
+# get data peminjam
+async def get_return_peminjam(_user: _schemas.ReturnUser, _peminjam: _models.Peminjam) -> _schemas.ReturnPeminjam:
+    return _schemas.ReturnPeminjam(
+        id=_user.id,
+        email=_user.email,
+        password=_user.password,
+        token=_user.token,
+        tanggal_dibuat=_user.tanggal_dibuat,
+        nama=_user.nama,
+        nomor_ponsel=_user.nomor_ponsel,
+        saldo=_user.saldo,
+        foto=_user.foto,
+        jenis_user=_user.jenis_user,
+        
+        notifikasi=_user.notifikasi,
+        transaksi_pembayaran= _user.transaksi_pembayaran,
+        
+        peminjam_id=_peminjam.id,
+        jenis=_peminjam.jenis,
+        nik=_peminjam.nik,
+        alamat=_peminjam.alamat,
+        grade=_peminjam.grade,
+        jenis_usaha=_peminjam.jenis_usaha,
+        provinsi_usaha=_peminjam.provinsi_usaha,
+        kota_usaha=_peminjam.kota_usaha,
+        pendapatan=_peminjam.pendapatan,
+
+        pinjaman=_peminjam.pinjaman,
+        pembayaran=_peminjam.pembayaran
+    )
+
 # signup
 @router_peminjam.post("/signup")
 async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(get_db)):
@@ -263,103 +249,28 @@ async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(g
     # create peminjam
     _peminjam = await _services.create_peminjam(datas=datas, db=db)
 
-    return _schemas.ReturnPeminjam(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_user.token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        peminjam_id=_peminjam.id,
-        jenis=_peminjam.jenis,
-        nik=_peminjam.nik,
-        alamat=_peminjam.alamat,
-        grade=_peminjam.grade,
-        jenis_usaha=_peminjam.jenis_usaha,
-        provinsi_usaha=_peminjam.provinsi_usaha,
-        kota_usaha=_peminjam.kota_usaha,
-        pendapatan=_peminjam.pendapatan,
-    )
+    return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
 
 # signin
 @router_peminjam.post("/signin")
-async def signInPeminjam(datas: _schemas.SignInUser, db: Session = Depends(get_db)):
-    
-    _user = await signInUser(datas=datas, db=db)
-    
+async def signInPeminjam(_user: _schemas.ReturnUser, db: Session = Depends(get_db)) -> _schemas.ReturnPeminjam:
+    # get data
     _peminjam = await _services.get_peminjam_by_user_id(user_id=_user.id, db=db)
     if not _peminjam:
         raise HTTPException(status_code=404, detail="Peminjam with this email is not found")
 
-    return _schemas.ReturnPeminjam(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=_user.token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran,
-        
-        peminjam_id=_peminjam.id,
-        jenis=_peminjam.jenis,
-        nik=_peminjam.nik,
-        alamat=_peminjam.alamat,
-        grade=_peminjam.grade,
-        jenis_usaha=_peminjam.jenis_usaha,
-        provinsi_usaha=_peminjam.provinsi_usaha,
-        kota_usaha=_peminjam.kota_usaha,
-        pendapatan=_peminjam.pendapatan,
+    return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
 
-        pinjaman=_peminjam.pinjaman,
-        pembayaran=_peminjam.pembayaran
-    )
+# ===========================================================================================
 
-# get with auth
-@router_peminjam.get("/me")
-async def getUserPeminjamViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
-    # get user and peminjam
-    _user = await _services.get_user_via_token(token=token, db=db)
-    _peminjam = await _services.get_peminjam_by_user_id(user_id=_user.id, db=db)
+# # get with auth
+# @router_peminjam.get("/me")
+# async def getUserPeminjamViaToken(token: str = Depends(oauth2schema), db: Session = Depends(get_db)):
+#     # get user and peminjam
+#     _user = await _services.get_user_via_token(token=token, db=db)
+#     _peminjam = await _services.get_peminjam_by_user_id(user_id=_user.id, db=db)
     
-    return _schemas.ReturnPeminjam(
-        id=_user.id,
-        email=_user.email,
-        password=_user.password,
-        token=token,
-        tanggal_dibuat=_user.tanggal_dibuat,
-        nama=_user.nama,
-        nomor_ponsel=_user.nomor_ponsel,
-        saldo=_user.saldo,
-        foto=_user.foto,
-        jenis_user=_user.jenis_user,
-        
-        notifikasi=_user.notifikasi,
-        transaksi_pembayaran= _user.transaksi_pembayaran,
-        
-        peminjam_id=_peminjam.id,
-        jenis=_peminjam.jenis,
-        nik=_peminjam.nik,
-        alamat=_peminjam.alamat,
-        grade=_peminjam.grade,
-        jenis_usaha=_peminjam.jenis_usaha,
-        provinsi_usaha=_peminjam.provinsi_usaha,
-        kota_usaha=_peminjam.kota_usaha,
-        pendapatan=_peminjam.pendapatan,
-
-        pinjaman=_peminjam.pinjaman,
-        pembayaran=_peminjam.pembayaran
-    )
+#     return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
 
 # # USER
 # async def get_user_return(_user: _models.User, _token, db):

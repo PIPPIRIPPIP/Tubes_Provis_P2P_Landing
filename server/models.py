@@ -123,7 +123,7 @@ class Investasi(Base):
     jumlah_investasi = Column(Integer)
     keuntungan = Column(Integer)
     tanggal_investasi = Column(DateTime)
-    status = Column(Enum('Dalam Proses', 'Berhasil', 'Dibatalkan'))
+    status = Column(String)
     
     pinjaman = relationship('Pinjaman', back_populates='investasi')
     pendana = relationship('Pendana', back_populates='investasi')
