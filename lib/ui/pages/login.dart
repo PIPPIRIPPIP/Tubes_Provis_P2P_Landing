@@ -28,7 +28,7 @@ class LoginPage extends State<Login> {
 
   Future<void> _signInSuccess(User userData) async {
     bool isSaveSuccess =
-        await LocalStoreServices.saveInLocal(context, userData);
+        await LocalStoreServices.saveInLocal(context, userData.token);
     if (isSaveSuccess) {
       if (!mounted) return;
       UserProvider userProvider =
@@ -48,7 +48,24 @@ class LoginPage extends State<Login> {
 
     // NOTE : Process belows, if Sign-Ip via API successfully
     if (userAccount != null) {
+      // Pengecekan jenis_user
+      // if (userAccount is Peminjam) {
+      //   // userAccount merupakan Peminjam
+      //   // Peminjam peminjam = userAccount;
+      //   await _signInSuccess(userAccount);
+      //   print("peminjam");
+      // } else if (userAccount is Pendana) {
+      //   // userAccount merupakan Pendana
+      //   Pendana pendana = userAccount;
+      //   await _signInSuccess(pendana);
+      //   print("pendana");
+      // }
+      // else{
+      //   // User user = userAccount as User;
+      //   print("tidak ada jenis user");
+      // }
       await _signInSuccess(userAccount);
+
       if (!mounted) return;
       // Navigator.of(context).pop;
       Navigator.pushReplacement(

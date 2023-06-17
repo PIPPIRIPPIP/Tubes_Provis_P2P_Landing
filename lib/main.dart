@@ -62,6 +62,19 @@ class _MyAppState extends State<MyApp> {
         if (!mounted) return null;
         Provider.of<UserProvider>(context, listen: false)
             .setUserFromModel(user);
+        // if(user is Peminjam){
+        //   Provider.of<PeminjamProvider>(context, listen: false)
+        //     .setPeminjamFromModel(user);
+        // }
+        // else if(user is Pendana){
+        //   Provider.of<PendanaProvider>(context, listen: false)
+        //     .setPendanaFromModel(user);
+        // }
+        // else{
+        //   user = user as User;
+        //   Provider.of<UserProvider>(context, listen: false)
+        //     .setUserFromModel(user);
+        // }
       }
     }
   }
@@ -85,9 +98,9 @@ class _MyAppState extends State<MyApp> {
         builder: (context, userProvider, child) {
           if (userProvider.user != null) {
             if (userProvider.user?.jenisUser == "pendana") {
-              return PendanaPage();
+              return const PendanaPage();
             } else if (userProvider.user?.jenisUser == "peminjam") {
-              return PeminjamPage();
+              return const PeminjamPage();
             }
           }
           // if (userProvider.user != null) {

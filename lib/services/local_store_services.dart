@@ -10,10 +10,10 @@ class LocalStoreServices {
   /// Save token data into local storage,
   /// Success : return True,
   /// Fail : return False
-  static Future<bool> saveInLocal(BuildContext context, User userData) async {
+  static Future<bool> saveInLocal(BuildContext context, String token) async {
     try {
       SharedPreferences pref = await SharedPreferences.getInstance();
-      return await pref.setString(Constants.LOCAL_STORAGE_TOKEN_KEY, userData.token);
+      return await pref.setString(Constants.LOCAL_STORAGE_TOKEN_KEY, token);
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
       return false;

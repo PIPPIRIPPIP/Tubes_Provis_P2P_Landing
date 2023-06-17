@@ -154,87 +154,87 @@ class TransaksiPembayaran {
 
 // PENDANA
 
-class Pendana {
-  final int id;
-  final String email;
-  final String password;
-  final DateTime tanggalDibuat;
-  final String nama;
-  final String nomorPonsel;
-  final int saldo;
-  final String foto;
-  final String jenisUser;
-  final List<Notifikasi> notifikasi;
-  final List<TransaksiPembayaran> transaksiPembayaran;
-  final String token;
-  final int pendana_id;
-  final List<Investasi> investasi;
+// class Pendana {
+//   final int id;
+//   final String email;
+//   final String password;
+//   final DateTime tanggalDibuat;
+//   final String nama;
+//   final String nomorPonsel;
+//   final int saldo;
+//   final String foto;
+//   final String jenisUser;
+//   final List<Notifikasi> notifikasi;
+//   final List<TransaksiPembayaran> transaksiPembayaran;
+//   final String token;
+//   final int pendana_id;
+//   final List<Investasi> investasi;
 
-  Pendana({
-    required this.id,
-    required this.email,
-    required this.password,
-    required this.tanggalDibuat,
-    required this.nama,
-    required this.nomorPonsel,
-    required this.saldo,
-    required this.foto,
-    required this.jenisUser,
-    required this.notifikasi,
-    required this.transaksiPembayaran,
-    required this.token,
-    required this.pendana_id,
-    required this.investasi,
-  });
+//   Pendana({
+//     required this.id,
+//     required this.email,
+//     required this.password,
+//     required this.tanggalDibuat,
+//     required this.nama,
+//     required this.nomorPonsel,
+//     required this.saldo,
+//     required this.foto,
+//     required this.jenisUser,
+//     required this.notifikasi,
+//     required this.transaksiPembayaran,
+//     required this.token,
+//     required this.pendana_id,
+//     required this.investasi,
+//   });
 
-  factory Pendana.fromMap(Map<String, dynamic> map) {
-    return Pendana(
-      id: map['id'] ?? 0,
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
-      nama: map['nama'] ?? '',
-      nomorPonsel: map['nomor_ponsel'] ?? '',
-      saldo: map['saldo'] ?? 0,
-      foto: map['foto'] ?? '',
-      jenisUser: map['jenis_user'] ?? '',
-      notifikasi: List<Notifikasi>.from(
-          (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
-      transaksiPembayaran: List<TransaksiPembayaran>.from(
-          (map['transaksi_pembayaran'] ?? [])
-              .map((x) => TransaksiPembayaran.fromMap(x))),
-      token: map['token'] ?? '',
-      pendana_id: map['pendana_id'] ?? 0,
-      investasi: List<Investasi>.from(
-          (map['investasi'] ?? []).map((x) => Investasi.fromMap(x))),
-    );
-  }
+//   factory Pendana.fromMap(Map<String, dynamic> map) {
+//     return Pendana(
+//       id: map['id'] ?? 0,
+//       email: map['email'] ?? '',
+//       password: map['password'] ?? '',
+//       tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
+//       nama: map['nama'] ?? '',
+//       nomorPonsel: map['nomor_ponsel'] ?? '',
+//       saldo: map['saldo'] ?? 0,
+//       foto: map['foto'] ?? '',
+//       jenisUser: map['jenis_user'] ?? '',
+//       notifikasi: List<Notifikasi>.from(
+//           (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
+//       transaksiPembayaran: List<TransaksiPembayaran>.from(
+//           (map['transaksi_pembayaran'] ?? [])
+//               .map((x) => TransaksiPembayaran.fromMap(x))),
+//       token: map['token'] ?? '',
+//       pendana_id: map['pendana_id'] ?? 0,
+//       investasi: List<Investasi>.from(
+//           (map['investasi'] ?? []).map((x) => Investasi.fromMap(x))),
+//     );
+//   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'password': password,
-      'tanggal_dibuat': tanggalDibuat.toIso8601String(),
-      'nama': nama,
-      'nomor_ponsel': nomorPonsel,
-      'saldo': saldo,
-      'foto': foto,
-      'jenis_user': jenisUser,
-      'notifikasi': notifikasi.map((x) => x.toMap()).toList(),
-      'transaksi_pembayaran':
-          transaksiPembayaran.map((x) => x.toMap()).toList(),
-      'token': token,
-      'pendana_id': pendana_id,
-      'investasi': investasi.map((x) => x.toMap()).toList(),
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'email': email,
+//       'password': password,
+//       'tanggal_dibuat': tanggalDibuat.toIso8601String(),
+//       'nama': nama,
+//       'nomor_ponsel': nomorPonsel,
+//       'saldo': saldo,
+//       'foto': foto,
+//       'jenis_user': jenisUser,
+//       'notifikasi': notifikasi.map((x) => x.toMap()).toList(),
+//       'transaksi_pembayaran':
+//           transaksiPembayaran.map((x) => x.toMap()).toList(),
+//       'token': token,
+//       'pendana_id': pendana_id,
+//       'investasi': investasi.map((x) => x.toMap()).toList(),
+//     };
+//   }
 
-  String toJson() => json.encode(toMap());
+//   String toJson() => json.encode(toMap());
 
-  factory Pendana.fromJson(String source) =>
-      Pendana.fromMap(json.decode(source));
-}
+//   factory Pendana.fromJson(String source) =>
+//       Pendana.fromMap(json.decode(source));
+// }
 
 class Investasi {
   final int id;
@@ -282,125 +282,125 @@ class Investasi {
 
 // PEMINJAM
 
-class Peminjam {
-  final int id;
-  final String email;
-  final String password;
-  final DateTime tanggalDibuat;
-  final String nama;
-  final String nomorPonsel;
-  final int saldo;
-  final String foto;
-  final String jenisUser;
-  final List<Notifikasi> notifikasi;
-  final List<TransaksiPembayaran> transaksiPembayaran;
-  final String token;
-  final int peminjamId;
-  final String jenis;
-  final String nik;
-  final String alamat;
-  final int grade;
-  final String jenisUsaha;
-  final String provinsiUsaha;
-  final String kotaUsaha;
-  final int pendapatan;
-  final List<Pinjaman> pinjaman;
-  final List<Pembayaran> pembayaran;
+// class Peminjam {
+//   final int id;
+//   final String email;
+//   final String password;
+//   final DateTime tanggalDibuat;
+//   final String nama;
+//   final String nomorPonsel;
+//   final int saldo;
+//   final String foto;
+//   final String jenisUser;
+//   final List<Notifikasi> notifikasi;
+//   final List<TransaksiPembayaran> transaksiPembayaran;
+//   final String token;
+//   final int peminjamId;
+//   final String jenis;
+//   final String nik;
+//   final String alamat;
+//   final int grade;
+//   final String jenisUsaha;
+//   final String provinsiUsaha;
+//   final String kotaUsaha;
+//   final int pendapatan;
+//   final List<Pinjaman> pinjaman;
+//   final List<Pembayaran> pembayaran;
 
-  Peminjam({
-    required this.id,
-    required this.email,
-    required this.password,
-    required this.tanggalDibuat,
-    required this.nama,
-    required this.nomorPonsel,
-    required this.saldo,
-    required this.foto,
-    required this.jenisUser,
-    required this.notifikasi,
-    required this.transaksiPembayaran,
-    required this.token,
-    required this.peminjamId,
-    required this.jenis,
-    required this.nik,
-    required this.alamat,
-    required this.grade,
-    required this.jenisUsaha,
-    required this.provinsiUsaha,
-    required this.kotaUsaha,
-    required this.pendapatan,
-    required this.pinjaman,
-    required this.pembayaran,
-  });
+//   Peminjam({
+//     required this.id,
+//     required this.email,
+//     required this.password,
+//     required this.tanggalDibuat,
+//     required this.nama,
+//     required this.nomorPonsel,
+//     required this.saldo,
+//     required this.foto,
+//     required this.jenisUser,
+//     required this.notifikasi,
+//     required this.transaksiPembayaran,
+//     required this.token,
+//     required this.peminjamId,
+//     required this.jenis,
+//     required this.nik,
+//     required this.alamat,
+//     required this.grade,
+//     required this.jenisUsaha,
+//     required this.provinsiUsaha,
+//     required this.kotaUsaha,
+//     required this.pendapatan,
+//     required this.pinjaman,
+//     required this.pembayaran,
+//   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'password': password,
-      'tanggal_dibuat': tanggalDibuat.toIso8601String(),
-      'nama': nama,
-      'nomor_ponsel': nomorPonsel,
-      'saldo': saldo,
-      'foto': foto,
-      'jenis_user': jenisUser,
-      'notifikasi': notifikasi.map((x) => x.toMap()).toList(),
-      'transaksi_pembayaran':
-          transaksiPembayaran.map((x) => x.toMap()).toList(),
-      'token': token,
-      'peminjam_id': peminjamId,
-      'jenis': jenis,
-      'nik': nik,
-      'alamat': alamat,
-      'grade': grade,
-      'jenis_usaha': jenisUsaha,
-      'provinsi_usaha': provinsiUsaha,
-      'kota_usaha': kotaUsaha,
-      'pendapatan': pendapatan,
-      'pinjaman': pinjaman.map((pinjaman) => pinjaman.toMap()).toList(),
-      'pembayaran': pembayaran.map((pembayaran) => pembayaran.toMap()).toList(),
-    };
-  }
+//   Map<String, dynamic> toMap() {
+//     return {
+//       'id': id,
+//       'email': email,
+//       'password': password,
+//       'tanggal_dibuat': tanggalDibuat.toIso8601String(),
+//       'nama': nama,
+//       'nomor_ponsel': nomorPonsel,
+//       'saldo': saldo,
+//       'foto': foto,
+//       'jenis_user': jenisUser,
+//       'notifikasi': notifikasi.map((x) => x.toMap()).toList(),
+//       'transaksi_pembayaran':
+//           transaksiPembayaran.map((x) => x.toMap()).toList(),
+//       'token': token,
+//       'peminjam_id': peminjamId,
+//       'jenis': jenis,
+//       'nik': nik,
+//       'alamat': alamat,
+//       'grade': grade,
+//       'jenis_usaha': jenisUsaha,
+//       'provinsi_usaha': provinsiUsaha,
+//       'kota_usaha': kotaUsaha,
+//       'pendapatan': pendapatan,
+//       'pinjaman': pinjaman.map((pinjaman) => pinjaman.toMap()).toList(),
+//       'pembayaran': pembayaran.map((pembayaran) => pembayaran.toMap()).toList(),
+//     };
+//   }
 
-  factory Peminjam.fromMap(Map<String, dynamic> map) {
-    return Peminjam(
-      id: map['id'] ?? 0,
-      email: map['email'] ?? '',
-      password: map['password'] ?? '',
-      tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
-      nama: map['nama'] ?? '',
-      nomorPonsel: map['nomor_ponsel'] ?? '',
-      saldo: map['saldo'] ?? 0,
-      foto: map['foto'] ?? '',
-      jenisUser: map['jenis_user'] ?? '',
-      notifikasi: List<Notifikasi>.from(
-          (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
-      transaksiPembayaran: List<TransaksiPembayaran>.from(
-          (map['transaksi_pembayaran'] ?? [])
-              .map((x) => TransaksiPembayaran.fromMap(x))),
-      token: map['token'] ?? '',
-      peminjamId: map['peminjam_id'] ?? 0,
-      jenis: map['jenis'] ?? '',
-      nik: map['nik'] ?? '',
-      alamat: map['alamat'] ?? '',
-      grade: map['grade'] ?? 0,
-      jenisUsaha: map['jenis_usaha'] ?? '',
-      provinsiUsaha: map['provinsi_usaha'] ?? '',
-      kotaUsaha: map['kota_usaha'] ?? '',
-      pendapatan: map['pendapatan'] ?? 0,
-      pinjaman: List<Pinjaman>.from(
-          map['pinjaman']?.map((pinjaman) => Pinjaman.fromMap(pinjaman)) ?? []),
-      pembayaran: List<Pembayaran>.from(map['pembayaran']
-              ?.map((pembayaran) => Pembayaran.fromMap(pembayaran)) ??
-          []),
-    );
-  }
+//   factory Peminjam.fromMap(Map<String, dynamic> map) {
+//     return Peminjam(
+//       id: map['id'] ?? 0,
+//       email: map['email'] ?? '',
+//       password: map['password'] ?? '',
+//       tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
+//       nama: map['nama'] ?? '',
+//       nomorPonsel: map['nomor_ponsel'] ?? '',
+//       saldo: map['saldo'] ?? 0,
+//       foto: map['foto'] ?? '',
+//       jenisUser: map['jenis_user'] ?? '',
+//       notifikasi: List<Notifikasi>.from(
+//           (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
+//       transaksiPembayaran: List<TransaksiPembayaran>.from(
+//           (map['transaksi_pembayaran'] ?? [])
+//               .map((x) => TransaksiPembayaran.fromMap(x))),
+//       token: map['token'] ?? '',
+//       peminjamId: map['peminjam_id'] ?? 0,
+//       jenis: map['jenis'] ?? '',
+//       nik: map['nik'] ?? '',
+//       alamat: map['alamat'] ?? '',
+//       grade: map['grade'] ?? 0,
+//       jenisUsaha: map['jenis_usaha'] ?? '',
+//       provinsiUsaha: map['provinsi_usaha'] ?? '',
+//       kotaUsaha: map['kota_usaha'] ?? '',
+//       pendapatan: map['pendapatan'] ?? 0,
+//       pinjaman: List<Pinjaman>.from(
+//           map['pinjaman']?.map((pinjaman) => Pinjaman.fromMap(pinjaman)) ?? []),
+//       pembayaran: List<Pembayaran>.from(map['pembayaran']
+//               ?.map((pembayaran) => Pembayaran.fromMap(pembayaran)) ??
+//           []),
+//     );
+//   }
 
-  String toJson() => json.encode(toMap());
+//   String toJson() => json.encode(toMap());
 
-  factory Peminjam.fromJson(String source) =>
-      Peminjam.fromMap(json.decode(source));
-}
+//   factory Peminjam.fromJson(String source) =>
+//       Peminjam.fromMap(json.decode(source));
+// }
 
 class Pinjaman {
   final int id;
@@ -510,174 +510,183 @@ class Pembayaran {
   }
 }
 
+class Pendana extends User {
+  final int pendanaId;
+  final List<Investasi> investasi;
 
-// class Pendana extends User {
-//   final int pendanaId;
-//   final List<Investasi> investasi;
+  Pendana({
+    required int id,
+    required String email,
+    required String password,
+    required DateTime tanggalDibuat,
+    required String nama,
+    required String nomorPonsel,
+    required int saldo,
+    required String foto,
+    required String jenisUser,
+    required List<Notifikasi> notifikasi,
+    required List<TransaksiPembayaran> transaksiPembayaran,
+    required String token,
+    required this.pendanaId,
+    required this.investasi,
+  }) : super(
+          id: id,
+          email: email,
+          password: password,
+          tanggalDibuat: tanggalDibuat,
+          nama: nama,
+          nomorPonsel: nomorPonsel,
+          saldo: saldo,
+          foto: foto,
+          jenisUser: jenisUser,
+          notifikasi: notifikasi,
+          transaksiPembayaran: transaksiPembayaran,
+          token: token,
+        );
 
-//   Pendana({
-//     required int id,
-//     required String email,
-//     required String password,
-//     required DateTime tanggalDibuat,
-//     required String nama,
-//     required String nomorPonsel,
-//     required int saldo,
-//     required String foto,
-//     required String jenisUser,
-//     required List<Notifikasi> notifikasi,
-//     required List<TransaksiPembayaran> transaksiPembayaran,
-//     required String token,
-//     required this.pendanaId,
-//     required this.investasi,
-//   }) : super(
-//           id: id,
-//           email: email,
-//           password: password,
-//           tanggalDibuat: tanggalDibuat,
-//           nama: nama,
-//           nomorPonsel: nomorPonsel,
-//           saldo: saldo,
-//           foto: foto,
-//           jenisUser: jenisUser,
-//           notifikasi: notifikasi,
-//           transaksiPembayaran: transaksiPembayaran,
-//           token: token,
-//         );
+  factory Pendana.fromMap(Map<String, dynamic> map) {
+    return Pendana(
+      id: map['id'] ?? 0,
+      email: map['email'] ?? '',
+      password: map['password'] ?? '',
+      tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
+      nama: map['nama'] ?? '',
+      nomorPonsel: map['nomor_ponsel'] ?? '',
+      saldo: map['saldo'] ?? 0,
+      foto: map['foto'] ?? '',
+      jenisUser: map['jenis_user'] ?? '',
+      notifikasi: List<Notifikasi>.from(
+          (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
+      transaksiPembayaran: List<TransaksiPembayaran>.from(
+          (map['transaksi_pembayaran'] ?? [])
+              .map((x) => TransaksiPembayaran.fromMap(x))),
+      token: map['token'] ?? '',
+      pendanaId: map['pendana_id'] ?? 0,
+      investasi: List<Investasi>.from(
+          (map['investasi'] ?? []).map((x) => Investasi.fromMap(x))),
+    );
+  }
 
-//   factory Pendana.fromMap(Map<String, dynamic> map) {
-//     return Pendana(
-//       id: map['id'] ?? 0,
-//       email: map['email'] ?? '',
-//       password: map['password'] ?? '',
-//       tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
-//       nama: map['nama'] ?? '',
-//       nomorPonsel: map['nomor_ponsel'] ?? '',
-//       saldo: map['saldo'] ?? 0,
-//       foto: map['foto'] ?? '',
-//       jenisUser: map['jenis_user'] ?? '',
-//       notifikasi: List<Notifikasi>.from(
-//           (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
-//       transaksiPembayaran: List<TransaksiPembayaran>.from(
-//           (map['transaksi_pembayaran'] ?? [])
-//               .map((x) => TransaksiPembayaran.fromMap(x))),
-//       token: map['token'] ?? '',
-//       pendanaId: map['pendana_id'] ?? 0,
-//       investasi: List<Investasi>.from(
-//           (map['investasi'] ?? []).map((x) => Investasi.fromMap(x))),
-//     );
-//   }
+  @override
+  Map<String, dynamic> toMap() {
+    final map = super.toMap();
+    map['pendana_id'] = pendanaId;
+    map['investasi'] = investasi.map((x) => x.toMap()).toList();
+    return map;
+  }
 
-//   @override
-//   Map<String, dynamic> toMap() {
-//     final map = super.toMap();
-//     map['pendana_id'] = pendanaId;
-//     map['investasi'] = investasi.map((x) => x.toMap()).toList();
-//     return map;
-//   }
-// }
+    String toJson() => json.encode(toMap());
 
-// class Peminjam extends User {
-//   final int peminjamId;
-//   final String jenis;
-//   final String nik;
-//   final String alamat;
-//   final int grade;
-//   final String jenisUsaha;
-//   final String provinsiUsaha;
-//   final String kotaUsaha;
-//   final int pendapatan;
-//   final List<Pinjaman> pinjaman;
-//   final List<Pembayaran> pembayaran;
+    factory Pendana.fromJson(String source) =>
+        Pendana.fromMap(json.decode(source));
+}
 
-//   Peminjam({
-//     required int id,
-//     required String email,
-//     required String password,
-//     required DateTime tanggalDibuat,
-//     required String nama,
-//     required String nomorPonsel,
-//     required int saldo,
-//     required String foto,
-//     required String jenisUser,
-//     required List<Notifikasi> notifikasi,
-//     required List<TransaksiPembayaran> transaksiPembayaran,
-//     required String token,
-//     required this.peminjamId,
-//     required this.jenis,
-//     required this.nik,
-//     required this.alamat,
-//     required this.grade,
-//     required this.jenisUsaha,
-//     required this.provinsiUsaha,
-//     required this.kotaUsaha,
-//     required this.pendapatan,
-//     required this.pinjaman,
-//     required this.pembayaran,
-//   }) : super(
-//           id: id,
-//           email: email,
-//           password: password,
-//           tanggalDibuat: tanggalDibuat,
-//           nama: nama,
-//           nomorPonsel: nomorPonsel,
-//           saldo: saldo,
-//           foto: foto,
-//           jenisUser: jenisUser,
-//           notifikasi: notifikasi,
-//           transaksiPembayaran: transaksiPembayaran,
-//           token: token,
-//         );
+class Peminjam extends User {
+  final int peminjamId;
+  final String jenis;
+  final String nik;
+  final String alamat;
+  final int grade;
+  final String jenisUsaha;
+  final String provinsiUsaha;
+  final String kotaUsaha;
+  final int pendapatan;
+  final List<Pinjaman> pinjaman;
+  final List<Pembayaran> pembayaran;
 
-//   factory Peminjam.fromMap(Map<String, dynamic> map) {
-//     return Peminjam(
-//       id: map['id'] ?? 0,
-//       email: map['email'] ?? '',
-//       password: map['password'] ?? '',
-//       tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
-//       nama: map['nama'] ?? '',
-//       nomorPonsel: map['nomor_ponsel'] ?? '',
-//       saldo: map['saldo'] ?? 0,
-//       foto: map['foto'] ?? '',
-//       jenisUser: map['jenis_user'] ?? '',
-//       notifikasi: List<Notifikasi>.from(
-//           (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
-//       transaksiPembayaran: List<TransaksiPembayaran>.from(
-//           (map['transaksi_pembayaran'] ?? [])
-//               .map((x) => TransaksiPembayaran.fromMap(x))),
-//       token: map['token'] ?? '',
-//       peminjamId: map['peminjam_id'] ?? 0,
-//       jenis: map['jenis'] ?? '',
-//       nik: map['nik'] ?? '',
-//       alamat: map['alamat'] ?? '',
-//       grade: map['grade'] ?? 0,
-//       jenisUsaha: map['jenis_usaha'] ?? '',
-//       provinsiUsaha: map['provinsi_usaha'] ?? '',
-//       kotaUsaha: map['kota_usaha'] ?? '',
-//       pendapatan: map['pendapatan'] ?? 0,
-//       pinjaman: List<Pinjaman>.from(
-//           map['pinjaman']?.map((pinjaman) => Pinjaman.fromMap(pinjaman)) ?? []),
-//       pembayaran: List<Pembayaran>.from(map['pembayaran']
-//               ?.map((pembayaran) => Pembayaran.fromMap(pembayaran)) ??
-//           []),
-//     );
-//   }
+  Peminjam({
+    required int id,
+    required String email,
+    required String password,
+    required DateTime tanggalDibuat,
+    required String nama,
+    required String nomorPonsel,
+    required int saldo,
+    required String foto,
+    required String jenisUser,
+    required List<Notifikasi> notifikasi,
+    required List<TransaksiPembayaran> transaksiPembayaran,
+    required String token,
+    required this.peminjamId,
+    required this.jenis,
+    required this.nik,
+    required this.alamat,
+    required this.grade,
+    required this.jenisUsaha,
+    required this.provinsiUsaha,
+    required this.kotaUsaha,
+    required this.pendapatan,
+    required this.pinjaman,
+    required this.pembayaran,
+  }) : super(
+          id: id,
+          email: email,
+          password: password,
+          tanggalDibuat: tanggalDibuat,
+          nama: nama,
+          nomorPonsel: nomorPonsel,
+          saldo: saldo,
+          foto: foto,
+          jenisUser: jenisUser,
+          notifikasi: notifikasi,
+          transaksiPembayaran: transaksiPembayaran,
+          token: token,
+        );
 
-//   @override
-//   Map<String, dynamic> toMap() {
-//     final map = super.toMap();
-//     map['peminjam_id'] = peminjamId;
-//     map['jenis'] = jenis;
-//     map['nik'] = nik;
-//     map['alamat'] = alamat;
-//     map['grade'] = grade;
-//     map['jenis_usaha'] = jenisUsaha;
-//     map['provinsi_usaha'] = provinsiUsaha;
-//     map['kota_usaha'] = kotaUsaha;
-//     map['pendapatan'] = pendapatan;
-//     map['pinjaman'] = pinjaman.map((pinjaman) => pinjaman.toMap()).toList();
-//     map['pembayaran'] =
-//         pembayaran.map((pembayaran) => pembayaran.toMap()).toList();
-//     return map;
-//   }
-// }
+  factory Peminjam.fromMap(Map<String, dynamic> map) {
+    return Peminjam(
+      id: map['id'] ?? 0,
+      email: map['email'] ?? '',
+      password: map['password'] ?? '',
+      tanggalDibuat: DateTime.parse(map['tanggal_dibuat'] ?? ''),
+      nama: map['nama'] ?? '',
+      nomorPonsel: map['nomor_ponsel'] ?? '',
+      saldo: map['saldo'] ?? 0,
+      foto: map['foto'] ?? '',
+      jenisUser: map['jenis_user'] ?? '',
+      notifikasi: List<Notifikasi>.from(
+          (map['notifikasi'] ?? []).map((x) => Notifikasi.fromMap(x))),
+      transaksiPembayaran: List<TransaksiPembayaran>.from(
+          (map['transaksi_pembayaran'] ?? [])
+              .map((x) => TransaksiPembayaran.fromMap(x))),
+      token: map['token'] ?? '',
+      peminjamId: map['peminjam_id'] ?? 0,
+      jenis: map['jenis'] ?? '',
+      nik: map['nik'] ?? '',
+      alamat: map['alamat'] ?? '',
+      grade: map['grade'] ?? 0,
+      jenisUsaha: map['jenis_usaha'] ?? '',
+      provinsiUsaha: map['provinsi_usaha'] ?? '',
+      kotaUsaha: map['kota_usaha'] ?? '',
+      pendapatan: map['pendapatan'] ?? 0,
+      pinjaman: List<Pinjaman>.from(
+          map['pinjaman']?.map((pinjaman) => Pinjaman.fromMap(pinjaman)) ?? []),
+      pembayaran: List<Pembayaran>.from(map['pembayaran']
+              ?.map((pembayaran) => Pembayaran.fromMap(pembayaran)) ??
+          []),
+    );
+  }
+
+  @override
+  Map<String, dynamic> toMap() {
+    final map = super.toMap();
+    map['peminjam_id'] = peminjamId;
+    map['jenis'] = jenis;
+    map['nik'] = nik;
+    map['alamat'] = alamat;
+    map['grade'] = grade;
+    map['jenis_usaha'] = jenisUsaha;
+    map['provinsi_usaha'] = provinsiUsaha;
+    map['kota_usaha'] = kotaUsaha;
+    map['pendapatan'] = pendapatan;
+    map['pinjaman'] = pinjaman.map((pinjaman) => pinjaman.toMap()).toList();
+    map['pembayaran'] =
+        pembayaran.map((pembayaran) => pembayaran.toMap()).toList();
+    return map;
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Peminjam.fromJson(String source) =>
+      Peminjam.fromMap(json.decode(source));
+}

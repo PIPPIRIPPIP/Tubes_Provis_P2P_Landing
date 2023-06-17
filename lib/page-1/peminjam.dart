@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
+import '../providers/user_provider.dart';
 import 'profile.dart';
 import 'notifikasi.dart';
 import 'isi-saldo.dart';
@@ -15,6 +17,8 @@ import 'riwayat-transaksi.dart';
 import 'package:myapp/page-1/bayar-pinjaman.dart';
 
 class PeminjamPage extends StatelessWidget {
+  const PeminjamPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +36,10 @@ class Scene extends StatelessWidget {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Container(
       width: double.infinity,
       child: Container(
@@ -174,7 +182,7 @@ class Scene extends StatelessWidget {
                               width: 119 * fem,
                               height: 23 * fem,
                               child: Text(
-                                'Rp. ',
+                                'Rp. ${user.saldo}',
                                 style: SafeGoogleFont(
                                   'Poppins',
                                   fontSize: 15 * ffem,

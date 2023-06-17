@@ -19,7 +19,7 @@ class _SignInPageState extends State<SignInPage> {
   late TextEditingController _passwordController;
 
   Future<void> _signInSuccess(User userData) async {
-    bool isSaveSuccess = await LocalStoreServices.saveInLocal(context, userData);
+    bool isSaveSuccess = await LocalStoreServices.saveInLocal(context, userData.token);
       if (isSaveSuccess) {
         if (!mounted) return;
         UserProvider userProvider = Provider.of<UserProvider>(context, listen: false);

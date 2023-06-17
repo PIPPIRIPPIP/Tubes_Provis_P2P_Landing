@@ -158,7 +158,21 @@ class AuthService {
       if (hasError) return null;
 
       /// Execute successfully
-      return User.fromJson(res.body);
+      /// Parse respons body sebagai JSON
+      User userData = User.fromJson(res.body);
+
+      /// check jenis_user
+      if (userData.jenisUser == "peminjam") {
+        return Peminjam.fromJson(res.body);
+      }
+      else if(userData.jenisUser == "pendana"){
+        return Pendana.fromJson(res.body);
+      }
+      else{
+        // for other possible
+        return userData;
+      }
+
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
       return null;
@@ -183,7 +197,21 @@ class AuthService {
 
       if (res.statusCode != 200) return null;
 
-      return User.fromJson(res.body);
+      /// Parse respons body sebagai JSON
+      User userData = User.fromJson(res.body);
+
+      /// check jenis_user
+      if (userData.jenisUser == "peminjam") {
+        return Peminjam.fromJson(res.body);
+      }
+      else if(userData.jenisUser == "pendana"){
+        return Pendana.fromJson(res.body);
+      }
+      else{
+        // for other possible
+        return userData;
+      }
+
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
       return null;

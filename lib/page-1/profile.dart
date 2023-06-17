@@ -16,6 +16,7 @@ import 'package:myapp/models/user_model.dart';
 
 import '../providers/providers.dart';
 import '../services/services.dart';
+import '../utils/grade.dart';
 
 class Profil extends StatefulWidget {
   const Profil({super.key});
@@ -39,6 +40,11 @@ class ProfilPage extends State<Profil> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    Grade grade = getGrade(user.grade);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -155,7 +161,7 @@ class ProfilPage extends State<Profil> {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
-                                                "Nanti",
+                                                user.nama,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -176,7 +182,7 @@ class ProfilPage extends State<Profil> {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
-                                                "nanti",
+                                                user.nomorPonsel,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -193,7 +199,7 @@ class ProfilPage extends State<Profil> {
                                   ),
                                   Text(
                                     // ayeshaliexamplecomAhL (24:125)
-                                    "Nanti",
+                                    user.email,
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -217,13 +223,13 @@ class ProfilPage extends State<Profil> {
                                           text: 'Grade ',
                                         ),
                                         TextSpan(
-                                          text: 'A+',
+                                          text: grade.label,
                                           style: SafeGoogleFont(
                                             'Poppins',
                                             fontSize: 11 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.5 * ffem / fem,
-                                            color: Color(0xffffe500),
+                                            color: grade.color,
                                           ),
                                         ),
                                       ],
@@ -348,7 +354,7 @@ class ProfilPage extends State<Profil> {
                                 maxWidth: 88 * fem,
                               ),
                               child: Text(
-                                'Nanti',
+                                "${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\n${user.pendapatan}",
                                 textAlign: TextAlign.right,
                                 style: SafeGoogleFont(
                                   'Poppins',

@@ -26,7 +26,7 @@ class _SignUpPageState extends State<SignUpPage> {
   /// Call this if Sign-Up via backend-API successfully
   Future<void> _signUpSuccess(User userData) async {
     bool isSaveSuccess =
-        await LocalStoreServices.saveInLocal(context, userData);
+        await LocalStoreServices.saveInLocal(context, userData.token);
     if (isSaveSuccess) {
       if (!mounted) return;
       // NOTE : Update UserProvider

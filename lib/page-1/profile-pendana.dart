@@ -34,7 +34,7 @@ class ProfilPage extends State<ProfilPendana> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    var user = Provider.of<UserProvider>(context, listen: false).user;
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -155,7 +155,7 @@ class ProfilPage extends State<ProfilPendana> {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
-                                                'AYESHA ALI FIRDAUS',
+                                                user.nama,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -176,7 +176,7 @@ class ProfilPage extends State<ProfilPendana> {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
-                                                '+6281234567890',
+                                                user.nomorPonsel,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -193,7 +193,7 @@ class ProfilPage extends State<ProfilPendana> {
                                   ),
                                   Text(
                                     // ayeshaliexamplecomZVQ (70:83)
-                                    'ayeshali@example.com',
+                                    user.email,
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,

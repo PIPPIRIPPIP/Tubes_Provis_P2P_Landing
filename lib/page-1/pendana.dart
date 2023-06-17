@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/models/models.dart';
@@ -9,6 +10,8 @@ import 'package:myapp/page-1/profile-pendana.dart';
 import 'package:myapp/page-1/riwayat-transaksi.dart';
 import 'package:myapp/page-1/tarik-saldo.dart';
 import 'package:myapp/utils.dart';
+
+import '../providers/user_provider.dart';
 
 class PendanaPage extends StatelessWidget {
   const PendanaPage({super.key});
@@ -29,6 +32,10 @@ class Scene extends StatelessWidget {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Container(
       width: double.infinity,
       child: Container(
@@ -157,7 +164,7 @@ class Scene extends StatelessWidget {
                               width: 119 * fem,
                               height: 23 * fem,
                               child: Text(
-                                'Rp. 100.000.000',
+                                'Rp. ${user.saldo}',
                                 style: SafeGoogleFont(
                                   'Poppins',
                                   fontSize: 15 * ffem,
