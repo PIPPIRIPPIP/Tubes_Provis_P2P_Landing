@@ -398,9 +398,5 @@ class DetailInvestasi extends StatelessWidget {
             //     fontStyle: ButtonFontStyle.PoppinsSemiBold15)
                 ));
   }
-
-  // onTapDetailinvestasi(BuildContext context) {
-  //   Navigator.pushNamed(context, AppRoutes.marketplaceContainerScreen);
-  // }
 }
 
