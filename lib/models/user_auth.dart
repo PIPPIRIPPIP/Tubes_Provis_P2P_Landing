@@ -181,3 +181,41 @@ class SignInUserAuth {
   factory SignInUserAuth.fromJson(String source) =>
       SignInUserAuth.fromMap(json.decode(source));
 }
+
+// transaksi Pembayaran
+class AddTransaksiPembayaran {
+  final int userId;
+  final String jenis;
+  final String metodePembayaran;
+  final int jumlah;
+
+  AddTransaksiPembayaran({
+    required this.userId,
+    required this.jenis,
+    required this.metodePembayaran,
+    required this.jumlah,
+  });
+
+  factory AddTransaksiPembayaran.fromMap(Map<String, dynamic> map) {
+    return AddTransaksiPembayaran(
+      userId: map['user_id'] ?? 0,
+      jenis: map['jenis'] ?? '',
+      metodePembayaran: map['metode_pembayaran'] ?? '',
+      jumlah: map['jumlah'] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'user_id': userId,
+      'jenis': jenis,
+      'metode_pembayaran': metodePembayaran,
+      'jumlah': jumlah,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AddTransaksiPembayaran.fromJson(String source) =>
+      AddTransaksiPembayaran.fromMap(json.decode(source));
+}

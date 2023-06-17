@@ -110,6 +110,11 @@ class Notifikasi {
       'timestamp': timestamp.toIso8601String(),
     };
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Notifikasi.fromJson(String source) => Notifikasi.fromMap(json.decode(source));
+
 }
 
 class TransaksiPembayaran {
@@ -150,6 +155,10 @@ class TransaksiPembayaran {
       'timestamp': timestamp.toIso8601String(),
     };
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory TransaksiPembayaran.fromJson(String source) => TransaksiPembayaran.fromMap(json.decode(source));
 }
 
 // PENDANA
@@ -278,6 +287,10 @@ class Investasi {
       'status': status,
     };
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Investasi.fromJson(String source) => Investasi.fromMap(json.decode(source));
 }
 
 // PEMINJAM
@@ -508,6 +521,10 @@ class Pembayaran {
       jumlahPembayaran: map['jumlah_pembayaran'] ?? 0,
     );
   }
+
+  String toJson() => json.encode(toMap());
+
+  factory Pembayaran.fromJson(String source) => Pembayaran.fromMap(json.decode(source));
 }
 
 class Pendana extends User {

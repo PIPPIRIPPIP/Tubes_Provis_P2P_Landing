@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/sukses-topup.dart';
 import 'package:myapp/utils.dart';
 
 import '../models/user_model.dart';
+import '../providers/user_provider.dart';
+import '../services/transaksi_services.dart';
 
 class IsiSaldo extends StatefulWidget {
   @override
@@ -16,11 +19,43 @@ class IsiSaldoState extends State<IsiSaldo> {
   final TextEditingController _controller = TextEditingController();
   int _selectedButtonIndex = -1;
 
+  // void submitTransaction(BuildContext context, String jenisTransaksi) {
+  //   String jumlah = _controller.text;
+
+  //   // Panggil fungsi API dari provider untuk mengirim data transaksi
+  //   bool success = UserService.sendTransaction(
+  //     jumlah, 
+  //     jenisTransaksi);
+
+  //   if (success) {
+  //     // Jika berhasil, arahkan pengguna ke halaman SuksesTopUp
+  //     Navigator.push(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => SuksesTopUp()),
+  //     );
+  //   } else {
+  //     // Jika gagal, tampilkan pesan error atau lakukan tindakan yang sesuai
+  //     // Misalnya, tampilkan snackbar dengan pesan error
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Terjadi kesalahan saat mengirim transaksi.'),
+  //       ),
+  //     );
+  //   }
+  // }
+
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
+    var user = Provider.of<UserProvider>(context, listen: false).user;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(

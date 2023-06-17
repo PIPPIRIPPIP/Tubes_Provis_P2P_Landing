@@ -5,6 +5,16 @@ import passlib.hash as _hash
 
 from database import Base
 
+"""
+User.jenis_user: {"peminjam", "pendana"}
+Peminjam.jenis: {"perorangan", "perusahaan"}
+Notifikasi.jenis: {"umum", "transaksi", "pendanaan", "status", "pengingat"}
+Notifikasi.status: {"masuk", "dibaca"}
+Pinjaman.jenis_angsuran: {""}
+Pinjaman.status: {"proses", "aktif", "lunas"}
+Investasi.status: {"aktif", "selesai"}
+"""
+
 # USER
 class User(Base):
     __tablename__ = "users"
@@ -30,12 +40,12 @@ class User(Base):
 class TransaksiPembayaran(Base):
     __tablename__ = 'transaksi_pembayaran'
     
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     jenis = Column(String)
     metode_pembayaran = Column(String)
     jumlah = Column(Integer)
-    timestamp = Column(DateTime)
+    timestamp = Column(DateTime, default=_dt.datetime.utcnow)
     
     user = relationship('User', back_populates='transaksi_pembayaran')
     
@@ -47,7 +57,8 @@ class Notifikasi(Base):
     jenis = Column(String)
     judul = Column(String)
     pesan = Column(String)
-    timestamp = Column(DateTime)
+    # status = Column(String)
+    timestamp = Column(DateTime, default=_dt.datetime.utcnow)
     
     user = relationship('User', back_populates='notifikasi')
     
@@ -76,7 +87,7 @@ class Pinjaman(Base):
     id = Column(Integer, primary_key=True)
     peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
     kode = Column(String)
-    tanggal_pinjaman = Column(DateTime)
+    tanggal_pinjaman = Column(DateTime, default=_dt.datetime.utcnow)
     jumlah_pinjaman = Column(Integer)
     tenor = Column(Integer)
     bunga = Column(Integer)
@@ -122,7 +133,7 @@ class Investasi(Base):
     pendana_id = Column(Integer, ForeignKey('pendana.id'))
     jumlah_investasi = Column(Integer)
     keuntungan = Column(Integer)
-    tanggal_investasi = Column(DateTime)
+    tanggal_investasi = Column(DateTime, default=_dt.datetime.utcnow)
     status = Column(String)
     
     pinjaman = relationship('Pinjaman', back_populates='investasi')
