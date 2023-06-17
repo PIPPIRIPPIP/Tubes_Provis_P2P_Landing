@@ -2,36 +2,68 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/ui/pages/login.dart';
 import 'package:myapp/utils.dart';
 
+import '../models/models.dart';
+import '../services/services.dart';
+import '../utils/utils.dart';
 import 'daftar-peminjam-perusahaan.dart';
 
-// nambah atribut nik
-
 class DaftarPerorangan extends StatefulWidget {
+  const DaftarPerorangan({super.key});
   @override
-  DaftarPeroranganPage createState() => DaftarPeroranganPage();
+  State<DaftarPerorangan> createState() => DaftarPeroranganPage();
 }
 
 class DaftarPeroranganPage extends State<DaftarPerorangan> {
   List<DropdownMenuItem<String>> provinsi = [];
-
-  String nama = "";
-  String email = "";
-  String telp = "";
-  String nik = "";
-  String password = "";
-  int pendapatan = 0;
-  final inputnama = TextEditingController();
-  final inputemail = TextEditingController();
-  final inputtelp = TextEditingController();
-  final inputnik = TextEditingController();
-  final inputpassword = TextEditingController();
-  final inputpendapatan = TextEditingController();
-  String pilihanProv = "Jawa";
-  String pilihanKota = "Jakarta";
-  String pilihanUsaha = "Kuliner";
+  late TextEditingController _inputNama;
+  late TextEditingController _inputEmail;
+  late TextEditingController _inputTelp;
+  late TextEditingController _inputNik;
+  late TextEditingController _inputProvinsi;
+  late TextEditingController _inputKota;
+  late TextEditingController _inputAlamat;
+  late TextEditingController _inputJenis;
+  late TextEditingController _inputpendapatan;
+  late TextEditingController _inputPassword;
+  late TextEditingController _inputKonfirmPassword;
   bool isAgreed = false;
+
+  /// Trigger this when "Sign Up" button is clicked
+  void _signUp() async {
+    if (_inputPassword.text != _inputKonfirmPassword.text) {
+      Utils.showSnackBar(
+          context, 'Password and Confirm-Passord does not match!');
+      return;
+    }
+
+    // NOTE : If signing-up failed, return null
+    Peminjam? userAccount = await AuthService.signUpPeminjam(
+      context: context,
+      email: _inputEmail.text,
+      password: _inputPassword.text,
+      nama: _inputNama.text,
+      nomorPonsel: _inputTelp.text,
+      jenisUser: "peminjam",
+      alamat: _inputAlamat.text,
+      jenis: 'perorangan',
+      jenisUsaha: _inputJenis.text,
+      kotaUsaha: _inputKota.text,
+      nik: _inputNik.text,
+      pendapatan: int.parse(_inputpendapatan.text),
+      provinsiUsaha: _inputProvinsi.text,
+    );
+
+    if (userAccount != null) {
+      // NOTE : Process, if Sign-Up via API successfully
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Login()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -355,10 +387,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputnama,
+                          controller: _inputNama,
                           onChanged: (text) {
                             setState(() {
-                              nama = text;
+                              // nama = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -410,10 +442,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputemail,
+                          controller: _inputEmail,
                           onChanged: (text) {
                             setState(() {
-                              email = text;
+                              // email = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -465,10 +497,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputtelp,
+                          controller: _inputTelp,
                           onChanged: (text) {
                             setState(() {
-                              telp = text;
+                              // telp = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -520,10 +552,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputnik,
+                          controller: _inputNik,
                           onChanged: (text) {
                             setState(() {
-                              nik = text;
+                              // nik = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -566,31 +598,31 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
-                      Container(
-                          // DROPDOWN
-                          padding: EdgeInsets.fromLTRB(
-                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(7 * fem),
-                          ),
-                          child: DropdownButton<String>(
-                            value: pilihanProv,
-                            items: <String>['Jawa', 'Sumatera', 'Sulawesi']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                pilihanProv = newValue!;
-                              });
-                            },
-                          )),
+                      // Container(
+                      //     // DROPDOWN
+                      //     padding: EdgeInsets.fromLTRB(
+                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                      //     width: double.infinity,
+                      //     decoration: BoxDecoration(
+                      //       border: Border.all(color: Color(0xffbcbcbc)),
+                      //       color: Color(0xffffffff),
+                      //       borderRadius: BorderRadius.circular(7 * fem),
+                      //     ),
+                      //     child: DropdownButton<String>(
+                      //       value: pilihanProv,
+                      //       items: <String>['Jawa', 'Sumatera', 'Sulawesi']
+                      //           .map<DropdownMenuItem<String>>((String value) {
+                      //         return DropdownMenuItem<String>(
+                      //           value: value,
+                      //           child: Text(value),
+                      //         );
+                      //       }).toList(),
+                      //       onChanged: (String? newValue) {
+                      //         setState(() {
+                      //           pilihanProv = newValue!;
+                      //         });
+                      //       },
+                      //     )),
                     ],
                   ),
                 ),
@@ -617,31 +649,86 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
+                      // Container(
+                      //     // DROPDOWN
+                      //     padding: EdgeInsets.fromLTRB(
+                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                      //     width: double.infinity,
+                      //     decoration: BoxDecoration(
+                      //       border: Border.all(color: Color(0xffbcbcbc)),
+                      //       color: Color(0xffffffff),
+                      //       borderRadius: BorderRadius.circular(7 * fem),
+                      //     ),
+                      //     child: DropdownButton<String>(
+                      //       value: pilihanKota,
+                      //       items: <String>['Jakarta', 'Bandung', 'Bekasi']
+                      //           .map<DropdownMenuItem<String>>((String value) {
+                      //         return DropdownMenuItem<String>(
+                      //           value: value,
+                      //           child: Text(value),
+                      //         );
+                      //       }).toList(),
+                      //       onChanged: (String? newValue) {
+                      //         setState(() {
+                      //           pilihanKota = newValue!;
+                      //         });
+                      //       },
+                      //     )),
+                    ],
+                  ),
+                ),
+                Container(
+                  // NIK
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
                       Container(
-                          // DROPDOWN
-                          padding: EdgeInsets.fromLTRB(
-                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(7 * fem),
+                        // BUAT NIK (TITLE)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                        child: Text(
+                          'Alamat Lengkap',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff343434),
                           ),
-                          child: DropdownButton<String>(
-                            value: pilihanKota,
-                            items: <String>['Jakarta', 'Bandung', 'Bekasi']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                pilihanKota = newValue!;
-                              });
-                            },
-                          )),
+                        ),
+                      ),
+                      Container(
+                        // BUAT NAMA (BOX FORM)
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: TextField(
+                          controller: _inputAlamat,
+                          onChanged: (text) {
+                            setState(() {
+                              // nik = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Jl.Setia Budi, No.69',
+                              border: InputBorder.none,
+                              hintStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              )),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -668,31 +755,31 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
-                      Container(
-                          // DROPDOWN
-                          padding: EdgeInsets.fromLTRB(
-                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(7 * fem),
-                          ),
-                          child: DropdownButton<String>(
-                            value: pilihanUsaha,
-                            items: <String>['Kuliner', 'Fashion', 'Jasa']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                pilihanUsaha = newValue!;
-                              });
-                            },
-                          )),
+                      // Container(
+                      //     // DROPDOWN
+                      //     padding: EdgeInsets.fromLTRB(
+                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                      //     width: double.infinity,
+                      //     decoration: BoxDecoration(
+                      //       border: Border.all(color: Color(0xffbcbcbc)),
+                      //       color: Color(0xffffffff),
+                      //       borderRadius: BorderRadius.circular(7 * fem),
+                      //     ),
+                      //     child: DropdownButton<String>(
+                      //       value: pilihanUsaha,
+                      //       items: <String>['Kuliner', 'Fashion', 'Jasa']
+                      //           .map<DropdownMenuItem<String>>((String value) {
+                      //         return DropdownMenuItem<String>(
+                      //           value: value,
+                      //           child: Text(value),
+                      //         );
+                      //       }).toList(),
+                      //       onChanged: (String? newValue) {
+                      //         setState(() {
+                      //           pilihanUsaha = newValue!;
+                      //         });
+                      //       },
+                      //     )),
                     ],
                   ),
                 ),
@@ -730,10 +817,10 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputpendapatan,
+                          controller: _inputpendapatan,
                           onChanged: (text) {
                             setState(() {
-                              pendapatan = int.tryParse(text) ?? 0;
+                              // pendapatan = int.tryParse(text) ?? 0;
                             });
                           },
                           keyboardType: TextInputType.number,
@@ -786,14 +873,69 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputpassword,
+                          controller: _inputPassword,
                           onChanged: (text) {
                             setState(() {
-                              password = text;
+                              // password = text;
                             });
                           },
                           decoration: InputDecoration(
                               hintText: 'password',
+                              border: InputBorder.none,
+                              hintStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  // Password
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        // BUAT password (TITLE)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                        child: Text(
+                          'Konfirmasi Kata Sandi',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff343434),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        // BUAT NAMA (BOX FORM)
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: TextField(
+                          controller: _inputKonfirmPassword,
+                          onChanged: (text) {
+                            setState(() {
+                              // password = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Confirm Password',
                               border: InputBorder.none,
                               hintStyle: SafeGoogleFont(
                                 'Poppins',
@@ -858,39 +1000,39 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                   ),
                 ),
                 //BUTTON LANJUTKAN
-                Container(
-                  margin:
-                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
-                  width: double.infinity,
-                  height: 37 * fem,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3 * fem),
-                  ),
-                  child: ElevatedButton(
-                    onPressed: isAgreed
-                        ? () {
-                            setState(() {
-                              email = inputemail.text;
-                            });
-                          }
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      primary: Color.fromARGB(255, 54, 133, 255),
-                      //fixedSize: Size(250, 40),
-                    ),
-                    child: Text(
-                      'Lanjutkan',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 16 * ffem,
-                        fontWeight: FontWeight.w400,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xffffffff),
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   margin:
+                //       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
+                //   width: double.infinity,
+                //   height: 37 * fem,
+                //   decoration: BoxDecoration(
+                //     borderRadius: BorderRadius.circular(3 * fem),
+                //   ),
+                //   child: ElevatedButton(
+                //     onPressed: isAgreed
+                //         ? () {
+                //             setState(() {
+                //               email = inputemail.text;
+                //             });
+                //           }
+                //         : null,
+                //     style: ElevatedButton.styleFrom(
+                //       primary: Color.fromARGB(255, 54, 133, 255),
+                //       //fixedSize: Size(250, 40),
+                //     ),
+                //     child: Text(
+                //       'Lanjutkan',
+                //       textAlign: TextAlign.center,
+                //       style: SafeGoogleFont(
+                //         'Poppins',
+                //         fontSize: 16 * ffem,
+                //         fontWeight: FontWeight.w400,
+                //         height: 1.5 * ffem / fem,
+                //         color: Color(0xffffffff),
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Container(
                   // group25A2J (4:182)
                   margin: EdgeInsets.fromLTRB(

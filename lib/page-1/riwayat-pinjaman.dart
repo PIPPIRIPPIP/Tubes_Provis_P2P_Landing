@@ -8,16 +8,13 @@ import 'package:myapp/utils.dart';
 import '../models/user_model.dart';
 
 class RiwayatPeminjaman extends StatelessWidget {
-  final User user;
-
-  RiwayatPeminjaman({required this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }

@@ -9,8 +9,6 @@ import 'package:myapp/page-1/riwayat-pinjaman.dart';
 import 'package:myapp/utils.dart';
 
 class Navbar extends StatelessWidget {
-  final User user;
-  Navbar(this.user);
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -31,10 +29,8 @@ class Navbar extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Peminjam(user: user)));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PeminjamPage()));
               },
               child: Container(
                 // group62T9g (63:558)
@@ -76,10 +72,8 @@ class Navbar extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => FormPeminjaman(user: user)));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => FormPeminjaman()));
               },
               child: Container(
                 // autogroup9vwmzop (3wAQW1QYYfuFMXsnSb9VwM)
@@ -125,7 +119,7 @@ class Navbar extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => RiwayatPeminjaman(user: user)));
+                        builder: (context) => RiwayatPeminjaman()));
               },
               child: Container(
                 // autogroupvdnfmCJ (3wAQc64kGAp5fft6qJvdnf)

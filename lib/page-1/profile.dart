@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/kebijakan-privasi.dart';
@@ -13,18 +14,37 @@ import 'package:myapp/page-1/bayar-pinjaman.dart';
 
 import 'package:myapp/models/user_model.dart';
 
-//nambahin on tap link ke edit profile
+import '../providers/providers.dart';
+import '../services/services.dart';
+import '../utils/grade.dart';
 
-class Profil extends StatelessWidget {
-  final User user;
+class Profil extends StatefulWidget {
+  const Profil({super.key});
 
-  Profil({required this.user});
+  @override
+  State<Profil> createState() => ProfilPage();
+}
+
+class ProfilPage extends State<Profil> {
+  void _logOut() async {
+    bool removeSuccess = await LocalStoreServices.removeFromLocal(context);
+    if (removeSuccess) {
+      if (!mounted) return;
+      Provider.of<UserProvider>(context, listen: false).setUserNull();
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    Grade grade = getGrade(user.grade);
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -203,13 +223,13 @@ class Profil extends StatelessWidget {
                                           text: 'Grade ',
                                         ),
                                         TextSpan(
-                                          text: 'A+',
+                                          text: grade.label,
                                           style: SafeGoogleFont(
                                             'Poppins',
                                             fontSize: 11 * ffem,
                                             fontWeight: FontWeight.w600,
                                             height: 1.5 * ffem / fem,
-                                            color: Color(0xffffe500),
+                                            color: grade.color,
                                           ),
                                         ),
                                       ],
@@ -334,7 +354,7 @@ class Profil extends StatelessWidget {
                                 maxWidth: 88 * fem,
                               ),
                               child: Text(
-                                '${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\nRp ${user.pendapatan}',
+                                "${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\n${user.pendapatan}",
                                 textAlign: TextAlign.right,
                                 style: SafeGoogleFont(
                                   'Poppins',
@@ -515,7 +535,7 @@ class Profil extends StatelessWidget {
                             60 * fem, 0 * fem, 60 * fem, 45 * fem),
                         child: Center(
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: _logOut,
                             style: ElevatedButton.styleFrom(
                               primary: Color.fromARGB(255, 255, 54, 54),
                               fixedSize: Size(150, 30),

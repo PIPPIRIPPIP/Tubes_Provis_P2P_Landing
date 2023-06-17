@@ -1,21 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/edit-profile-investor.dart';
 import 'package:myapp/page-1/kebijakan-privasi.dart';
 import 'package:myapp/page-1/syarat-dan-ketentuan.dart';
 import 'package:myapp/page-1/tentang-kami.dart';
+import 'package:myapp/services/services.dart';
 import 'package:myapp/utils.dart';
 
-//nambahin on tap link ke edit profile
+import '../providers/providers.dart';
 
-class ProfilPendana extends StatelessWidget {
+class ProfilPendana extends StatefulWidget {
+  const ProfilPendana({super.key});
+
+  @override
+  State<ProfilPendana> createState() => ProfilPage();
+}
+
+class ProfilPage extends State<ProfilPendana> {
+  void _logOut() async {
+    bool removeSuccess = await LocalStoreServices.removeFromLocal(context);
+    if (removeSuccess) {
+      if (!mounted) return;
+      Provider.of<UserProvider>(context, listen: false).setUserNull();
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -133,7 +155,7 @@ class ProfilPendana extends StatelessWidget {
                                               width: 181 * fem,
                                               height: 27 * fem,
                                               child: Text(
-                                                'AYESHA ALI FIRDAUS',
+                                                user.nama,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 18 * ffem,
@@ -154,7 +176,7 @@ class ProfilPendana extends StatelessWidget {
                                               width: 94 * fem,
                                               height: 17 * fem,
                                               child: Text(
-                                                '+6281234567890',
+                                                user.nomorPonsel,
                                                 style: SafeGoogleFont(
                                                   'Poppins',
                                                   fontSize: 11 * ffem,
@@ -171,7 +193,7 @@ class ProfilPendana extends StatelessWidget {
                                   ),
                                   Text(
                                     // ayeshaliexamplecomZVQ (70:83)
-                                    'ayeshali@example.com',
+                                    user.email,
                                     style: SafeGoogleFont(
                                       'Poppins',
                                       fontSize: 11 * ffem,
@@ -366,6 +388,32 @@ class ProfilPendana extends StatelessWidget {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(
+                            60 * fem, 0 * fem, 60 * fem, 45 * fem),
+                        child: Center(
+                          child: ElevatedButton(
+                            onPressed: _logOut,
+                            style: ElevatedButton.styleFrom(
+                              primary: Color.fromARGB(255, 255, 54, 54),
+                              fixedSize: Size(150, 30),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                            ),
+                            child: Text(
+                              'Log out',
+                              style: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 15 * ffem,
+                                fontWeight: FontWeight.w500,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xffffffff),
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                       Text(

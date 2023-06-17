@@ -5,16 +5,6 @@ import passlib.hash as _hash
 
 from database import Base
 
-"""
-User.jenis_user: {"peminjam", "pendana"}
-Peminjam.jenis: {"perorangan", "perusahaan"}
-Notifikasi.jenis: {"umum", "transaksi", "pendanaan", "status", "pengingat"}
-Notifikasi.status: {"masuk", "dibaca"}
-Pinjaman.jenis_angsuran: {""}
-Pinjaman.status: {"proses", "aktif", "lunas"}
-Investasi.status: {"aktif", "selesai"}
-"""
-
 # USER
 class User(Base):
     __tablename__ = "users"
@@ -27,7 +17,6 @@ class User(Base):
     nomor_ponsel = Column(String, unique=True)
     saldo = Column(Integer)
     foto = Column(String)
-    jenis_user = Column(String)
 
     peminjam = relationship('Peminjam', back_populates='user')
     pendana = relationship('Pendana', back_populates='user')
@@ -40,12 +29,12 @@ class User(Base):
 class TransaksiPembayaran(Base):
     __tablename__ = 'transaksi_pembayaran'
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True)
     user_id = Column(Integer, ForeignKey('users.id'))
     jenis = Column(String)
     metode_pembayaran = Column(String)
     jumlah = Column(Integer)
-    timestamp = Column(DateTime, default=_dt.datetime.utcnow)
+    timestamp = Column(DateTime)
     
     user = relationship('User', back_populates='transaksi_pembayaran')
     
@@ -57,8 +46,7 @@ class Notifikasi(Base):
     jenis = Column(String)
     judul = Column(String)
     pesan = Column(String)
-    # status = Column(String)
-    timestamp = Column(DateTime, default=_dt.datetime.utcnow)
+    timestamp = Column(DateTime)
     
     user = relationship('User', back_populates='notifikasi')
     
@@ -87,7 +75,7 @@ class Pinjaman(Base):
     id = Column(Integer, primary_key=True)
     peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
     kode = Column(String)
-    tanggal_pinjaman = Column(DateTime, default=_dt.datetime.utcnow)
+    tanggal_pinjaman = Column(DateTime)
     jumlah_pinjaman = Column(Integer)
     tenor = Column(Integer)
     bunga = Column(Integer)
@@ -133,14 +121,14 @@ class Investasi(Base):
     pendana_id = Column(Integer, ForeignKey('pendana.id'))
     jumlah_investasi = Column(Integer)
     keuntungan = Column(Integer)
-    tanggal_investasi = Column(DateTime, default=_dt.datetime.utcnow)
-    status = Column(String)
+    tanggal_investasi = Column(DateTime)
+    status = Column(Enum('Dalam Proses', 'Berhasil', 'Dibatalkan'))
     
     pinjaman = relationship('Pinjaman', back_populates='investasi')
     pendana = relationship('Pendana', back_populates='investasi')
 
+        
 '''
-    
 # investasi
 def invest(self, jumlah_dana):
         self.jumlah_investasi += jumlah_dana

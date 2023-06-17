@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
+import '../providers/user_provider.dart';
 import 'profile.dart';
 import 'notifikasi.dart';
 import 'isi-saldo.dart';
@@ -14,32 +16,30 @@ import 'riwayat-transaksi.dart';
 
 import 'package:myapp/page-1/bayar-pinjaman.dart';
 
-class Peminjam extends StatelessWidget {
-  final User user;
-
-  Peminjam({required this.user});
+class PeminjamPage extends StatelessWidget {
+  const PeminjamPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Scene(user: user),
+        child: Scene(),
       ),
-      bottomNavigationBar: Navbar(user),
+      bottomNavigationBar: Navbar(),
     );
   }
 }
 
 class Scene extends StatelessWidget {
-  final User user;
-
-  Scene({required this.user});
-
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
     return Container(
       width: double.infinity,
       child: Container(
@@ -103,8 +103,7 @@ class Scene extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          Profil(user: user)));
+                                      builder: (context) => Profil()));
                             },
                             style: TextButton.styleFrom(
                               padding: EdgeInsets.zero,
@@ -866,25 +865,27 @@ class Scene extends StatelessWidget {
                                   child: ElevatedButton(
                                     onPressed: () {
                                       Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => BayarTagihan()));
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BayarTagihan()));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       primary: Color(0xff3584ff),
                                       //fixedSize: Size(150, 30),
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(5 * fem),
+                                        borderRadius:
+                                            BorderRadius.circular(5 * fem),
                                       ),
                                     ),
-                                    child:
-                                      Text('Bayar',
-                                        style:  SafeGoogleFont (
+                                    child: Text(
+                                      'Bayar',
+                                      style: SafeGoogleFont(
                                         'Poppins',
-                                        fontSize:  15*ffem,
-                                        fontWeight:  FontWeight.w500,
-                                        height:  1.5*ffem/fem,
-                                        color:  Color(0xffffffff),
+                                        fontSize: 15 * ffem,
+                                        fontWeight: FontWeight.w500,
+                                        height: 1.5 * ffem / fem,
+                                        color: Color(0xffffffff),
                                       ),
                                     ),
                                   ),
