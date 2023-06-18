@@ -6,27 +6,25 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/models/user_model.dart';
+import 'package:myapp/providers/providers.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
 
 //edit investor
 //nambah atribut nik
 
 class EditInvestor extends StatefulWidget {
+  const EditInvestor({super.key});
+
   @override
-  PageEdit createState() => PageEdit();
+  State<EditInvestor> createState() => PageEdit();
 }
 
 class PageEdit extends State<EditInvestor> {
-  String nama = "";
-  String nik = "";
-  String email = "";
-  String no_telp = "";
-  String password = "";
-  final inputnama = TextEditingController(text: "Dicki Investor");
-  final inputnik = TextEditingController(text: "32041399872");
-  final inputemail = TextEditingController(text: "dicki@example.com");
-  final inputtelp = TextEditingController(text: "08881237779");
-  final inputpass = TextEditingController(text: "password");
+  final inputnama = TextEditingController();
+  final inputemail = TextEditingController();
+  final inputtelp = TextEditingController();
+  final pathGambar = TextEditingController();
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
@@ -35,7 +33,6 @@ class PageEdit extends State<EditInvestor> {
     inputnama.dispose();
     inputemail.dispose();
     inputtelp.dispose();
-    inputpass.dispose();
     super.dispose();
   }
 
@@ -43,6 +40,15 @@ class PageEdit extends State<EditInvestor> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      inputnama.text = user.nama;
+      inputemail.text = user.email;
+      inputtelp.text = user.nomorPonsel;
+      pathGambar.text = user.foto;
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -119,7 +125,7 @@ class PageEdit extends State<EditInvestor> {
                             child: kIsWeb
                                 ? (_imageUrl != null
                                     ? Image.network(
-                                        _imageUrl!,
+                                        pathGambar.text,
                                         fit: BoxFit.cover,
                                       )
                                     : null)
@@ -211,43 +217,7 @@ class PageEdit extends State<EditInvestor> {
                         controller: inputnama,
                         onChanged: (text) {
                           setState(() {
-                            nama = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      // NIK
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'NIK',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      // INPUT NIK
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 23 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputnik,
-                        onChanged: (text) {
-                          setState(() {
-                            nik = text;
+                            // nama = text;
                           });
                         },
                       ),
@@ -283,7 +253,7 @@ class PageEdit extends State<EditInvestor> {
                         controller: inputemail,
                         onChanged: (text) {
                           setState(() {
-                            email = text;
+                            // email = text;
                           });
                         },
                       ),
@@ -319,43 +289,7 @@ class PageEdit extends State<EditInvestor> {
                         controller: inputtelp,
                         onChanged: (text) {
                           setState(() {
-                            no_telp = text;
-                          });
-                        },
-                      ),
-                    ),
-                    Container(
-                      // PASSWORD
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Password',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      // Input pass
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 33 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputpass,
-                        onChanged: (text) {
-                          setState(() {
-                            password = text;
+                            // no_telp = text;
                           });
                         },
                       ),
@@ -367,10 +301,10 @@ class PageEdit extends State<EditInvestor> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              nama = inputnama.text;
-                              email = inputemail.text;
-                              no_telp = inputtelp.text;
-                              password = inputpass.text;
+                              // nama = inputnama.text;
+                              // email = inputemail.text;
+                              // no_telp = inputtelp.text;
+                              // password = inputpass.text;
                             });
                           },
                           style: ElevatedButton.styleFrom(
