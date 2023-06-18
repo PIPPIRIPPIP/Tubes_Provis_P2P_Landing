@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/ui/pages/login.dart';
 import 'package:myapp/utils.dart';
+import 'package:http/http.dart' as http;
 
 import '../models/models.dart';
 import '../services/services.dart';
@@ -17,7 +22,19 @@ class DaftarPerorangan extends StatefulWidget {
 }
 
 class DaftarPeroranganPage extends State<DaftarPerorangan> {
-  List<DropdownMenuItem<String>> provinsi = [];
+  List<Map<String, dynamic>> provinces = [];
+  List<Map<String, dynamic>> cities = [];
+  List<String> usaha = [
+    "Agen Pulsa",
+    "Fashion",
+    "Perdagangan",
+    "Perhiasan",
+    "Kesehatan",
+    "Otomotif",
+    "Travel",
+    "Pertanian",
+    "Hiburan"
+  ];
   late TextEditingController _inputNama;
   late TextEditingController _inputEmail;
   late TextEditingController _inputTelp;
@@ -29,6 +46,9 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
   late TextEditingController _inputpendapatan;
   late TextEditingController _inputPassword;
   late TextEditingController _inputKonfirmPassword;
+  String? pilihanProv;
+  String? pilihanKota;
+  String? pilihanUsaha;
   bool isAgreed = false;
 
   /// Trigger this when "Sign Up" button is clicked
@@ -38,6 +58,8 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
           context, 'Password and Confirm-Passord does not match!');
       return;
     }
+
+    int jumlah = int.parse(_inputpendapatan.text.replaceAll('.', ''));
 
     // NOTE : If signing-up failed, return null
     Peminjam? userAccount = await AuthService.signUpPeminjam(
@@ -49,11 +71,11 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
       jenisUser: "peminjam",
       alamat: _inputAlamat.text,
       jenis: 'perorangan',
-      jenisUsaha: _inputJenis.text,
-      kotaUsaha: _inputKota.text,
+      jenisUsaha: pilihanUsaha.toString(),
+      kotaUsaha: pilihanKota.toString(),
       nik: _inputNik.text,
-      pendapatan: int.parse(_inputpendapatan.text),
-      provinsiUsaha: _inputProvinsi.text,
+      pendapatan: jumlah,
+      provinsiUsaha: pilihanProv.toString(),
     );
 
     if (userAccount != null) {
@@ -63,6 +85,69 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
         MaterialPageRoute(builder: (context) => const Login()),
       );
     }
+  }
+
+  Future<void> fetchProvinces() async {
+    var response = await http
+        .get(Uri.parse('https://alamat.thecloudalert.com/api/provinsi/get/'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<Map<String, dynamic>> provinceList =
+          List<Map<String, dynamic>>.from(data['result']);
+      setState(() {
+        provinces = provinceList;
+      });
+    } else {
+      print('Failed to fetch provinces');
+    }
+  }
+
+  Future<void> fetchCities(String provinceId) async {
+    var response = await http.get(Uri.parse(
+        'https://alamat.thecloudalert.com/api/kabkota/get/?d_provinsi_id=$provinceId'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<Map<String, dynamic>> cityList =
+          List<Map<String, dynamic>>.from(data['result']);
+      setState(() {
+        cities = cityList;
+      });
+    } else {
+      print('Failed to fetch cities');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _inputNama = TextEditingController();
+    _inputEmail = TextEditingController();
+    _inputTelp = TextEditingController();
+    _inputNik = TextEditingController();
+    _inputProvinsi = TextEditingController();
+    _inputKota = TextEditingController();
+    _inputAlamat = TextEditingController();
+    _inputJenis = TextEditingController();
+    _inputpendapatan = TextEditingController();
+    _inputPassword = TextEditingController();
+    _inputKonfirmPassword = TextEditingController();
+    fetchProvinces();
+  }
+
+  @override
+  void dispose() {
+    _inputNama.dispose();
+    _inputEmail.dispose();
+    _inputTelp.dispose();
+    _inputNik.dispose();
+    _inputProvinsi.dispose();
+    _inputKota.dispose();
+    _inputAlamat.dispose();
+    _inputJenis.dispose();
+    _inputpendapatan.dispose();
+    _inputPassword.dispose();
+    _inputKonfirmPassword.dispose();
+    super.dispose();
   }
 
   @override
@@ -598,31 +683,35 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
-                      // Container(
-                      //     // DROPDOWN
-                      //     padding: EdgeInsets.fromLTRB(
-                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                      //     width: double.infinity,
-                      //     decoration: BoxDecoration(
-                      //       border: Border.all(color: Color(0xffbcbcbc)),
-                      //       color: Color(0xffffffff),
-                      //       borderRadius: BorderRadius.circular(7 * fem),
-                      //     ),
-                      //     child: DropdownButton<String>(
-                      //       value: pilihanProv,
-                      //       items: <String>['Jawa', 'Sumatera', 'Sulawesi']
-                      //           .map<DropdownMenuItem<String>>((String value) {
-                      //         return DropdownMenuItem<String>(
-                      //           value: value,
-                      //           child: Text(value),
-                      //         );
-                      //       }).toList(),
-                      //       onChanged: (String? newValue) {
-                      //         setState(() {
-                      //           pilihanProv = newValue!;
-                      //         });
-                      //       },
-                      //     )),
+                      Container(
+                          // DROPDOWN
+                          padding: EdgeInsets.fromLTRB(
+                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffbcbcbc)),
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(7 * fem),
+                          ),
+                          child: DropdownButtonFormField<String>(
+                            value: pilihanProv,
+                            items:
+                                provinces.map((Map<String, dynamic> province) {
+                              return DropdownMenuItem<String>(
+                                value: province['text'],
+                                child: Text(province['text']),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                pilihanProv = newValue!;
+                              });
+                              fetchCities(getProvinceId(newValue!));
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Pilih Provinsi',
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -649,36 +738,39 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
-                      // Container(
-                      //     // DROPDOWN
-                      //     padding: EdgeInsets.fromLTRB(
-                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                      //     width: double.infinity,
-                      //     decoration: BoxDecoration(
-                      //       border: Border.all(color: Color(0xffbcbcbc)),
-                      //       color: Color(0xffffffff),
-                      //       borderRadius: BorderRadius.circular(7 * fem),
-                      //     ),
-                      //     child: DropdownButton<String>(
-                      //       value: pilihanKota,
-                      //       items: <String>['Jakarta', 'Bandung', 'Bekasi']
-                      //           .map<DropdownMenuItem<String>>((String value) {
-                      //         return DropdownMenuItem<String>(
-                      //           value: value,
-                      //           child: Text(value),
-                      //         );
-                      //       }).toList(),
-                      //       onChanged: (String? newValue) {
-                      //         setState(() {
-                      //           pilihanKota = newValue!;
-                      //         });
-                      //       },
-                      //     )),
+                      Container(
+                        // DROPDOWN
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: DropdownButtonFormField<String>(
+                          value: pilihanKota,
+                          items: cities.map((Map<String, dynamic> city) {
+                            return DropdownMenuItem<String>(
+                              value: city['text'],
+                              child: Text(city['text']),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              pilihanKota = newValue;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Pilih Kota',
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
                 Container(
-                  // NIK
+                  // Alamat Lengkap
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
                   width: double.infinity,
@@ -755,31 +847,34 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                           ),
                         ),
                       ),
-                      // Container(
-                      //     // DROPDOWN
-                      //     padding: EdgeInsets.fromLTRB(
-                      //         17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                      //     width: double.infinity,
-                      //     decoration: BoxDecoration(
-                      //       border: Border.all(color: Color(0xffbcbcbc)),
-                      //       color: Color(0xffffffff),
-                      //       borderRadius: BorderRadius.circular(7 * fem),
-                      //     ),
-                      //     child: DropdownButton<String>(
-                      //       value: pilihanUsaha,
-                      //       items: <String>['Kuliner', 'Fashion', 'Jasa']
-                      //           .map<DropdownMenuItem<String>>((String value) {
-                      //         return DropdownMenuItem<String>(
-                      //           value: value,
-                      //           child: Text(value),
-                      //         );
-                      //       }).toList(),
-                      //       onChanged: (String? newValue) {
-                      //         setState(() {
-                      //           pilihanUsaha = newValue!;
-                      //         });
-                      //       },
-                      //     )),
+                      Container(
+                          // DROPDOWN
+                          padding: EdgeInsets.fromLTRB(
+                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffbcbcbc)),
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(7 * fem),
+                          ),
+                          child: DropdownButtonFormField<String>(
+                            value: pilihanUsaha,
+                            items: usaha
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                pilihanUsaha = newValue!;
+                              });
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Pilih Jenis Usaha',
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -807,25 +902,39 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                         ),
                       ),
                       Container(
-                        // BUAT NAMA (BOX FORM)
-                        padding: EdgeInsets.fromLTRB(
-                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(7 * fem),
-                        ),
-                        child: TextField(
-                          controller: _inputpendapatan,
-                          onChanged: (text) {
-                            setState(() {
-                              // pendapatan = int.tryParse(text) ?? 0;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: '10.000.000',
+                          // BUAT NAMA (BOX FORM)
+                          padding: EdgeInsets.fromLTRB(
+                              17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffbcbcbc)),
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(7 * fem),
+                          ),
+                          child: TextField(
+                            controller: _inputpendapatan,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                final parsedValue = int.tryParse(newValue.text);
+                                if (parsedValue != null) {
+                                  final formatter =
+                                      NumberFormat('#,###', 'id_ID');
+                                  final newString =
+                                      formatter.format(parsedValue);
+                                  return TextEditingValue(
+                                    text: newString,
+                                    selection: TextSelection.collapsed(
+                                        offset: newString.length),
+                                  );
+                                }
+                                return newValue;
+                              }),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: 'Rp. 100.000.000',
                               border: InputBorder.none,
                               hintStyle: SafeGoogleFont(
                                 'Poppins',
@@ -833,9 +942,17 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                                 fontWeight: FontWeight.w400,
                                 height: 1.5 * ffem / fem,
                                 color: Color(0xff727272),
-                              )),
-                        ),
-                      ),
+                              ),
+                              prefixText: 'Rp. ',
+                              prefixStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -895,7 +1012,7 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                   ),
                 ),
                 Container(
-                  // Password
+                  // Konfirmasi Password
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
                   width: double.infinity,
@@ -999,40 +1116,38 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                     ],
                   ),
                 ),
-                //BUTTON LANJUTKAN
-                // Container(
-                //   margin:
-                //       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
-                //   width: double.infinity,
-                //   height: 37 * fem,
-                //   decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(3 * fem),
-                //   ),
-                //   child: ElevatedButton(
-                //     onPressed: isAgreed
-                //         ? () {
-                //             setState(() {
-                //               email = inputemail.text;
-                //             });
-                //           }
-                //         : null,
-                //     style: ElevatedButton.styleFrom(
-                //       primary: Color.fromARGB(255, 54, 133, 255),
-                //       //fixedSize: Size(250, 40),
-                //     ),
-                //     child: Text(
-                //       'Lanjutkan',
-                //       textAlign: TextAlign.center,
-                //       style: SafeGoogleFont(
-                //         'Poppins',
-                //         fontSize: 16 * ffem,
-                //         fontWeight: FontWeight.w400,
-                //         height: 1.5 * ffem / fem,
-                //         color: Color(0xffffffff),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                // BUTTON LANJUTKAN
+                Container(
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 21 * fem),
+                  width: double.infinity,
+                  height: 37 * fem,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(3 * fem),
+                  ),
+                  child: ElevatedButton(
+                    onPressed: isAgreed
+                        ? () {
+                            _signUp();
+                          }
+                        : null,
+                    style: ElevatedButton.styleFrom(
+                      primary: Color.fromARGB(255, 54, 133, 255),
+                      //fixedSize: Size(250, 40),
+                    ),
+                    child: Text(
+                      'Lanjutkan',
+                      textAlign: TextAlign.center,
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 16 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5 * ffem / fem,
+                        color: Color(0xffffffff),
+                      ),
+                    ),
+                  ),
+                ),
                 Container(
                   // group25A2J (4:182)
                   margin: EdgeInsets.fromLTRB(
@@ -1072,7 +1187,12 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                             width: 32 * fem,
                             height: 18 * fem,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()));
+                              },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
                               ),
@@ -1100,5 +1220,14 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
         ),
       ),
     );
+  }
+
+  String getProvinceId(String provinceName) {
+    for (var province in provinces) {
+      if (province['text'] == provinceName) {
+        return province['id'];
+      }
+    }
+    return '';
   }
 }
