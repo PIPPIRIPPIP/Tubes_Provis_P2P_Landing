@@ -38,6 +38,7 @@ class ProfilPage extends State<ProfilPendana> {
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
+    String namaImage = user.foto;
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -125,10 +126,13 @@ class ProfilPage extends State<ProfilPendana> {
                                   0 * fem, 4 * fem, 17 * fem, 0 * fem),
                               width: 74 * fem,
                               height: 74 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/profile2-1.png',
-                                fit: BoxFit.cover,
-                              ),
+                              child: namaImage != ""
+                                  ? Image.network(
+                                      //chrome
+                                      'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const Text(" Image Tidak Tersedia"),
                             ),
                             Container(
                               // autogroupavuyXfC (NsxgowpLdhrUftAzXJaVuY)

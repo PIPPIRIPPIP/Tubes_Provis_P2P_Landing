@@ -1,47 +1,144 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:myapp/models/models.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/utils.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import '../providers/providers.dart';
+import '../services/services.dart';
 
 //Profile peminjam sama umkm disatuin di satu form edit
 
 class EditPeminjam extends StatefulWidget {
   @override
-  PageEdit createState() => PageEdit();
+  State<EditPeminjam> createState() => PageEdit();
 }
 
 class PageEdit extends State<EditPeminjam> {
-  final inputnama = TextEditingController();
-  final inputemail = TextEditingController();
-  final inputtelp = TextEditingController();
-  final inputnik = TextEditingController();
-  final pathGambar = TextEditingController();
-  final inputjenis = TextEditingController();
-  final inputprov = TextEditingController();
-  final inputkota = TextEditingController();
-  final inputpendapatan = TextEditingController();
+  late TextEditingController inputNama;
+  late TextEditingController inputEmail;
+  late TextEditingController inputTelp;
+  late TextEditingController inputNik;
+  late TextEditingController inputAlamat;
+  late TextEditingController pathGambar;
+  late TextEditingController inputJenis;
+  late TextEditingController inputProv;
+  late TextEditingController inputKota;
+  late TextEditingController inputPendapatan;
   bool isAgreed = false;
+  String namaImage = "";
+  final dio = Dio();
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
+  void _update() async {
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return;
+    }
+    int userId = user.id;
+    Peminjam? userAccount = await AuthService.UpdatePeminjam(
+        context: context,
+        email: inputEmail.text,
+        nama: inputNama.text,
+        nomorPonsel: inputTelp.text,
+        foto: namaImage,
+        nik: inputNik.text,
+        alamat: inputAlamat.text,
+        jenisUsaha: inputJenis.text,
+        provinsi: inputProv.text,
+        kota: inputKota.text,
+        pendapatan: int.parse(inputPendapatan.text),
+        userId: userId);
+
+    if (userAccount != null) {
+      // Jika berhasil, perbarui data transaksi di UserProvider
+      Navigator.pop(context);
+    }
+  }
+
+  Future<String> uploadFile(List<int> file, String fileName) async {
+    print("mulai");
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: MediaType("image", "png")),
+    });
+    var response =
+        //untuk chorme
+        await dio.post("http://127.0.0.1:8000/user/uploadimage",
+            data: formData);
+
+    namaImage = fileName;
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      setState(() {
+        namaImage = fileName;
+      });
+    }
+    return fileName;
+  }
+
+  Future<void> _getImageFromGallery() async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name);
+    }
+  }
+
+  @override
+  void initState() {
+    inputNama = TextEditingController();
+    inputEmail = TextEditingController();
+    inputTelp = TextEditingController();
+    inputNik = TextEditingController();
+    inputAlamat = TextEditingController();
+    pathGambar = TextEditingController();
+    inputJenis = TextEditingController();
+    inputProv = TextEditingController();
+    inputKota = TextEditingController();
+    inputPendapatan = TextEditingController();
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return;
+    }
+    inputNama.text = user.nama;
+    inputEmail.text = user.email;
+    inputTelp.text = user.nomorPonsel;
+    inputNik.text = user.nik;
+    inputAlamat.text = user.alamat;
+    pathGambar.text = user.foto;
+    inputJenis.text = user.jenisUsaha;
+    inputProv.text = user.provinsiUsaha;
+    inputKota.text = user.kotaUsaha;
+    inputPendapatan.text = user.pendapatan.toString();
+    namaImage = user.foto;
+    super.initState();
+  }
+
   @override
   void dispose() {
-    inputnama.dispose();
-    inputemail.dispose();
-    inputtelp.dispose();
-    inputnik.dispose();
-    inputjenis.dispose();
-    inputprov.dispose();
-    inputkota.dispose();
-    inputpendapatan.dispose();
+    inputNama.dispose();
+    inputEmail.dispose();
+    inputTelp.dispose();
+    inputNik.dispose();
+    inputAlamat.dispose();
+    inputJenis.dispose();
+    inputProv.dispose();
+    inputKota.dispose();
+    inputPendapatan.dispose();
     super.dispose();
   }
 
@@ -49,20 +146,6 @@ class PageEdit extends State<EditPeminjam> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
-    if (user == null) {
-      return const Center(child: CircularProgressIndicator());
-    } else {
-      inputnama.text = user.nama;
-      inputemail.text = user.email;
-      inputtelp.text = user.nomorPonsel;
-      inputnik.text = user.nik;
-      pathGambar.text = user.foto;
-      inputjenis.text = user.jenisUsaha;
-      inputprov.text = user.provinsiUsaha;
-      inputkota.text = user.kotaUsaha;
-      inputpendapatan.text = user.pendapatan.toString();
-    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -133,20 +216,13 @@ class PageEdit extends State<EditPeminjam> {
                           height: 120 * fem,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100 * fem),
-                            child: kIsWeb
-                                // ignore: unnecessary_null_comparison
-                                ? (_imageUrl != null
-                                    ? Image.network(
-                                        _imageUrl!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null)
-                                : (_image != null
-                                    ? Image.file(
-                                        _image!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null),
+                            child: namaImage != ""
+                                ? Image.network(
+                                    //chrome
+                                    'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                    fit: BoxFit.cover,
+                                  )
+                                : const Text(" Image Tidak Tersedia"),
                           ),
                         ),
                       ),
@@ -155,23 +231,7 @@ class PageEdit extends State<EditPeminjam> {
                 ),
               ),
               InkWell(
-                onTap: () async {
-                  final ImagePicker _picker = ImagePicker();
-                  final XFile? image =
-                      await _picker.pickImage(source: ImageSource.gallery);
-
-                  if (image != null) {
-                    setState(() {
-                      if (kIsWeb) {
-                        _imageUrl = image.path;
-                      } else {
-                        _image = File(image.path);
-                      }
-                    });
-                  } else {
-                    print('No image selected.');
-                  }
-                },
+                onTap: _getImageFromGallery,
                 child: Container(
                   // BUTTON UPLOAD
                   margin:
@@ -224,7 +284,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputnama,
+                        controller: inputNama,
                         onChanged: (text) {
                           setState(() {
                             // nama = text;
@@ -258,7 +318,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputemail,
+                        controller: inputEmail,
                         onChanged: (text) {
                           setState(() {
                             // email = text;
@@ -292,7 +352,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputtelp,
+                        controller: inputTelp,
                         onChanged: (text) {
                           setState(() {
                             // no_telp = text;
@@ -326,7 +386,41 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputnik,
+                        controller: inputNik,
+                        onChanged: (text) {
+                          setState(() {
+                            // nik = text;
+                          });
+                        },
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
+                      child: Text(
+                        'Alamat',
+                        style: SafeGoogleFont(
+                          'Poppins',
+                          fontSize: 14 * ffem,
+                          fontWeight: FontWeight.w600,
+                          height: 1.5 * ffem / fem,
+                          color: Color(0xff000000),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(
+                          0 * fem, 0 * fem, 0 * fem, 29 * fem),
+                      padding: EdgeInsets.fromLTRB(
+                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Color(0xffbcbcbc)),
+                        color: Color(0xffffffff),
+                        borderRadius: BorderRadius.circular(3 * fem),
+                      ),
+                      child: TextField(
+                        controller: inputAlamat,
                         onChanged: (text) {
                           setState(() {
                             // nik = text;
@@ -361,7 +455,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputjenis,
+                        controller: inputJenis,
                         onChanged: (text) {
                           setState(() {
                             // jenis = text;
@@ -395,7 +489,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputprov,
+                        controller: inputProv,
                         onChanged: (text) {
                           setState(() {
                             // prov = text;
@@ -429,7 +523,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputkota,
+                        controller: inputKota,
                         onChanged: (text) {
                           setState(() {
                             // kota = text;
@@ -463,7 +557,7 @@ class PageEdit extends State<EditPeminjam> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputpendapatan,
+                        controller: inputPendapatan,
                         onChanged: (text) {
                           setState(() {
                             // pendapatan = int.tryParse(text) ?? 0;
@@ -477,19 +571,7 @@ class PageEdit extends State<EditPeminjam> {
                           42 * fem, 0 * fem, 43 * fem, 18 * fem),
                       child: Center(
                         child: ElevatedButton(
-                          onPressed: () {
-                            setState(() {
-                              // nama = inputnama.text;
-                              // email = inputemail.text;
-                              // no_telp = inputtelp.text;
-                              // nik = inputnik.text;
-                              // jenis = inputjenis.text;
-                              // prov = inputprov.text;
-                              // kota = inputkota.text;
-                              // // pendapatan = inputpendapatan.text;
-                              // password = inputpass.text;
-                            });
-                          },
+                          onPressed: _update,
                           style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 54, 133, 255),
                             fixedSize: Size(250, 50),

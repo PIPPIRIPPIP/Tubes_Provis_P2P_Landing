@@ -42,6 +42,39 @@ class SignUpPendanaAuth {
       SignUpPendanaAuth.fromMap(json.decode(source));
 }
 
+class UpdatePendanaAuth {
+  final String email;
+  final String nama;
+  final String nomorPonsel;
+  final String pathFoto;
+
+  UpdatePendanaAuth(this.email, this.nama, this.nomorPonsel, this.pathFoto);
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'email': email});
+    result.addAll({'nama': nama});
+    result.addAll({'nomor_ponsel': nomorPonsel});
+    result.addAll({'foto': pathFoto});
+    return result;
+  }
+
+  factory UpdatePendanaAuth.fromMap(Map<String, dynamic> map) {
+    return UpdatePendanaAuth(
+      map['email'] ?? '',
+      map['nama'] ?? '',
+      map['nomor_ponsel'] ?? '',
+      map['foto'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory UpdatePendanaAuth.fromJson(String source) =>
+      UpdatePendanaAuth.fromMap(json.decode(source));
+}
+
 // PEMINJAM
 class SignUpPeminjamAuth {
   final String email;
@@ -114,6 +147,67 @@ class SignUpPeminjamAuth {
 
   factory SignUpPeminjamAuth.fromJson(String source) =>
       SignUpPeminjamAuth.fromMap(json.decode(source));
+}
+
+class UpdatePeminjamAuth {
+  final String email;
+  final String nama;
+  final String nomorPonsel;
+  final String pathFoto;
+  final String nik;
+  final String alamat;
+  final String jenisUsaha;
+  final String provinsi;
+  final String kota;
+  final int pendapatan;
+
+  UpdatePeminjamAuth(
+      this.email,
+      this.nama,
+      this.nomorPonsel,
+      this.pathFoto,
+      this.nik,
+      this.jenisUsaha,
+      this.provinsi,
+      this.kota,
+      this.pendapatan,
+      this.alamat);
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'email': email});
+    result.addAll({'nama': nama});
+    result.addAll({'nomor_ponsel': nomorPonsel});
+    result.addAll({'foto': pathFoto});
+    result.addAll({'nik': nik});
+    result.addAll({'alamat': alamat});
+    result.addAll({'jenis_usaha': jenisUsaha});
+    result.addAll({'provinsi_usaha': provinsi});
+    result.addAll({'kota_usaha': kota});
+    result.addAll({'pendapatan': pendapatan});
+    return result;
+  }
+
+  factory UpdatePeminjamAuth.fromMap(Map<String, dynamic> map) {
+    return UpdatePeminjamAuth(
+      map['email'] ?? '',
+      map['nama'] ?? '',
+      map['nomor_ponsel'] ?? '',
+      map['foto'] ?? '',
+      map['nik'] ?? '',
+      map['alamat'] ?? '',
+      map['jenis_usaha'] ?? '',
+      map['provinsi_usaha'] ?? '',
+      map['kota_usaha'] ?? '',
+      map['pendapatan'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory UpdatePeminjamAuth.fromJson(String source) =>
+      UpdatePeminjamAuth.fromMap(json.decode(source));
 }
 
 class SignUpUserAuth {

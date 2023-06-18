@@ -44,6 +44,7 @@ class ProfilPage extends State<Profil> {
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
+    String namaImage = user.foto;
     Grade grade = getGrade(user.grade);
     return Scaffold(
       body: SingleChildScrollView(
@@ -131,10 +132,13 @@ class ProfilPage extends State<Profil> {
                                   0 * fem, 2 * fem, 17 * fem, 0 * fem),
                               width: 74 * fem,
                               height: 74 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/profile2-1.png',
-                                fit: BoxFit.cover,
-                              ),
+                              child: namaImage != ""
+                                  ? Image.network(
+                                      //chrome
+                                      'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                      fit: BoxFit.cover,
+                                    )
+                                  : const Text(" Image Tidak Tersedia"),
                             ),
                             Container(
                               // autogroupwfjdwRG (3w9wJxNyaBN5LdwM4LWfjD)

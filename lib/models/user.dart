@@ -5,7 +5,7 @@ class User {
   final String email;
   final String password;
   final DateTime tanggalDibuat;
-  final String nama;
+  late final String nama;
   final String nomorPonsel;
   late final int saldo;
   final String foto;
@@ -117,8 +117,8 @@ class Notifikasi {
 
   String toJson() => json.encode(toMap());
 
-  factory Notifikasi.fromJson(String source) => Notifikasi.fromMap(json.decode(source));
-
+  factory Notifikasi.fromJson(String source) =>
+      Notifikasi.fromMap(json.decode(source));
 }
 
 class TransaksiPembayaran {
@@ -162,7 +162,8 @@ class TransaksiPembayaran {
 
   String toJson() => json.encode(toMap());
 
-  factory TransaksiPembayaran.fromJson(String source) => TransaksiPembayaran.fromMap(json.decode(source));
+  factory TransaksiPembayaran.fromJson(String source) =>
+      TransaksiPembayaran.fromMap(json.decode(source));
 }
 
 // PENDANA
@@ -294,7 +295,8 @@ class Investasi {
 
   String toJson() => json.encode(toMap());
 
-  factory Investasi.fromJson(String source) => Investasi.fromMap(json.decode(source));
+  factory Investasi.fromJson(String source) =>
+      Investasi.fromMap(json.decode(source));
 }
 
 // PEMINJAM
@@ -536,7 +538,8 @@ class Pembayaran {
 
   String toJson() => json.encode(toMap());
 
-  factory Pembayaran.fromJson(String source) => Pembayaran.fromMap(json.decode(source));
+  factory Pembayaran.fromJson(String source) =>
+      Pembayaran.fromMap(json.decode(source));
 }
 
 
@@ -605,10 +608,10 @@ class Pendana extends User {
     return map;
   }
 
-    String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
-    factory Pendana.fromJson(String source) =>
-        Pendana.fromMap(json.decode(source));
+  factory Pendana.fromJson(String source) =>
+      Pendana.fromMap(json.decode(source));
 }
 
 class Peminjam extends User {
@@ -792,7 +795,8 @@ class Marketplace {
       pendapatan: json['pendapatan'] ?? 0,
       pinjamanId: json['pinjaman_id'] ?? 0,
       kode: json['kode'] ?? '',
-      tanggalPinjaman: DateTime.tryParse(json['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
+      tanggalPinjaman:
+          DateTime.tryParse(json['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
       jumlahPinjaman: json['jumlah_pinjaman'] ?? 0,
       tenor: json['tenor'] ?? 0,
       bunga: json['bunga'] ?? 0,
@@ -854,7 +858,8 @@ class Marketplace {
       pendapatan: map['pendapatan'] ?? 0,
       pinjamanId: map['pinjaman_id'] ?? 0,
       kode: map['kode'] ?? '',
-      tanggalPinjaman: DateTime.tryParse(map['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
+      tanggalPinjaman:
+          DateTime.tryParse(map['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
       jumlahPinjaman: map['jumlah_pinjaman'] ?? 0,
       tenor: map['tenor'] ?? 0,
       bunga: map['bunga'] ?? 0,

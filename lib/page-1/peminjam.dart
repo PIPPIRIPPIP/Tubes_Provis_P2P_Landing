@@ -27,7 +27,6 @@ class PeminjamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scene(),
-      
       bottomNavigationBar: Navbar(),
     );
   }
@@ -53,64 +52,94 @@ class Scene extends StatelessWidget {
         .where((pembayaran) => pembayaran.status == 'belum dibayar').cast<Pembayaran>()
         .toList();
 
+    String namaImage = user.foto;
     
-
     return Scaffold(
-      body: Container(
+        body: Container(
+      width: double.infinity,
+      child: Container(
+        // peminjamMq8 (7:269)
+        padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
         width: double.infinity,
+        decoration: BoxDecoration(
+          color: Color(0xffffffff),
+        ),
         child: Column(
-          
           crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset(
-                    'assets/page-1/images/logo.png',
-                    width: 150,
-                    height: 50,
+                  Container(
+                    // moneylogodesignstemplatevector (7:284)
+                    width: 100 * fem,
+                    height: 100 * fem,
+                    child: Image.asset(
+                      'assets/page-1/images/logo.png',
+                      width: 50,
+                      height: 50,
+                    ),
                   ),
-                  Row(
-                    //crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NotifikasiPage()));
-                        },
-                        child: Image.asset(
-                          'assets/page-1/images/notif-1.png',
-                          width: 45,
-                          height: 45,
-                        ),
+                  Expanded(
+                    child: Container(
+                      // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
+                      padding: EdgeInsets.fromLTRB(
+                          180 * fem, 2 * fem, 0 * fem, 3 * fem),
+                      height: double.infinity,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NotifikasiPage()));
+                            },
+                            child: Container(
+                              // notif1DF4 (12:298)
+                              margin: EdgeInsets.fromLTRB(
+                                  0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                              width: 25 * fem,
+                              height: 32 * fem,
+                              child: Image.asset(
+                                'assets/page-1/images/notif-1.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            // profile1YYE (9:285)
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Profil()));
+                            },
+                            style: TextButton.styleFrom(
+                              padding: EdgeInsets.zero,
+                            ),
+                            child: namaImage != ""
+                                ? Image.network(
+                                    //chrome
+                                    'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                    height: 45,
+                                    width: 45,
+                                  )
+                                : const Text(" Image Tidak Tersedia"),
+                          ),
+                        ],
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Profil()));
-                        },
-                        child: Image.asset(
-                          'assets/page-1/images/profile-1.png',
-                          width: 45,
-                          height: 45,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
             ),
             Container(
-              
-              padding: EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
+              padding:
+                  EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xff3584ff),
@@ -351,7 +380,6 @@ class Scene extends StatelessWidget {
               ),
             ),
             Padding(
-              
               padding: const EdgeInsets.all(15.0),
               child: Text(
                 'Ajuan Pinjaman',
@@ -368,7 +396,6 @@ class Scene extends StatelessWidget {
             Expanded(child: ListAjuanPinjaman(pinjamanList: pinjamanProses,)),
 
             Padding(
-              
               padding: const EdgeInsets.all(15.0),
               child: Text(
                 'Tagihan Pinjaman',
@@ -487,7 +514,7 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -510,7 +537,7 @@ class ListTagihan extends StatelessWidget {
             itemBuilder: (context, index) {
               Pembayaran pembayaran = pembayaranList[index];
               Pinjaman? pinjaman = pinjamanList.firstWhere(
-                (pinjaman) => pinjaman.id == pembayaran.pinjamanId,
+                (pinjaman) => pinjaman.id == pembayaran.pinjamanId
               );
               if (pinjaman != null) {
                 return Padding(
@@ -552,8 +579,7 @@ class ListTagihan extends StatelessWidget {
                                   children: [
                                     Text(
                                       "Jumlah dibayarkan",
-                                      style: SafeGoogleFont(
-                                        'Poppins',
+                                      style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                         height: 1.5,
@@ -562,8 +588,7 @@ class ListTagihan extends StatelessWidget {
                                     ),
                                     Text(
                                       "Rp ${pembayaran.jumlahPembayaran.toStringAsFixed(0)}",
-                                      style: SafeGoogleFont(
-                                        'Poppins',
+                                      style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         height: 1.5,
@@ -577,8 +602,7 @@ class ListTagihan extends StatelessWidget {
                                   children: [
                                     Text(
                                       "Total Tagihan",
-                                      style: SafeGoogleFont(
-                                        'Poppins',
+                                      style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                         height: 1.5,
@@ -586,9 +610,8 @@ class ListTagihan extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Rp ${pinjaman.jumlahPembayaran.toString()}", // Ganti dengan data yang sesuai dari pinjaman
-                                      style: SafeGoogleFont(
-                                        'Poppins',
+                                      "Rp ${pinjaman.jumlahPembayaran.toString}", // Ganti dengan data yang sesuai dari pinjaman
+                                      style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         height: 1.5,
@@ -615,9 +638,8 @@ class ListTagihan extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                        builder: (context) => BayarTagihan(),
-                                      ),
-                                    );
+                                          builder: (context) =>
+                                              BayarTagihan()));
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Color(0xff3584ff),
@@ -626,20 +648,16 @@ class ListTagihan extends StatelessWidget {
                                     ),
                                   ),
                                   child: Text(
-                                    'Bayar',
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.5,
-                                      color: Color(0xffffffff),
+                                    "${pinjaman.bunga}%",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xff020202),
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  "${pinjaman.bunga}%",
-                                  style: SafeGoogleFont(
-                                    'Poppins',
+                                  "10%",
+                                  style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xff020202),
                                   ),
@@ -662,6 +680,7 @@ class ListTagihan extends StatelessWidget {
     );
   }
 }
+
 
 
 

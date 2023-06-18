@@ -43,6 +43,40 @@ class AuthService {
     }
   }
 
+  // UPDATE PENDANA
+  static Future<Pendana?> UpdatePendana(
+      {required BuildContext context,
+      required String email,
+      required String nama,
+      required String nomorPonsel,
+      required String foto,
+      required int userId}) async {
+    try {
+      UpdatePendanaAuth pendana =
+          UpdatePendanaAuth(email, nama, nomorPonsel, foto);
+
+      http.Response res = await http.put(
+        Uri.parse("${Constants.URI}/pendana/update/$userId"),
+        body: pendana.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+      );
+
+      bool hasError =
+          ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      /// Has HTTP Error
+      if (hasError) return null;
+
+      /// Execute successfully
+      return Pendana.fromJson(res.body);
+    } catch (e) {
+      Utils.showSnackBar(context, e.toString());
+      return null;
+    }
+  }
+
   //PEMINJAM
   static Future<Peminjam?> signUpPeminjam({
     required BuildContext context,
@@ -78,6 +112,46 @@ class AuthService {
 
       http.Response res = await http.post(
         Uri.parse("${Constants.URI}/peminjam/signup"),
+        body: peminjam.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+      );
+
+      bool hasError =
+          ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      /// Has HTTP Error
+      if (hasError) return null;
+
+      /// Execute successfully
+      return Peminjam.fromJson(res.body);
+    } catch (e) {
+      Utils.showSnackBar(context, e.toString());
+      return null;
+    }
+  }
+
+  // UPDATE PEminjam
+  static Future<Peminjam?> UpdatePeminjam(
+      {required BuildContext context,
+      required String email,
+      required String nama,
+      required String nomorPonsel,
+      required String foto,
+      required String nik,
+      required String alamat,
+      required String jenisUsaha,
+      required String provinsi,
+      required String kota,
+      required int pendapatan,
+      required int userId}) async {
+    try {
+      UpdatePeminjamAuth peminjam = UpdatePeminjamAuth(email, nama, nomorPonsel,
+          foto, nik, alamat, jenisUsaha, provinsi, pendapatan, kota);
+
+      http.Response res = await http.put(
+        Uri.parse("${Constants.URI}/peminjam/update/$userId"),
         body: peminjam.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'
@@ -164,15 +238,12 @@ class AuthService {
       /// check jenis_user
       if (userData.jenisUser == "peminjam") {
         return Peminjam.fromJson(res.body);
-      }
-      else if(userData.jenisUser == "pendana"){
+      } else if (userData.jenisUser == "pendana") {
         return Pendana.fromJson(res.body);
-      }
-      else{
+      } else {
         // for other possible
         return userData;
       }
-
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
       return null;
@@ -203,15 +274,12 @@ class AuthService {
       /// check jenis_user
       if (userData.jenisUser == "peminjam") {
         return Peminjam.fromJson(res.body);
-      }
-      else if(userData.jenisUser == "pendana"){
+      } else if (userData.jenisUser == "pendana") {
         return Pendana.fromJson(res.body);
-      }
-      else{
+      } else {
         // for other possible
         return userData;
       }
-
     } catch (e) {
       Utils.showSnackBar(context, e.toString());
       return null;
