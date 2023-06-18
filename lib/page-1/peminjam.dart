@@ -27,6 +27,7 @@ class PeminjamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scene(),
+      
       bottomNavigationBar: Navbar(),
     );
   }
@@ -48,98 +49,75 @@ class Scene extends StatelessWidget {
         .where((pinjaman) => pinjaman.status == 'proses').cast<Pinjaman>()
         .toList();
 
-    List<Pembayaran> pembayaran = user.pembayaran
+    List<Pinjaman> pinjamanAktif = user.pinjaman
+        .where((pinjaman) => pinjaman.status == 'aktif').cast<Pinjaman>()
+        .toList();
+
+    List<Pembayaran> pembayaranList = user.pembayaran
         .where((pembayaran) => pembayaran.status == 'belum dibayar').cast<Pembayaran>()
         .toList();
 
-    String namaImage = user.foto;
-    
+    String namaImage = user.foto; 
+
     return Scaffold(
-        body: Container(
-      width: double.infinity,
-      child: Container(
-        // peminjamMq8 (7:269)
-        padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
+      body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xffffffff),
-        ),
         child: Column(
+          
           crossAxisAlignment: CrossAxisAlignment.start,
+
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    // moneylogodesignstemplatevector (7:284)
-                    width: 100 * fem,
-                    height: 100 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/logo.png',
-                      width: 50,
-                      height: 50,
-                    ),
+                  Image.asset(
+                    'assets/page-1/images/logo.png',
+                    width: 150,
+                    height: 50,
                   ),
-                  Expanded(
-                    child: Container(
-                      // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
-                      padding: EdgeInsets.fromLTRB(
-                          180 * fem, 2 * fem, 0 * fem, 3 * fem),
-                      height: double.infinity,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => NotifikasiPage()));
-                            },
-                            child: Container(
-                              // notif1DF4 (12:298)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                              width: 25 * fem,
-                              height: 32 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/notif-1.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            // profile1YYE (9:285)
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Profil()));
-                            },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                            ),
-                            child: namaImage != ""
-                                ? Image.network(
-                                    //chrome
-                                    'http://127.0.0.1:8000/user/getimage/$namaImage',
-                                    height: 45,
-                                    width: 45,
-                                  )
-                                : const Text(" Image Tidak Tersedia"),
-                          ),
-                        ],
+                  Row(
+                    //crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NotifikasiPage()));
+                        },
+                        child: Image.asset(
+                          'assets/page-1/images/notif-1.png',
+                          width: 45,
+                          height: 45,
+                        ),
                       ),
-                    ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Profil()));
+                        },
+                        child: namaImage != ""
+                            ? Image.network(
+                                //chrome
+                                'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                height: 45,
+                                width: 45,
+                              )
+                            : const Text(" Image Tidak Tersedia"),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
             Container(
-              padding:
-                  EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
+              
+              padding: EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xff3584ff),
@@ -393,7 +371,11 @@ class Scene extends StatelessWidget {
               ),
             ),
 
-            Expanded(child: ListAjuanPinjaman(pinjamanList: pinjamanProses,)),
+            Expanded(
+              child: pinjamanProses.isNotEmpty
+                  ? ListAjuanPinjaman(pinjamanList: pinjamanProses)
+                  : Center(child: Text('Tidak ada ajuan pinjaman')),
+            ),
 
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -409,7 +391,12 @@ class Scene extends StatelessWidget {
               ),
             ),
 
-            Expanded(child: ListTagihan(pinjamanProses, pembayaran)),
+            Expanded(
+              child: pinjamanAktif.isNotEmpty
+                  ? ListTagihan(pinjamanAktif, pembayaranList)
+                  : Center(child: Text('Tidak ada tagihan pinjaman aktif')),
+            ),
+
             /*
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -514,7 +501,7 @@ class Scene extends StatelessWidget {
           ],
         ),
       ),
-    ));
+    );
   }
 }
 
@@ -536,9 +523,22 @@ class ListTagihan extends StatelessWidget {
             itemCount: pembayaranList.length,
             itemBuilder: (context, index) {
               Pembayaran pembayaran = pembayaranList[index];
-              Pinjaman? pinjaman = pinjamanList.firstWhere(
-                (pinjaman) => pinjaman.id == pembayaran.pinjamanId
-              );
+              Pinjaman? pinjaman;
+              for (int i = 0; i < pinjamanList.length; i++) {
+                if (pinjamanList[i].id == pembayaran.pinjamanId) {
+                  pinjaman = pinjamanList[i];
+                  break;
+                }
+              }
+
+              DateTime tanggalTagihan = pembayaran.tanggalTagihan; // Tanggal tagihan
+              DateTime sekarang = DateTime.now(); // Tanggal saat ini
+
+              Duration selisih = tanggalTagihan.difference(sekarang); // Selisih waktu antara tanggal tagihan dan tanggal saat ini
+              int selisihHari = selisih.inDays; // Selisih dalam bentuk hari
+
+              int hariTersisa = 7 - selisihHari; // Jumlah hari tersisa
+
               if (pinjaman != null) {
                 return Padding(
                   padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -560,7 +560,7 @@ class ListTagihan extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(pinjaman.id.toString()), // Ganti dengan data yang sesuai dari pinjaman
-                                Text("10 Hari Tersisa"),
+                                Text("${hariTersisa} Hari Tersisa"),
                               ],
                             ),
                             Container(
@@ -587,7 +587,7 @@ class ListTagihan extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Rp ${pembayaran.jumlahPembayaran.toStringAsFixed(0)}",
+                                      "Rp ${pinjaman.jumlahPembayaran.toStringAsFixed(0)}",
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -610,7 +610,7 @@ class ListTagihan extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Rp ${pinjaman.jumlahPembayaran.toString}", // Ganti dengan data yang sesuai dari pinjaman
+                                      "Rp ${pembayaran.jumlahPembayaran.toString()}", // Ganti dengan data yang sesuai dari pinjaman
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
@@ -638,8 +638,9 @@ class ListTagihan extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) =>
-                                              BayarTagihan()));
+                                        builder: (context) => BayarTagihan(),
+                                      ),
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: Color(0xff3584ff),
@@ -648,15 +649,17 @@ class ListTagihan extends StatelessWidget {
                                     ),
                                   ),
                                   child: Text(
-                                    "${pinjaman.bunga}%",
+                                    'Bayar',
                                     style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xff020202),
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                      height: 1.5,
+                                      color: Color(0xffffffff),
                                     ),
                                   ),
                                 ),
                                 Text(
-                                  "10%",
+                                  "${((pinjaman.jumlahPembayaran / pinjaman.jumlahPinjaman) * 100).toInt()}%",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Color(0xff020202),
@@ -680,8 +683,6 @@ class ListTagihan extends StatelessWidget {
     );
   }
 }
-
-
 
 
 
