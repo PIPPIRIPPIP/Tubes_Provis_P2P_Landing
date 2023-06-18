@@ -17,13 +17,12 @@ class UserService {
     try{
       AddTransaksiPembayaran transaksi =
         AddTransaksiPembayaran(
-        userId: userId, 
         jenis: jenis, 
         metodePembayaran: metodePembayaran,
         jumlah: jumlah);
 
       http.Response res = await http.post(
-        Uri.parse("${Constants.URI}/pendana/signup"),
+        Uri.parse("${Constants.URI}/user/addTransaksiPembayaran/${userId}/"),
         body: transaksi.toJson(),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8'

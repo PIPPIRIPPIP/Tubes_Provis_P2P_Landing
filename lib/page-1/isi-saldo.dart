@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/page-1/sukses-topup.dart';
 import 'package:myapp/utils.dart';
 
-import '../models/user_model.dart';
+import '../models/user.dart';
 import '../providers/user_provider.dart';
 import '../services/transaksi_services.dart';
 
@@ -16,46 +16,76 @@ class IsiSaldo extends StatefulWidget {
 }
 
 class IsiSaldoState extends State<IsiSaldo> {
-  final TextEditingController _controller = TextEditingController();
+  late TextEditingController _controller;
+
   int _selectedButtonIndex = -1;
 
-  // void submitTransaction(BuildContext context, String jenisTransaksi) {
-  //   String jumlah = _controller.text;
+  void submitTransaction(String metodePembayaran) async {
+    if (_controller.text.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Masukkan jumlah saldo terlebih dahulu.'),
+        ),
+      );
+      return;
+    }
+    
+    // Parse the number
+    int jumlah = int.parse(_controller.text);
+    var user = Provider.of<UserProvider>(context, listen: false).user;
+    if (user == null) {
+      return;
+    }
+    int userId = user.id;
 
-  //   // Panggil fungsi API dari provider untuk mengirim data transaksi
-  //   bool success = UserService.sendTransaction(
-  //     jumlah, 
-  //     jenisTransaksi);
+    print("=> Isi saldo Rp.${jumlah}, metode pembayaran ${metodePembayaran}");
 
-  //   if (success) {
-  //     // Jika berhasil, arahkan pengguna ke halaman SuksesTopUp
-  //     Navigator.push(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => SuksesTopUp()),
-  //     );
-  //   } else {
-  //     // Jika gagal, tampilkan pesan error atau lakukan tindakan yang sesuai
-  //     // Misalnya, tampilkan snackbar dengan pesan error
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text('Terjadi kesalahan saat mengirim transaksi.'),
-  //       ),
-  //     );
-  //   }
-  // }
+    // Panggil fungsi API dari provider untuk mengirim data transaksi
+    TransaksiPembayaran? transaksi = await UserService.sendTransaction(
+      context: context,
+      userId: userId,
+      jenis: "isi saldo",
+      metodePembayaran: metodePembayaran,
+      jumlah: jumlah,
+    );
 
+    if (transaksi != null) {
+      // Jika berhasil, perbarui data transaksi di UserProvider
+      Provider.of<UserProvider>(context, listen: false)
+          .updateTransaksi(transaksi);
+
+      // Jika berhasil, arahkan pengguna ke halaman SuksesTopUp
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => SuksesTopUp(transaksi)),
+      );
+    } else {
+      // Jika gagal, tampilkan pesan error atau lakukan tindakan yang sesuai
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Terjadi kesalahan saat mengirim transaksi.'),
+        ),
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-
-    var user = Provider.of<UserProvider>(context, listen: false).user;
-    if (user == null) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -145,7 +175,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '20.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '20.000';
+                                  _controller.text = '20000';
                                   _selectedButtonIndex = 0;
                                 });
                               },
@@ -158,7 +188,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '50.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '50.000';
+                                  _controller.text = '50000';
                                   _selectedButtonIndex = 1;
                                 });
                               },
@@ -171,7 +201,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '100.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '100.000';
+                                  _controller.text = '100000';
                                   _selectedButtonIndex = 2;
                                 });
                               },
@@ -192,7 +222,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '200.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '200.000';
+                                  _controller.text = '200000';
                                   _selectedButtonIndex = 3;
                                 });
                               },
@@ -205,7 +235,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '300.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '300.000';
+                                  _controller.text = '300000';
                                   _selectedButtonIndex = 4;
                                 });
                               },
@@ -218,7 +248,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                               text: '500.000',
                               onPressed: () {
                                 setState(() {
-                                  _controller.text = '500.000';
+                                  _controller.text = '500000';
                                   _selectedButtonIndex = 5;
                                 });
                               },
@@ -350,11 +380,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/mandiri.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("MANDIRI");
                                         }),
                                   ),
                                   SizedBox(
@@ -366,11 +392,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/bri.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("BRI");
                                         }),
                                   ),
                                   SizedBox(
@@ -382,11 +404,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/bca.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("BCA");
                                         }),
                                   ),
                                   SizedBox(
@@ -398,11 +416,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/bni.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("BNI");
                                         }),
                                   ),
                                   SizedBox(
@@ -414,11 +428,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/permata.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("PERMATA");
                                         }),
                                   ),
                                 ],
@@ -485,11 +495,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/gopay.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("GOPAY");
                                         }),
                                   ),
                                   SizedBox(
@@ -501,11 +507,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/shopee.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("ShopeePay");
                                         }),
                                   ),
                                   SizedBox(
@@ -517,11 +519,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/linkaja.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("LinkAja");
                                         }),
                                   ),
                                   SizedBox(
@@ -533,11 +531,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/dana.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("DANA");
                                         }),
                                   ),
                                   SizedBox(
@@ -549,11 +543,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                         imagePath:
                                             "../assets/page-1/images/ovo.png",
                                         onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      SuksesTopUp()));
+                                          submitTransaction("OVO");
                                         }),
                                   ),
                                 ],
@@ -632,11 +622,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                               imagePath:
                                                   "../assets/page-1/images/indomaret.png",
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SuksesTopUp()));
+                                                submitTransaction("Indomaret");
                                               }),
                                         ),
                                       ],
@@ -662,11 +648,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                               imagePath:
                                                   "../assets/page-1/images/alfa.png",
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SuksesTopUp()));
+                                                submitTransaction("Alfamart");
                                               }),
                                         ),
                                       ],
@@ -690,11 +672,7 @@ class IsiSaldoState extends State<IsiSaldo> {
                                               imagePath:
                                                   "../assets/page-1/images/alfamidi.png",
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            SuksesTopUp()));
+                                                submitTransaction("Alfamidi");
                                               }),
                                         ),
                                       ],
