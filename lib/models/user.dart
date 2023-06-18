@@ -5,7 +5,7 @@ class User {
   final String email;
   final String password;
   final DateTime tanggalDibuat;
-  final String nama;
+  late final String nama;
   final String nomorPonsel;
   late final int saldo;
   final String foto;
@@ -113,8 +113,8 @@ class Notifikasi {
 
   String toJson() => json.encode(toMap());
 
-  factory Notifikasi.fromJson(String source) => Notifikasi.fromMap(json.decode(source));
-
+  factory Notifikasi.fromJson(String source) =>
+      Notifikasi.fromMap(json.decode(source));
 }
 
 class TransaksiPembayaran {
@@ -158,7 +158,8 @@ class TransaksiPembayaran {
 
   String toJson() => json.encode(toMap());
 
-  factory TransaksiPembayaran.fromJson(String source) => TransaksiPembayaran.fromMap(json.decode(source));
+  factory TransaksiPembayaran.fromJson(String source) =>
+      TransaksiPembayaran.fromMap(json.decode(source));
 }
 
 // PENDANA
@@ -290,7 +291,8 @@ class Investasi {
 
   String toJson() => json.encode(toMap());
 
-  factory Investasi.fromJson(String source) => Investasi.fromMap(json.decode(source));
+  factory Investasi.fromJson(String source) =>
+      Investasi.fromMap(json.decode(source));
 }
 
 // PEMINJAM
@@ -524,7 +526,8 @@ class Pembayaran {
 
   String toJson() => json.encode(toMap());
 
-  factory Pembayaran.fromJson(String source) => Pembayaran.fromMap(json.decode(source));
+  factory Pembayaran.fromJson(String source) =>
+      Pembayaran.fromMap(json.decode(source));
 }
 
 class Pendana extends User {
@@ -592,10 +595,10 @@ class Pendana extends User {
     return map;
   }
 
-    String toJson() => json.encode(toMap());
+  String toJson() => json.encode(toMap());
 
-    factory Pendana.fromJson(String source) =>
-        Pendana.fromMap(json.decode(source));
+  factory Pendana.fromJson(String source) =>
+      Pendana.fromMap(json.decode(source));
 }
 
 class Peminjam extends User {

@@ -1,12 +1,17 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http_parser/http_parser.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:myapp/models/models.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/providers/providers.dart';
+import 'package:myapp/services/services.dart';
 import 'package:myapp/utils.dart';
 import 'package:provider/provider.dart';
 
@@ -21,18 +26,91 @@ class EditInvestor extends StatefulWidget {
 }
 
 class PageEdit extends State<EditInvestor> {
-  final inputnama = TextEditingController();
-  final inputemail = TextEditingController();
-  final inputtelp = TextEditingController();
-  final pathGambar = TextEditingController();
+  late TextEditingController _inputnama;
+  late TextEditingController _inputemail;
+  late TextEditingController _inputtelp;
+  late TextEditingController _pathGambar;
+  String nama = '';
+  String namaImage = "";
+  final dio = Dio();
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
 
+  void _update() async {
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
+    if (user == null) {
+      return;
+    }
+    int userId = user.id;
+    Pendana? userAccount = await AuthService.UpdatePendana(
+        context: context,
+        email: _inputemail.text,
+        nama: _inputnama.text,
+        nomorPonsel: _inputtelp.text,
+        foto: namaImage,
+        userId: userId);
+
+    if (userAccount != null) {
+      // Jika berhasil, perbarui data transaksi di UserProvider
+      Navigator.pop(context);
+    }
+  }
+
+  Future<String> uploadFile(List<int> file, String fileName) async {
+    print("mulai");
+    FormData formData = FormData.fromMap({
+      "file": MultipartFile.fromBytes(file,
+          filename: fileName, contentType: MediaType("image", "png")),
+    });
+    var response =
+        //untuk chorme
+        await dio.post("http://127.0.0.1:8000/user/uploadimage",
+            data: formData);
+
+    namaImage = fileName;
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      setState(() {
+        namaImage = fileName;
+      });
+    }
+    return fileName;
+  }
+
+  Future<void> _getImageFromGallery() async {
+    print("get image");
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: ImageSource.gallery);
+    final bytes = await pickedImage?.readAsBytes();
+    if (pickedImage != null) {
+      print("mulai upload");
+      await uploadFile(bytes as List<int>, pickedImage.name);
+    }
+  }
+
+  @override
+  void initState() {
+    _inputnama = TextEditingController();
+    _inputemail = TextEditingController();
+    _inputtelp = TextEditingController();
+    _pathGambar = TextEditingController();
+    var user = Provider.of<UserProvider>(context, listen: false).pendana;
+    if (user == null) {
+      return;
+    }
+    _inputnama.text = user.nama;
+    _inputemail.text = user.email;
+    _inputtelp.text = user.nomorPonsel;
+    _pathGambar.text = user.foto;
+    namaImage = user.foto;
+    super.initState();
+  }
+
   @override
   void dispose() {
-    inputnama.dispose();
-    inputemail.dispose();
-    inputtelp.dispose();
+    _inputnama.dispose();
+    _inputemail.dispose();
+    _inputtelp.dispose();
     super.dispose();
   }
 
@@ -40,15 +118,7 @@ class PageEdit extends State<EditInvestor> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
-    var user = Provider.of<UserProvider>(context, listen: false).pendana;
-    if (user == null) {
-      return const Center(child: CircularProgressIndicator());
-    } else {
-      inputnama.text = user.nama;
-      inputemail.text = user.email;
-      inputtelp.text = user.nomorPonsel;
-      pathGambar.text = user.foto;
-    }
+    // }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -122,19 +192,13 @@ class PageEdit extends State<EditInvestor> {
                           height: 120 * fem,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100 * fem),
-                            child: kIsWeb
-                                ? (_imageUrl != null
-                                    ? Image.network(
-                                        pathGambar.text,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null)
-                                : (_image != null
-                                    ? Image.file(
-                                        _image!,
-                                        fit: BoxFit.cover,
-                                      )
-                                    : null),
+                            child: namaImage != ""
+                                ? Image.network(
+                                    //chrome
+                                    'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                    fit: BoxFit.cover,
+                                  )
+                                : const Text(" Image Tidak Tersedia"),
                           ),
                         ),
                       ),
@@ -143,23 +207,7 @@ class PageEdit extends State<EditInvestor> {
                 ),
               ),
               InkWell(
-                onTap: () async {
-                  final ImagePicker _picker = ImagePicker();
-                  final XFile? image =
-                      await _picker.pickImage(source: ImageSource.gallery);
-
-                  if (image != null) {
-                    setState(() {
-                      if (kIsWeb) {
-                        _imageUrl = image.path;
-                      } else {
-                        _image = File(image.path);
-                      }
-                    });
-                  } else {
-                    print('No image selected.');
-                  }
-                },
+                onTap: _getImageFromGallery,
                 child: Container(
                   // uploadfotoGhB (321:213)
                   margin:
@@ -214,10 +262,10 @@ class PageEdit extends State<EditInvestor> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputnama,
+                        controller: _inputnama,
                         onChanged: (text) {
                           setState(() {
-                            // nama = text;
+                            // _inputnama.text = text;
                           });
                         },
                       ),
@@ -250,7 +298,7 @@ class PageEdit extends State<EditInvestor> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputemail,
+                        controller: _inputemail,
                         onChanged: (text) {
                           setState(() {
                             // email = text;
@@ -286,7 +334,7 @@ class PageEdit extends State<EditInvestor> {
                         borderRadius: BorderRadius.circular(3 * fem),
                       ),
                       child: TextField(
-                        controller: inputtelp,
+                        controller: _inputtelp,
                         onChanged: (text) {
                           setState(() {
                             // no_telp = text;
@@ -300,12 +348,7 @@ class PageEdit extends State<EditInvestor> {
                       child: Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            setState(() {
-                              // nama = inputnama.text;
-                              // email = inputemail.text;
-                              // no_telp = inputtelp.text;
-                              // password = inputpass.text;
-                            });
+                            _update();
                           },
                           style: ElevatedButton.styleFrom(
                             primary: Color.fromARGB(255, 54, 133, 255),

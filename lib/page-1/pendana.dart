@@ -40,6 +40,7 @@ class Scene extends StatelessWidget {
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
+    String namaImage = user.foto;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -81,11 +82,14 @@ class Scene extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => ProfilPendana()));
                         },
-                        child: Image.asset(
-                          'assets/page-1/images/profile-1.png',
-                          width: 45,
-                          height: 45,
-                        ),
+                        child: namaImage != ""
+                            ? Image.network(
+                                //chrome
+                                'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                height: 45,
+                                width: 45,
+                              )
+                            : const Text(" Image Tidak Tersedia"),
                       ),
                     ],
                   ),
