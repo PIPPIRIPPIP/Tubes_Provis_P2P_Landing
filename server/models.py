@@ -57,7 +57,7 @@ class Notifikasi(Base):
     jenis = Column(String)
     judul = Column(String)
     pesan = Column(String)
-    # status = Column(String)
+    status = Column(String)
     timestamp = Column(DateTime, default=_dt.datetime.utcnow)
     
     user = relationship('User', back_populates='notifikasi')
@@ -109,8 +109,10 @@ class Pembayaran(Base):
     id = Column(Integer, primary_key=True)
     pinjaman_id = Column(Integer, ForeignKey('pinjaman.id'))
     peminjam_id = Column(Integer, ForeignKey('peminjam.id'))
-    tanggal_pembayaran = Column(DateTime, default=_dt.datetime.utcnow)
+    tanggal_tagihan = Column(DateTime, default=_dt.datetime.utcnow)
+    tanggal_pembayaran = Column(DateTime)
     jumlah_pembayaran = Column(Integer)
+    status = Column(String)
     
     pinjaman = relationship('Pinjaman', back_populates='pembayaran')
     peminjam = relationship('Peminjam', back_populates='pembayaran')

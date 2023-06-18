@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 import datetime as dt
-from typing import List 
+from typing import List, Optional 
 
 # USER
 # Skema untuk Notifikasi
@@ -15,6 +15,7 @@ class Notifikasi(BaseModel):
     jenis: str
     judul: str
     pesan: str
+    status: str
     timestamp: dt.datetime
     
     class Config:
@@ -48,10 +49,8 @@ class SignUpUser(UserBase):
     password: str
     nama: str
     nomor_ponsel: str
-    jenis_user: str
 
 class UpdateUser(UserBase):
-    password: str
     nama: str
     nomor_ponsel: str
     foto: str
@@ -100,7 +99,10 @@ class Investasi(BaseModel):
 
 # Skema untuk Pendana
 class SignUpPendana(SignUpUser):
-    user_id: int
+    pass
+
+class UpdatePendana(UpdateUser):
+    pass
 
 class Pendana(BaseModel):
     pendana_id: int
@@ -117,9 +119,6 @@ class ReturnPendana(ReturnUser):
 # Skema untuk Pinjaman
 class AddPinjaman(BaseModel):
     jumlah_pinjaman: int
-    tenor: int
-    bunga: int
-    jenis_angsuran: str
     tujuan_pinjaman: str
 
 class Pinjaman(BaseModel):
@@ -146,20 +145,32 @@ class AddPembayaran(BaseModel):
     pinjaman_id: int
     jumlah_pembayaran: int
 
+class tagihanPembayaran(BaseModel):
+    pinjaman_id: int
+
 class Pembayaran(BaseModel):
     id: int
     pinjaman_id: int
     peminjam_id: int
-    tanggal_pembayaran: dt.datetime
+    tanggal_tagihan: dt.datetime
+    tanggal_pembayaran: Optional[dt.datetime]
     jumlah_pembayaran: int
+    status: str
     
     class Config:
         orm_mode = True
 
 # Skema untuk Peminjam
 class SignUpPeminjam(SignUpUser):
-    user_id: int
     jenis: str
+    nik: str
+    alamat: str
+    jenis_usaha: str
+    provinsi_usaha: str
+    kota_usaha: str
+    pendapatan: int
+    
+class UpdatePeminjam(UpdateUser):
     nik: str
     alamat: str
     jenis_usaha: str

@@ -46,7 +46,7 @@ async def get_return_user(_user: _models.User, _token: str) -> _schemas.ReturnUs
     
 # signup
 @router.post("/signup")
-async def signUpUser(datas: _schemas.SignUpUser, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
+async def signUpUser(datas: _schemas.SignUpUser, jenis_user: str, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
     # check di database
     _existed_user = await _services.get_user_by_email(datas.email, db)
     if _existed_user:
@@ -62,8 +62,7 @@ async def signUpUser(datas: _schemas.SignUpUser, db: Session = Depends(get_db)) 
         password=datas.password,
         nama=datas.nama,
         nomor_ponsel=datas.nomor_ponsel,
-        jenis_user=datas.jenis_user,
-        ), db=db)
+        ), jenis_user=jenis_user, db=db)
 
     _token = await _services.genereate_token_user(user=_user)
 
@@ -111,16 +110,24 @@ async def getUserUserViaToken(token: str = Depends(oauth2schema), db: Session = 
         return _user
 
 #update
-@router.put("/update/{user_id}", response_model=_schemas.User)
-async def update_user(user_id: int, datas: _schemas.UpdateUser, db: Session = Depends(get_db)):
+@router.put("/update/{user_id}")
+async def updateUser(datas: _schemas.UpdateUser, user_id: int, db: Session = Depends(get_db)) -> _schemas.ReturnUser:
     # Get the user from the database
     _user_old = await _services.get_user_by_id(id=user_id, db=db)
-    if not _user:
+    if not _user_old:
         raise HTTPException(status_code=404, detail="User not found")
     
-    _user = _services.update_user(datas, _user_old, db)
+    # check email
+    if _user_old.email != datas.email:
+        _existed_user = await _services.get_user_by_email(datas.email, db)
+        if _existed_user:
+            raise HTTPException(status_code=400, detail="User with this email already existed")
+    
+    _user = await _services.update_user(datas, _user_old, db)
 
-    return _user
+    _token = await _services.genereate_token_user(user=_user)
+
+    return await get_return_user(_user=_user, _token=_token)
 
 # ===========================================================================================
 # NOTIFIKASI
@@ -189,12 +196,10 @@ async def get_return_pendana(_user: _schemas.ReturnUser, _pendana: _models.Penda
 @router_pendana.post("/signup")
 async def signUpPendana(datas: _schemas.SignUpPendana, db: Session = Depends(get_db)):
     # check user
-    _user = await signUpUser(datas, db)
-
-    datas.user_id = _user.id
+    _user = await signUpUser(datas, "pendana", db)
 
     # create pendana
-    _pendana = await _services.create_pendana(datas=datas, db=db)
+    _pendana = await _services.create_pendana(datas=datas, user_id=_user.id, db=db)
 
     return await get_return_pendana(_user=_user, _pendana=_pendana)
 
@@ -215,7 +220,22 @@ async def signInPendana(_user: _schemas.ReturnUser, db: Session = Depends(get_db
 #     _pendana = await _services.get_pendana_by_user_id(user_id=_user.id, db=db)
     
 #     return get_return_pendana(_user=_user, _pendana=_pendana)
+
+# update
+@router_pendana.put("/update/{user_id}")
+async def updatependana(datas: _schemas.UpdatePendana, user_id: int, db: Session = Depends(get_db)):
+    # check user
+    _user = await updateUser(datas, user_id, db)
     
+    # Get the pendana from the database
+    _pendana_old = await _services.get_pendana_by_user_id(user_id=user_id, db=db)
+    if not _pendana_old:
+        raise HTTPException(status_code=404, detail="pendana not found")
+    
+    # _pendana = await _services.update_pendana(datas, _pendana_old, db)
+
+    return await get_return_pendana(_user=_user, _pendana=_pendana_old)
+
 # ===========================================================================================
 # INVESTASI
 # add investasi
@@ -275,12 +295,10 @@ async def get_return_peminjam(_user: _schemas.ReturnUser, _peminjam: _models.Pem
 async def signUpPeminjam(datas: _schemas.SignUpPeminjam, db: Session = Depends(get_db)):
     # check user
     # datas.jenis_user = "peminjam"
-    _user = await signUpUser(datas, db)
-
-    datas.user_id = _user.id
+    _user = await signUpUser(datas, "peminjam", db)
 
     # create peminjam
-    _peminjam = await _services.create_peminjam(datas=datas, db=db)
+    _peminjam = await _services.create_peminjam(datas=datas, user_id=_user.id, db=db)
 
     return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
 
@@ -295,6 +313,21 @@ async def signInPeminjam(_user: _schemas.ReturnUser, db: Session = Depends(get_d
     return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
     # return await _schemas.ReturnPeminjam.from_orm(_peminjam)
 
+# update
+@router_peminjam.put("/update/{user_id}")
+async def updatePeminjam(datas: _schemas.UpdatePeminjam, user_id: int, db: Session = Depends(get_db)):
+    # check user
+    _user = await updateUser(datas, user_id, db)
+    
+    # Get the peminjam from the database
+    _peminjam_old = await _services.get_peminjam_by_user_id(user_id=user_id, db=db)
+    if not _peminjam_old:
+        raise HTTPException(status_code=404, detail="peminjam not found")
+    
+    _peminjam = await _services.update_peminjam(datas, _peminjam_old, db)
+
+    return await get_return_peminjam(_user=_user, _peminjam=_peminjam)
+
 # ===========================================================================================
 # PINJAMAN
 # set Pinjaman
@@ -306,7 +339,7 @@ async def setPinjaman(datas: _schemas.AddPinjaman, peminjam_id: int, db: Session
         raise HTTPException(status_code=404, detail="Peminjam with this id is not found")
     
     #create pinjaman
-    _pinjaman = await _services.set_pinjaman(datas=datas, peminjam_id=peminjam_id, db=db)
+    _pinjaman = await _services.add_pinjaman(datas=datas, peminjam_id=peminjam_id, db=db)
     
     return _pinjaman
 
@@ -314,8 +347,10 @@ async def setPinjaman(datas: _schemas.AddPinjaman, peminjam_id: int, db: Session
 @router_peminjam.get("/getPinjaman/{peminjam_id}/")
 async def getPinjaman(peminjam_id: int, db: Session = Depends(get_db)):
     # _peminjam = await _services.get_peminjam_by_id(id=peminjam_id, db=db)
-    _pinjaman = await _services.get_pinjaman(peminjam_id=peminjam_id, db=db)
+    _pinjaman = await _services.get_pinjaman_by_peminjam_id(peminjam_id=peminjam_id, db=db)
     return _pinjaman
+
+#update
 
 # ===========================================================================================
 # PEMBAYARAN
@@ -329,6 +364,18 @@ async def addPembayaran(datas: _schemas.AddPembayaran, peminjam_id: int, db: Ses
     
     #create pembayaran
     _pembayaran = await _services.add_pembayaran(datas=datas, _peminjam=_peminjam, db=db)
+    
+    return _pembayaran
+
+@router_peminjam.put("/tagihanPembayaran/{peminjam_id}/{pembayaran_id}")
+async def tagihanPembayaran(peminjam_id: int, pembayaran_id: int, db: Session = Depends(get_db)):
+    # check peminjam
+    _peminjam = await _services.get_peminjam_by_id(id=peminjam_id, db=db)
+    if not _peminjam:
+        raise HTTPException(status_code=404, detail="Peminjam with this id is not found")
+    
+    #create pembayaran
+    _pembayaran = await _services.update_pembayaran(_peminjam=_peminjam, pembayaran_id=pembayaran_id, db=db)
     
     return _pembayaran
 
