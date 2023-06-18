@@ -15,6 +15,8 @@ import 'tarik-saldo.dart';
 import 'riwayat-transaksi.dart';
 
 import 'package:myapp/page-1/bayar-pinjaman.dart';
+import 'package:myapp/page-1/panduan-peminjaman.dart';
+import 'package:myapp/page-1/panduan-pembayaran.dart';
 
 class PeminjamPage extends StatelessWidget {
   const PeminjamPage({super.key});
@@ -927,79 +929,83 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              // autogroupfmtdX98 (3w9iXQWv8k5Vy37936FMTD)
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
               width: double.infinity,
-              height: 135 * fem,
-              child: Stack(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Positioned(
-                    // group63fWE (63:460)
-                    left: 15 * fem,
-                    top: 0 * fem,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PanduanPeminjaman()));
+                    },
                     child: Container(
                       width: 180 * fem,
                       height: 90 * fem,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(10 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3f000000),
-                            offset: Offset(0 * fem, 4 * fem),
-                            blurRadius: 2 * fem,
-                          ),
-                        ],
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
                       ),
                       child: Center(
-                        child: Text(
-                          'Peminjaman',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xff020202),
+                          child: Text(
+                            'Peminjaman',
+                            textAlign: TextAlign.center,
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5 * ffem / fem,
+                              color: Color(0xff020202),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                    )
                   ),
-                  Positioned(
-                    // group64HGi (63:461)
-                    left: 215 * fem,
-                    top: 0 * fem,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => PanduanPembayaran()));
+                    },
                     child: Container(
                       width: 180 * fem,
                       height: 90 * fem,
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(10 * fem),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x3f000000),
-                            offset: Offset(0 * fem, 4 * fem),
-                            blurRadius: 2 * fem,
-                          ),
-                        ],
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
                       ),
                       child: Center(
-                        child: Text(
-                          'Pembayaran',
-                          textAlign: TextAlign.center,
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 12 * ffem,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5 * ffem / fem,
-                            color: Color(0xff020202),
+                          child: Text(
+                            'Pembayaran',
+                            textAlign: TextAlign.center,
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5 * ffem / fem,
+                              color: Color(0xff020202),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
+                    )
+                  )
                 ],
               ),
             ),
