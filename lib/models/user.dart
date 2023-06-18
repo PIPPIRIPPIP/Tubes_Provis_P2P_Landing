@@ -78,6 +78,7 @@ class Notifikasi {
   final String jenis;
   final String judul;
   final String pesan;
+  final String status;
   final DateTime timestamp;
 
   Notifikasi({
@@ -86,6 +87,7 @@ class Notifikasi {
     required this.jenis,
     required this.judul,
     required this.pesan,
+    required this.status,
     required this.timestamp,
   });
 
@@ -96,6 +98,7 @@ class Notifikasi {
       jenis: map['jenis'] ?? '',
       judul: map['judul'] ?? '',
       pesan: map['pesan'] ?? '',
+      status: map['status'] ?? '',
       timestamp: DateTime.parse(map['timestamp'] ?? ''),
     );
   }
@@ -107,6 +110,7 @@ class Notifikasi {
       'jenis': jenis,
       'judul': judul,
       'pesan': pesan,
+      'status': status,
       'timestamp': timestamp.toIso8601String(),
     };
   }
@@ -491,15 +495,19 @@ class Pembayaran {
   final int id;
   final int pinjamanId;
   final int peminjamId;
-  final DateTime tanggalPembayaran;
+  final DateTime tanggalTagihan;
+  final DateTime? tanggalPembayaran;
   final int jumlahPembayaran;
+  final String status;
 
   Pembayaran({
     required this.id,
     required this.pinjamanId,
     required this.peminjamId,
-    required this.tanggalPembayaran,
+    required this.tanggalTagihan,
+    this.tanggalPembayaran,
     required this.jumlahPembayaran,
+    required this.status,
   });
 
   Map<String, dynamic> toMap() {
@@ -507,8 +515,10 @@ class Pembayaran {
       'id': id,
       'pinjaman_id': pinjamanId,
       'peminjam_id': peminjamId,
-      'tanggal_pembayaran': tanggalPembayaran.toIso8601String(),
+      'tanggal_tagihan': tanggalTagihan.toIso8601String(),
+      'tanggal_pembayaran': tanggalPembayaran?.toIso8601String(),
       'jumlah_pembayaran': jumlahPembayaran,
+      'status': status,
     };
   }
 
@@ -517,8 +527,10 @@ class Pembayaran {
       id: map['id'] ?? 0,
       pinjamanId: map['pinjaman_id'] ?? 0,
       peminjamId: map['peminjam_id'] ?? 0,
-      tanggalPembayaran: DateTime.parse(map['tanggal_pembayaran']),
+      tanggalTagihan: DateTime.parse(map['tanggal_tagihan']),
+      tanggalPembayaran: map['tanggal_pembayaran'] != null ? DateTime.parse(map['tanggal_pembayaran']) : null,
       jumlahPembayaran: map['jumlah_pembayaran'] ?? 0,
+      status: map['status'] ?? '',
     );
   }
 
@@ -526,6 +538,7 @@ class Pembayaran {
 
   factory Pembayaran.fromJson(String source) => Pembayaran.fromMap(json.decode(source));
 }
+
 
 class Pendana extends User {
   final int pendanaId;

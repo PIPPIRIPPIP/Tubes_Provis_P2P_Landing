@@ -185,18 +185,10 @@ async def add_transaksi_pembayaran(datas: _schemas.AddTransaksiPembayaran, user_
     _pesan = ""
     if datas.jenis == "isi saldo":
         _judul = "Isi Saldo Berhasil"
-        _pesan = """Halo,\n\n
-                    Saldo Anda telah berhasil diisi. Sekarang Anda dapat menggunakan saldo tersebut untuk berbagai transaksi di platform kami. Jika Anda memiliki pertanyaan atau membutuhkan bantuan, jangan ragu untuk menghubungi tim kami.\n\n
-                    Terima kasih atas kerjasamanya.\n\n
-                    Salam,\n
-                    Tim Layanan Pelanggan"""
+        _pesan = "Saldo Anda telah berhasil diisi."
     elif datas.jenis == "tarik saldo":
         _judul = "Tarik Saldo Berhasil"
-        _pesan = """Halo,\n\n
-                    Permintaan penarikan saldo Anda telah berhasil diproses. Dana akan segera dikirimkan ke rekening yang terdaftar. Jika Anda memiliki pertanyaan atau membutuhkan bantuan, jangan ragu untuk menghubungi tim kami.\n\n
-                    Terima kasih atas kerjasamanya.\n\n
-                    Salam,\n
-                    Tim Layanan Pelanggan"""
+        _pesan = "Permintaan penarikan saldo Anda telah berhasil diproses. Dana akan segera dikirimkan ke rekening yang terdaftar."
     
     if _judul:
         create_notifikasi(_schemas.AddNotifikasi(
@@ -448,13 +440,8 @@ def job(pinjaman_id, peminjam_id):
     db = next(get_db())
     _pinjaman = db.query(_models.Pinjaman).filter(_models.Pinjaman.id == pinjaman_id).first()
     _peminjam = db.query(_models.Peminjam).filter(_models.Peminjam.id == peminjam_id).first()
-
-    _pesan = """Tagihan Pembayaran Anda Telah Dibuat\n\n
-            Halo,\n\n
-            Kami ingin memberitahu Anda bahwa tagihan pembayaran untuk pinjaman Anda telah dibuat. Mohon segera melakukan pembayaran sesuai dengan instruksi yang telah kami sampaikan. Jika Anda memiliki pertanyaan atau membutuhkan bantuan, jangan ragu untuk menghubungi tim kami.\n\n
-            Terima kasih atas kerjasamanya.\n\n
-            Salam,\n
-            Tim Layanan Pelanggan"""
+    
+    _pesan = "Tagihan Pembayaran Anda Telah Dibuat. Mohon segera melakukan pembayaran sesuai dengan instruksi yang telah kami sampaikan."
     
     # Buat tagihan dan notifikasi otomatis
     create_pembayaran(_pinjaman, _peminjam.id, db)
