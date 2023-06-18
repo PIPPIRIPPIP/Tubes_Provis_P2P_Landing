@@ -3,14 +3,20 @@ import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:myapp/page-1/peminjam.dart';
+import 'package:myapp/page-1/pendana.dart';
+import 'package:myapp/providers/providers.dart';
+import 'package:myapp/ui/pages/first_page.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
 
 import '../models/user.dart';
 
 class SuksesTopUp extends StatelessWidget {
   final TransaksiPembayaran transaksi;
+  final String jenisUser;
 
-  SuksesTopUp(this.transaksi);
+  SuksesTopUp(this.transaksi, this.jenisUser);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +58,19 @@ class SuksesTopUp extends StatelessWidget {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.pop(context);
+                                  if (jenisUser == "peminjam") {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PeminjamPage()));
+                                  } else if (jenisUser == "pendana") {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PendanaPage()));
+                                  }
                                 },
                                 child: Container(
                                   // group66cKx (69:409)
@@ -267,7 +285,8 @@ class SuksesTopUp extends StatelessWidget {
                                     width: 168 * fem,
                                     height: 60 * fem,
                                     child: Text(
-                                      transaksi.jumlah.toString(),
+                                      NumberFormat.decimalPattern('id')
+                                          .format(transaksi.jumlah),
                                       style: SafeGoogleFont(
                                         'Poppins',
                                         fontSize: 40 * ffem,
@@ -350,9 +369,9 @@ class SuksesTopUp extends StatelessWidget {
                                 width: 40 * fem,
                                 height: 39 * fem,
                                 child: Image.asset(
-                                    'assets/page-1/images/${transaksi.metodePembayaran.toLowerCase()}.png',
-                                    width: 14.85 * fem,
-                                    height: 14.85 * fem,
+                                  'assets/page-1/images/${transaksi.metodePembayaran.toLowerCase()}.png',
+                                  width: 14.85 * fem,
+                                  height: 14.85 * fem,
                                 ),
                                 // decoration: BoxDecoration(
                                 //   borderRadius: BorderRadius.circular(7 * fem),
@@ -377,26 +396,41 @@ class SuksesTopUp extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Container(
-                          // group1YBg (69:400)
-                          margin: EdgeInsets.fromLTRB(
-                              12 * fem, 0 * fem, 0 * fem, 0 * fem),
-                          width: 266 * fem,
-                          height: 37 * fem,
-                          decoration: BoxDecoration(
-                            color: Color(0xff3584ff),
-                            borderRadius: BorderRadius.circular(20 * fem),
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Selesai',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 18 * ffem,
-                                fontWeight: FontWeight.w700,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xffffffff),
+                        InkWell(
+                          onTap: () {
+                            if (jenisUser == "peminjam") {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PeminjamPage()));
+                            } else if (jenisUser == "pendana") {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PendanaPage()));
+                            }
+                          },
+                          child: Container(
+                            // group1YBg (69:400)
+                            margin: EdgeInsets.fromLTRB(
+                                12 * fem, 0 * fem, 0 * fem, 0 * fem),
+                            width: 266 * fem,
+                            height: 37 * fem,
+                            decoration: BoxDecoration(
+                              color: Color(0xff3584ff),
+                              borderRadius: BorderRadius.circular(20 * fem),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Selesai',
+                                textAlign: TextAlign.center,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 18 * ffem,
+                                  fontWeight: FontWeight.w700,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xffffffff),
+                                ),
                               ),
                             ),
                           ),

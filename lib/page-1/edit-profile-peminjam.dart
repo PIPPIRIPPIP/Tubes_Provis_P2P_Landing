@@ -7,6 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:myapp/models/user_model.dart';
 import 'package:myapp/utils.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/providers.dart';
 
 //Profile peminjam sama umkm disatuin di satu form edit
 
@@ -16,31 +19,18 @@ class EditPeminjam extends StatefulWidget {
 }
 
 class PageEdit extends State<EditPeminjam> {
-  String nama = "";
-  String email = "";
-  String no_telp = "";
-  String nik = "";
-  String password = "";
-  final inputnama = TextEditingController(text: "Dicki");
-  final inputemail = TextEditingController(text: "dicki@example.com");
-  final inputtelp = TextEditingController(text: "08881237779");
-  final inputnik = TextEditingController(text: "32041220072220031");
-  final inputpass = TextEditingController(text: "password");
+  final inputnama = TextEditingController();
+  final inputemail = TextEditingController();
+  final inputtelp = TextEditingController();
+  final inputnik = TextEditingController();
+  final pathGambar = TextEditingController();
+  final inputjenis = TextEditingController();
+  final inputprov = TextEditingController();
+  final inputkota = TextEditingController();
+  final inputpendapatan = TextEditingController();
   bool isAgreed = false;
   String _imageUrl = "assets/page-1/images/profile2-1.png";
   File? _image;
-
-  TextEditingController inputjenis = TextEditingController();
-  String jenis = '';
-
-  TextEditingController inputprov = TextEditingController();
-  String prov = '';
-
-  TextEditingController inputkota = TextEditingController();
-  String kota = '';
-
-  TextEditingController inputpendapatan = TextEditingController();
-  int pendapatan = 0;
 
   @override
   void dispose() {
@@ -48,7 +38,6 @@ class PageEdit extends State<EditPeminjam> {
     inputemail.dispose();
     inputtelp.dispose();
     inputnik.dispose();
-    inputpass.dispose();
     inputjenis.dispose();
     inputprov.dispose();
     inputkota.dispose();
@@ -60,6 +49,20 @@ class PageEdit extends State<EditPeminjam> {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    var user = Provider.of<UserProvider>(context, listen: false).peminjam;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      inputnama.text = user.nama;
+      inputemail.text = user.email;
+      inputtelp.text = user.nomorPonsel;
+      inputnik.text = user.nik;
+      pathGambar.text = user.foto;
+      inputjenis.text = user.jenisUsaha;
+      inputprov.text = user.provinsiUsaha;
+      inputkota.text = user.kotaUsaha;
+      inputpendapatan.text = user.pendapatan.toString();
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -224,7 +227,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputnama,
                         onChanged: (text) {
                           setState(() {
-                            nama = text;
+                            // nama = text;
                           });
                         },
                       ),
@@ -258,7 +261,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputemail,
                         onChanged: (text) {
                           setState(() {
-                            email = text;
+                            // email = text;
                           });
                         },
                       ),
@@ -292,7 +295,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputtelp,
                         onChanged: (text) {
                           setState(() {
-                            no_telp = text;
+                            // no_telp = text;
                           });
                         },
                       ),
@@ -326,7 +329,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputnik,
                         onChanged: (text) {
                           setState(() {
-                            nik = text;
+                            // nik = text;
                           });
                         },
                       ),
@@ -361,7 +364,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputjenis,
                         onChanged: (text) {
                           setState(() {
-                            jenis = text;
+                            // jenis = text;
                           });
                         },
                       ),
@@ -395,7 +398,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputprov,
                         onChanged: (text) {
                           setState(() {
-                            prov = text;
+                            // prov = text;
                           });
                         },
                       ),
@@ -429,7 +432,7 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputkota,
                         onChanged: (text) {
                           setState(() {
-                            kota = text;
+                            // kota = text;
                           });
                         },
                       ),
@@ -463,45 +466,12 @@ class PageEdit extends State<EditPeminjam> {
                         controller: inputpendapatan,
                         onChanged: (text) {
                           setState(() {
-                            pendapatan = int.tryParse(text) ?? 0;
+                            // pendapatan = int.tryParse(text) ?? 0;
                           });
                         },
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 9 * fem),
-                      child: Text(
-                        'Password',
-                        style: SafeGoogleFont(
-                          'Poppins',
-                          fontSize: 14 * ffem,
-                          fontWeight: FontWeight.w600,
-                          height: 1.5 * ffem / fem,
-                          color: Color(0xff000000),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(
-                          0 * fem, 0 * fem, 0 * fem, 33 * fem),
-                      padding: EdgeInsets.fromLTRB(
-                          20 * fem, 11 * fem, 20 * fem, 11 * fem),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xffbcbcbc)),
-                        color: Color(0xffffffff),
-                        borderRadius: BorderRadius.circular(3 * fem),
-                      ),
-                      child: TextField(
-                        controller: inputpass,
-                        onChanged: (text) {
-                          setState(() {
-                            password = text;
-                          });
-                        },
-                      ),
-                    ),
+
                     Container(
                       margin: EdgeInsets.fromLTRB(
                           42 * fem, 0 * fem, 43 * fem, 18 * fem),
@@ -509,15 +479,15 @@ class PageEdit extends State<EditPeminjam> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              nama = inputnama.text;
-                              email = inputemail.text;
-                              no_telp = inputtelp.text;
-                              nik = inputnik.text;
-                              jenis = inputjenis.text;
-                              prov = inputprov.text;
-                              kota = inputkota.text;
-                              // pendapatan = inputpendapatan.text;
-                              password = inputpass.text;
+                              // nama = inputnama.text;
+                              // email = inputemail.text;
+                              // no_telp = inputtelp.text;
+                              // nik = inputnik.text;
+                              // jenis = inputjenis.text;
+                              // prov = inputprov.text;
+                              // kota = inputkota.text;
+                              // // pendapatan = inputpendapatan.text;
+                              // password = inputpass.text;
                             });
                           },
                           style: ElevatedButton.styleFrom(

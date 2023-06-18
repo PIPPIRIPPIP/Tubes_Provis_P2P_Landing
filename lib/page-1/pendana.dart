@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,14 +46,14 @@ class Scene extends StatelessWidget {
         child: Column(
           //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-
             //BAGIAN ATAS
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Image.asset('assets/page-1/images/logo.png',
+                  Image.asset(
+                    'assets/page-1/images/logo.png',
                     width: 150,
                     height: 50,
                   ),
@@ -67,7 +68,6 @@ class Scene extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => NotifikasiPage()));
                         },
-                        
                         child: Image.asset(
                           'assets/page-1/images/notif-1.png',
                           width: 45,
@@ -149,7 +149,7 @@ class Scene extends StatelessWidget {
                               width: 119 * fem,
                               height: 23 * fem,
                               child: Text(
-                                'Rp. ${user.saldo}',
+                                'Rp. ${NumberFormat.decimalPattern('id').format(user.saldo)}',
                                 style: SafeGoogleFont(
                                   'Poppins',
                                   fontSize: 15 * ffem,
@@ -352,9 +352,11 @@ class Scene extends StatelessWidget {
                   ),
                   TextButton(
                     // lihatsemuaTTt (38:8)
-                    onPressed: () {   
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Portofolio()));
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Portofolio()));
                     },
                     style: TextButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -376,8 +378,7 @@ class Scene extends StatelessWidget {
 
             //DAFTAR INVESTASIKU
             Expanded(child: InvestasiBerlangsung()),
-                
-                
+
             //PANDUAN
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -401,15 +402,16 @@ class Scene extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap: () {
+                          onTap: () {
                             Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => PanduanPendanaan()));
-                        },
-                        child: Container(
-                          width: 180 * fem,
-                          height: 90 * fem,
-                          decoration: BoxDecoration(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PanduanPendanaan()));
+                          },
+                          child: Container(
+                            width: 180 * fem,
+                            height: 90 * fem,
+                            decoration: BoxDecoration(
                               border: Border.all(color: Color(0xffbcbcbc)),
                               color: Color(0xffffffff),
                               borderRadius: BorderRadius.circular(10 * fem),
@@ -420,8 +422,8 @@ class Scene extends StatelessWidget {
                                   blurRadius: 2 * fem,
                                 ),
                               ],
-                          ),
-                          child: Center(
+                            ),
+                            child: Center(
                               child: Text(
                                 'Pendanaan',
                                 textAlign: TextAlign.center,
@@ -434,18 +436,17 @@ class Scene extends StatelessWidget {
                                 ),
                               ),
                             ),
-                        )
-                      ),
+                          )),
                       InkWell(
-                        onTap: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(builder: (context) => PanduanPembayaran()));
-                        },
-                        child: Container(
-                          width: 180 * fem,
-                          height: 90 * fem,
-                          decoration: BoxDecoration(
+                          onTap: () {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) => PanduanPembayaran()));
+                          },
+                          child: Container(
+                            width: 180 * fem,
+                            height: 90 * fem,
+                            decoration: BoxDecoration(
                               border: Border.all(color: Color(0xffbcbcbc)),
                               color: Color(0xffffffff),
                               borderRadius: BorderRadius.circular(10 * fem),
@@ -456,8 +457,8 @@ class Scene extends StatelessWidget {
                                   blurRadius: 2 * fem,
                                 ),
                               ],
-                          ),
-                          child: Center(
+                            ),
+                            child: Center(
                               child: Text(
                                 'Pembayaran',
                                 textAlign: TextAlign.center,
@@ -470,8 +471,7 @@ class Scene extends StatelessWidget {
                                 ),
                               ),
                             ),
-                        )
-                      )
+                          ))
                     ],
                   ),
                 ],
@@ -490,7 +490,7 @@ class InvestasiBerlangsung extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5, 
+      itemCount: 5,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
@@ -527,7 +527,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Total Investasi",
+                        Text(
+                          "Total Investasi",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontSize: 14,
@@ -536,7 +537,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                             color: Color(0xff020202),
                           ),
                         ),
-                        Text("Rp 10.000.000",
+                        Text(
+                          "Rp 10.000.000",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontSize: 14,
@@ -550,7 +552,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Keuntungan",
+                        Text(
+                          "Keuntungan",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontSize: 14,
@@ -559,7 +562,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                             color: Color(0xff020202),
                           ),
                         ),
-                        Text("Rp 1.000.000",
+                        Text(
+                          "Rp 1.000.000",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontSize: 14,
