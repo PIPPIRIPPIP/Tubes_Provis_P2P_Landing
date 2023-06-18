@@ -36,10 +36,16 @@ class Scene extends StatelessWidget {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+
     var user = Provider.of<UserProvider>(context, listen: false).pendana;
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
+
+    List<Investasi> aktifInvestasi = user.investasi
+              .where((investasi) => investasi.status == "aktif")
+              .toList();
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -377,7 +383,7 @@ class Scene extends StatelessWidget {
             ),
 
             //DAFTAR INVESTASIKU
-            Expanded(child: InvestasiBerlangsung()),
+            Expanded(child: InvestasiBerlangsung(investasi: aktifInvestasi)),
 
             //PANDUAN
             Padding(
@@ -487,11 +493,16 @@ class Scene extends StatelessWidget {
 //BUAT LIST INVESTASI YANG BELUM SELESAI / SEDANG BERLANGSUNG
 
 class InvestasiBerlangsung extends StatelessWidget {
+  final List<Investasi> investasi;
+
+  InvestasiBerlangsung({required this.investasi});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: investasi.length,
       itemBuilder: (context, index) {
+        var item = investasi[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: InkWell(
@@ -511,12 +522,11 @@ class InvestasiBerlangsung extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("P012345"),
-                        Text("Sedang Berlangsung"),
+                        Text("P23A00${item.id}"),
+                        Text(item.status),
                       ],
                     ),
                     Container(
-                      // line4zjG (69:156)
                       margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
                       width: double.infinity,
                       height: 1,
@@ -529,8 +539,7 @@ class InvestasiBerlangsung extends StatelessWidget {
                       children: [
                         Text(
                           "Total Investasi",
-                          style: SafeGoogleFont(
-                            'Poppins',
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -538,9 +547,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Rp 10.000.000",
-                          style: SafeGoogleFont(
-                            'Poppins',
+                          "Rp ${item.jumlahInvestasi}",
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -554,8 +562,7 @@ class InvestasiBerlangsung extends StatelessWidget {
                       children: [
                         Text(
                           "Keuntungan",
-                          style: SafeGoogleFont(
-                            'Poppins',
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             height: 1.5,
@@ -563,9 +570,8 @@ class InvestasiBerlangsung extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Rp 1.000.000",
-                          style: SafeGoogleFont(
-                            'Poppins',
+                          "Rp ${item.keuntungan}",
+                          style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             height: 1.5,

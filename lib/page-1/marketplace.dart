@@ -7,6 +7,9 @@ import 'package:myapp/page-1/navbar-pendana.dart';
 import 'package:myapp/utils.dart';
 import 'package:myapp/app_export.dart';
 
+import '../services/user_services.dart';
+import '../utils/grade.dart';
+
 class MarketPlace extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,6 @@ class MarketPlace extends StatelessWidget {
     );
   }
 }
-
 
 class Scene extends StatelessWidget {
   @override
@@ -114,136 +116,159 @@ class Scene extends StatelessWidget {
 class LISTUMKM extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 5, 
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          child: InkWell(
-            onTap: () {
-              //ISI ROUTE
-            },
-            child: Card(
-              elevation: 2.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-                side: BorderSide(color: Colors.black, width: 1.0),
-              ),
-              child: Container(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("P012345"),
-                        Text("1 Januari 2023"),
-                      ],
+    return FutureBuilder<List<Marketplace>>(
+      future: UserService.getMarketplace(context: context),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Tampilkan indikator loading jika masih dalam proses fetching data
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          // Tampilkan pesan error jika terjadi kesalahan
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          print(snapshot.data);
+          // Tampilkan data menggunakan ListView.builder
+          return ListView.builder(
+            itemCount: snapshot.data?.length,
+            itemBuilder: (context, index) {
+              final marketplace = snapshot.data![index];
+              Grade grade = getGrade(marketplace.grade);
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: InkWell(
+                  onTap: () {
+                    //ISI ROUTE
+                  },
+                  child: Card(
+                    elevation: 2.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.black, width: 1.0),
                     ),
-                    Container(
-                      // line4zjG (69:156)
-                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      width: double.infinity,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 51, 51, 51),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            ClipOval(
-                              child: Image.asset(
-                                'assets/page-1/images/profile-2.png',
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                              ),
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(marketplace.kode),
+                              Text(marketplace.tanggalPinjaman.toString()),
+                            ],
+                          ),
+                          Container(
+                            // line4zjG (69:156)
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                            width: double.infinity,
+                            height: 1,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 51, 51, 51),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 10.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
                                 children: [
-                                  Text("GATSBY DEL REY",
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w600,
-                                      height: 1.5,
-                                      color: Color(0xff020202),
+                                  ClipOval(
+                                    child: Image.asset(
+                                      'assets/page-1/images/profile-2.png',
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
-                                  Text("Kuliner",
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 14,
-                                      height: 1.5,
-                                      color: Color(0xff020202),
-                                    ),
-                                  ),
-                                  Text("Bandung, Jawa Barat",
-                                    style: SafeGoogleFont(
-                                      'Poppins',
-                                      fontSize: 14,
-                                      height: 1.5,
-                                      color: Color(0xff020202),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          marketplace.nama,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                        Text(
+                                          marketplace.jenis,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 14,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                        Text(
+                                          marketplace.alamat,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 14,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                        
-                        Text("A+",
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontSize: 28,
-                            fontWeight: FontWeight.w600,
-                            height: 1.5,
-                            color: Color(0xff3584ff),
+                              Text(
+                                grade.label,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5,
+                                  color: grade.color,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      // line4zjG (69:156)
-                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
-                      width: double.infinity,
-                      height: 1,
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 51, 51, 51),
+                          Container(
+                            // line4zjG (69:156)
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                            width: double.infinity,
+                            height: 1,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 51, 51, 51),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Dana Terkumpul",
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                              Text(
+                                "${((marketplace.jumlahDidanai / marketplace.jumlahPinjaman) * 100).toInt()}%",
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("Dana Terkumpul",
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff020202),
-                          ),
-                        ),
-                        Text("50%",
-                          style: SafeGoogleFont(
-                            'Poppins',
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xff020202),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
-        );
+              );
+            },
+          );
+        }
       },
     );
   }
 }
+

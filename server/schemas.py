@@ -194,3 +194,64 @@ class ReturnPeminjam(ReturnUser):
     
     class Config:
         orm_mode = True
+        
+# marketplace
+class Marketplace(BaseModel):
+    nama: str
+    nomor_ponsel: str
+    foto: str
+    peminjam_id: int
+    jenis: str
+    nik: str
+    alamat: str
+    grade: int
+    jenis_usaha: str
+    provinsi_usaha: str
+    kota_usaha: str
+    pendapatan: int
+    pinjaman_id: int
+    kode: str
+    tanggal_pinjaman: dt.datetime
+    jumlah_pinjaman: int
+    tenor: int
+    bunga: int
+    jenis_angsuran: str
+    jumlah_angsuran: int
+    tujuan_pinjaman: str
+    jumlah_didanai: int
+    jumlah_pembayaran: int
+    tanggal_selesai: str
+    status: str
+
+class MarketUser(UserBase):
+    nama: str
+    nomor_ponsel: str
+    foto: str
+    
+class MarketPinjaman(BaseModel):
+    peminjam_id: int
+    kode: str
+    tanggal_pinjaman: dt.datetime
+    jumlah_pinjaman: int
+    tenor: int
+    bunga: int
+    jenis_angsuran: str
+    jumlah_angsuran: int
+    tujuan_pinjaman: str
+    jumlah_didanai: int
+    jumlah_pembayaran: int
+    tanggal_selesai: str
+    status: str
+    
+class MarketPeminjam(MarketUser):
+    peminjam_id: int
+    jenis: str
+    nik: str
+    alamat: str
+    grade: int
+    jenis_usaha: str
+    provinsi_usaha: str
+    kota_usaha: str
+    pendapatan: int
+
+    pinjaman: List[Pinjaman]
