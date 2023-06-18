@@ -246,6 +246,7 @@ class Scene extends StatelessWidget {
   }
 }
 
+//BUAT LIST INVESTASI YANG BELUM SELESAI
 class InvestasiBerlangsung extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -341,6 +342,8 @@ class InvestasiBerlangsung extends StatelessWidget {
   }
 }
 
+
+//BUAT LIST INVESTASI YANG UDAH SELESAI
 class InvestasiSelesai extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
