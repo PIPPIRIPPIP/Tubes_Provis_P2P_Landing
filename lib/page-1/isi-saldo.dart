@@ -18,6 +18,8 @@ class IsiSaldo extends StatefulWidget {
 class IsiSaldoState extends State<IsiSaldo> {
   late TextEditingController _controller;
 
+  String _metodePembayaran = '';
+
   int _selectedButtonIndex = -1;
 
   void submitTransaction(String metodePembayaran) async {

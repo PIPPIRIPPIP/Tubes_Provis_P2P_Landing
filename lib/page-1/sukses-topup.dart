@@ -352,7 +352,7 @@ class SuksesTopUp extends StatelessWidget {
                                     'assets/page-1/images/${transaksi.metodePembayaran.toLowerCase()}.png',
                                     width: 14.85 * fem,
                                     height: 14.85 * fem,
-                                  ),
+                                ),
                                 // decoration: BoxDecoration(
                                 //   borderRadius: BorderRadius.circular(7 * fem),
                                 //   color: Color(0xffd9d9d9),
