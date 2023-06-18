@@ -31,7 +31,7 @@ class IsiSaldoState extends State<IsiSaldo> {
       );
       return;
     }
-    
+
     // Parse the number
     int jumlah = int.parse(_controller.text);
     var user = Provider.of<UserProvider>(context, listen: false).user;
@@ -59,7 +59,9 @@ class IsiSaldoState extends State<IsiSaldo> {
       // Jika berhasil, arahkan pengguna ke halaman SuksesTopUp
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => SuksesTopUp(transaksi)),
+        MaterialPageRoute(
+            builder: (context) =>
+                SuksesTopUp(transaksi, user.jenisUser.toString())),
       );
     } else {
       // Jika gagal, tampilkan pesan error atau lakukan tindakan yang sesuai
