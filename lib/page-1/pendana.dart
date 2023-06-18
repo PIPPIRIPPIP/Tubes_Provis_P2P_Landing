@@ -14,6 +14,8 @@ import 'package:myapp/utils.dart';
 import '../providers/user_provider.dart';
 import 'package:myapp/page-1/panduan-pendanaan.dart';
 
+import 'package:myapp/page-1/portofolio.dart';
+
 import 'notifikasi.dart';
 
 class PendanaPage extends StatelessWidget {
@@ -21,9 +23,7 @@ class PendanaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Scene(),
-      ),
+      body: Scene(),
       bottomNavigationBar: Navbar(),
     );
   }
@@ -39,81 +39,55 @@ class Scene extends StatelessWidget {
     if (user == null) {
       return const Center(child: CircularProgressIndicator());
     }
-    return Container(
-      width: double.infinity,
-      child: Container(
-        // pendanauAW (30:153)
-        padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
+    return Scaffold(
+      body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xffffffff),
-        ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              // autogroupdruwmiW (Nsxj9suqkbtYyesT9JDrUW)
-              margin:
-                  EdgeInsets.fromLTRB(15 * fem, 0 * fem, 10 * fem, 10 * fem),
-              width: double.infinity,
-              height: 45 * fem,
+
+            //BAGIAN ATAS
+            Padding(
+              padding: const EdgeInsets.all(10.0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    // moneylogodesignstemplatevector (30:154)
-                    width: 100 * fem,
-                    height: 100 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/logo.png',
-                    ),
+                  Image.asset('assets/page-1/images/logo.png',
+                    width: 150,
+                    height: 50,
                   ),
-                  Container(
-                    // autogroupxnbxQFg (NsxjJ8B6r2o8iXTFYAXNBx)
-                    padding: EdgeInsets.fromLTRB(
-                        200 * fem, 2 * fem, 0 * fem, 3 * fem),
-                    height: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => NotifikasiPage()));
-                          },
-                          child: Container(
-                            // notif1DF4 (12:298)
-                            margin: EdgeInsets.fromLTRB(
-                                0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                            width: 25 * fem,
-                            height: 32 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/notif-1.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                  Row(
+                    //crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NotifikasiPage()));
+                        },
+                        
+                        child: Image.asset(
+                          'assets/page-1/images/notif-1.png',
+                          width: 45,
+                          height: 45,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfilPendana()));
-                          },
-                          child: Container(
-                            // profile1M4S (30:155)
-                            width: 40 * fem,
-                            height: 40 * fem,
-                            child: Image.asset(
-                              'assets/page-1/images/profile-1.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProfilPendana()));
+                        },
+                        child: Image.asset(
+                          'assets/page-1/images/profile-1.png',
+                          width: 45,
+                          height: 45,
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -361,575 +335,57 @@ class Scene extends StatelessWidget {
                 ],
               ),
             ),
-            Container(
-              // autogroup3v6z1Vg (NsxjhcVxsSHe2x2Fsc3v6z)
-              padding:
-                  EdgeInsets.fromLTRB(15 * fem, 25 * fem, 17 * fem, 9 * fem),
-              width: double.infinity,
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Investisaku',
+                    style: SafeGoogleFont(
+                      'Poppins',
+                      fontSize: 14 * ffem,
+                      fontWeight: FontWeight.w600,
+                      height: 1.5 * ffem / fem,
+                      color: Color(0xff020202),
+                    ),
+                  ),
+                  TextButton(
+                    // lihatsemuaTTt (38:8)
+                    onPressed: () {   
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Portofolio()));
+                    },
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                    ),
+                    child: Text(
+                      'Lihat semua',
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 14 * ffem,
+                        fontWeight: FontWeight.w400,
+                        height: 1.5 * ffem / fem,
+                        color: Color(0xff727272),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            //DAFTAR INVESTASIKU
+            Expanded(child: InvestasiBerlangsung()),
+                
+                
+            //PANDUAN
+            Padding(
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    // autogroupuv1gXiv (NsxjRsTCEi1ctvN6PmUV1g)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 13 * fem, 14 * fem),
-                    width: double.infinity,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // investisakuY62 (30:160)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 201 * fem, 0 * fem),
-                          child: Text(
-                            'Investisaku',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 14 * ffem,
-                              fontWeight: FontWeight.w600,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff020202),
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          // lihatsemuaTTt (38:8)
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                          ),
-                          child: Text(
-                            'Lihat semua',
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 14 * ffem,
-                              fontWeight: FontWeight.w400,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff727272),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // group65Nqk (317:78)
-                    margin: EdgeInsets.fromLTRB(
-                        2 * fem, 0 * fem, 0 * fem, 32 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        1 * fem, 4 * fem, 1 * fem, 12 * fem),
-                    width: 381 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffbcbcbc)),
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(10 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x3f000000),
-                          offset: Offset(0 * fem, 4 * fem),
-                          blurRadius: 2 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // autogroup9bsnczz (SiJ2Yjz67PWZQQp8dv9BSn)
-                          margin: EdgeInsets.fromLTRB(
-                              16 * fem, 0 * fem, 15 * fem, 5 * fem),
-                          width: double.infinity,
-                          height: 26 * fem,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                // autogroupehr8LRC (SiJ2ga6NnXLjBDfoR4ehR8)
-                                padding: EdgeInsets.fromLTRB(
-                                    0 * fem, 4 * fem, 163 * fem, 4 * fem),
-                                height: double.infinity,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // no4rz (317:80)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 6 * fem, 0 * fem),
-                                      child: Text(
-                                        'NO',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff020202),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      // p20072312345PeN (317:82)
-                                      'P20072312345',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff343434),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // image7jCS (317:84)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 5 * fem, 0 * fem),
-                                width: 26 * fem,
-                                height: 26 * fem,
-                                child: Image.asset(
-                                  'assets/page-1/images/image-7-hvn.png',
-                                ),
-                              ),
-                              Text(
-                                // bulan4Ei (317:81)
-                                '5 Bulan',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff020202),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          // line41Qr (317:83)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 10 * fem),
-                          width: double.infinity,
-                          height: 1 * fem,
-                          decoration: BoxDecoration(
-                            color: Color(0xffbcbcbc),
-                          ),
-                        ),
-                        Container(
-                          // autogroup1pkeLxv (SiJ2oV4XLcQPRV8P3E1pke)
-                          margin: EdgeInsets.fromLTRB(
-                              16 * fem, 0 * fem, 35 * fem, 16 * fem),
-                          width: double.infinity,
-                          height: 59 * fem,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                // autogroup49y2UZL (SiJ2veXFk5K6SzRSS249Y2)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
-                                width: 136 * fem,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      // totalinvestasiorW (317:90)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 0 * fem, 4 * fem),
-                                      width: double.infinity,
-                                      child: Text(
-                                        'Total Investasi',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 18 * ffem,
-                                          fontWeight: FontWeight.w700,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      // keuntungan8dt (317:89)
-                                      width: double.infinity,
-                                      child: Text(
-                                        'Keuntungan',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 18 * ffem,
-                                          fontWeight: FontWeight.w700,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // autogroupoh3kf82 (SiJ31yhhuSgnRQvKWqoh3k)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 2 * fem, 4 * fem, 2 * fem),
-                                height: double.infinity,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // rpHfC (317:87)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 0 * fem, 7 * fem),
-                                      child: Text(
-                                        'Rp',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 16 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff727272),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      // rpcSa (317:88)
-                                      'Rp',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 16 * ffem,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff727272),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  // autogroupqqveZMp (SiJ36Pk1wmHxsJ27SgQqve)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                                  width: 109 * fem,
-                                  height: 58 * fem,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        // 5qx (317:85)
-                                        left: 0 * fem,
-                                        top: 0 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 109 * fem,
-                                            height: 30 * fem,
-                                            child: Text(
-                                              '10.000.000',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 20 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xff020202),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        // zT8 (317:86)
-                                        left: 0 * fem,
-                                        top: 28 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 96 * fem,
-                                            height: 30 * fem,
-                                            child: Text(
-                                              '1.000.000',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 20 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xff020202),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          // autogroupfttvJCv (SiJ3LPLhcreeYepvY6Fttv)
-                          width: double.infinity,
-                          height: 5 * fem,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // group32TLi (317:141)
-                    margin: EdgeInsets.fromLTRB(
-                        2 * fem, 0 * fem, 0 * fem, 58 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        1 * fem, 4 * fem, 1 * fem, 12 * fem),
-                    width: 381 * fem,
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Color(0xffbcbcbc)),
-                      color: Color(0xffffffff),
-                      borderRadius: BorderRadius.circular(10 * fem),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x3f000000),
-                          offset: Offset(0 * fem, 4 * fem),
-                          blurRadius: 2 * fem,
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // autogroupf67p7AN (SiJ3zcjzsV2yt9iBGqf67p)
-                          margin: EdgeInsets.fromLTRB(
-                              16 * fem, 0 * fem, 16 * fem, 5 * fem),
-                          width: double.infinity,
-                          height: 26 * fem,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                // autogroupbmzeqcA (SiJ4BCGhumAgEam7Wwbmze)
-                                padding: EdgeInsets.fromLTRB(
-                                    0 * fem, 4 * fem, 163 * fem, 4 * fem),
-                                height: double.infinity,
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // noZo4 (317:143)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 6 * fem, 0 * fem),
-                                      child: Text(
-                                        'NO',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 12 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff020202),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      // p20072312346taS (317:145)
-                                      'P20072312346',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 12 * ffem,
-                                        fontWeight: FontWeight.w400,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff343434),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // image7EeJ (317:147)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 5 * fem, 0 * fem),
-                                width: 26 * fem,
-                                height: 26 * fem,
-                                child: Image.asset(
-                                  'assets/page-1/images/image-7-hvn.png',
-                                ),
-                              ),
-                              Text(
-                                // bulanAnr (317:144)
-                                '7 Bulan',
-                                style: SafeGoogleFont(
-                                  'Poppins',
-                                  fontSize: 12 * ffem,
-                                  fontWeight: FontWeight.w600,
-                                  height: 1.5 * ffem / fem,
-                                  color: Color(0xff020202),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          // line4Kfk (317:146)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 10 * fem),
-                          width: double.infinity,
-                          height: 1 * fem,
-                          decoration: BoxDecoration(
-                            color: Color(0xffbcbcbc),
-                          ),
-                        ),
-                        Container(
-                          // autogroup5hdqsBU (SiJ4JGuF2mThfg7LzC5hdQ)
-                          margin: EdgeInsets.fromLTRB(
-                              16 * fem, 0 * fem, 43 * fem, 16 * fem),
-                          width: double.infinity,
-                          height: 59 * fem,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Container(
-                                // autogroup1e7yaLn (SiJ4RGhasK93WMWkXu1E7Y)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 0 * fem, 57 * fem, 1 * fem),
-                                width: 136 * fem,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      // totalinvestasihwC (317:153)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 0 * fem, 4 * fem),
-                                      width: double.infinity,
-                                      child: Text(
-                                        'Total Investasi',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 18 * ffem,
-                                          fontWeight: FontWeight.w700,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      // keuntungancYN (317:152)
-                                      width: double.infinity,
-                                      child: Text(
-                                        'Keuntungan',
-                                        textAlign: TextAlign.center,
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 18 * ffem,
-                                          fontWeight: FontWeight.w700,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                // autogroupcnzsMF4 (SiJ4VgjtudkDxEcYTjcNzS)
-                                margin: EdgeInsets.fromLTRB(
-                                    0 * fem, 2 * fem, 4 * fem, 2 * fem),
-                                height: double.infinity,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Container(
-                                      // rpHeW (317:150)
-                                      margin: EdgeInsets.fromLTRB(
-                                          0 * fem, 0 * fem, 0 * fem, 7 * fem),
-                                      child: Text(
-                                        'Rp',
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 16 * ffem,
-                                          fontWeight: FontWeight.w600,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xff727272),
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      // rpp8e (317:151)
-                                      'Rp',
-                                      style: SafeGoogleFont(
-                                        'Poppins',
-                                        fontSize: 16 * ffem,
-                                        fontWeight: FontWeight.w600,
-                                        height: 1.5 * ffem / fem,
-                                        color: Color(0xff727272),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                child: Container(
-                                  // autogroup6ja6Zrv (SiJ4Zw7pP383DHpgYV6ja6)
-                                  margin: EdgeInsets.fromLTRB(
-                                      0 * fem, 1 * fem, 0 * fem, 0 * fem),
-                                  width: 101 * fem,
-                                  height: 58 * fem,
-                                  child: Stack(
-                                    children: [
-                                      Positioned(
-                                        // 6M4 (317:148)
-                                        left: 0 * fem,
-                                        top: 0 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 101 * fem,
-                                            height: 30 * fem,
-                                            child: Text(
-                                              '5.000.000',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 20 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xff020202),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        // oFU (317:149)
-                                        left: 0 * fem,
-                                        top: 28 * fem,
-                                        child: Align(
-                                          child: SizedBox(
-                                            width: 83 * fem,
-                                            height: 30 * fem,
-                                            child: Text(
-                                              '500.000',
-                                              style: SafeGoogleFont(
-                                                'Poppins',
-                                                fontSize: 20 * ffem,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.5 * ffem / fem,
-                                                color: Color(0xff020202),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          // autogroupnewrJT8 (SiJ4jRqzjMFrrMasnWnEWr)
-                          width: double.infinity,
-                          height: 5 * fem,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    // panduanLNA (63:462)
-                    margin:
-                        EdgeInsets.fromLTRB(1 * fem, 0 * fem, 0 * fem, 9 * fem),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Text(
                       'Panduan',
                       style: SafeGoogleFont(
@@ -941,93 +397,186 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                       Navigator.push(
-                         context,
-                         MaterialPageRoute(builder: (context) => PanduanPendanaan()));
-                    },
-                    child: Container(
-                      width: 180 * fem,
-                      height: 90 * fem,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(10 * fem),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              offset: Offset(0 * fem, 4 * fem),
-                              blurRadius: 2 * fem,
-                            ),
-                          ],
-                      ),
-                      child: Center(
-                          child: Text(
-                            'Pendanaan',
-                            textAlign: TextAlign.center,
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w600,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff020202),
-                            ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => PanduanPendanaan()));
+                        },
+                        child: Container(
+                          width: 180 * fem,
+                          height: 90 * fem,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffbcbcbc)),
+                              color: Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(10 * fem),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0x3f000000),
+                                  offset: Offset(0 * fem, 4 * fem),
+                                  blurRadius: 2 * fem,
+                                ),
+                              ],
                           ),
-                        ),
-                    )
+                          child: Center(
+                              child: Text(
+                                'Pendanaan',
+                                textAlign: TextAlign.center,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                            ),
+                        )
+                      ),
+                      InkWell(
+                        onTap: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => PanduanPembayaran()));
+                        },
+                        child: Container(
+                          width: 180 * fem,
+                          height: 90 * fem,
+                          decoration: BoxDecoration(
+                              border: Border.all(color: Color(0xffbcbcbc)),
+                              color: Color(0xffffffff),
+                              borderRadius: BorderRadius.circular(10 * fem),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0x3f000000),
+                                  offset: Offset(0 * fem, 4 * fem),
+                                  blurRadius: 2 * fem,
+                                ),
+                              ],
+                          ),
+                          child: Center(
+                              child: Text(
+                                'Pembayaran',
+                                textAlign: TextAlign.center,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 12 * ffem,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5 * ffem / fem,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                            ),
+                        )
+                      )
+                    ],
                   ),
-                  InkWell(
-                    onTap: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => PanduanPembayaran()));
-                    },
-                    child: Container(
-                      width: 180 * fem,
-                      height: 90 * fem,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(10 * fem),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color(0x3f000000),
-                              offset: Offset(0 * fem, 4 * fem),
-                              blurRadius: 2 * fem,
-                            ),
-                          ],
-                      ),
-                      child: Center(
-                          child: Text(
-                            'Pembayaran',
-                            textAlign: TextAlign.center,
-                            style: SafeGoogleFont(
-                              'Poppins',
-                              fontSize: 12 * ffem,
-                              fontWeight: FontWeight.w600,
-                              height: 1.5 * ffem / fem,
-                              color: Color(0xff020202),
-                            ),
-                          ),
-                        ),
-                    )
-                  )
                 ],
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+//BUAT LIST INVESTASI YANG BELUM SELESAI / SEDANG BERLANGSUNG
+
+class InvestasiBerlangsung extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 5, 
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+          child: InkWell(
+            onTap: () {
+              //ISI ROUTE
+            },
+            child: Card(
+              elevation: 2.0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+                side: BorderSide(color: Colors.black, width: 1.0),
+              ),
+              child: Container(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("P012345"),
+                        Text("Sedang Berlangsung"),
+                      ],
+                    ),
+                    Container(
+                      // line4zjG (69:156)
+                      margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                      width: double.infinity,
+                      height: 1,
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 51, 51, 51),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total Investasi",
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5,
+                            color: Color(0xff020202),
+                          ),
+                        ),
+                        Text("Rp 10.000.000",
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5,
+                            color: Color(0xff020202),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Keuntungan",
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5,
+                            color: Color(0xff020202),
+                          ),
+                        ),
+                        Text("Rp 1.000.000",
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            height: 1.5,
+                            color: Color(0xff020202),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
