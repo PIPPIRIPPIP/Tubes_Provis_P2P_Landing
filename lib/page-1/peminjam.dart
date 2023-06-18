@@ -86,7 +86,7 @@ class Scene extends StatelessWidget {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Notifikasi()));
+                                      builder: (context) => NotifikasiPage()));
                             },
                             child: Container(
                               // notif1DF4 (12:298)

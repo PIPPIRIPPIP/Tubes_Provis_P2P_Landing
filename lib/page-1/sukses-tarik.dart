@@ -283,7 +283,8 @@ class SuksesTarik extends StatelessWidget {
                                     width: 189 * fem,
                                     height: 27 * fem,
                                     child: Text(
-                                      DateFormat('dd MMMM yyyy').format(transaksi.timestamp),
+                                      // DateFormat('dd MMMM yyyy').format(transaksi.timestamp),
+                                      transaksi.timestamp.toString(),
                                       textAlign: TextAlign.center,
                                       style: SafeGoogleFont(
                                         'Poppins',

@@ -14,6 +14,7 @@ import 'package:myapp/utils.dart';
 import '../providers/user_provider.dart';
 import 'package:myapp/page-1/panduan-pendanaan.dart';
 
+import 'notifikasi.dart';
 
 class PendanaPage extends StatelessWidget {
   const PendanaPage({super.key});
@@ -75,15 +76,23 @@ class Scene extends StatelessWidget {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Container(
-                          // notif1dPL (30:172)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                          width: 25 * fem,
-                          height: 32 * fem,
-                          child: Image.asset(
-                            'assets/page-1/images/notif-1.png',
-                            fit: BoxFit.cover,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => NotifikasiPage()));
+                          },
+                          child: Container(
+                            // notif1DF4 (12:298)
+                            margin: EdgeInsets.fromLTRB(
+                                0 * fem, 0 * fem, 15 * fem, 0 * fem),
+                            width: 25 * fem,
+                            height: 32 * fem,
+                            child: Image.asset(
+                              'assets/page-1/images/notif-1.png',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                         InkWell(

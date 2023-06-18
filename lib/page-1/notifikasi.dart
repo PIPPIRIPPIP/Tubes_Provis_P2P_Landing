@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class Notifikasi extends StatelessWidget {
+import '../models/user.dart';
+import '../providers/user_provider.dart';
+
+class NotifikasiPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    
+    var user = Provider.of<UserProvider>(context, listen: false).user;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    
+    List<Notifikasi> notifikasiList = user.notifikasi;
+    
     return Scaffold(
       body: Container(
         child: Container(
@@ -81,7 +93,7 @@ class Notifikasi extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: DaftarNotifikasi()
+                  child: DaftarNotifikasi(notifikasiList: notifikasiList),
                 ),
               ],
             ),
@@ -92,55 +104,10 @@ class Notifikasi extends StatelessWidget {
   }
 }
 
-
 class DaftarNotifikasi extends StatelessWidget {
-  final List<Map<String, String>> data = [
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '30 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '29 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '28 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '27 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '26 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '25 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '24 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '23 Mei 2023'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Pinjaman yang anda ajukan sudah didanai secara penuh, dana telah dipindahkan ke saldo anda.',
-      'date' : '22 Mei 2023'
-    },
-  ];
+  final List<Notifikasi> notifikasiList;
+
+  const DaftarNotifikasi({required this.notifikasiList});
 
   @override
   Widget build(BuildContext context) {
@@ -151,33 +118,38 @@ class DaftarNotifikasi extends StatelessWidget {
         child: Scaffold(
           body: Center(
             child: ListView.builder(
-              itemCount: data.length,
+              itemCount: notifikasiList.length,
               itemBuilder: (context, index) {
+                Notifikasi notifikasi = notifikasiList[index];
                 return Card(
-                    child: ListTile(
-                        title: Text(data[index]['Title']!,
+                  child: ListTile(
+                    title: Text(
+                      notifikasi.judul,
+                      style: SafeGoogleFont(
+                        'Poppins',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xff000000),
+                      ),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          notifikasi.pesan,
                           style: SafeGoogleFont(
                             'Poppins',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
                             color: Color(0xff000000),
                           ),
                         ),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(data[index]['description']!,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                                color: Color(0xff000000),
-                              ),
-                            ),
-                            Text(data[index]['date']!),
-                          ],
+                        Text(
+                          notifikasi.timestamp.toString(),
                         ),
+                      ],
                     ),
+                  ),
                 );
               },
             ),
@@ -187,3 +159,4 @@ class DaftarNotifikasi extends StatelessWidget {
     );
   }
 }
+
