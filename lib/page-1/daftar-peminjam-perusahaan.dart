@@ -1,34 +1,155 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:myapp/ui/pages/login.dart';
 import 'package:myapp/utils.dart';
+import 'package:http/http.dart' as http;
 
+import '../models/models.dart';
+import '../services/services.dart';
+import '../utils/utils.dart';
 import 'daftar-peminjam-perorangan.dart';
-// import 'package:myapp/ui/pages/login_ex.dart';
 
 class DaftarPerusahaan extends StatefulWidget {
+  DaftarPerusahaan({super.key});
   @override
-  DaftarPerusahaanPage createState() => DaftarPerusahaanPage();
+  State<DaftarPerusahaan> createState() => DaftarPerusahaanPage();
 }
 
 class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
-  String nama = "";
-  String email = "";
-  String telp = "";
-  String npwp = "";
-  String password = "";
-  int pendapatan = 0;
-  final inputnama = TextEditingController();
-  final inputemail = TextEditingController();
-  final inputtelp = TextEditingController();
-  final inputnpwp = TextEditingController();
-  final inputpassword = TextEditingController();
-  final inputpendapatan = TextEditingController();
-  String pilihanProv = "Jawa";
-  String pilihanKota = "Jakarta";
-  String pilihanUsaha = "Kuliner";
+  List<Map<String, dynamic>> provinces = [];
+  List<Map<String, dynamic>> cities = [];
+  List<String> usaha = [
+    "Agen Pulsa",
+    "Fashion",
+    "Perdagangan",
+    "Perhiasan",
+    "Kesehatan",
+    "Otomotif",
+    "Travel",
+    "Pertanian",
+    "Hiburan"
+  ];
+  late TextEditingController _inputNama;
+  late TextEditingController _inputEmail;
+  late TextEditingController _inputTelp;
+  late TextEditingController _inputNPWP;
+  late TextEditingController _inputProvinsi;
+  late TextEditingController _inputKota;
+  late TextEditingController _inputAlamat;
+  late TextEditingController _inputJenis;
+  late TextEditingController _inputpendapatan;
+  late TextEditingController _inputPassword;
+  late TextEditingController _inputKonfirmPassword;
+  String? pilihanProv;
+  String? pilihanKota;
+  String? pilihanUsaha;
   bool isAgreed = false;
+
+  /// Trigger this when "Sign Up" button is clicked
+  void _signUp() async {
+    if (_inputPassword.text != _inputKonfirmPassword.text) {
+      Utils.showSnackBar(
+          context, 'Password and Confirm-Passord does not match!');
+      return;
+    }
+
+    int jumlah = int.parse(_inputpendapatan.text.replaceAll('.', ''));
+
+    // NOTE : If signing-up failed, return null
+    Peminjam? userAccount = await AuthService.signUpPeminjam(
+      context: context,
+      email: _inputEmail.text,
+      password: _inputPassword.text,
+      nama: _inputNama.text,
+      nomorPonsel: _inputTelp.text,
+      jenisUser: "peminjam",
+      alamat: _inputAlamat.text,
+      jenis: 'perusahaan',
+      jenisUsaha: pilihanUsaha.toString(),
+      kotaUsaha: pilihanKota.toString(),
+      nik: _inputNPWP.text,
+      pendapatan: jumlah,
+      provinsiUsaha: pilihanProv.toString(),
+    );
+
+    if (userAccount != null) {
+      // NOTE : Process, if Sign-Up via API successfully
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Login()),
+      );
+    }
+  }
+
+  Future<void> fetchProvinces() async {
+    var response = await http
+        .get(Uri.parse('https://alamat.thecloudalert.com/api/provinsi/get/'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<Map<String, dynamic>> provinceList =
+          List<Map<String, dynamic>>.from(data['result']);
+      setState(() {
+        provinces = provinceList;
+      });
+    } else {
+      print('Failed to fetch provinces');
+    }
+  }
+
+  Future<void> fetchCities(String provinceId) async {
+    var response = await http.get(Uri.parse(
+        'https://alamat.thecloudalert.com/api/kabkota/get/?d_provinsi_id=$provinceId'));
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      List<Map<String, dynamic>> cityList =
+          List<Map<String, dynamic>>.from(data['result']);
+      setState(() {
+        cities = cityList;
+      });
+    } else {
+      print('Failed to fetch cities');
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _inputNama = TextEditingController();
+    _inputEmail = TextEditingController();
+    _inputTelp = TextEditingController();
+    _inputNPWP = TextEditingController();
+    _inputProvinsi = TextEditingController();
+    _inputKota = TextEditingController();
+    _inputAlamat = TextEditingController();
+    _inputJenis = TextEditingController();
+    _inputpendapatan = TextEditingController();
+    _inputPassword = TextEditingController();
+    _inputKonfirmPassword = TextEditingController();
+    fetchProvinces();
+  }
+
+  @override
+  void dispose() {
+    _inputNama.dispose();
+    _inputEmail.dispose();
+    _inputTelp.dispose();
+    _inputNPWP.dispose();
+    _inputProvinsi.dispose();
+    _inputKota.dispose();
+    _inputAlamat.dispose();
+    _inputJenis.dispose();
+    _inputpendapatan.dispose();
+    _inputPassword.dispose();
+    _inputKonfirmPassword.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -350,10 +471,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputnama,
+                          controller: _inputNama,
                           onChanged: (text) {
                             setState(() {
-                              nama = text;
+                              // _inputNama = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -405,10 +526,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputemail,
+                          controller: _inputEmail,
                           onChanged: (text) {
                             setState(() {
-                              email = text;
+                              // email = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -460,10 +581,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputtelp,
+                          controller: _inputTelp,
                           onChanged: (text) {
                             setState(() {
-                              telp = text;
+                              // telp = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -515,10 +636,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputnpwp,
+                          controller: _inputNPWP,
                           onChanged: (text) {
                             setState(() {
-                              npwp = text;
+                              // npwp = text;
                             });
                           },
                           decoration: InputDecoration(
@@ -571,20 +692,24 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                             color: Color(0xffffffff),
                             borderRadius: BorderRadius.circular(7 * fem),
                           ),
-                          child: DropdownButton<String>(
+                          child: DropdownButtonFormField<String>(
                             value: pilihanProv,
-                            items: <String>['Jawa', 'Sumatera', 'Sulawesi']
-                                .map<DropdownMenuItem<String>>((String value) {
+                            items:
+                                provinces.map((Map<String, dynamic> province) {
                               return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
+                                value: province['text'],
+                                child: Text(province['text']),
                               );
                             }).toList(),
                             onChanged: (String? newValue) {
                               setState(() {
                                 pilihanProv = newValue!;
                               });
+                              fetchCities(getProvinceId(newValue!));
                             },
+                            decoration: InputDecoration(
+                              labelText: 'Pilih Provinsi',
+                            ),
                           )),
                     ],
                   ),
@@ -613,30 +738,88 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                         ),
                       ),
                       Container(
-                          // DROPDOWN
-                          padding: EdgeInsets.fromLTRB(
-                              17 * fem, 10 * fem, 26 * fem, 10 * fem),
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(7 * fem),
+                        // DROPDOWN
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 10 * fem, 26 * fem, 10 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: DropdownButtonFormField<String>(
+                          value: pilihanKota,
+                          items: cities.map((Map<String, dynamic> city) {
+                            return DropdownMenuItem<String>(
+                              value: city['text'],
+                              child: Text(city['text']),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              pilihanKota = newValue;
+                            });
+                          },
+                          decoration: InputDecoration(
+                            labelText: 'Pilih Kota',
                           ),
-                          child: DropdownButton<String>(
-                            value: pilihanKota,
-                            items: <String>['Jakarta', 'Bandung', 'Bekasi']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                pilihanKota = newValue!;
-                              });
-                            },
-                          )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  // Alamat Lengkap
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        // BUAT NIK (TITLE)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                        child: Text(
+                          'Alamat Lengkap',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff343434),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        // BUAT NAMA (BOX FORM)
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: TextField(
+                          controller: _inputAlamat,
+                          onChanged: (text) {
+                            setState(() {
+                              // nik = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Jl.Setia Budi, No.69',
+                              border: InputBorder.none,
+                              hintStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              )),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -673,9 +856,9 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                             color: Color(0xffffffff),
                             borderRadius: BorderRadius.circular(7 * fem),
                           ),
-                          child: DropdownButton<String>(
+                          child: DropdownButtonFormField<String>(
                             value: pilihanUsaha,
-                            items: <String>['Kuliner', 'Fashion', 'Jasa']
+                            items: usaha
                                 .map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
@@ -687,6 +870,9 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                                 pilihanUsaha = newValue!;
                               });
                             },
+                            decoration: InputDecoration(
+                              labelText: 'Pilih Jenis Usaha',
+                            ),
                           )),
                     ],
                   ),
@@ -715,25 +901,39 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                         ),
                       ),
                       Container(
-                        // BUAT NAMA (BOX FORM)
-                        padding: EdgeInsets.fromLTRB(
-                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(7 * fem),
-                        ),
-                        child: TextField(
-                          controller: inputpendapatan,
-                          onChanged: (text) {
-                            setState(() {
-                              pendapatan = int.tryParse(text) ?? 0;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: '100.000.000',
+                          // BUAT NAMA (BOX FORM)
+                          padding: EdgeInsets.fromLTRB(
+                              17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffbcbcbc)),
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(7 * fem),
+                          ),
+                          child: TextField(
+                            controller: _inputpendapatan,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                final parsedValue = int.tryParse(newValue.text);
+                                if (parsedValue != null) {
+                                  final formatter =
+                                      NumberFormat('#,###', 'id_ID');
+                                  final newString =
+                                      formatter.format(parsedValue);
+                                  return TextEditingValue(
+                                    text: newString,
+                                    selection: TextSelection.collapsed(
+                                        offset: newString.length),
+                                  );
+                                }
+                                return newValue;
+                              }),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: 'Rp. 100.000.000',
                               border: InputBorder.none,
                               hintStyle: SafeGoogleFont(
                                 'Poppins',
@@ -741,9 +941,17 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                                 fontWeight: FontWeight.w400,
                                 height: 1.5 * ffem / fem,
                                 color: Color(0xff727272),
-                              )),
-                        ),
-                      ),
+                              ),
+                              prefixText: 'Rp. ',
+                              prefixStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -781,14 +989,69 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                           borderRadius: BorderRadius.circular(7 * fem),
                         ),
                         child: TextField(
-                          controller: inputpassword,
+                          controller: _inputPassword,
                           onChanged: (text) {
                             setState(() {
-                              password = text;
+                              // password = text;
                             });
                           },
                           decoration: InputDecoration(
                               hintText: 'password',
+                              border: InputBorder.none,
+                              hintStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              )),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  // Konfirmasi Password
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        // BUAT password (TITLE)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 7 * fem),
+                        child: Text(
+                          'Konfirmasi Kata Sandi',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 12 * ffem,
+                            fontWeight: FontWeight.w400,
+                            height: 1.5 * ffem / fem,
+                            color: Color(0xff343434),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        // BUAT NAMA (BOX FORM)
+                        padding: EdgeInsets.fromLTRB(
+                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(7 * fem),
+                        ),
+                        child: TextField(
+                          controller: _inputKonfirmPassword,
+                          onChanged: (text) {
+                            setState(() {
+                              // password = text;
+                            });
+                          },
+                          decoration: InputDecoration(
+                              hintText: 'Confirm Password',
                               border: InputBorder.none,
                               hintStyle: SafeGoogleFont(
                                 'Poppins',
@@ -864,9 +1127,7 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                   child: ElevatedButton(
                     onPressed: isAgreed
                         ? () {
-                            setState(() {
-                              email = inputemail.text;
-                            });
+                            _signUp();
                           }
                         : null,
                     style: ElevatedButton.styleFrom(
@@ -926,10 +1187,10 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
                             height: 18 * fem,
                             child: TextButton(
                               onPressed: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => LoginPage()));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()));
                               },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
@@ -958,5 +1219,14 @@ class DaftarPerusahaanPage extends State<DaftarPerusahaan> {
         ),
       ),
     );
+  }
+
+  String getProvinceId(String provinceName) {
+    for (var province in provinces) {
+      if (province['text'] == provinceName) {
+        return province['id'];
+      }
+    }
+    return '';
   }
 }

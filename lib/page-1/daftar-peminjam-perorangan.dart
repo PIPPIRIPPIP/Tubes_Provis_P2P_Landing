@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/services.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/ui/pages/login.dart';
 import 'package:myapp/utils.dart';
 import 'package:http/http.dart' as http;
@@ -20,7 +22,6 @@ class DaftarPerorangan extends StatefulWidget {
 }
 
 class DaftarPeroranganPage extends State<DaftarPerorangan> {
-  // List<DropdownMenuItem<String>> provinsi = [];
   List<Map<String, dynamic>> provinces = [];
   List<Map<String, dynamic>> cities = [];
   List<String> usaha = [
@@ -58,6 +59,8 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
       return;
     }
 
+    int jumlah = int.parse(_inputpendapatan.text.replaceAll('.', ''));
+
     // NOTE : If signing-up failed, return null
     Peminjam? userAccount = await AuthService.signUpPeminjam(
       context: context,
@@ -71,7 +74,7 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
       jenisUsaha: pilihanUsaha.toString(),
       kotaUsaha: pilihanKota.toString(),
       nik: _inputNik.text,
-      pendapatan: int.parse(_inputpendapatan.text),
+      pendapatan: jumlah,
       provinsiUsaha: pilihanProv.toString(),
     );
 
@@ -767,7 +770,7 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                   ),
                 ),
                 Container(
-                  // NIK
+                  // Alamat Lengkap
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
                   width: double.infinity,
@@ -899,25 +902,39 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                         ),
                       ),
                       Container(
-                        // BUAT NAMA (BOX FORM)
-                        padding: EdgeInsets.fromLTRB(
-                            17 * fem, 6 * fem, 17 * fem, 6 * fem),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Color(0xffbcbcbc)),
-                          color: Color(0xffffffff),
-                          borderRadius: BorderRadius.circular(7 * fem),
-                        ),
-                        child: TextField(
-                          controller: _inputpendapatan,
-                          onChanged: (text) {
-                            setState(() {
-                              // pendapatan = int.tryParse(text) ?? 0;
-                            });
-                          },
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: '10.000.000',
+                          // BUAT NAMA (BOX FORM)
+                          padding: EdgeInsets.fromLTRB(
+                              17 * fem, 6 * fem, 17 * fem, 6 * fem),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Color(0xffbcbcbc)),
+                            color: Color(0xffffffff),
+                            borderRadius: BorderRadius.circular(7 * fem),
+                          ),
+                          child: TextField(
+                            controller: _inputpendapatan,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              TextInputFormatter.withFunction(
+                                  (oldValue, newValue) {
+                                final parsedValue = int.tryParse(newValue.text);
+                                if (parsedValue != null) {
+                                  final formatter =
+                                      NumberFormat('#,###', 'id_ID');
+                                  final newString =
+                                      formatter.format(parsedValue);
+                                  return TextEditingValue(
+                                    text: newString,
+                                    selection: TextSelection.collapsed(
+                                        offset: newString.length),
+                                  );
+                                }
+                                return newValue;
+                              }),
+                            ],
+                            decoration: InputDecoration(
+                              hintText: 'Rp. 100.000.000',
                               border: InputBorder.none,
                               hintStyle: SafeGoogleFont(
                                 'Poppins',
@@ -925,9 +942,17 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                                 fontWeight: FontWeight.w400,
                                 height: 1.5 * ffem / fem,
                                 color: Color(0xff727272),
-                              )),
-                        ),
-                      ),
+                              ),
+                              prefixText: 'Rp. ',
+                              prefixStyle: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 12 * ffem,
+                                fontWeight: FontWeight.w400,
+                                height: 1.5 * ffem / fem,
+                                color: Color(0xff727272),
+                              ),
+                            ),
+                          )),
                     ],
                   ),
                 ),
@@ -987,7 +1012,7 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                   ),
                 ),
                 Container(
-                  // Password
+                  // Konfirmasi Password
                   margin:
                       EdgeInsets.fromLTRB(0 * fem, 0 * fem, 0 * fem, 15 * fem),
                   width: double.infinity,
@@ -1162,7 +1187,12 @@ class DaftarPeroranganPage extends State<DaftarPerorangan> {
                             width: 32 * fem,
                             height: 18 * fem,
                             child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => Login()));
+                              },
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
                               ),
