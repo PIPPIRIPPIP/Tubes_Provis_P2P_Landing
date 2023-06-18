@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
+
+import '../models/user.dart';
+import '../providers/user_provider.dart';
 
 class RiwayatTransaksiPage extends StatelessWidget {
   @override
@@ -10,6 +14,14 @@ class RiwayatTransaksiPage extends StatelessWidget {
     double baseWidth = 414;
     double fem = MediaQuery.of(context).size.width / baseWidth;
     double ffem = fem * 0.97;
+    
+    var user = Provider.of<UserProvider>(context, listen: false).user;
+    if (user == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    
+    List<TransaksiPembayaran> transaksiList = user.transaksiPembayaran;
+    
     return Scaffold(
       body: Container(
         child: Container(
@@ -60,7 +72,7 @@ class RiwayatTransaksiPage extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  child: DaftarTransaksi()
+                  child: DaftarTransaksi(transaksiList: transaksiList),
                 ),
               ],
             ),
@@ -72,62 +84,9 @@ class RiwayatTransaksiPage extends StatelessWidget {
 }
 
 class DaftarTransaksi extends StatelessWidget {
-  final List<Map<String, String>> data = [
-    {
-      'Title': 'Bayar Pinjaman',
-      'description': 'Via BCA',
-      'date' : '30 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '29 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '28 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '27 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Tarik Dana',
-      'description': 'Via BCA',
-      'date' : '26 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '25 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '24 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Tarik Dana',
-      'description': 'Via BCA',
-      'date' : '23 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-    {
-      'Title': 'Pinjaman Terdanai',
-      'description': 'Via BCA',
-      'date' : '22 Mei 2023',
-      'jumlah' : '1.000.000'
-    },
-  ];
+  final List<TransaksiPembayaran> transaksiList;
+
+  const DaftarTransaksi({required this.transaksiList});
 
   @override
   Widget build(BuildContext context) {
@@ -138,47 +97,51 @@ class DaftarTransaksi extends StatelessWidget {
         child: Scaffold(
           body: Center(
             child: ListView.builder(
-              itemCount: data.length,
+              itemCount: transaksiList.length,
               itemBuilder: (context, index) {
+                TransaksiPembayaran transaksi = transaksiList[index];
                 return Card(
-                    child: ListTile(
-                        subtitle: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: ListTile(
+                    subtitle: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(data[index]['Title']!,
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xff000000),
-                                  ),
-                                ),
-                                Text(data[index]['description']!,
-                                  style: SafeGoogleFont(
-                                    'Poppins',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: Color(0xff000000),
-                                  ),
-                                ),
-                                Text(data[index]['date']!),
-                              ],
-                            ),
-                            Text('${data[index]['Title'] == 'Bayar Pinjaman' || data[index]['Title'] == 'Tarik Dana' ? '-' : '+'}${data[index]['jumlah']}',
+                            Text(
+                              transaksi.jenis,
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                                color: data[index]['Title'] == 'Bayar Pinjaman' || data[index]['Title'] == 'Tarik Dana' ? Colors.red : Colors.green,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xff000000),
                               ),
                             ),
+                            Text(
+                              'Via ${transaksi.metodePembayaran}',
+                              style: SafeGoogleFont(
+                                'Poppins',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Color(0xff000000),
+                              ),
+                            ),
+                            Text(transaksi.timestamp.toString()),
                           ],
                         ),
+                        Text(
+                          '${transaksi.jumlah >= 0 ? "+" : ""}${transaksi.jumlah}',
+                          style: SafeGoogleFont(
+                            'Poppins',
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: transaksi.jumlah >= 0 ? Colors.green : Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
+                  ),
                 );
               },
             ),

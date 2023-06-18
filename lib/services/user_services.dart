@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,4 +45,31 @@ class UserService {
     }
     
   }
+
+  static Future<List<TransaksiPembayaran>> getTransactions(
+    {required BuildContext context, 
+    required int userId}) async {
+    try {
+      http.Response res = await http.get(
+        Uri.parse("${Constants.URI}/user/getTransaksiPembayaran/$userId/"),
+      );
+
+      bool hasError = ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      if (hasError) {
+        return []; // Mengembalikan daftar transaksi kosong jika terjadi kesalahan
+      }
+
+      List<dynamic> jsonData = json.decode(res.body);
+      List<TransaksiPembayaran> transaksiList = jsonData
+          .map((data) => TransaksiPembayaran.fromJson(data))
+          .toList();
+
+      return transaksiList;
+    } catch (e) {
+      print(e.toString());
+      return []; // Mengembalikan daftar transaksi kosong jika terjadi kesalahan
+    }
+  }
+
 }
