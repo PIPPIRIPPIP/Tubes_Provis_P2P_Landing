@@ -174,7 +174,7 @@ class PanduanPembayaran extends StatelessWidget {
                       EdgeInsets.fromLTRB(3 * fem, 0 * fem, 3 * fem, 0 * fem),
                   width: 7507 * fem,
                   child: Align(
-                    // akunadalahidentitasunikyangdig (477:156)
+                    
                     alignment: Alignment.centerLeft,
                     child: SizedBox(
                       child: Container(
@@ -202,5 +202,5 @@ class PanduanPembayaran extends StatelessWidget {
       ),
     );
   }
-  
+
 }

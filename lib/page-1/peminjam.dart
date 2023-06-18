@@ -18,7 +18,6 @@ import 'package:myapp/page-1/bayar-pinjaman.dart';
 import 'package:myapp/page-1/panduan-peminjaman.dart';
 import 'package:myapp/page-1/panduan-pembayaran.dart';
 
-
 class PeminjamPage extends StatelessWidget {
   const PeminjamPage({super.key});
 
