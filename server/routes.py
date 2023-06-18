@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer
 import fastapi.security as _security
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
 
 import database as _db
 import schemas as _schemas
@@ -171,6 +172,47 @@ async def getTransaksiPembayaran(user_id: int, db: Session = Depends(get_db)):
 # ===========================================================================================
 # PENDANA
 # get data
+# Endpoint untuk mendapatkan daftar data peminjam dengan pinjaman yang statusnya "proses"
+@router_pendana.get("/get/marketplace")
+def getMarketplace(db: Session = Depends(get_db)):
+    _list_pinjaman = db.query(_models.Pinjaman).filter(_models.Pinjaman.status == "proses").all()
+
+    _list_marketplace = []
+    for _pinjaman in _list_pinjaman:
+        _peminjam = db.query(_models.Peminjam).filter(_models.Peminjam.id == _pinjaman.peminjam_id).first()
+        _user = db.query(_models.User).filter(_models.User.id == _peminjam.user_id).first()
+        
+        _marketplace = _schemas.Marketplace(
+            nama=_user.nama,
+            nomor_ponsel=_user.nomor_ponsel,
+            foto=_user.foto,
+            peminjam_id=_peminjam.id,
+            jenis=_peminjam.jenis,
+            nik=_peminjam.nik,
+            alamat=_peminjam.alamat,
+            grade=_peminjam.grade,
+            jenis_usaha=_peminjam.jenis_usaha,
+            provinsi_usaha=_peminjam.provinsi_usaha,
+            kota_usaha=_peminjam.kota_usaha,
+            pendapatan=_peminjam.pendapatan,
+            pinjaman_id=_pinjaman.id,
+            kode=_pinjaman.kode,
+            tanggal_pinjaman=_pinjaman.tanggal_pinjaman,
+            jumlah_pinjaman=_pinjaman.jumlah_pinjaman,
+            tenor=_pinjaman.tenor,
+            bunga=_pinjaman.bunga,
+            jenis_angsuran=_pinjaman.jenis_angsuran,
+            jumlah_angsuran=_pinjaman.jumlah_angsuran,
+            tujuan_pinjaman=_pinjaman.tujuan_pinjaman,
+            jumlah_didanai=_pinjaman.jumlah_didanai,
+            jumlah_pembayaran=_pinjaman.jumlah_pembayaran,
+            tanggal_selesai=_pinjaman.tanggal_selesai,
+            status=_pinjaman.status,
+        )
+        _list_marketplace.append(_marketplace)
+
+    return _list_marketplace
+
 async def get_return_pendana(_user: _schemas.ReturnUser, _pendana: _models.Pendana) -> _schemas.ReturnPendana:
     return _schemas.ReturnPendana(
         id=_user.id,

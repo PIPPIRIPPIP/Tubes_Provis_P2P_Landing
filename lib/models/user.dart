@@ -710,3 +710,156 @@ class Peminjam extends User {
   factory Peminjam.fromJson(String source) =>
       Peminjam.fromMap(json.decode(source));
 }
+
+class Marketplace {
+  final String nama;
+  final String nomorPonsel;
+  final String foto;
+  final int peminjamId;
+  final String jenis;
+  final String nik;
+  final String alamat;
+  final int grade;
+  final String jenisUsaha;
+  final String provinsiUsaha;
+  final String kotaUsaha;
+  final int pendapatan;
+  final int pinjamanId;
+  final String kode;
+  final DateTime tanggalPinjaman;
+  final int jumlahPinjaman;
+  final int tenor;
+  final int bunga;
+  final String jenisAngsuran;
+  final int jumlahAngsuran;
+  final String tujuanPinjaman;
+  final int jumlahDidanai;
+  final int jumlahPembayaran;
+  final String tanggalSelesai;
+  final String status;
+
+  Marketplace({
+    required this.nama,
+    required this.nomorPonsel,
+    required this.foto,
+    required this.peminjamId,
+    required this.jenis,
+    required this.nik,
+    required this.alamat,
+    required this.grade,
+    required this.jenisUsaha,
+    required this.provinsiUsaha,
+    required this.kotaUsaha,
+    required this.pendapatan,
+    required this.pinjamanId,
+    required this.kode,
+    required this.tanggalPinjaman,
+    required this.jumlahPinjaman,
+    required this.tenor,
+    required this.bunga,
+    required this.jenisAngsuran,
+    required this.jumlahAngsuran,
+    required this.tujuanPinjaman,
+    required this.jumlahDidanai,
+    required this.jumlahPembayaran,
+    required this.tanggalSelesai,
+    required this.status,
+  });
+
+  factory Marketplace.fromJson(Map<String, dynamic> json) {
+    return Marketplace(
+      nama: json['nama'] ?? '',
+      nomorPonsel: json['nomor_ponsel'] ?? '',
+      foto: json['foto'] ?? '',
+      peminjamId: json['peminjam_id'] ?? 0,
+      jenis: json['jenis'] ?? '',
+      nik: json['nik'] ?? '',
+      alamat: json['alamat'] ?? '',
+      grade: json['grade'] ?? 0,
+      jenisUsaha: json['jenis_usaha'] ?? '',
+      provinsiUsaha: json['provinsi_usaha'] ?? '',
+      kotaUsaha: json['kota_usaha'] ?? '',
+      pendapatan: json['pendapatan'] ?? 0,
+      pinjamanId: json['pinjaman_id'] ?? 0,
+      kode: json['kode'] ?? '',
+      tanggalPinjaman:
+          DateTime.tryParse(json['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
+      jumlahPinjaman: json['jumlah_pinjaman'] ?? 0,
+      tenor: json['tenor'] ?? 0,
+      bunga: json['bunga'] ?? 0,
+      jenisAngsuran: json['jenis_angsuran'] ?? '',
+      jumlahAngsuran: json['jumlah_angsuran'] ?? 0,
+      tujuanPinjaman: json['tujuan_pinjaman'] ?? '',
+      jumlahDidanai: json['jumlah_didanai'] ?? 0,
+      jumlahPembayaran: json['jumlah_pembayaran'] ?? 0,
+      tanggalSelesai: json['tanggal_selesai'] ?? '',
+      status: json['status'] ?? '',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'nama': nama,
+      'nomor_ponsel': nomorPonsel,
+      'foto': foto,
+      'peminjam_id': peminjamId,
+      'jenis': jenis,
+      'nik': nik,
+      'alamat': alamat,
+      'grade': grade,
+      'jenis_usaha': jenisUsaha,
+      'provinsi_usaha': provinsiUsaha,
+      'kota_usaha': kotaUsaha,
+      'pendapatan': pendapatan,
+      'pinjaman_id': pinjamanId,
+      'kode': kode,
+      'tanggal_pinjaman': tanggalPinjaman.toIso8601String(),
+      'jumlah_pinjaman': jumlahPinjaman,
+      'tenor': tenor,
+      'bunga': bunga,
+      'jenis_angsuran': jenisAngsuran,
+      'jumlah_angsuran': jumlahAngsuran,
+      'tujuan_pinjaman': tujuanPinjaman,
+      'jumlah_didanai': jumlahDidanai,
+      'jumlah_pembayaran': jumlahPembayaran,
+      'tanggal_selesai': tanggalSelesai,
+      'status': status,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Marketplace.fromMap(Map<String, dynamic> map) {
+    return Marketplace(
+      nama: map['nama'] ?? '',
+      nomorPonsel: map['nomor_ponsel'] ?? '',
+      foto: map['foto'] ?? '',
+      peminjamId: map['peminjam_id'] ?? 0,
+      jenis: map['jenis'] ?? '',
+      nik: map['nik'] ?? '',
+      alamat: map['alamat'] ?? '',
+      grade: map['grade'] ?? 0,
+      jenisUsaha: map['jenis_usaha'] ?? '',
+      provinsiUsaha: map['provinsi_usaha'] ?? '',
+      kotaUsaha: map['kota_usaha'] ?? '',
+      pendapatan: map['pendapatan'] ?? 0,
+      pinjamanId: map['pinjaman_id'] ?? 0,
+      kode: map['kode'] ?? '',
+      tanggalPinjaman:
+          DateTime.tryParse(map['tanggal_pinjaman'] ?? '') ?? DateTime.now(),
+      jumlahPinjaman: map['jumlah_pinjaman'] ?? 0,
+      tenor: map['tenor'] ?? 0,
+      bunga: map['bunga'] ?? 0,
+      jenisAngsuran: map['jenis_angsuran'] ?? '',
+      jumlahAngsuran: map['jumlah_angsuran'] ?? 0,
+      tujuanPinjaman: map['tujuan_pinjaman'] ?? '',
+      jumlahDidanai: map['jumlah_didanai'] ?? 0,
+      jumlahPembayaran: map['jumlah_pembayaran'] ?? 0,
+      tanggalSelesai: map['tanggal_selesai'] ?? '',
+      status: map['status'] ?? '',
+    );
+  }
+
+  // factory Marketplace.fromJson(String source) =>
+  //     Marketplace.fromMap(json.decode(source));
+}

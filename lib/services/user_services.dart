@@ -72,4 +72,32 @@ class UserService {
     }
   }
 
+  static Future<List<Marketplace>> getMarketplace({required BuildContext context}) async {
+    try {
+      http.Response res = await http.get(
+        Uri.parse("${Constants.URI}/pendana/get/marketplace"),
+      );
+
+      bool hasError = ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      if (hasError) {
+        return []; // Mengembalikan daftar transaksi kosong jika terjadi kesalahan
+      }
+
+      if (res.statusCode == 200) {
+        List<dynamic> jsonData = json.decode(res.body);
+        List<Marketplace> marketplaceList = jsonData
+            .map((data) => Marketplace.fromJson(data))
+            .toList();
+
+        return marketplaceList;
+      } else {
+        throw Exception("Failed to fetch marketplace data");
+      }
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
+
 }
