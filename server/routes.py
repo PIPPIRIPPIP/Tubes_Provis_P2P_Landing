@@ -3,6 +3,8 @@ from fastapi.security import OAuth2PasswordBearer
 import fastapi.security as _security
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
+from fastapi import File, UploadFile
+from fastapi.responses import FileResponse
 
 import database as _db
 import schemas as _schemas
@@ -129,6 +131,31 @@ async def updateUser(datas: _schemas.UpdateUser, user_id: int, db: Session = Dep
     _token = await _services.genereate_token_user(user=_user)
 
     return await get_return_user(_user=_user, _token=_token)
+
+# ===========================================================================================
+# Upload Foto
+#upload image
+@router.post("/uploadimage")
+# pip install python-multipart
+# buat terlebih dulu direktori /data_file untuk menyimpan file
+def upload(file: UploadFile = File(...)):
+    try:
+        print("mulai upload")
+        print(file.filename)
+        contents = file.file.read()
+        with open("../assets/profil/"+file.filename, 'wb') as f:
+            f.write(contents)
+    except Exception:
+        return {"message": "Error upload file"}
+    finally:
+        file.file.close()
+
+    return {"message": f"Upload berhasil: {file.filename}"}
+
+# ambil image berdasarkan nama file
+@router.get("/getimage/{nama_file}")
+async def getImage(nama_file:str):
+    return FileResponse("../assets/profil/"+nama_file)
 
 # ===========================================================================================
 # NOTIFIKASI
