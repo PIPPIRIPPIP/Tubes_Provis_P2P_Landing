@@ -12,6 +12,8 @@ import 'package:myapp/page-1/tarik-saldo.dart';
 import 'package:myapp/utils.dart';
 
 import '../providers/user_provider.dart';
+import 'package:myapp/page-1/panduan-pendanaan.dart';
+
 
 class PendanaPage extends StatelessWidget {
   const PendanaPage({super.key});
@@ -930,80 +932,87 @@ class Scene extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    // autogroup22gwrbQ (NsxjXcncpNTiqQb76K22GW)
-                    margin:
-                        EdgeInsets.fromLTRB(0 * fem, 0 * fem, 2 * fem, 0 * fem),
-                    width: double.infinity,
-                    height: 90 * fem,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // group63Arz (63:463)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 20 * fem, 0 * fem),
-                          width: 180 * fem,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(10 * fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x3f000000),
-                                offset: Offset(0 * fem, 4 * fem),
-                                blurRadius: 2 * fem,
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Pendanaan',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff020202),
-                              ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(15, 0, 15, 20),
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => PanduanPendanaan()));
+                    },
+                    child: Container(
+                      width: 180 * fem,
+                      height: 90 * fem,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
+                      ),
+                      child: Center(
+                          child: Text(
+                            'Pendanaan',
+                            textAlign: TextAlign.center,
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5 * ffem / fem,
+                              color: Color(0xff020202),
                             ),
                           ),
                         ),
-                        Container(
-                          // group64cDC (63:466)
-                          width: 180 * fem,
-                          height: double.infinity,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(10 * fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x3f000000),
-                                offset: Offset(0 * fem, 4 * fem),
-                                blurRadius: 2 * fem,
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Tarik Saldo',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff020202),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    )
                   ),
+                  InkWell(
+                    onTap: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => PanduanPembayaran()));
+                    },
+                    child: Container(
+                      width: 180 * fem,
+                      height: 90 * fem,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Color(0xffbcbcbc)),
+                          color: Color(0xffffffff),
+                          borderRadius: BorderRadius.circular(10 * fem),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x3f000000),
+                              offset: Offset(0 * fem, 4 * fem),
+                              blurRadius: 2 * fem,
+                            ),
+                          ],
+                      ),
+                      child: Center(
+                          child: Text(
+                            'Pembayaran',
+                            textAlign: TextAlign.center,
+                            style: SafeGoogleFont(
+                              'Poppins',
+                              fontSize: 12 * ffem,
+                              fontWeight: FontWeight.w600,
+                              height: 1.5 * ffem / fem,
+                              color: Color(0xff020202),
+                            ),
+                          ),
+                        ),
+                    )
+                  )
                 ],
               ),
             ),
