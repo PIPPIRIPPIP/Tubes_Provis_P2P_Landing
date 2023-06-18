@@ -2,9 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/utils.dart';
 
+import '../models/user.dart';
+
 class SuksesTopUp extends StatelessWidget {
+  final TransaksiPembayaran transaksi;
+
+  SuksesTopUp(this.transaksi);
+
   @override
   Widget build(BuildContext context) {
     double baseWidth = 414;
@@ -193,7 +200,7 @@ class SuksesTopUp extends StatelessWidget {
                                     width: 189 * fem,
                                     height: 27 * fem,
                                     child: Text(
-                                      '01 Januari 2023, 13.00',
+                                      DateFormat('dd MMMM yyyy').format(transaksi.timestamp),
                                       textAlign: TextAlign.center,
                                       style: SafeGoogleFont(
                                         'Poppins',
@@ -259,7 +266,7 @@ class SuksesTopUp extends StatelessWidget {
                                     width: 168 * fem,
                                     height: 60 * fem,
                                     child: Text(
-                                      '500.000',
+                                      transaksi.jumlah.toString(),
                                       style: SafeGoogleFont(
                                         'Poppins',
                                         fontSize: 40 * ffem,
@@ -341,17 +348,22 @@ class SuksesTopUp extends StatelessWidget {
                                     0 * fem, 0 * fem, 11 * fem, 0 * fem),
                                 width: 40 * fem,
                                 height: 39 * fem,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7 * fem),
-                                  color: Color(0xffd9d9d9),
+                                child: Image.asset(
+                                    'assets/page-1/images/${transaksi.metodePembayaran.toLowerCase()}.png',
+                                    width: 14.85 * fem,
+                                    height: 14.85 * fem,
                                 ),
+                                // decoration: BoxDecoration(
+                                //   borderRadius: BorderRadius.circular(7 * fem),
+                                //   color: Color(0xffd9d9d9),
+                                // ),
                               ),
                               Container(
                                 // gopay3Vp (69:423)
                                 margin: EdgeInsets.fromLTRB(
                                     0 * fem, 0 * fem, 0 * fem, 1 * fem),
                                 child: Text(
-                                  'Gopay',
+                                  transaksi.metodePembayaran,
                                   style: SafeGoogleFont(
                                     'Poppins',
                                     fontSize: 16 * ffem,

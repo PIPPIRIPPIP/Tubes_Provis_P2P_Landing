@@ -7,7 +7,7 @@ class User {
   final DateTime tanggalDibuat;
   final String nama;
   final String nomorPonsel;
-  final int saldo;
+  late final int saldo;
   final String foto;
   final String jenisUser;
   final List<Notifikasi> notifikasi;

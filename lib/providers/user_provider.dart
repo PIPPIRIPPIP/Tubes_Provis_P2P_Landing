@@ -56,4 +56,16 @@ class UserProvider extends ChangeNotifier {
     _pendana = null;
     notifyListeners();
   }
+
+/// transaksi
+
+  TransaksiPembayaran? _transaksi;
+
+  TransaksiPembayaran? get transaksi => _transaksi;
+
+  void updateTransaksi(TransaksiPembayaran transaksi) {
+    _transaksi = transaksi;
+    // _user?.saldo += jumlah;
+    notifyListeners();
+  }
 }
