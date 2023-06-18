@@ -137,7 +137,7 @@ class LISTUMKM extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text("P012345"),
-                        Text("GATAU MAU DIISI APA"),
+                        Text("1 Januari 2023"),
                       ],
                     ),
                     Container(
