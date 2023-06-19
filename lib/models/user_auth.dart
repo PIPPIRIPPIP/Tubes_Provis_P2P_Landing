@@ -309,3 +309,33 @@ class AddTransaksiPembayaran {
   factory AddTransaksiPembayaran.fromJson(String source) =>
       AddTransaksiPembayaran.fromMap(json.decode(source));
 }
+
+// Investasi
+class AddInvestasi {
+  final int pinjamanId;
+  final int jumlahInvestasi;
+
+  AddInvestasi({
+    required this.pinjamanId,
+    required this.jumlahInvestasi,
+  });
+
+  factory AddInvestasi.fromMap(Map<String, dynamic> map) {
+    return AddInvestasi(
+      pinjamanId: map['pinjaman_id'] ?? 0,
+      jumlahInvestasi: map['jumlah_investasi'] ?? 0,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'pinjaman_id': pinjamanId,
+      'jumlah_investasi': jumlahInvestasi,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AddInvestasi.fromJson(String source) =>
+      AddInvestasi.fromMap(json.decode(source));
+}

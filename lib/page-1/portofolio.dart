@@ -226,9 +226,7 @@ class Scene extends StatelessWidget {
                 ],
               ),
             Container(
-              // daftarinvestasiB6N (69:117)
-              margin: EdgeInsets.fromLTRB(
-                  0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
               child: Text(
                 'Daftar Investasi',
                 textAlign: TextAlign.center,
@@ -241,11 +239,13 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: InvestasiCard(investasi: aktifInvestasi,)),
+            Expanded(
+              child: aktifInvestasi.isNotEmpty
+                  ? InvestasiCard(investasi: aktifInvestasi)
+                  : Center(child: Text('Tidak ada investasi aktif')),
+            ),
             Container(
-              // daftarinvestasiB6N (69:117)
-              margin: EdgeInsets.fromLTRB(
-                  0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
+              margin: EdgeInsets.fromLTRB(0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
               child: Text(
                 'Riwayat Investasi',
                 textAlign: TextAlign.center,
@@ -258,7 +258,12 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: InvestasiCard(investasi: selesaiInvestasi,)),
+            Expanded(
+              child: selesaiInvestasi.isNotEmpty
+                  ? InvestasiCard(investasi: selesaiInvestasi)
+                  : Center(child: Text('Tidak ada riwayat investasi')),
+            ),
+
           ],
         ),
       ),
