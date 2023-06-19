@@ -27,7 +27,6 @@ class PeminjamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Scene(),
-      
       bottomNavigationBar: Navbar(),
     );
   }
@@ -46,26 +45,27 @@ class Scene extends StatelessWidget {
     }
 
     List<Pinjaman> pinjamanProses = user.pinjaman
-        .where((pinjaman) => pinjaman.status == 'proses').cast<Pinjaman>()
+        .where((pinjaman) => pinjaman.status == 'proses')
+        .cast<Pinjaman>()
         .toList();
 
     List<Pinjaman> pinjamanAktif = user.pinjaman
-        .where((pinjaman) => pinjaman.status == 'aktif').cast<Pinjaman>()
+        .where((pinjaman) => pinjaman.status == 'aktif')
+        .cast<Pinjaman>()
         .toList();
 
     List<Pembayaran> pembayaranList = user.pembayaran
-        .where((pembayaran) => pembayaran.status == 'belum dibayar').cast<Pembayaran>()
+        .where((pembayaran) => pembayaran.status == 'belum dibayar')
+        .cast<Pembayaran>()
         .toList();
 
-    String namaImage = user.foto; 
+    String namaImage = user.foto;
 
     return Scaffold(
       body: Container(
         width: double.infinity,
         child: Column(
-          
           crossAxisAlignment: CrossAxisAlignment.start,
-
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
@@ -116,8 +116,8 @@ class Scene extends StatelessWidget {
               ),
             ),
             Container(
-              
-              padding: EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
+              padding:
+                  EdgeInsets.fromLTRB(35 * fem, 13 * fem, 60 * fem, 17 * fem),
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Color(0xff3584ff),
@@ -370,13 +370,11 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-
             Expanded(
               child: pinjamanProses.isNotEmpty
                   ? ListAjuanPinjaman(pinjamanList: pinjamanProses)
                   : Center(child: Text('Tidak ada ajuan pinjaman')),
             ),
-
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
@@ -390,7 +388,6 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-
             Expanded(
               child: pinjamanAktif.isNotEmpty
                   ? ListTagihan(pinjamanAktif, pembayaranList)
@@ -505,7 +502,6 @@ class Scene extends StatelessWidget {
   }
 }
 
-
 class ListTagihan extends StatelessWidget {
   final List<Pinjaman> pinjamanList;
   final List<Pembayaran> pembayaranList;
@@ -531,17 +527,20 @@ class ListTagihan extends StatelessWidget {
                 }
               }
 
-              DateTime tanggalTagihan = pembayaran.tanggalTagihan; // Tanggal tagihan
+              DateTime tanggalTagihan =
+                  pembayaran.tanggalTagihan; // Tanggal tagihan
               DateTime sekarang = DateTime.now(); // Tanggal saat ini
 
-              Duration selisih = tanggalTagihan.difference(sekarang); // Selisih waktu antara tanggal tagihan dan tanggal saat ini
+              Duration selisih = tanggalTagihan.difference(
+                  sekarang); // Selisih waktu antara tanggal tagihan dan tanggal saat ini
               int selisihHari = selisih.inDays; // Selisih dalam bentuk hari
 
               int hariTersisa = 7 - selisihHari; // Jumlah hari tersisa
 
               if (pinjaman != null) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                   child: InkWell(
                     onTap: () {
                       //ISI ROUTE
@@ -559,7 +558,8 @@ class ListTagihan extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(pinjaman.id.toString()), // Ganti dengan data yang sesuai dari pinjaman
+                                Text(pinjaman.id
+                                    .toString()), // Ganti dengan data yang sesuai dari pinjaman
                                 Text("${hariTersisa} Hari Tersisa"),
                               ],
                             ),
@@ -684,8 +684,6 @@ class ListTagihan extends StatelessWidget {
   }
 }
 
-
-
 class ListAjuanPinjaman extends StatelessWidget {
   final List<Pinjaman> pinjamanList;
 
@@ -717,7 +715,8 @@ class ListAjuanPinjaman extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(pinjaman.kode),
-                        Text(DateFormat('dd MMMM yyyy').format(pinjaman.tanggalPinjaman)),
+                        Text(DateFormat('dd MMMM yyyy')
+                            .format(pinjaman.tanggalPinjaman)),
                       ],
                     ),
                     Container(
@@ -824,4 +823,3 @@ class ListAjuanPinjaman extends StatelessWidget {
     );
   }
 }
-

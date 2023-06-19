@@ -172,6 +172,37 @@ class AuthService {
     }
   }
 
+  // Ajukan Pinjaman
+  static Future<Peminjam?> AjukanPeminjaman(
+      {required BuildContext context,
+      required String tujuan,
+      required int jumlah,
+      required int userId}) async {
+    try {
+      AjukanPeminjamanAuth peminjam = AjukanPeminjamanAuth(tujuan, jumlah);
+
+      http.Response res = await http.post(
+        Uri.parse("${Constants.URI}/peminjam/setPinjaman/$userId"),
+        body: peminjam.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+      );
+
+      bool hasError =
+          ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      /// Has HTTP Error
+      if (hasError) return null;
+
+      /// Execute successfully
+      return Peminjam.fromJson(res.body);
+    } catch (e) {
+      Utils.showSnackBar(context, e.toString());
+      return null;
+    }
+  }
+
   /// A function for Sign-Up user account,
   /// Success : return User model,
   /// Fail : return null

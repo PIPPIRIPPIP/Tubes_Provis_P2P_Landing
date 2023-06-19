@@ -100,4 +100,38 @@ class UserService {
     }
   }
 
+  static Future<Investasi?> addInvestasi(
+    {required BuildContext context,
+      required int pendanaId,
+      required int pinjamanId,
+      required int jumlahInvestasi,}) async {
+    try{
+      AddInvestasi transaksi =
+        AddInvestasi(
+        pinjamanId: pinjamanId,
+        jumlahInvestasi: jumlahInvestasi);
+
+      http.Response res = await http.post(
+        Uri.parse("${Constants.URI}/pendana/addInvestasi/${pendanaId}/"),
+        body: transaksi.toJson(),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+      );
+
+      bool hasError =
+          ErrorHandling.httpErrorHandling(response: res, context: context);
+
+      /// Has HTTP Error
+      if (hasError) return null;
+
+      /// Execute successfully
+      return Investasi.fromJson(res.body);
+    } catch (e) {
+      Utils.showSnackBar(context, e.toString());
+      return null;
+    }
+    
+  }
+
 }

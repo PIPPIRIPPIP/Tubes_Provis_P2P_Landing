@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/detail-ajuan-peminjaman.dart';
+import 'package:myapp/page-1/detail-riwayat-peminjaman.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
 
@@ -16,7 +18,7 @@ class RiwayatPeminjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Scene(),
+      body: Scene(),
       bottomNavigationBar: Navbar(),
     );
   }
@@ -35,17 +37,20 @@ class Scene extends StatelessWidget {
     }
 
     List<Pinjaman> pinjamanLunas = user.pinjaman
-        .where((pinjaman) => pinjaman.status == 'lunas').cast<Pinjaman>()
+        .where((pinjaman) => pinjaman.status == 'lunas')
+        .cast<Pinjaman>()
         .toList();
 
     List<Pinjaman> pinjamanAktif = user.pinjaman
-        .where((pinjaman) => pinjaman.status == 'aktif').cast<Pinjaman>()
+        .where((pinjaman) => pinjaman.status == 'aktif')
+        .cast<Pinjaman>()
         .toList();
 
     List<Pembayaran> pembayaranList = user.pembayaran
-        .where((pembayaran) => pembayaran.status == 'belum dibayar').cast<Pembayaran>()
+        .where((pembayaran) => pembayaran.status == 'belum dibayar')
+        .cast<Pembayaran>()
         .toList();
-        
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -97,7 +102,6 @@ class Scene extends StatelessWidget {
   }
 }
 
-
 //TAGIHAN PINJAMAN
 class ListTagihan extends StatelessWidget {
   final List<Pinjaman> pinjamanList;
@@ -124,17 +128,20 @@ class ListTagihan extends StatelessWidget {
                 }
               }
 
-              DateTime tanggalTagihan = pembayaran.tanggalTagihan; // Tanggal tagihan
+              DateTime tanggalTagihan =
+                  pembayaran.tanggalTagihan; // Tanggal tagihan
               DateTime sekarang = DateTime.now(); // Tanggal saat ini
 
-              Duration selisih = tanggalTagihan.difference(sekarang); // Selisih waktu antara tanggal tagihan dan tanggal saat ini
+              Duration selisih = tanggalTagihan.difference(
+                  sekarang); // Selisih waktu antara tanggal tagihan dan tanggal saat ini
               int selisihHari = selisih.inDays; // Selisih dalam bentuk hari
 
               int hariTersisa = 7 - selisihHari; // Jumlah hari tersisa
 
               if (pinjaman != null) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                   child: InkWell(
                     onTap: () {
                       //ISI ROUTE
@@ -152,7 +159,8 @@ class ListTagihan extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(pinjaman.id.toString()), // Ganti dengan data yang sesuai dari pinjaman
+                                Text(pinjaman.id
+                                    .toString()), // Ganti dengan data yang sesuai dari pinjaman
                                 Text("${hariTersisa} Hari Tersisa"),
                               ],
                             ),
@@ -277,9 +285,7 @@ class ListTagihan extends StatelessWidget {
   }
 }
 
-
 // PINJAMAN YANG SUDAH LUNAS DISINI
-
 class ListRiwayatPinjaman extends StatelessWidget {
   final List<Pinjaman> pinjamanList;
 
@@ -288,14 +294,17 @@ class ListRiwayatPinjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: pinjamanList.length, 
+      itemCount: pinjamanList.length,
       itemBuilder: (context, index) {
         var pinjaman = pinjamanList[index];
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: InkWell(
             onTap: () {
-              //ISI ROUTE
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailRiwayatPeminjaman()));
             },
             child: Card(
               elevation: 2.0,
@@ -326,11 +335,11 @@ class ListRiwayatPinjaman extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("${pinjaman.bunga}%",
+                            Text(
+                              "${pinjaman.bunga}%",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 28,
@@ -339,7 +348,8 @@ class ListRiwayatPinjaman extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text(" bunga",
+                            Text(
+                              " bunga",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -350,11 +360,11 @@ class ListRiwayatPinjaman extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Total Pinjaman",
+                            Text(
+                              "Total Pinjaman",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -363,7 +373,8 @@ class ListRiwayatPinjaman extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text("Rp ${pinjaman.jumlahPinjaman}",
+                            Text(
+                              "Rp ${pinjaman.jumlahPinjaman}",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 16,
@@ -374,8 +385,6 @@ class ListRiwayatPinjaman extends StatelessWidget {
                             ),
                           ],
                         ),
-                        
-                        
                       ],
                     ),
                     Container(
@@ -390,23 +399,24 @@ class ListRiwayatPinjaman extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
-                        Text(DateFormat('dd MMMM yyyy').format(pinjaman.tanggalPinjaman),
+                        Text(
+                          DateFormat('dd MMMM yyyy')
+                              .format(pinjaman.tanggalPinjaman),
                           style: SafeGoogleFont(
                             'Poppins',
                             fontWeight: FontWeight.w500,
                             color: Color(0xff020202),
                           ),
                         ),
-
-                        Text("hingga",
+                        Text(
+                          "hingga",
                           style: SafeGoogleFont(
                             'Poppins',
                             color: Color(0xff020202),
                           ),
                         ),
-
-                        Text(pinjaman.tanggalSelesai,
+                        Text(
+                          pinjaman.tanggalSelesai,
                           style: SafeGoogleFont(
                             'Poppins',
                             fontWeight: FontWeight.w500,

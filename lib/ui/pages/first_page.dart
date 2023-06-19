@@ -4,6 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/app_export.dart';
 import 'package:myapp/custom_widgets/custom_button.dart';
 import 'package:myapp/ui/pages/detail_mitra.dart';
+import '../../models/models.dart';
+import '../../services/user_services.dart';
+import '../../utils.dart';
+import '../../utils/grade.dart';
 import '../widgets/user_card.dart';
 import 'package:myapp/bloc/user_bloc.dart';
 
@@ -32,6 +36,7 @@ class FirstPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgMoneylogodesi,
@@ -63,15 +68,6 @@ class FirstPage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const Login()));
-                    // Navigator.push(context, MaterialPageRoute(
-                    //     builder: (context) => BlocProvider(
-                    //       create: (context) => LoginBloc(
-                    //         userRepository:userRepository
-                    //         ),
-                    //       child: Login(),
-                    //     ),
-                    //   ),
-                    // );
                   },
                   child: Padding(
                     padding: getPadding(top: 7),
@@ -94,6 +90,7 @@ class FirstPage extends StatelessWidget {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
                     children: [
                       SizedBox(height: 10),
                       Text(
@@ -103,40 +100,7 @@ class FirstPage extends StatelessWidget {
                         style: AppStyle.txtPoppinsSemiBold16WhiteA700,
                       ),
                       SizedBox(height: 20),
-                      // BlocBuilder<UserBloc, UserState>(
-                      //   builder: (context, state) {
-                      //     if (state.users.isEmpty) {
-                      //       return CircularProgressIndicator();
-                      //     } else {
-                      //       return ListView.separated(
-                      //         physics: NeverScrollableScrollPhysics(),
-                      //         shrinkWrap: true,
-                      //         separatorBuilder: (context, index) {
-                      //           return SizedBox(height: getVerticalSize(29));
-                      //         },
-                      //         // itemCount: state.users.length,
-                      //         itemCount: 5,
-                      //         itemBuilder: (context, index) {
-                      //           final user = state.users[index];
-                      //           return InkWell(
-                      //             onTap: () {
-                      //               // Mengarahkan pengguna ke halaman profil user dengan mengirimkan data pengguna yang dipilih
-                      //               Navigator.push(
-                      //                 context,
-                      //                 MaterialPageRoute(
-                      //                   builder: (context) =>
-                      //                       DetailMitra(user: user),
-                      //                 ),
-                      //               );
-                      //             },
-                      //             child: UserCard(user: user),
-                      //           );
-                      //         },
-                      //       );
-                      //     }
-                      //   },
-                      // ),
-                      SizedBox(height: 20),
+                      Container(child: LISTUMKM())
                     ],
                   ),
                 ),
@@ -147,19 +111,168 @@ class FirstPage extends StatelessWidget {
       ),
     );
   }
-
-  // onTapDaftarsekarang(BuildContext context) {
-  //   Navigator.pushNamed(context, AppRoutes.pilihAkunScreen);
-  // }
-
-  // onTapTxtMasuk(BuildContext context) {
-  //   Navigator.pushNamed(context, AppRoutes.loginScreen);
-  // }
 }
 
-// CustomImageView(
-//   svgPath: ImageConstant.imgArrowdown,
-//   height: getVerticalSize(20),
-//   width: getHorizontalSize(24),
-//   alignment: Alignment.topCenter
-// )
+class LISTUMKM extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Marketplace>>(
+      future: UserService.getMarketplace(context: context),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Tampilkan indikator loading jika masih dalam proses fetching data
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          // Tampilkan pesan error jika terjadi kesalahan
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else {
+          print(snapshot.data);
+          // Tampilkan data menggunakan ListView.builder
+          return ListView.builder(
+            shrinkWrap: true, // Tambahkan shrinkWrap
+            physics: NeverScrollableScrollPhysics(), // Tambahkan physics
+            itemCount: snapshot.data?.length,
+            itemBuilder: (context, index) {
+              final marketplace = snapshot.data![index];
+              Grade grade = getGrade(marketplace.grade);
+              return Padding(
+                padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                child: InkWell(
+                  onTap: () {
+                    //   Navigator.push(context,
+                    // MaterialPageRoute(builder: (context) => DetailMitra()));
+                  },
+                  child: Card(
+                    elevation: 2.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                      side: BorderSide(color: Colors.black, width: 1.0),
+                    ),
+                    child: Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(marketplace.kode),
+                              Text(marketplace.tanggalPinjaman.toString()),
+                            ],
+                          ),
+                          Container(
+                            // line4zjG (69:156)
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                            width: double.infinity,
+                            height: 1,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 51, 51, 51),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  ClipOval(
+                                    child: Image.asset(
+                                      'assets/page-1/images/profile-2.png',
+                                      width: 50,
+                                      height: 50,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          marketplace.nama,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w600,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                        Text(
+                                          marketplace.jenis,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 14,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                        Text(
+                                          marketplace.alamat,
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 14,
+                                            height: 1.5,
+                                            color: Color(0xff020202),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                grade.label,
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.5,
+                                  color: grade.color,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            // line4zjG (69:156)
+                            margin: EdgeInsets.fromLTRB(0, 5, 0, 10),
+                            width: double.infinity,
+                            height: 1,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 51, 51, 51),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Dana Terkumpul",
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                              Text(
+                                "${((marketplace.jumlahDidanai / marketplace.jumlahPinjaman) * 100).toInt()}%",
+                                style: SafeGoogleFont(
+                                  'Poppins',
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xff020202),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
+          );
+        }
+      },
+    );
+  }
+}

@@ -336,7 +336,7 @@ class ProfilPage extends State<Profil> {
                           children: [
                             Container(
                               margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 8 * fem, 129 * fem, 0 * fem),
+                                  0 * fem, 8 * fem, 90 * fem, 0 * fem),
                               constraints: BoxConstraints(
                                 maxWidth: 134 * fem,
                               ),
@@ -355,7 +355,7 @@ class ProfilPage extends State<Profil> {
                               margin: EdgeInsets.fromLTRB(
                                   0 * fem, 8 * fem, 0 * fem, 0 * fem),
                               constraints: BoxConstraints(
-                                maxWidth: 88 * fem,
+                                maxWidth: 150 * fem,
                               ),
                               child: Text(
                                 "${user.jenisUsaha}\n${user.provinsiUsaha}\n${user.kotaUsaha}\n${user.pendapatan}",
