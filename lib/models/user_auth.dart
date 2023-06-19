@@ -210,6 +210,33 @@ class UpdatePeminjamAuth {
       UpdatePeminjamAuth.fromMap(json.decode(source));
 }
 
+class AjukanPeminjamanAuth {
+  final String tujuan;
+  final int jumlah;
+
+  AjukanPeminjamanAuth(this.tujuan, this.jumlah);
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'jumlah_pinjaman': jumlah});
+    result.addAll({'tujuan_pinjaman': tujuan});
+    return result;
+  }
+
+  factory AjukanPeminjamanAuth.fromMap(Map<String, dynamic> map) {
+    return AjukanPeminjamanAuth(
+      map['tujuan_pinjaman'] ?? '',
+      map['jumlah_pinjaman'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory AjukanPeminjamanAuth.fromJson(String source) =>
+      AjukanPeminjamanAuth.fromMap(json.decode(source));
+}
+
 class SignUpUserAuth {
   final String email;
   final String password;

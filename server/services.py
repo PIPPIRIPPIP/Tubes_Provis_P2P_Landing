@@ -59,7 +59,7 @@ async def create_user(datas: _schemas.SignUpUser, jenis_user: str, db: Session) 
         nama=datas.nama, 
         nomor_ponsel=datas.nomor_ponsel,
         saldo=0,
-        foto="assets/page-1/images/profile2-1.png",
+        foto="default.png",
         jenis_user=jenis_user
         )
 

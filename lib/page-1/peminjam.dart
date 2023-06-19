@@ -43,15 +43,8 @@ class Scene extends StatelessWidget {
     }
     String namaImage = user.foto;
     return Scaffold(
-        body: Container(
-      width: double.infinity,
-      child: Container(
-        // peminjamMq8 (7:269)
-        padding: EdgeInsets.fromLTRB(0 * fem, 12 * fem, 0 * fem, 0 * fem),
+      body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
-          color: Color(0xffffffff),
-        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -60,67 +53,45 @@ class Scene extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    // moneylogodesignstemplatevector (7:284)
-                    width: 100 * fem,
-                    height: 100 * fem,
-                    child: Image.asset(
-                      'assets/page-1/images/logo.png',
-                      width: 50,
-                      height: 50,
-                    ),
+                  Image.asset(
+                    'assets/page-1/images/logo.png',
+                    width: 150,
+                    height: 50,
                   ),
-                  Expanded(
-                    child: Container(
-                      // autogroup12qwgF8 (3w9iQfDA9aFCubYDG212Qw)
-                      padding: EdgeInsets.fromLTRB(
-                          180 * fem, 2 * fem, 0 * fem, 3 * fem),
-                      height: double.infinity,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => NotifikasiPage()));
-                            },
-                            child: Container(
-                              // notif1DF4 (12:298)
-                              margin: EdgeInsets.fromLTRB(
-                                  0 * fem, 0 * fem, 15 * fem, 0 * fem),
-                              width: 25 * fem,
-                              height: 32 * fem,
-                              child: Image.asset(
-                                'assets/page-1/images/notif-1.png',
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          TextButton(
-                            // profile1YYE (9:285)
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Profil()));
-                            },
-                            style: TextButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                            ),
-                            child: namaImage != ""
-                                ? Image.network(
-                                    //chrome
-                                    'http://127.0.0.1:8000/user/getimage/$namaImage',
-                                    height: 45,
-                                    width: 45,
-                                  )
-                                : const Text(" Image Tidak Tersedia"),
-                          ),
-                        ],
+                  Row(
+                    //crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NotifikasiPage()));
+                        },
+                        child: Image.asset(
+                          'assets/page-1/images/notif-1.png',
+                          width: 45,
+                          height: 45,
+                        ),
                       ),
-                    ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Profil()));
+                        },
+                        child: namaImage != ""
+                            ? Image.network(
+                                //chrome
+                                'http://127.0.0.1:8000/user/getimage/$namaImage',
+                                height: 45,
+                                width: 45,
+                              )
+                            : const Text(" Image Tidak Tersedia"),
+                      ),
+                    ],
                   ),
                 ],
               ),
@@ -395,111 +366,10 @@ class Scene extends StatelessWidget {
               ),
             ),
             Expanded(child: ListTagihan()),
-            /*
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      'Panduan',
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 14 * ffem,
-                        fontWeight: FontWeight.w600,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff020202),
-                      ),
-                    ),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => PanduanPeminjaman()));
-                        },
-                        child: Container(
-                          width: 180 * fem,
-                          height: 50 * fem,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(10 * fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x3f000000),
-                                offset: Offset(0 * fem, 4 * fem),
-                                blurRadius: 2 * fem,
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Peminjaman',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff020202),
-                              ),
-                            ),
-                          ),
-                        )
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => PanduanPembayaran()));
-                        },
-                        child: Container(
-                          width: 180 * fem,
-                          height: 50 * fem,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Color(0xffbcbcbc)),
-                            color: Color(0xffffffff),
-                            borderRadius: BorderRadius.circular(10 * fem),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x3f000000),
-                                offset: Offset(0 * fem, 4 * fem),
-                                blurRadius: 2 * fem,
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              'Panduan Pembayaran',
-                              textAlign: TextAlign.center,
-                              style: SafeGoogleFont(
-                                'Poppins',
-                                fontSize: 12 * ffem,
-                                fontWeight: FontWeight.w600,
-                                height: 1.5 * ffem / fem,
-                                color: Color(0xff020202),
-                              ),
-                            ),
-                          ),
-                        )
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            */
           ],
         ),
       ),
-    ));
+    );
   }
 }
 

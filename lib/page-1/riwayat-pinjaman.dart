@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:myapp/page-1/detail-ajuan-peminjaman.dart';
+import 'package:myapp/page-1/detail-riwayat-peminjaman.dart';
 import 'package:myapp/page-1/navbar-peminjam.dart';
 import 'package:myapp/utils.dart';
 
@@ -12,7 +14,7 @@ class RiwayatPeminjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:Scene(),
+      body: Scene(),
       bottomNavigationBar: Navbar(),
     );
   }
@@ -27,7 +29,7 @@ class Scene extends StatelessWidget {
     return Scaffold(
       body: Container(
         width: double.infinity,
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
@@ -46,7 +48,6 @@ class Scene extends StatelessWidget {
             ),
             Expanded(child: ListTagihan()),
             Padding(
-              
               padding: EdgeInsets.fromLTRB(0, 15, 0, 15),
               child: Text(
                 'Riwayat Pinjaman',
@@ -74,13 +75,16 @@ class ListTagihan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5, 
+      itemCount: 5,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: InkWell(
             onTap: () {
-              //ISI ROUTE
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailAjuanPeminjaman()));
             },
             child: Card(
               elevation: 2.0,
@@ -111,11 +115,11 @@ class ListTagihan extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Jumlah dibayarkan",
+                            Text(
+                              "Jumlah dibayarkan",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -124,7 +128,8 @@ class ListTagihan extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text("Rp 1.100.000",
+                            Text(
+                              "Rp 1.100.000",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 16,
@@ -135,11 +140,11 @@ class ListTagihan extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Total Tagihan",
+                            Text(
+                              "Total Tagihan",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -148,7 +153,8 @@ class ListTagihan extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text("Rp 11.000.000",
+                            Text(
+                              "Rp 11.000.000",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 16,
@@ -159,8 +165,6 @@ class ListTagihan extends StatelessWidget {
                             ),
                           ],
                         ),
-                        
-                        
                       ],
                     ),
                     Container(
@@ -186,8 +190,7 @@ class ListTagihan extends StatelessWidget {
                             primary: Color(0xff3584ff),
                             //fixedSize: Size(150, 30),
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           child: Text(
@@ -201,7 +204,8 @@ class ListTagihan extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Text("10%",
+                        Text(
+                          "10%",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontWeight: FontWeight.bold,
@@ -221,20 +225,21 @@ class ListTagihan extends StatelessWidget {
   }
 }
 
-
 // PINJAMAN YANG SUDAH LUNAS DISINI
-
 class ListRiwayatPinjaman extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5, 
+      itemCount: 5,
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: InkWell(
             onTap: () {
-              //ISI ROUTE
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DetailRiwayatPeminjaman()));
             },
             child: Card(
               elevation: 2.0,
@@ -265,11 +270,11 @@ class ListRiwayatPinjaman extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text("10%",
+                            Text(
+                              "10%",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 28,
@@ -278,7 +283,8 @@ class ListRiwayatPinjaman extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text(" bunga",
+                            Text(
+                              " bunga",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -289,11 +295,11 @@ class ListRiwayatPinjaman extends StatelessWidget {
                             ),
                           ],
                         ),
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("Total Pinjaman",
+                            Text(
+                              "Total Pinjaman",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 14,
@@ -302,7 +308,8 @@ class ListRiwayatPinjaman extends StatelessWidget {
                                 color: Color(0xff020202),
                               ),
                             ),
-                            Text("Rp 10.000.000",
+                            Text(
+                              "Rp 10.000.000",
                               style: SafeGoogleFont(
                                 'Poppins',
                                 fontSize: 16,
@@ -313,8 +320,6 @@ class ListRiwayatPinjaman extends StatelessWidget {
                             ),
                           ],
                         ),
-                        
-                        
                       ],
                     ),
                     Container(
@@ -329,23 +334,23 @@ class ListRiwayatPinjaman extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        
-                        Text("1 Januari 2023",
+                        Text(
+                          "1 Januari 2023",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontWeight: FontWeight.w500,
                             color: Color(0xff020202),
                           ),
                         ),
-
-                        Text("hingga",
+                        Text(
+                          "hingga",
                           style: SafeGoogleFont(
                             'Poppins',
                             color: Color(0xff020202),
                           ),
                         ),
-
-                        Text("1 Maret 2023",
+                        Text(
+                          "1 Maret 2023",
                           style: SafeGoogleFont(
                             'Poppins',
                             fontWeight: FontWeight.w500,

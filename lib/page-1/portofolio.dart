@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:myapp/page-1/detail-investasi.dart';
 import 'package:provider/provider.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,72 +33,95 @@ class Scene extends StatelessWidget {
     }
 
     List<Investasi> aktifInvestasi = user.investasi
-              .where((investasi) => investasi.status == "aktif")
-              .toList();
+        .where((investasi) => investasi.status == "aktif")
+        .toList();
 
     List<Investasi> selesaiInvestasi = user.investasi
-              .where((investasi) => investasi.status == "selesai")
-              .toList();
+        .where((investasi) => investasi.status == "selesai")
+        .toList();
 
-    int totalJumlahInvestasi = aktifInvestasi.fold(0, (sum, investasi) => sum + investasi.jumlahInvestasi);
-    int totalKeuntungan = aktifInvestasi.fold(0, (sum, investasi) => sum + investasi.keuntungan);
+    int totalJumlahInvestasi = aktifInvestasi.fold(
+        0, (sum, investasi) => sum + investasi.jumlahInvestasi);
+    int totalKeuntungan =
+        aktifInvestasi.fold(0, (sum, investasi) => sum + investasi.keuntungan);
 
     return Scaffold(
       body: Container(
         width: double.infinity,
-        child:Column(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      'Portofolio',
-                      textAlign: TextAlign.center,
-                      style: SafeGoogleFont(
-                        'Poppins',
-                        fontSize: 20 * ffem,
-                        fontWeight: FontWeight.w700,
-                        height: 1.5 * ffem / fem,
-                        color: Color(0xff3584ff),
-                      ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    'Portofolio',
+                    textAlign: TextAlign.center,
+                    style: SafeGoogleFont(
+                      'Poppins',
+                      fontSize: 20 * ffem,
+                      fontWeight: FontWeight.w700,
+                      height: 1.5 * ffem / fem,
+                      color: Color(0xff3584ff),
                     ),
                   ),
-                  
-                  Container(
-                    // autogroupp7vnKca (NsxpZPa7sqa2FcuVyLp7vn)
-                    margin: EdgeInsets.fromLTRB(
-                        0 * fem, 0 * fem, 2 * fem, 22 * fem),
-                    padding: EdgeInsets.fromLTRB(
-                        122.5 * fem, 10 * fem, 118.5 * fem, 17 * fem),
-                    width: 380 * fem,
-                    decoration: BoxDecoration(
-                      color: Color(0xff3584ff),
-                      borderRadius: BorderRadius.circular(24 * fem),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          // autogroupnq66CRU (NsxphtKxpeKemjKn8qnq66)
-                          margin: EdgeInsets.fromLTRB(
-                              0 * fem, 0 * fem, 0 * fem, 8 * fem),
-                          width: double.infinity,
-                          height: 58 * fem,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                // totalasetiuc (46:152)
-                                left: 19.5 * fem,
-                                top: 0 * fem,
-                                child: Align(
-                                  child: SizedBox(
-                                    width: 99 * fem,
-                                    height: 30 * fem,
-                                    child: Text(
-                                      'Total Aset',
+                ),
+                Container(
+                  // autogroupp7vnKca (NsxpZPa7sqa2FcuVyLp7vn)
+                  margin:
+                      EdgeInsets.fromLTRB(0 * fem, 0 * fem, 2 * fem, 22 * fem),
+                  padding: EdgeInsets.fromLTRB(
+                      122.5 * fem, 10 * fem, 118.5 * fem, 17 * fem),
+                  width: 380 * fem,
+                  decoration: BoxDecoration(
+                    color: Color(0xff3584ff),
+                    borderRadius: BorderRadius.circular(24 * fem),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        // autogroupnq66CRU (NsxphtKxpeKemjKn8qnq66)
+                        margin: EdgeInsets.fromLTRB(
+                            0 * fem, 0 * fem, 0 * fem, 8 * fem),
+                        width: double.infinity,
+                        height: 58 * fem,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              // totalasetiuc (46:152)
+                              left: 19.5 * fem,
+                              top: 0 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 99 * fem,
+                                  height: 30 * fem,
+                                  child: Text(
+                                    'Total Aset',
+                                    style: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 20 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.5 * ffem / fem,
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              // rp15000000DLa (46:153)
+                              left: 0 * fem,
+                              top: 28 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 139 * fem,
+                                  height: 30 * fem,
+                                  child: RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
                                       style: SafeGoogleFont(
                                         'Poppins',
                                         fontSize: 20 * ffem,
@@ -105,69 +129,69 @@ class Scene extends StatelessWidget {
                                         height: 1.5 * ffem / fem,
                                         color: Color(0xffffffff),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                // rp15000000DLa (46:153)
-                                left: 0 * fem,
-                                top: 28 * fem,
-                                child: Align(
-                                  child: SizedBox(
-                                    width: 139 * fem,
-                                    height: 30 * fem,
-                                    child: RichText(
-                                      textAlign: TextAlign.center,
-                                      text: TextSpan(
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 20 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xffffffff),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Rp.',
                                         ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Rp.',
+                                        TextSpan(
+                                          text: totalJumlahInvestasi.toString(),
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 20 * ffem,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1.5 * ffem / fem,
+                                            color: Color(0xffffffff),
                                           ),
-                                          TextSpan(
-                                            text: totalJumlahInvestasi.toString(),
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 20 * ffem,
-                                              fontWeight: FontWeight.w700,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xffffffff),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                        Container(
-                          // autogroupbzdtWU6 (NsxpmtDJSfrRFYhSSxbzDt)
-                          margin: EdgeInsets.fromLTRB(
-                              2.5 * fem, 0 * fem, 2.5 * fem, 0 * fem),
-                          width: double.infinity,
-                          height: 43 * fem,
-                          child: Stack(
-                            children: [
-                              Positioned(
-                                // totalkeuntunganDtJ (46:155)
-                                left: 0 * fem,
-                                top: 0 * fem,
-                                child: Align(
-                                  child: SizedBox(
-                                    width: 134 * fem,
-                                    height: 23 * fem,
-                                    child: Text(
-                                      'Total Keuntungan',
+                      ),
+                      Container(
+                        // autogroupbzdtWU6 (NsxpmtDJSfrRFYhSSxbzDt)
+                        margin: EdgeInsets.fromLTRB(
+                            2.5 * fem, 0 * fem, 2.5 * fem, 0 * fem),
+                        width: double.infinity,
+                        height: 43 * fem,
+                        child: Stack(
+                          children: [
+                            Positioned(
+                              // totalkeuntunganDtJ (46:155)
+                              left: 0 * fem,
+                              top: 0 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 134 * fem,
+                                  height: 23 * fem,
+                                  child: Text(
+                                    'Total Keuntungan',
+                                    style: SafeGoogleFont(
+                                      'Poppins',
+                                      fontSize: 15 * ffem,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.5 * ffem / fem,
+                                      color: Color(0xffffffff),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              // rp15000006hC (54:70)
+                              left: 17 * fem,
+                              top: 20 * fem,
+                              child: Align(
+                                child: SizedBox(
+                                  width: 100 * fem,
+                                  height: 23 * fem,
+                                  child: RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
                                       style: SafeGoogleFont(
                                         'Poppins',
                                         fontSize: 15 * ffem,
@@ -175,60 +199,38 @@ class Scene extends StatelessWidget {
                                         height: 1.5 * ffem / fem,
                                         color: Color(0xffffffff),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Positioned(
-                                // rp15000006hC (54:70)
-                                left: 17 * fem,
-                                top: 20 * fem,
-                                child: Align(
-                                  child: SizedBox(
-                                    width: 100 * fem,
-                                    height: 23 * fem,
-                                    child: RichText(
-                                      textAlign: TextAlign.center,
-                                      text: TextSpan(
-                                        style: SafeGoogleFont(
-                                          'Poppins',
-                                          fontSize: 15 * ffem,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.5 * ffem / fem,
-                                          color: Color(0xffffffff),
+                                      children: [
+                                        TextSpan(
+                                          text: 'Rp. ',
                                         ),
-                                        children: [
-                                          TextSpan(
-                                            text: 'Rp. ',
+                                        TextSpan(
+                                          text: totalKeuntungan.toString(),
+                                          style: SafeGoogleFont(
+                                            'Poppins',
+                                            fontSize: 15 * ffem,
+                                            fontWeight: FontWeight.w700,
+                                            height: 1.5 * ffem / fem,
+                                            color: Color(0xffffffff),
                                           ),
-                                          TextSpan(
-                                            text: totalKeuntungan.toString(),
-                                            style: SafeGoogleFont(
-                                              'Poppins',
-                                              fontSize: 15 * ffem,
-                                              fontWeight: FontWeight.w700,
-                                              height: 1.5 * ffem / fem,
-                                              color: Color(0xffffffff),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
             Container(
               // daftarinvestasiB6N (69:117)
-              margin: EdgeInsets.fromLTRB(
-                  0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
+              margin:
+                  EdgeInsets.fromLTRB(0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
               child: Text(
                 'Daftar Investasi',
                 textAlign: TextAlign.center,
@@ -241,11 +243,14 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: InvestasiCard(investasi: aktifInvestasi,)),
+            Expanded(
+                child: InvestasiCard(
+              investasi: aktifInvestasi,
+            )),
             Container(
               // daftarinvestasiB6N (69:117)
-              margin: EdgeInsets.fromLTRB(
-                  0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
+              margin:
+                  EdgeInsets.fromLTRB(0 * fem, 0 * fem, 17.5 * fem, 0 * fem),
               child: Text(
                 'Riwayat Investasi',
                 textAlign: TextAlign.center,
@@ -258,7 +263,10 @@ class Scene extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(child: InvestasiCard(investasi: selesaiInvestasi,)),
+            Expanded(
+                child: InvestasiCard(
+              investasi: selesaiInvestasi,
+            )),
           ],
         ),
       ),
@@ -282,7 +290,8 @@ class InvestasiCard extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: InkWell(
             onTap: () {
-              //ISI ROUTE
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => DetailInvestasi()));
             },
             child: Card(
               elevation: 2.0,

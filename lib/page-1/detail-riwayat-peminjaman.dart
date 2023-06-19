@@ -5,7 +5,7 @@ import 'package:myapp/models/user_model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:myapp/utils.dart';
 
-class DetailInvestasi extends StatelessWidget {
+class DetailRiwayatPeminjaman extends StatelessWidget {
   // final User user;
 
   // DetailInvestasi({required this.user});
@@ -48,7 +48,7 @@ class DetailInvestasi extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Detail Investasi',
+                        'Detail Peminjaman',
                         style: SafeGoogleFont(
                           'Poppins',
                           fontSize: 14 * ffem,
@@ -142,7 +142,7 @@ class DetailInvestasi extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Jumlah Investasi",
+                            "Jumlah Pinjaman",
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14,
@@ -150,7 +150,7 @@ class DetailInvestasi extends StatelessWidget {
                               color: Color(0xff020202),
                             ),
                           ),
-                          // Uang yang dia investasiin
+                          // Uang yang dia pinjam
                           Text(
                             "Rp 10.000.000",
                             style: SafeGoogleFont(
@@ -166,7 +166,7 @@ class DetailInvestasi extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Imbal Hasil",
+                            "Bunga",
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14,
@@ -174,7 +174,7 @@ class DetailInvestasi extends StatelessWidget {
                               color: Color(0xff020202),
                             ),
                           ),
-                          // Persen Keuntungan yang dia dapat
+                          // Bunga yang bakal ia dapat
                           Text(
                             "10%",
                             style: SafeGoogleFont(
@@ -190,7 +190,7 @@ class DetailInvestasi extends StatelessWidget {
                       Column(
                         children: [
                           Text(
-                            "Keuntungan",
+                            "Nominal Bunga",
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14,
@@ -198,7 +198,7 @@ class DetailInvestasi extends StatelessWidget {
                               color: Color(0xff020202),
                             ),
                           ),
-                          // Nominal keuntangan yg didapat, 10% dari Jumlah uang investasi
+                          // Bunga yang ia dapat
                           Text(
                             "Rp 1.000.000",
                             style: SafeGoogleFont(
@@ -285,7 +285,7 @@ class DetailInvestasi extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Sedang Berlangsung",
+                            "Lunas",
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14,
@@ -331,7 +331,7 @@ class DetailInvestasi extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "-",
+                            "1 Mei 2023",
                             style: SafeGoogleFont(
                               'Poppins',
                               fontSize: 14,
