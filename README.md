@@ -6,7 +6,7 @@
 - Muhammad Fadillah Nursyawal (2107135)
 
 ## Project Description
-This project involves the development of a mobile-based Peer-to-Peer (P2P) Lending application, designed to support secure lending transactions between users. The backend is built using FastAPI, providing high performance and scalability for modern financial applications.
+This project involves the development of a mobile-based Peer-to-Peer (P2P) Lending application designed to support secure lending transactions between users. The UI/UX design and interactive prototype were created using Figma to deliver a user-friendly and visually consistent interface. The mobile application is developed using Flutter for a seamless cross-platform experience, while the backend is built using FastAPI to ensure high performance and scalability.
 
 ## Backend Setup - FastAPI with Virtual Environment (Python)
 ### Create & Activate Virtual Environment
