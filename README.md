@@ -1,52 +1,39 @@
-# Kelompok 5
+# Team 5
 
 - Ayesha Ali Firdaus (2101990)
 - Azzahra Alika Putri Yudha (2105899)
 - Dicki Fathurohman (2103842)
 - Muhammad Fadillah Nursyawal (2107135)
 
-## Deskripsi Projek
-Membuat aplikasi P2P Landing berbasis mobile
+## Project Description
+This project involves the development of a mobile-based Peer-to-Peer (P2P) Lending application, designed to support secure lending transactions between users. The backend is built using FastAPI, providing high performance and scalability for modern financial applications.
 
-## Membuat fast api dengan virtualenv (python)
-- buka vscode bisa buka folder projectnya langsung
-- buka terminal [CTRL ~] (saranin pake cmd) dan masuk ke direktori apa aja, untuk nyimpen folder 'venv' nya. Kalau bingung satu level aja sama direktori project.
-- jalankan: (nama_env optional)
+## Backend Setup - FastAPI with Virtual Environment (Python)
+### Create & Activate Virtual Environment
+- Open the project in Visual Studio Code
+- Create a virtual environment on terminal (recommend using cmd):
 ```
-python -m venv nama_venv
+python -m venv venv_name 
 ```
-```shell
-D:\Fadhil\Computer Science\semester-4\provis\code>python -m venv venv-fastapi
+- To activate the virtual environment press CTRL+SHIFT+P, select Python: Select Interpreter, then choose the virtual environment that already made. Or you can activate the virtual environment using terminal at project directory:
 ```
-- terus gunain venv nya dengan [CTRL SHIFT P] pilih Python: Select Interpreter, pilih venv yang udah dibuat. atau bisa cara kedua pake command di terminal: (di direktori .)
+.\venv_name\Scripts\activate
 ```
-.\nama_venv\Scripts\activate
-```
-```shell
-D:\Fadhil\Computer Science\semester-4\provis\code>.\venv-fastapi\Scripts\activate
-```
-- instal package [Requirements](server/guide/requirements.txt) pake pip di terminal:
+### Install Required Dependencies
+- Install backend dependencies for authentication, API management,and database operations [Requirements](server/guide/requirements.txt) using pip on terminal:
 ```
 pip install fastapi uvicorn SQLAlchemy pydantic
 pip install email-validator passlib PyJWT bcrypt
 ```
-- bikin direktori server buat code python fastapi
-- masuk kesitu terus kalo udah ada file main.py, dll yang udah dibikin
-- jalanin di terminal:
+### Project Structure Setup
+- Create a server directory
+- Go to the directory and add main application files (e.g., main.py)
+### Run FastAPI Server
+- Run the backend server for development with auto-reload
+```
+uvicorn main:app --reload
+```
+- or with Python execution
 ```
 py main.py
-```
-default kalo bikin main.py sendiri
-```
-uvicorn main:app --reload
-```
-- ()
-```shell
-python -m venv venv
-
-.\venv\Scripts\activate
-
-uvicorn main:app --reload
-
-venv\Scripts\deactivate.bat
 ```
